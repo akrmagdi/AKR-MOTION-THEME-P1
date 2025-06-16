@@ -12,7 +12,7 @@ Section: Info + Slideshow
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-<!-- Swiper -->
+<!-- Swiper.js -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -42,7 +42,7 @@ Section: Info + Slideshow
   "
 >
   <div class="container mx-auto px-4">
-    <div id="swiper-{{ section.id }}" class="swiper-container">
+    <div id="swiper-{{ section.id }}" class="swiper">
       <div class="swiper-wrapper">
         {% if section.blocks.size == 0 %}
           <div class="py-16 text-center text-gray-500">
@@ -52,7 +52,7 @@ Section: Info + Slideshow
 
         {% for block in section.blocks %}
           <div
-            class="swiper-slide flex flex-col lg:flex-row {% if section.settings.info_position == 'right' %}lg:flex-row-reverse{% endif %} items-center transform {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}"
+            class="swiper-slide flex flex-col lg:flex-row {% if section.settings.info_position == 'right' %}lg:flex-row-reverse{% endif %} items-center {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}"
           >
             <!-- INFO -->
             <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
@@ -73,18 +73,24 @@ Section: Info + Slideshow
                   {% assign bg_value    = block.settings[bg_key] %}
                   {% assign border_value= block.settings[border_key] %}
                   {% if text_value %}
-                    <a
-                      href="{{ link_value }}"
-                      class="px-6 py-2 font-semibold transition-colors duration-200
-                             {% if style_value == 'solid' %}
-                               {{ bg_value }} text-white hover:opacity-90
-                             {% else %}
-                               border {{ border_value }} text-{{ border_value }} hover:bg-{{ border_value }} hover:text-white
-                             {% endif %}
-                             {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
-                    >
-                      {{ text_value }}
-                    </a>
+                    {% if style_value == 'solid' %}
+                      <a
+                        href="{{ link_value }}"
+                        class="px-6 py-2 font-semibold {{ bg_value }} text-white {% if section.settings.round_buttons %}rounded-full{% else%}rounded-md{% endif %} hover:opacity-90 transition"
+                      >
+                        {{ text_value }}
+                      </a>
+                    {% else %}
+                      <a
+                        href="{{ link_value }}"
+                        class="px-6 py-2 font-semibold border {% if section.settings.round_buttons %}rounded-full{% else%}rounded-md{% endif %} transition"
+                        style="border-color: {{ border_value }}; color: {{ border_value }};"
+                        onmouseover="this.style.backgroundColor='{{ border_value }}'; this.style.color='#ffffff';"
+                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ border_value }}';"
+                      >
+                        {{ text_value }}
+                      </a>
+                    {% endif %}
                   {% endif %}
                 {% endfor %}
               </div>
@@ -153,7 +159,8 @@ Section: Info + Slideshow
         { "type":"image_picker","id":"image","label":"Slide Image" },
         { "type":"text","id":"title","label":"Title" },
         { "type":"textarea","id":"description","label":"Description" },
-        { "type":"select","id":"button1_style","label":"Button 1 Style","options":[
+        {
+          "type":"select","id":"button1_style","label":"Button 1 Style","options":[
             {"value":"solid","label":"Solid"},
             {"value":"outline","label":"Outline"}
           ],"default":"solid"
@@ -162,7 +169,8 @@ Section: Info + Slideshow
         { "type":"color","id":"button1_border_color","label":"Button 1 Border Color","default":"#1D4ED8" },
         { "type":"text","id":"button1_text","label":"Button 1 Text" },
         { "type":"url","id":"button1_link","label":"Button 1 Link" },
-        { "type":"select","id":"button2_style","label":"Button 2 Style","options":[
+        {
+          "type":"select","id":"button2_style","label":"Button 2 Style","options":[
             {"value":"solid","label":"Solid"},
             {"value":"outline","label":"Outline"}
           ],"default":"outline"
@@ -178,7 +186,8 @@ Section: Info + Slideshow
     {
       "name":"Info Slideshow","category":"Hero",
       "blocks":[
-        { "type":"slide","settings":{
+        {
+          "type":"slide","settings":{
             "title":"Your Title Here",
             "description":"Your description here.",
             "button1_text":"Learn More","button1_link":"/collections/all",

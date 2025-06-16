@@ -1,1 +1,115 @@
-{"type":"header","name":"Header group","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message_ia4Njn":{"type":"message","settings":{"text":"FREE HAT WHEN YOU SPEND <em>$200+USD<\/em>"}},"message_JXcdhE":{"type":"message","settings":{"text":"PERCENTAGE OF SALES TO HBCU'S"}}},"block_order":["message_ia4Njn","message_JXcdhE"],"disabled":true,"settings":{"color_scheme":"scheme-1","enable_sticky":false,"autoplay":true,"cycle_speed":5,"desktop_font_size":11,"mobile_font_size":10}},"header":{"type":"header","blocks":{"mega_menu_btqWpp":{"type":"mega_menu","disabled":true,"settings":{"menu_item":"SHOP","images_position":"right","image_1":"shopify:\/\/shop_images\/DSC04711.heic","image_1_heading":"","image_1_text":"","image_1_link":"","image_2_heading":"","image_2_text":"","image_2_link":""}},"mega_menu_X83ecz":{"type":"mega_menu","disabled":true,"settings":{"menu_item":"collections","images_position":"right","image_1":"shopify:\/\/shop_images\/DSC04660.heic","image_1_heading":"","image_1_text":"","image_1_link":"","image_2_heading":"","image_2_text":"","image_2_link":""}}},"block_order":["mega_menu_btqWpp","mega_menu_X83ecz"],"custom_css":[".h6 {font-size: 0.9rem;}","@media only screen and (max-width: 1024px) {.header__secondary-nav-menu, .unstyled-list {display: none; }}"],"settings":{"color_scheme":"scheme-1","enable_sticky":true,"hide_on_scroll":true,"show_separation_border":true,"reduce_padding":false,"logo":"shopify:\/\/shop_images\/2sP41tfcWQE2X0k5shbVSQELHVe.svg","logo_max_width":140,"logo_mobile_max_width":110,"menu":"main-menu","sidebar_menu":"mobile-menu","menu_secondary":"right-menu","menu_secondary-2":"","sidebar_image":"shopify:\/\/shop_images\/20240501_eightyfour_product_studio_0403_a42dc28e-53bc-45fb-8a0e-8dd348efd046.heic","menu_open_trigger":"hover","enable_search":true,"sidebar_color_scheme":"","sidebar_text_font":"heading","sidebar_show_dividers":true,"layout":"logo_center_navigation_inline","show_icons":true,"show_country_selector":false,"show_country_name":false,"show_country_flag":false,"show_locale_selector":true,"transparent_header_text_color":"#f7f7f8","transparent_logo":"shopify:\/\/shop_images\/2sP3j50f5J0FHvLyAPNaItH27hX.svg"}}},"order":["announcement-bar","header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message_ia4Njn": {
+          "type": "message",
+          "settings": {
+            "text": "FREE HAT WHEN YOU SPEND <em>$200+USD</em>"
+          }
+        },
+        "message_JXcdhE": {
+          "type": "message",
+          "settings": {
+            "text": "PERCENTAGE OF SALES TO HBCU'S"
+          }
+        }
+      },
+      "block_order": [
+        "message_ia4Njn",
+        "message_JXcdhE"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "enable_sticky": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "desktop_font_size": 11,
+        "mobile_font_size": 10
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_btqWpp": {
+          "type": "mega_menu",
+          "disabled": true,
+          "settings": {
+            "menu_item": "SHOP",
+            "images_position": "right",
+            "image_1_heading": "",
+            "image_1_text": "",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_X83ecz": {
+          "type": "mega_menu",
+          "disabled": true,
+          "settings": {
+            "menu_item": "collections",
+            "images_position": "right",
+            "image_1_heading": "",
+            "image_1_text": "",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_btqWpp",
+        "mega_menu_X83ecz"
+      ],
+      "custom_css": [
+        ".h6 {font-size: 0.9rem;}",
+        "@media only screen and (max-width: 1024px) {.header__secondary-nav-menu, .unstyled-list {display: none; }}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "enable_sticky": true,
+        "hide_on_scroll": true,
+        "show_separation_border": true,
+        "reduce_padding": false,
+        "logo_max_width": 140,
+        "logo_mobile_max_width": 110,
+        "menu": "main-menu",
+        "sidebar_menu": "",
+        "menu_secondary": "",
+        "menu_secondary-2": "",
+        "menu_open_trigger": "hover",
+        "enable_search": true,
+        "sidebar_color_scheme": "",
+        "sidebar_text_font": "heading",
+        "sidebar_show_dividers": true,
+        "layout": "drawer",
+        "show_icons": true,
+        "show_country_selector": false,
+        "show_country_name": false,
+        "show_country_flag": false,
+        "show_locale_selector": true,
+        "transparent_header_text_color": "#f7f7f8"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

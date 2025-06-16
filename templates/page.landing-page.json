@@ -103,9 +103,9 @@
             "color_scheme": "",
             "column_count": "3",
             "row_count": 1,
-            "title": "aa",
+            "title": "Candles",
             "heading_tag": "h4",
-            "content": "<p>aa</p>",
+            "content": "",
             "link_text": "",
             "link_url": "",
             "link_style": "link",
@@ -120,7 +120,7 @@
             "color_scheme": "",
             "column_count": "3",
             "row_count": 1,
-            "title": "",
+            "title": "Journals & Stationery",
             "heading_tag": "h4",
             "content": "",
             "link_text": "",
@@ -137,7 +137,7 @@
             "color_scheme": "",
             "column_count": "3",
             "row_count": 1,
-            "title": "",
+            "title": "Curated Gift Boxes",
             "heading_tag": "h4",
             "content": "",
             "link_text": "",
@@ -154,7 +154,7 @@
             "color_scheme": "",
             "column_count": "3",
             "row_count": 1,
-            "title": "",
+            "title": "Academic Services",
             "heading_tag": "h4",
             "content": "",
             "link_text": "",
@@ -181,7 +181,7 @@
         "section_width": "lg",
         "spacing": "md",
         "subheading": "",
-        "title": "",
+        "title": "Media grid",
         "content": ""
       }
     },
@@ -191,21 +191,21 @@
         "heading_MDGYUG": {
           "type": "heading",
           "settings": {
-            "text": "Image with text overlay",
+            "text": "Academic Support That Cares",
             "heading_tag": "h4"
           }
         },
         "richtext_PdPCcC": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+            "content": "<p>For students, researchers, and writers — coaching, editing, and guidance you can trust.</p>"
           }
         },
         "button_hEhzQy": {
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Button Text",
+            "text": "Learn More About Our Services",
             "url": "",
             "background": "",
             "text_color": ""
@@ -237,7 +237,7 @@
         "heading_8paWHn": {
           "type": "heading",
           "settings": {
-            "text": "Heading",
+            "text": "Why Shop With Us",
             "heading_tag": "h1"
           }
         }
@@ -263,8 +263,8 @@
             "icon": "picto-delivery-truck",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Free shipping",
-            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+            "title": "",
+            "content": "<h4>Hand-poured candles</h4>"
           }
         },
         "item_zQfwqQ": {
@@ -273,8 +273,8 @@
             "icon": "picto-customer-support",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Customer service",
-            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+            "title": "",
+            "content": "<h4>Scholar-founded brand</h4>"
           }
         },
         "item_V9QUkY": {
@@ -283,15 +283,37 @@
             "icon": "picto-shield",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Secure payment",
-            "content": "<p>Your payment information is processed securely.</p>"
+            "title": "",
+            "content": "<h4>Thoughtfully curated gifts</h4>"
+          }
+        },
+        "item_mByLeh": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "",
+            "content": "<h4>330+ customer likes</h4>"
+          }
+        },
+        "item_tRG6KW": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "",
+            "content": "<h4>Academic expertise + creative soul</h4>"
           }
         }
       },
       "block_order": [
         "item_iNhVkK",
         "item_zQfwqQ",
-        "item_V9QUkY"
+        "item_V9QUkY",
+        "item_mByLeh",
+        "item_tRG6KW"
       ],
       "name": "Text with Icons",
       "settings": {
@@ -309,7 +331,7 @@
         "heading_wYDDCp": {
           "type": "heading",
           "settings": {
-            "text": "Heading",
+            "text": "What Our Customers Say",
             "heading_tag": "h1"
           }
         }
@@ -335,8 +357,8 @@
             "icon": "picto-delivery-truck",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Free shipping",
-            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+            "title": "\"The lavender candle helped me get through my writing sessions!\"",
+            "content": "<p>Sarah M. Graduate Student</p>"
           }
         },
         "item_BVdTYa": {
@@ -345,8 +367,8 @@
             "icon": "picto-customer-support",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Customer service",
-            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+            "title": "\"Thanks to Sienna and Slate, I finally submitted my dissertation.\"",
+            "content": "<p>Dr. James L. Researcher</p>"
           }
         }
       },

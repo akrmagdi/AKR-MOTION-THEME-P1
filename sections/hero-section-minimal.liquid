@@ -39,8 +39,7 @@ Section: Info + Rich-Text Slideshow
   data-section-id="{{ section.id }}"
   data-section-type="info-rich-text-slideshow"
   {{ section.shopify_attributes }}
-  class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} flex justify-center
- items-center allow-transparent-header" allow-transparent-header=""
+  class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} flex justify-center items-center"
   style="
     min-height: {{ section.settings.section_height }}px;
     {% if section.settings.background_gradient %}background: {{ section.settings.background_gradient }};{% endif %}
@@ -69,10 +68,10 @@ Section: Info + Rich-Text Slideshow
               data-block-type="slide"
             >
               <div
-                class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center{% if section.settings.hover_effect == 'scale' %} transition-transform duration-300 hover:scale-105{% endif %}"
+                class="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %}{% if section.settings.hover_effect == 'scale' %} transition-transform duration-300 hover:scale-105{% endif %}"
               >
                 <!-- INFO -->
-                <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
+                <div class="w-full lg:w-1/2 p-6 space-y-6" data-aos="fade-right">
                   <div
                     class="prose"
                     data-block-id="{{ block.id }}"
@@ -83,7 +82,7 @@ Section: Info + Rich-Text Slideshow
                   </div>
 
                   <div
-                    class="prose mt-4"
+                    class="prose"
                     data-block-id="{{ block.id }}"
                     data-block-type="slide"
                     data-setting-id="body"
@@ -102,7 +101,7 @@ Section: Info + Rich-Text Slideshow
                       button-group{% unless simple %} button-group--same-width{% endunless %} justify-{{ mb }} sm:justify-{{ db }}
                     {% endcapture %}
 
-                    <div class="{{ btn_class | strip }}">
+                    <div class="{{ btn_class | strip }} flex flex-wrap space-x-4 space-y-4">
                       {% if block.settings.button_1_text %}
                         <div
                           data-block-id="{{ block.id }}"
@@ -253,9 +252,9 @@ Section: Info + Rich-Text Slideshow
       "type": "slide",
       "name": "Slide",
       "settings": [
-        { "type": "image_picker", "id": "image",                 "label": "Slide Image" },
-        { "type": "richtext",     "id": "heading",               "label": "Heading",            "default": "<h2>Your title</h2>" },
-        { "type": "richtext",     "id": "body",                  "label": "Text",               "default": "<p>Your description here.</p>" },
+        { "type": "image_picker", "id": "image",   "label": "Slide Image" },
+        { "type": "richtext",     "id": "heading", "label": "Heading",            "default": "<h2>Your title</h2>" },
+        { "type": "richtext",     "id": "body",    "label": "Text",               "default": "<p>Your description here.</p>" },
         {
           "type": "select", "id": "button_1_style", "label": "Button 1 Style",
           "options": [

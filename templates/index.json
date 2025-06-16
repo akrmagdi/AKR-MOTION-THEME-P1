@@ -114,10 +114,59 @@
         "text_color": "",
         "text_alignment": "center"
       }
+    },
+    "text_with_icons_3xWbLX": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_DL9aCQ": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "Trusted by 300+ graduate students, scholars, and researchers",
+            "content": ""
+          }
+        },
+        "item_dgQnLC": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "Projects supported from undergrad to postdoc",
+            "content": ""
+          }
+        },
+        "item_yhEzEa": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "5+ years of personal academic mentoring",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_DL9aCQ",
+        "item_dgQnLC",
+        "item_yhEzEa"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
     }
   },
   "order": [
     "hero_section_minimal_qXcgdp",
-    "text_with_icons_tycr7F"
+    "text_with_icons_tycr7F",
+    "text_with_icons_3xWbLX"
   ]
 }

@@ -373,85 +373,6 @@
         "remove_vertical_spacing": false
       }
     },
-    "text_with_icons_hLBGG4": {
-      "type": "text-with-icons",
-      "blocks": {
-        "item_A4EErD": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-delivery-truck",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Free shipping",
-            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
-          }
-        },
-        "item_RYWCAK": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-customer-support",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Customer service",
-            "content": "<p>We are available from monday to friday to answer your questions.</p>"
-          }
-        },
-        "item_t9Kjxa": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-shield",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Secure payment",
-            "content": "<p>Your payment information is processed securely.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "item_A4EErD",
-        "item_RYWCAK",
-        "item_t9Kjxa"
-      ],
-      "name": "Text with Icons",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "stack_on_mobile": false,
-        "icon_color": "",
-        "text_color": "",
-        "text_alignment": "center"
-      }
-    },
-    "rich_text_4XVYMx": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_UGhJRP": {
-          "type": "heading",
-          "settings": {
-            "text": "We See What AI Can't.What Real Writers Say",
-            "heading_tag": "h2"
-          }
-        },
-        "subheading_UYByjx": {
-          "type": "subheading",
-          "settings": {
-            "text": "Nuance, soul, voice — the things your work needs most."
-          }
-        }
-      },
-      "block_order": [
-        "heading_UGhJRP",
-        "subheading_UYByjx"
-      ],
-      "name": "Rich Text Section",
-      "settings": {
-        "color_scheme": "scheme-3",
-        "separate_section_with_border": false,
-        "content_width": "sm",
-        "text_position": "center",
-        "remove_vertical_spacing": false
-      }
-    },
     "text_with_icons_RKpjDC": {
       "type": "text-with-icons",
       "blocks": {
@@ -500,6 +421,78 @@
         "text_color": "",
         "text_alignment": "center"
       }
+    },
+    "rich_text_4XVYMx": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_UGhJRP": {
+          "type": "heading",
+          "settings": {
+            "text": "Getting Started is Simple",
+            "heading_tag": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UGhJRP"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "text_with_icons_hLBGG4": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_A4EErD": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Choose your support style",
+            "content": "<p>Select the type of guidance that fits your project and timeline.</p>"
+          }
+        },
+        "item_RYWCAK": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Meet your personal mentor",
+            "content": "<p>Connect with an expert who understands your field and goals.</p>"
+          }
+        },
+        "item_t9Kjxa": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Submit with confidence",
+            "content": "<p>Move forward knowing your work represents your best thinking.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_A4EErD",
+        "item_RYWCAK",
+        "item_t9Kjxa"
+      ],
+      "name": "Text with Icons",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
     }
   },
   "order": [
@@ -511,8 +504,8 @@
     "rich_text_6REikG",
     "image_with_text_iHMLah",
     "rich_text_fLYBtM",
-    "text_with_icons_hLBGG4",
+    "text_with_icons_RKpjDC",
     "rich_text_4XVYMx",
-    "text_with_icons_RKpjDC"
+    "text_with_icons_hLBGG4"
   ]
 }

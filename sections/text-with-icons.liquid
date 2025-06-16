@@ -366,21 +366,6 @@
             }
           ]
         },
-            {
-  "type": "select",
-  "id": "layout_desktop",
-  "label": "Desktop Layout",
-  "default": "side-by-side",
-  "options": [
-    { "value": "stacked", "label": "Stacked" },
-    { "value": "side-by-side", "label": "Side by Side" }
-  ]
-},
-{
-  "type": "color",
-  "id": "background_color",
-  "label": "Block Background Color"
-},
         {
           "type": "image_picker",
           "id": "custom_icon",
@@ -459,13 +444,13 @@
 {%- if section.blocks.size > 0 -%}
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 
-  <div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"      style="background-color: {{ section.settings.background_color }};">
+  <div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
-      <div class="v-stack gap-8 {% if section.settings.layout_desktop == 'side-by-side' %}lg:flex lg:flex-wrap lg:gap-6{% endif %}">
+      <div class="v-stack gap-8">
         {%- capture section_content -%}
           {%- for block in section.blocks -%}
             <div class="text-with-icons__item {% if forloop.first %}is-selected{% endif %} {% unless section.settings.stack_on_mobile %}snap-center{% endunless %}" role="group" aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}" {{ block.shopify_attributes }}>
-              <div class="{% if block.settings.icon_text_layout == 'horizontal' %}flex items-center gap-4 sm:justify-{{ section.settings.text_alignment }}{% else %}v-stack gap-6 justify-items-center sm:justify-items-{{ section.settings.text_alignment }}{% endif %}">
+              <div class="v-stack gap-6 justify-items-center sm:justify-items-{{ section.settings.text_alignment }}">
                 {%- if block.settings.custom_icon != blank -%}
                   {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
                   {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
@@ -521,4 +506,3 @@
     </div>
   </div>
 {%- endif -%}
-

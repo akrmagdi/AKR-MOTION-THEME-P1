@@ -290,36 +290,6 @@
         "remove_vertical_spacing": false
       }
     },
-    "rich_text_fLYBtM": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_B9nFyR": {
-          "type": "heading",
-          "settings": {
-            "text": "We See What AI Can't.",
-            "heading_tag": "h2"
-          }
-        },
-        "subheading_7YRLpx": {
-          "type": "subheading",
-          "settings": {
-            "text": "Nuance, soul, voice — the things your work needs most."
-          }
-        }
-      },
-      "block_order": [
-        "heading_B9nFyR",
-        "subheading_7YRLpx"
-      ],
-      "name": "Rich Text Section",
-      "settings": {
-        "color_scheme": "scheme-3",
-        "separate_section_with_border": false,
-        "content_width": "sm",
-        "text_position": "center",
-        "remove_vertical_spacing": false
-      }
-    },
     "image_with_text_iHMLah": {
       "type": "image-with-text",
       "blocks": {
@@ -371,6 +341,36 @@
         "image_position": "end",
         "content_width": "sm",
         "remove_vertical_spacing": true
+      }
+    },
+    "rich_text_fLYBtM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_B9nFyR": {
+          "type": "heading",
+          "settings": {
+            "text": "We See What AI Can't.",
+            "heading_tag": "h2"
+          }
+        },
+        "subheading_7YRLpx": {
+          "type": "subheading",
+          "settings": {
+            "text": "Nuance, soul, voice — the things your work needs most."
+          }
+        }
+      },
+      "block_order": [
+        "heading_B9nFyR",
+        "subheading_7YRLpx"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
       }
     },
     "text_with_icons_hLBGG4": {
@@ -428,7 +428,7 @@
         "heading_UGhJRP": {
           "type": "heading",
           "settings": {
-            "text": "We See What AI Can't.",
+            "text": "We See What AI Can't.What Real Writers Say",
             "heading_tag": "h2"
           }
         },
@@ -461,8 +461,8 @@
             "icon": "picto-delivery-truck",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Free shipping",
-            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+            "title": "Sarah M.PhD Candidate",
+            "content": "<p>\"It felt like having a personal mentor. The feedback was so much more nuanced than anything I'd gotten before.\"</p>"
           }
         },
         "item_NRbXPc": {
@@ -471,8 +471,8 @@
             "icon": "picto-customer-support",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Customer service",
-            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+            "title": "Dr. James L.Researcher",
+            "content": "<p>\"Way better than using AI — I felt understood. They got the complexity of my research immediately.\"</p>"
           }
         },
         "item_gieKRn": {
@@ -481,8 +481,8 @@
             "icon": "picto-shield",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Secure payment",
-            "content": "<p>Your payment information is processed securely.</p>"
+            "title": "Maria R.Graduate Student",
+            "content": "<p>\"My research finally made sense to me after working with them. The clarity was transformational.\"</p>"
           }
         }
       },
@@ -493,8 +493,8 @@
       ],
       "name": "Text with Icons",
       "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
         "stack_on_mobile": false,
         "icon_color": "",
         "text_color": "",

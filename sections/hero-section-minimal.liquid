@@ -8,7 +8,7 @@ Section: Info + Rich-Text Slideshow
 - Vertical centering wrapper
 {% endcomment %}
 
-<!-- Tailwind -->
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <!-- AOS -->
@@ -33,17 +33,17 @@ Section: Info + Rich-Text Slideshow
 
 <section
   id="shopify-section-{{ section.id }}"
-  class="{{ section.settings.section_color_scheme }} py-12"
+  class="{{ section.settings.color_scheme }} py-12"
   style="
     min-height: {{ section.settings.section_height }}px;
     {% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}
     {% if section.settings.background_image_desktop != blank %}
-      background-image:url({{ section.settings.background_image_desktop | img_url: 'master' }});
-      background-size:cover; background-position:center;
+      background-image:url({{ section.settings.background_image_desktop | img_url:'master' }});
+      background-size:cover;
+      background-position:center;
     {% endif %}
   "
 >
-  <!-- Vertical center wrapper -->
   <div class="h-full flex items-center">
     <div class="container mx-auto px-4">
       <div id="swiper-{{ section.id }}" class="swiper">
@@ -125,7 +125,7 @@ Section: Info + Rich-Text Slideshow
           {% endfor %}
         </div>
 
-        <!-- Dots -->
+        <!-- Pagination Dots -->
         <div class="swiper-pagination mt-6"></div>
       </div>
     </div>
@@ -137,45 +137,79 @@ Section: Info + Rich-Text Slideshow
   "name": "Info Slideshow",
   "settings": [
     {
-      "type":"select","id":"autoplay_speed","label":"Slide change every (ms)","options":[
-        {"value":"3000","label":"3s"},
-        {"value":"5000","label":"5s"},
-        {"value":"7000","label":"7s"}
-      ],"default":"5000"
+      "type": "select",
+      "id": "autoplay_speed",
+      "label": "Slide change every (ms)",
+      "options": [
+        { "value": "3000", "label": "3s" },
+        { "value": "5000", "label": "5s" },
+        { "value": "7000", "label": "7s" }
+      ],
+      "default": "5000"
     },
     {
-      "type":"range","id":"section_height","label":"Section Min Height (px)","min":200,"max":1200,"step":50,"unit":"px","default":600
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Min Height (px)",
+      "min": 200,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 600
     },
     {
-      "type":"select","id":"info_position","label":"Info Position","options":[
-        {"value":"left","label":"Left"},
-        {"value":"right","label":"Right"}
-      ],"default":"left"
+      "type": "select",
+      "id": "info_position",
+      "label": "Info Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
     },
     {
-      "type":"select","id":"hover_effect","label":"Slide Hover Effect","options":[
-        {"value":"none","label":"None"},
-        {"value":"scale","label":"Scale"}
-      ],"default":"none"
+      "type": "select",
+      "id": "hover_effect",
+      "label": "Slide Hover Effect",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "scale", "label": "Scale" }
+      ],
+      "default": "none"
     },
     {
-      "type":"color_scheme",
-      "id":"section_color_scheme",
-      "label":"Section Color Scheme"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section Color Scheme"
     },
     {
-      "type":"color_background",
-      "id":"background_gradient",
-      "label":"Background Gradient"
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background Gradient"
     },
     {
-      "type":"image_picker",
-      "id":"background_image_desktop",
-      "label":"Desktop Background Image"
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Desktop Background Image"
     },
-    { "type":"checkbox","id":"round_title","label":"Round Title Background","default":false },
-    { "type":"checkbox","id":"round_buttons","label":"Round Buttons","default":false },
-    { "type":"checkbox","id":"round_image","label":"Round Image Corners","default":false }
+    {
+      "type": "checkbox",
+      "id": "round_title",
+      "label": "Round Title Background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "round_buttons",
+      "label": "Round Buttons",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "round_image",
+      "label": "Round Image Corners",
+      "default": false
+    }
   ],
   "blocks": [
     {
@@ -183,37 +217,100 @@ Section: Info + Rich-Text Slideshow
       "name": "Slide",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Slide Image" },
-        { "type": "richtext",     "id": "heading", "label": "Heading", "default": "<h2>Your title</h2>" },
-        { "type": "richtext",     "id": "body",    "label": "Text",    "default": "<p>Your description here.</p>" },
         {
-          "type":"select","id":"button1_style","label":"Button 1 Style","options":[
-            {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
-          ],"default":"solid"
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h2>Your title</h2>"
         },
-        { "type":"color","id":"button1_bg_color","label":"Button 1 BG","default":"#1D4ED8" },
-        { "type":"color","id":"button1_border_color","label":"Button 1 Border","default":"#1D4ED8" },
-        { "type":"color","id":"button1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
-        { "type":"text","id":"button1_text","label":"Button 1 Text" },
-        { "type":"url","id":"button1_link","label":"Button 1 Link" },
-
         {
-          "type":"select","id":"button2_style","label":"Button 2 Style","options":[
-            {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
-          ],"default":"outline"
+          "type": "richtext",
+          "id": "body",
+          "label": "Text",
+          "default": "<p>Your description here.</p>"
         },
-        { "type":"color","id":"button2_bg_color","label":"Button 2 BG","default":"#E5E7EB" },
-        { "type":"color","id":"button2_border_color","label":"Button 2 Border","default":"#6B7280" },
-        { "type":"color","id":"button2_text_color","label":"Button 2 Text Color","default":"#000000" },
-        { "type":"text","id":"button2_text","label":"Button 2 Text" },
-        { "type":"url","id":"button2_link","label":"Button 2 Link" }
+        {
+          "type": "select",
+          "id": "button1_style",
+          "label": "Button 1 Style",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "outline", "label": "Outline" }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "color",
+          "id": "button1_bg_color",
+          "label": "Button 1 BG",
+          "default": "#1D4ED8"
+        },
+        {
+          "type": "color",
+          "id": "button1_border_color",
+          "label": "Button 1 Border",
+          "default": "#1D4ED8"
+        },
+        {
+          "type": "color",
+          "id": "button1_text_color",
+          "label": "Button 1 Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "button1_text",
+          "label": "Button 1 Text"
+        },
+        {
+          "type": "url",
+          "id": "button1_link",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "select",
+          "id": "button2_style",
+          "label": "Button 2 Style",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "outline", "label": "Outline" }
+          ],
+          "default": "outline"
+        },
+        {
+          "type": "color",
+          "id": "button2_bg_color",
+          "label": "Button 2 BG",
+          "default": "#E5E7EB"
+        },
+        {
+          "type": "color",
+          "id": "button2_border_color",
+          "label": "Button 2 Border",
+          "default": "#6B7280"
+        },
+        {
+          "type": "color",
+          "id": "button2_text_color",
+          "label": "Button 2 Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "button2_text",
+          "label": "Button 2 Text"
+        },
+        {
+          "type": "url",
+          "id": "button2_link",
+          "label": "Button 2 Link"
+        }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Info Rich-Text Slideshow",
+      "name": "Info/Slideshow",
       "category": "Hero",
       "blocks": [
         {

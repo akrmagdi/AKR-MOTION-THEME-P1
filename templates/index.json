@@ -249,10 +249,10 @@
         "item_rJHeHG"
       ],
       "custom_css": [
-        ".text-with-icons__item {background: £FAFAFA; padding: 1rem 1.5rem; border-radius: 1rem; border: 0.1px solid gray;}"
+        ".text-with-icons__item {background: white; padding: 1rem 1.5rem; border-radius: 1rem; border: 0.1px solid gray;}"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": false,
         "stack_on_mobile": false,
         "icon_color": "",

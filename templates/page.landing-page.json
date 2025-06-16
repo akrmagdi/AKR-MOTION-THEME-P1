@@ -394,8 +394,8 @@
         "separate_section_with_border": false,
         "image_size": "auto",
         "subheading": "",
-        "title": "Newsletter",
-        "content": "<p>A short sentence describing what someone will receive by subscribing.</p>",
+        "title": "Join Our Literary Circle",
+        "content": "<p>Get cozy updates, gift ideas, and academic tips every month.</p>",
         "button_text": "Subscribe",
         "overlay_color": "#000000",
         "overlay_opacity": 0

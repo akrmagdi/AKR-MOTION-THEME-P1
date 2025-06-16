@@ -290,6 +290,36 @@
         "remove_vertical_spacing": false
       }
     },
+    "rich_text_fLYBtM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_B9nFyR": {
+          "type": "heading",
+          "settings": {
+            "text": "We See What AI Can't.",
+            "heading_tag": "h2"
+          }
+        },
+        "subheading_7YRLpx": {
+          "type": "subheading",
+          "settings": {
+            "text": "Nuance, soul, voice — the things your work needs most."
+          }
+        }
+      },
+      "block_order": [
+        "heading_B9nFyR",
+        "subheading_7YRLpx"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
     "image_with_text_iHMLah": {
       "type": "image-with-text",
       "blocks": {
@@ -342,6 +372,134 @@
         "content_width": "sm",
         "remove_vertical_spacing": true
       }
+    },
+    "text_with_icons_hLBGG4": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_A4EErD": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Free shipping",
+            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+          }
+        },
+        "item_RYWCAK": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Customer service",
+            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+          }
+        },
+        "item_t9Kjxa": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Secure payment",
+            "content": "<p>Your payment information is processed securely.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_A4EErD",
+        "item_RYWCAK",
+        "item_t9Kjxa"
+      ],
+      "name": "Text with Icons",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
+    "rich_text_4XVYMx": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_UGhJRP": {
+          "type": "heading",
+          "settings": {
+            "text": "We See What AI Can't.",
+            "heading_tag": "h2"
+          }
+        },
+        "subheading_UYByjx": {
+          "type": "subheading",
+          "settings": {
+            "text": "Nuance, soul, voice — the things your work needs most."
+          }
+        }
+      },
+      "block_order": [
+        "heading_UGhJRP",
+        "subheading_UYByjx"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "text_with_icons_RKpjDC": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_4yT3PL": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Free shipping",
+            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+          }
+        },
+        "item_NRbXPc": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Customer service",
+            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+          }
+        },
+        "item_gieKRn": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Secure payment",
+            "content": "<p>Your payment information is processed securely.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_4yT3PL",
+        "item_NRbXPc",
+        "item_gieKRn"
+      ],
+      "name": "Text with Icons",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
     }
   },
   "order": [
@@ -351,6 +509,10 @@
     "rich_text_YpVNty",
     "text_with_icons_3xWbLX",
     "rich_text_6REikG",
-    "image_with_text_iHMLah"
+    "image_with_text_iHMLah",
+    "rich_text_fLYBtM",
+    "text_with_icons_hLBGG4",
+    "rich_text_4XVYMx",
+    "text_with_icons_RKpjDC"
   ]
 }

@@ -1,8 +1,8 @@
 {% comment %}
-Section: Info + Slideshow
-- Tailwind via CDN (optional)
-- AOS for scroll animations
-- Swiper.js for slider functionality
+  Section: Info + Slideshow
+  - Tailwind via CDN (optional)
+  - AOS for scroll animations
+  - Swiper.js for slider functionality
 {% endcomment %}
 
 {%- if section.settings.include_tailwind_cdn -%}
@@ -12,13 +12,13 @@ Section: Info + Slideshow
 <link
   rel="stylesheet"
   href="https://unpkg.com/aos@2.3.4/dist/aos.css"
-/>
+>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
 <link
   rel="stylesheet"
   href="https://unpkg.com/swiper/swiper-bundle.min.css"
-/>
+>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
@@ -58,13 +58,15 @@ Section: Info + Slideshow
                 {% if block.settings.button1_text != blank %}
                   <a
                     href="{{ block.settings.button1_link }}"
-                    class="px-6 py-2 font-semibold
+                    class="
+                      px-6 py-2 font-semibold
                       {% if btn_style == 'solid' %}
                         {{ section.settings.button1_bg_color }} text-white
                       {% else %}
                         border {{ section.settings.button1_border_color }} text-{{ section.settings.button1_border_color }}
                       {% endif %}
-                      {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
+                      {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}
+                    "
                   >
                     {{ block.settings.button1_text }}
                   </a>
@@ -72,13 +74,15 @@ Section: Info + Slideshow
                 {% if block.settings.button2_text != blank %}
                   <a
                     href="{{ block.settings.button2_link }}"
-                    class="px-6 py-2 font-semibold
+                    class="
+                      px-6 py-2 font-semibold
                       {% if btn_style == 'solid' %}
                         {{ section.settings.button2_bg_color }} text-white
                       {% else %}
                         border {{ section.settings.button2_border_color }} text-{{ section.settings.button2_border_color }}
                       {% endif %}
-                      {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
+                      {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}
+                    "
                   >
                     {{ block.settings.button2_text }}
                   </a>
@@ -92,7 +96,7 @@ Section: Info + Slideshow
                 src="{{ block.settings.image | img_url: 'master' }}"
                 alt="{{ block.settings.image.alt }}"
                 class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
-              />
+              >
             </div>
           </div>
         {% endfor %}

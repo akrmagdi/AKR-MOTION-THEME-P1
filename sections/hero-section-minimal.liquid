@@ -1,9 +1,12 @@
 {% comment %}
-Section: Info + Rich-Text Slideshow with Shopify Color Scheme
-- Uses scheme_picker for background
-- Wraps in section-spacing/color-scheme wrapper
-- Vertical centering of content
-- Tailwind, AOS, Swiper as before
+Section: Info + Rich-Text Slideshow
+- Tailwind via CDN
+- AOS for scroll animations
+- Swiper.js for slider
+- Richtext for inline editable heading & body
+- Color scheme picker for background
+- Vertical centering wrapper
+- Buttons now use your `.button` and `.button--outline` classes
 {% endcomment %}
 
 <!-- Tailwind CSS -->
@@ -30,7 +33,7 @@ Section: Info + Rich-Text Slideshow with Shopify Color Scheme
 </script>
 
 {%- comment -%}
-Compute hash for scheme background (Shopify theme CSS uses this)
+Compute hash for scheme background
 {%- endcomment -%}
 {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
    | default: section.settings.color_scheme.settings.background
@@ -44,8 +47,7 @@ Compute hash for scheme background (Shopify theme CSS uses this)
     {% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}
     {% if section.settings.background_image_desktop != blank %}
       background-image:url({{ section.settings.background_image_desktop | img_url:'master' }});
-      background-size:cover;
-      background-position:center;
+      background-size:cover; background-position:center;
     {% endif %}
   "
 >
@@ -90,7 +92,7 @@ Compute hash for scheme background (Shopify theme CSS uses this)
                         {% if sty == 'solid' %}
                           <a
                             href="{{ lnk }}"
-                            class="px-6 py-2 font-semibold {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
+                            class="button"
                             style="background-color: {{ bg }}; color: {{ col }};"
                           >
                             {{ txt }}
@@ -98,7 +100,7 @@ Compute hash for scheme background (Shopify theme CSS uses this)
                         {% else %}
                           <a
                             href="{{ lnk }}"
-                            class="px-6 py-2 font-semibold border {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
+                            class="button button--outline"
                             style="border-color: {{ brd }}; color: {{ brd }};"
                             onmouseover="this.style.backgroundColor='{{ brd }}'; this.style.color='{{ col }}';"
                             onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ brd }}';"
@@ -167,8 +169,8 @@ Compute hash for scheme background (Shopify theme CSS uses this)
       "id": "info_position",
       "label": "Info Position",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
+        { "value":"left","label":"Left" },
+        { "value":"right","label":"Right" }
       ],
       "default": "left"
     },
@@ -177,8 +179,8 @@ Compute hash for scheme background (Shopify theme CSS uses this)
       "id": "hover_effect",
       "label": "Slide Hover Effect",
       "options": [
-        { "value": "none", "label": "None" },
-        { "value": "scale", "label": "Scale" }
+        { "value":"none","label":"None" },
+        { "value":"scale","label":"Scale" }
       ],
       "default": "none"
     },
@@ -221,95 +223,31 @@ Compute hash for scheme background (Shopify theme CSS uses this)
       "type": "slide",
       "name": "Slide",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Slide Image" },
+        { "type":"image_picker","id":"image","label":"Slide Image" },
+        { "type":"richtext","id":"heading","label":"Heading","default":"<h2>Your title</h2>" },
+        { "type":"richtext","id":"body","label":"Text","default":"<p>Your description here.</p>" },
         {
-          "type": "richtext",
-          "id": "heading",
-          "label": "Heading",
-          "default": "<h2>Your title</h2>"
+          "type":"select","id":"button1_style","label":"Button 1 Style","options":[
+            {"value":"solid","label":"Solid"},
+            {"value":"outline","label":"Outline"}
+          ],"default":"solid"
         },
+        { "type":"color","id":"button1_bg_color","label":"Button 1 BG","default":"#1D4ED8" },
+        { "type":"color","id":"button1_border_color","label":"Button 1 Border","default":"#1D4ED8" },
+        { "type":"color","id":"button1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
+        { "type":"text","id":"button1_text","label":"Button 1 Text" },
+        { "type":"url","id":"button1_link","label":"Button 1 Link" },
         {
-          "type": "richtext",
-          "id": "body",
-          "label": "Text",
-          "default": "<p>Your description here.</p>"
+          "type":"select","id":"button2_style","label":"Button 2 Style","options":[
+            {"value":"solid","label":"Solid"},
+            {"value":"outline","label":"Outline"}
+          ],"default":"outline"
         },
-        {
-          "type": "select",
-          "id": "button1_style",
-          "label": "Button 1 Style",
-          "options": [
-            { "value": "solid", "label": "Solid" },
-            { "value": "outline", "label": "Outline" }
-          ],
-          "default": "solid"
-        },
-        {
-          "type": "color",
-          "id": "button1_bg_color",
-          "label": "Button 1 BG",
-          "default": "#1D4ED8"
-        },
-        {
-          "type": "color",
-          "id": "button1_border_color",
-          "label": "Button 1 Border",
-          "default": "#1D4ED8"
-        },
-        {
-          "type": "color",
-          "id": "button1_text_color",
-          "label": "Button 1 Text Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "text",
-          "id": "button1_text",
-          "label": "Button 1 Text"
-        },
-        {
-          "type": "url",
-          "id": "button1_link",
-          "label": "Button 1 Link"
-        },
-        {
-          "type": "select",
-          "id": "button2_style",
-          "label": "Button 2 Style",
-          "options": [
-            { "value": "solid", "label": "Solid" },
-            { "value": "outline", "label": "Outline" }
-          ],
-          "default": "outline"
-        },
-        {
-          "type": "color",
-          "id": "button2_bg_color",
-          "label": "Button 2 BG",
-          "default": "#E5E7EB"
-        },
-        {
-          "type": "color",
-          "id": "button2_border_color",
-          "label": "Button 2 Border",
-          "default": "#6B7280"
-        },
-        {
-          "type": "color",
-          "id": "button2_text_color",
-          "label": "Button 2 Text Color",
-          "default": "#000000"
-        },
-        {
-          "type": "text",
-          "id": "button2_text",
-          "label": "Button 2 Text"
-        },
-        {
-          "type": "url",
-          "id": "button2_link",
-          "label": "Button 2 Link"
-        }
+        { "type":"color","id":"button2_bg_color","label":"Button 2 BG","default":"#E5E7EB" },
+        { "type":"color","id":"button2_border_color","label":"Button 2 Border","default":"#6B7280" },
+        { "type":"color","id":"button2_text_color","label":"Button 2 Text Color","default":"#000000" },
+        { "type":"text","id":"button2_text","label":"Button 2 Text" },
+        { "type":"url","id":"button2_link","label":"Button 2 Link" }
       ]
     }
   ],
@@ -333,4 +271,5 @@ Compute hash for scheme background (Shopify theme CSS uses this)
     }
   ]
 }
+
 {% endschema %}

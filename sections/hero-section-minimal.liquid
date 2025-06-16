@@ -1,6 +1,6 @@
 {% comment %}
 Section: Info + Rich-Text Slideshow
-– Inspector support via shopify_attributes & data-setting-id
+– Inspector support via shopify_attributes & data-section / data-block / data-setting IDs
 – Tailwind, AOS, Swiper.js
 – scheme_picker for background
 – Richtext for heading & body
@@ -30,13 +30,14 @@ Section: Info + Rich-Text Slideshow
   });
 </script>
 
-{%- comment -%} Compute scheme background hash {%- endcomment -%}
 {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
    | default: section.settings.color_scheme.settings.background
    | md5 -%}
 
 <section
   id="shopify-section-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="info-rich-text-slideshow"
   {{ section.shopify_attributes }}
   class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }}"
   style="
@@ -44,8 +45,7 @@ Section: Info + Rich-Text Slideshow
     {% if section.settings.background_gradient %}background: {{ section.settings.background_gradient }};{% endif %}
     {% if section.settings.background_image_desktop %}
       background-image: url({{ section.settings.background_image_desktop | img_url: 'master' }});
-      background-size: cover;
-      background-position: center;
+      background-size: cover; background-position: center;
     {% endif %}
   "
 >
@@ -61,34 +61,53 @@ Section: Info + Rich-Text Slideshow
           {% endif %}
 
           {% for block in section.blocks %}
-            <div class="swiper-slide" {{ block.shopify_attributes }}>
-              <div class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center{% if section.settings.hover_effect == 'scale' %} transition-transform duration-300 hover:scale-105{% endif %}">
-                
+            <div
+              class="swiper-slide"
+              {{ block.shopify_attributes }}
+              data-block-id="{{ block.id }}"
+              data-block-type="slide"
+            >
+              <div
+                class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center{% if section.settings.hover_effect == 'scale' %} transition-transform duration-300 hover:scale-105{% endif %}"
+              >
                 <!-- INFO -->
                 <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
-                  <div class="prose" data-setting-id="heading">
+                  <div
+                    class="prose"
+                    data-block-id="{{ block.id }}"
+                    data-block-type="slide"
+                    data-setting-id="heading"
+                  >
                     {{ block.settings.heading }}
                   </div>
-                  <div class="prose mt-4" data-setting-id="body">
+
+                  <div
+                    class="prose mt-4"
+                    data-block-id="{{ block.id }}"
+                    data-block-type="slide"
+                    data-setting-id="body"
+                  >
                     {{ block.settings.body }}
                   </div>
 
                   {% if block.settings.button_1_text or block.settings.button_2_text %}
-                    {%- comment -%} compute alignment and simple flag {%- endcomment -%}
                     {% assign mb = block.settings.mobile_text_position | split: 'text-' | last %}
                     {% assign db = block.settings.desktop_text_position | split: 'text-' | last %}
                     {% assign simple = false %}
                     {% if block.settings.button_1_style == 'link' or block.settings.button_2_style == 'link' or block.settings.button_1_text == blank or block.settings.button_2_text == blank %}
                       {% assign simple = true %}
                     {% endif %}
-
                     {% capture btn_class %}
                       button-group{% unless simple %} button-group--same-width{% endunless %} justify-{{ mb }} sm:justify-{{ db }}
                     {% endcapture %}
 
                     <div class="{{ btn_class | strip }}">
                       {% if block.settings.button_1_text %}
-                        <div data-setting-id="button_1_text">
+                        <div
+                          data-block-id="{{ block.id }}"
+                          data-block-type="slide"
+                          data-setting-id="button_1_text"
+                        >
                           {%- render 'button',
                               href:        block.settings.button_1_link,
                               content:     block.settings.button_1_text,
@@ -98,7 +117,11 @@ Section: Info + Rich-Text Slideshow
                         </div>
                       {% endif %}
                       {% if block.settings.button_2_text %}
-                        <div data-setting-id="button_2_text">
+                        <div
+                          data-block-id="{{ block.id }}"
+                          data-block-type="slide"
+                          data-setting-id="button_2_text"
+                        >
                           {%- render 'button',
                               href:        block.settings.button_2_link,
                               content:     block.settings.button_2_text,
@@ -117,6 +140,8 @@ Section: Info + Rich-Text Slideshow
                     <img
                       src="{{ block.settings.image | img_url: 'master' }}"
                       alt="{{ block.settings.image.alt }}"
+                      data-block-id="{{ block.id }}"
+                      data-block-type="slide"
                       data-setting-id="image"
                       class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
                     />
@@ -126,7 +151,6 @@ Section: Info + Rich-Text Slideshow
                     </div>
                   {% endif %}
                 </div>
-
               </div>
             </div>
           {% endfor %}
@@ -140,7 +164,7 @@ Section: Info + Rich-Text Slideshow
 
 {% schema %}
 {
-  "name": "Info Slideshow",
+  "name": "Info slideshow",
   "settings": [
     {
       "type": "select",

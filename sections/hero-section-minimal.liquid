@@ -30,12 +30,11 @@ Section: Info + Slideshow
 
 <section
   id="shopify-section-{{ section.id }}"
-  class="py-12"
+  class="py-12{% if section.settings.bg_animation == 'pulse' %} animate-pulse{% endif %}"
   style="
+    min-height: {{ section.settings.section_height }}px;
     background-color: {{ section.settings.background_color }};
-    {% if section.settings.background_gradient != blank %}
-      background: {{ section.settings.background_gradient }};
-    {% endif %}
+    {% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}
     {% if section.settings.background_image_desktop != blank %}
       background-image: url({{ section.settings.background_image_desktop | img_url: 'master' }});
       background-size: cover;
@@ -47,59 +46,126 @@ Section: Info + Slideshow
     <div id="swiper-{{ section.id }}" class="swiper-container">
       <div class="swiper-wrapper">
         {% if section.blocks.size == 0 %}
-          <div class="py-16 text-center text-gray-500">Add at least one Slide block to see the slideshow.</div>
+          <div class="py-16 text-center text-gray-500">
+            Add at least one Slide block to see the slideshow.
+          </div>
         {% endif %}
+
         {% for block in section.blocks %}
-          <div class="swiper-slide flex flex-col lg:flex-row items-center">
-            <!-- LEFT: Text -->
-            <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
-              <h2 class="text-3xl font-bold{% if section.settings.round_title %} rounded-full px-4 py-2 bg-white inline-block{% endif %}">
-                {{ block.settings.title }}
-              </h2>
-              <p class="mt-4 text-gray-700">
-                {{ block.settings.description }}
-              </p>
-              <div class="mt-6 flex space-x-4">
-                {% assign btn_style = section.settings.button_style %}
-                {% if block.settings.button1_text != blank %}
-                  <a href="{{ block.settings.button1_link }}"
-                     class="px-6 py-2 font-semibold
-                            {% if btn_style == 'solid' %}
-                              {{ section.settings.button1_bg_color }} text-white
-                            {% else %}
-                              border {{ section.settings.button1_border_color }} text-{{ section.settings.button1_border_color }}
-                            {% endif %}
-                            {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}">
-                    {{ block.settings.button1_text }}
-                  </a>
-                {% endif %}
-                {% if block.settings.button2_text != blank %}
-                  <a href="{{ block.settings.button2_link }}"
-                     class="px-6 py-2 font-semibold
-                            {% if btn_style == 'solid' %}
-                              {{ section.settings.button2_bg_color }} text-white
-                            {% else %}
-                              border {{ section.settings.button2_border_color }} text-{{ section.settings.button2_border_color }}
-                            {% endif %}
-                            {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}">
-                    {{ block.settings.button2_text }}
-                  </a>
+          <div
+            class="swiper-slide flex flex-col lg:flex-row items-center transform
+                   {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}"
+          >
+            {% if section.settings.info_position == 'left' %}
+              <!-- INFO LEFT -->
+              <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
+                <h2 class="text-3xl font-bold{% if section.settings.round_title %} rounded-full px-4 py-2 bg-white inline-block{% endif %}">
+                  {{ block.settings.title }}
+                </h2>
+                <p class="mt-4 text-gray-700">{{ block.settings.description }}</p>
+                <div class="mt-6 flex space-x-4">
+                  {% assign bs = section.settings.button_style %}
+                  {% if block.settings.button1_text %}
+                    <a
+                      href="{{ block.settings.button1_link }}"
+                      class="px-6 py-2 font-semibold
+                             {% if bs == 'solid' %}
+                               {{ section.settings.button1_bg_color }} text-white
+                             {% else %}
+                               border {{ section.settings.button1_border_color }} text-{{ section.settings.button1_border_color }}
+                             {% endif %}
+                             {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
+                    >
+                      {{ block.settings.button1_text }}
+                    </a>
+                  {% endif %}
+                  {% if block.settings.button2_text %}
+                    <a
+                      href="{{ block.settings.button2_link }}"
+                      class="px-6 py-2 font-semibold
+                             {% if bs == 'solid' %}
+                               {{ section.settings.button2_bg_color }} text-white
+                             {% else %}
+                               border {{ section.settings.button2_border_color }} text-{{ section.settings.button2_border_color }}
+                             {% endif %}
+                             {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
+                    >
+                      {{ block.settings.button2_text }}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+
+              <!-- IMAGE RIGHT -->
+              <div class="w-full lg:w-1/2 p-6" data-aos="fade-left">
+                {% if block.settings.image %}
+                  <img
+                    src="{{ block.settings.image | img_url: 'master' }}"
+                    alt="{{ block.settings.image.alt }}"
+                    class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
+                  />
+                {% else %}
+                  <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-500">
+                    No image selected
+                  </div>
                 {% endif %}
               </div>
-            </div>
 
-            <!-- RIGHT: Image -->
-            <div class="w-full lg:w-1/2 p-6" data-aos="fade-left">
-              {% if block.settings.image != blank %}
-                <img src="{{ block.settings.image | img_url: 'master' }}"
-                     alt="{{ block.settings.image.alt }}"
-                     class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}" />
-              {% else %}
-                <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-500">
-                  No image selected
+            {% else %}
+              <!-- IMAGE LEFT -->
+              <div class="w-full lg:w-1/2 p-6" data-aos="fade-left">
+                {% if block.settings.image %}
+                  <img
+                    src="{{ block.settings.image | img_url: 'master' }}"
+                    alt="{{ block.settings.image.alt }}"
+                    class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
+                  />
+                {% else %}
+                  <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-500">
+                    No image selected
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- INFO RIGHT -->
+              <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
+                <h2 class="text-3xl font-bold{% if section.settings.round_title %} rounded-full px-4 py-2 bg-white inline-block{% endif %}">
+                  {{ block.settings.title }}
+                </h2>
+                <p class="mt-4 text-gray-700">{{ block.settings.description }}</p>
+                <div class="mt-6 flex space-x-4">
+                  {% assign bs = section.settings.button_style %}
+                  {% if block.settings.button1_text %}
+                    <a
+                      href="{{ block.settings.button1_link }}"
+                      class="px-6 py-2 font-semibold
+                             {% if bs == 'solid' %}
+                               {{ section.settings.button1_bg_color }} text-white
+                             {% else %}
+                               border {{ section.settings.button1_border_color }} text-{{ section.settings.button1_border_color }}
+                             {% endif %}
+                             {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
+                    >
+                      {{ block.settings.button1_text }}
+                    </a>
+                  {% endif %}
+                  {% if block.settings.button2_text %}
+                    <a
+                      href="{{ block.settings.button2_link }}"
+                      class="px-6 py-2 font-semibold
+                             {% if bs == 'solid' %}
+                               {{ section.settings.button2_bg_color }} text-white
+                             {% else %}
+                               border {{ section.settings.button2_border_color }} text-{{ section.settings.button2_border_color }}
+                             {% endif %}
+                             {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
+                    >
+                      {{ block.settings.button2_text }}
+                    </a>
+                  {% endif %}
                 </div>
-              {% endif %}
-            </div>
+              </div>
+            {% endif %}
           </div>
         {% endfor %}
       </div>
@@ -125,6 +191,46 @@ Section: Info + Slideshow
       ],
       "default": "5000"
     },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Min Height (px)",
+      "min": 300,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "select",
+      "id": "info_position",
+      "label": "Info Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "hover_effect",
+      "label": "Hover Effect",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "scale", "label": "Scale" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "bg_animation",
+      "label": "Background Animation",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "pulse", "label": "Pulse" }
+      ],
+      "default": "none"
+    },
     { "type": "color",            "id": "background_color",        "label": "Background Color",            "default": "#ffffff" },
     { "type": "color_background", "id": "background_gradient",     "label": "Background Gradient" },
     { "type": "image_picker",     "id": "background_image_desktop","label": "Desktop Background Image" },
@@ -144,7 +250,7 @@ Section: Info + Slideshow
     { "type": "color",    "id": "button1_border_color","label": "Button 1 Border Color",        "default": "#1D4ED8" },
     { "type": "color",    "id": "button2_bg_color",    "label": "Button 2 Solid BG",           "default": "#E5E7EB" },
     { "type": "color",    "id": "button2_border_color","label": "Button 2 Border Color",        "default": "#6B7280" },
-    { "type": "checkbox","id": "round_image", "label": "Round Image Corners", "default": false }
+    { "type": "checkbox","id": "round_image","label": "Round Image Corners","default": false }
   ],
   "blocks": [
     {
@@ -165,6 +271,18 @@ Section: Info + Slideshow
     {
       "name": "Info Slideshow",
       "category": "Hero",
+      "settings": {
+        "autoplay_speed": "5000",
+        "section_height": 600,
+        "info_position": "left",
+        "hover_effect": "none",
+        "bg_animation": "none",
+        "background_color": "#ffffff",
+        "round_title": false,
+        "button_style": "solid",
+        "round_buttons": false,
+        "round_image": false
+      },
       "blocks": [
         {
           "type": "slide",

@@ -164,7 +164,7 @@
       ],
       "custom_css": [
         ".text-with-icons__item {display: flex;}",
-        ".gap-6 {display: flex; }"
+        ".gap-6 {display: flex;}"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -248,8 +248,11 @@
         "item_yhEzEa",
         "item_rJHeHG"
       ],
+      "custom_css": [
+        ".text-with-icons__item {background: £FAFAFA; padding: 1rem 1.5rem; border-radius: 1rem; border: 1px solid gray;}"
+      ],
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "separate_section_with_border": false,
         "stack_on_mobile": false,
         "icon_color": "",

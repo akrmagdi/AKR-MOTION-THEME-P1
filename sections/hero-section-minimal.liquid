@@ -1,8 +1,9 @@
 {% comment %}
-Section: Info + Slideshow
+Section: Info + Rich-Text Slideshow
 - Tailwind via CDN
 - AOS for scroll animations
-- Swiper.js for slider functionality
+- Swiper.js for slider
+- Blocks use richtext for inline editing
 {% endcomment %}
 
 <!-- Tailwind -->
@@ -52,46 +53,49 @@ Section: Info + Slideshow
 
         {% for block in section.blocks %}
           <div class="swiper-slide">
-            <div class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}">
-              
+            <div
+              class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}"
+            >
               <!-- INFO -->
               <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
-                <h2 class="p.h2 {% if section.settings.round_title %} rounded-full px-4 py-2 bg-white inline-block{% endif %}">
-                  {{ block.settings.title }}
-                </h2>
-                <p class="prose text-subdued mt-4 text-gray-700">{{ block.settings.description }}</p>
+                <div class="prose">
+                  {{ block.settings.heading }}
+                </div>
+                <div class="prose mt-4">
+                  {{ block.settings.body }}
+                </div>
                 <div class="mt-6 flex space-x-4">
                   {% for i in (1..2) %}
-                    {% assign text_key       = 'button' | append: i | append: '_text' %}
-                    {% assign link_key       = 'button' | append: i | append: '_link' %}
-                    {% assign style_key      = 'button' | append: i | append: '_style' %}
-                    {% assign bg_key         = 'button' | append: i | append: '_bg_color' %}
-                    {% assign border_key     = 'button' | append: i | append: '_border_color' %}
-                    {% assign text_color_key = 'button' | append: i | append: '_text_color' %}
-                    {% assign text_value     = block.settings[text_key] %}
-                    {% assign link_value     = block.settings[link_key] %}
-                    {% assign style_value    = block.settings[style_key] %}
-                    {% assign bg_value       = block.settings[bg_key] %}
-                    {% assign border_value   = block.settings[border_key] %}
-                    {% assign text_color     = block.settings[text_color_key] %}
-                    {% if text_value %}
-                      {% if style_value == 'solid' %}
+                    {% assign tkey = 'button' | append: i | append: '_text' %}
+                    {% assign lkey = 'button' | append: i | append: '_link' %}
+                    {% assign skey = 'button' | append: i | append: '_style' %}
+                    {% assign bgkey= 'button' | append: i | append: '_bg_color' %}
+                    {% assign brdkey='button' | append: i | append: '_border_color' %}
+                    {% assign txtkey='button' | append: i | append: '_text_color' %}
+                    {% assign txt  = block.settings[tkey] %}
+                    {% assign lnk  = block.settings[lkey] %}
+                    {% assign sty  = block.settings[skey] %}
+                    {% assign bg   = block.settings[bgkey] %}
+                    {% assign brd  = block.settings[brdkey] %}
+                    {% assign color= block.settings[txtkey] %}
+                    {% if txt %}
+                      {% if sty == 'solid' %}
                         <a
-                          href="{{ link_value }}"
+                          href="{{ lnk }}"
                           class="px-6 py-2 font-semibold {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
-                          style="background-color: {{ bg_value }}; color: {{ text_color }};"
+                          style="background-color: {{ bg }}; color: {{ color }};"
                         >
-                          {{ text_value }}
+                          {{ txt }}
                         </a>
                       {% else %}
                         <a
-                          href="{{ link_value }}"
+                          href="{{ lnk }}"
                           class="px-6 py-2 font-semibold border {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
-                          style="border-color: {{ border_value }}; color: {{ border_value }};"
-                          onmouseover="this.style.backgroundColor='{{ border_value }}'; this.style.color='{{ text_color }}';"
-                          onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ border_value }}';"
+                          style="border-color: {{ brd }}; color: {{ brd }};"
+                          onmouseover="this.style.backgroundColor='{{ brd }}'; this.style.color='{{ color }}';"
+                          onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ brd }}';"
                         >
-                          {{ text_value }}
+                          {{ txt }}
                         </a>
                       {% endif %}
                     {% endif %}
@@ -113,7 +117,6 @@ Section: Info + Slideshow
                   </div>
                 {% endif %}
               </div>
-
             </div>
           </div>
         {% endfor %}
@@ -127,7 +130,7 @@ Section: Info + Slideshow
 
 {% schema %}
 {
-  "name": "Info + Slideshow",
+  "name": "Info Slideshow",
   "settings": [
     {
       "type":"select","id":"autoplay_speed","label":"Slide change every (ms)","options":[
@@ -158,51 +161,125 @@ Section: Info + Slideshow
     { "type":"checkbox","id":"round_buttons","label":"Round Buttons","default":false },
     { "type":"checkbox","id":"round_image","label":"Round Image Corners","default":false }
   ],
-  "blocks":[
+  "blocks": [
     {
-      "type":"slide","name":"Slide","settings":[
-        { "type":"image_picker","id":"image","label":"Slide Image" },
-        { "type":"text","id":"title","label":"Title" },
-        { "type":"textarea","id":"description","label":"Description" },
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
         {
-          "type":"select","id":"button1_style","label":"Button 1 Style","options":[
-            {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
-          ],"default":"solid"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
         },
-        { "type":"color","id":"button1_bg_color","label":"Button 1 BG Color","default":"#1D4ED8" },
-        { "type":"color","id":"button1_border_color","label":"Button 1 Border Color","default":"#1D4ED8" },
-        { "type":"color","id":"button1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
-        { "type":"text","id":"button1_text","label":"Button 1 Text" },
-        { "type":"url","id":"button1_link","label":"Button 1 Link" },
         {
-          "type":"select","id":"button2_style","label":"Button 2 Style","options":[
-            {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
-          ],"default":"outline"
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h2>Your title</h2>"
         },
-        { "type":"color","id":"button2_bg_color","label":"Button 2 BG Color","default":"#E5E7EB" },
-        { "type":"color","id":"button2_border_color","label":"Button 2 Border Color","default":"#6B7280" },
-        { "type":"color","id":"button2_text_color","label":"Button 2 Text Color","default":"#000000" },
-        { "type":"text","id":"button2_text","label":"Button 2 Text" },
-        { "type":"url","id":"button2_link","label":"Button 2 Link" }
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Text",
+          "default": "<p>Your description here.</p>"
+        },
+        {
+          "type": "select",
+          "id": "button1_style",
+          "label": "Button 1 Style",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "outline","label": "Outline" }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "color",
+          "id": "button1_bg_color",
+          "label": "Button 1 BG Color",
+          "default": "#1D4ED8"
+        },
+        {
+          "type": "color",
+          "id": "button1_border_color",
+          "label": "Button 1 Border Color",
+          "default": "#1D4ED8"
+        },
+        {
+          "type": "color",
+          "id": "button1_text_color",
+          "label": "Button 1 Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "button1_text",
+          "label": "Button 1 Text"
+        },
+        {
+          "type": "url",
+          "id": "button1_link",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "select",
+          "id": "button2_style",
+          "label": "Button 2 Style",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "outline","label": "Outline" }
+          ],
+          "default": "outline"
+        },
+        {
+          "type": "color",
+          "id": "button2_bg_color",
+          "label": "Button 2 BG Color",
+          "default": "#E5E7EB"
+        },
+        {
+          "type": "color",
+          "id": "button2_border_color",
+          "label": "Button 2 Border Color",
+          "default": "#6B7280"
+        },
+        {
+          "type": "color",
+          "id": "button2_text_color",
+          "label": "Button 2 Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "button2_text",
+          "label": "Button 2 Text"
+        },
+        {
+          "type": "url",
+          "id": "button2_link",
+          "label": "Button 2 Link"
+        }
       ]
     }
   ],
-  "presets":[
+  "presets": [
     {
-      "name":"Info Slideshow","category":"Hero","blocks":[
+      "name": "Info Slideshow",
+      "category": "Hero",
+      "blocks": [
         {
-          "type":"slide","settings":{
-            "title":"Your Title Here",
-            "description":"Your description here.",
-            "button1_text":"Learn More","button1_link":"/collections/all",
-            "button2_text":"Shop Now","button2_link":"/products/example"
+          "type": "slide",
+          "settings": {
+            "heading": "<h2>Editable title</h2>",
+            "body": "<p>Editable description goes here.</p>",
+            "button1_text": "Learn More",
+            "button1_link": "/",
+            "button2_text": "Shop Now",
+            "button2_link": "/products/example"
           }
         }
       ]
     }
   ]
 }
-
 {% endschema %}

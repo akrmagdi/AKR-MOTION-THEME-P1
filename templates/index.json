@@ -336,7 +336,7 @@
       "name": "Image with Text",
       "settings": {
         "color_scheme": "",
-        "separate_section_with_border": true,
+        "separate_section_with_border": false,
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "sm",
@@ -493,6 +493,127 @@
         "text_color": "",
         "text_alignment": "center"
       }
+    },
+    "rich_text_EP6h8T": {
+      "type": "rich-text",
+      "blocks": {
+        "button_UmNkPU": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Button text",
+            "url": "",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "button_UmNkPU"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_overlay_ahGTbm": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_jtPNJN": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text overlay",
+            "heading_tag": "h4"
+          }
+        },
+        "richtext_q4gdcV": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+          }
+        },
+        "button_A6Pagm": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Button Text",
+            "url": "",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_jtPNJN",
+        "richtext_q4gdcV",
+        "button_A6Pagm"
+      ],
+      "name": "Image with Text Overlay",
+      "settings": {
+        "color_scheme": "",
+        "image_size": "auto",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": true,
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "faq_pNWWqC": {
+      "type": "faq",
+      "blocks": {
+        "category_LEpmb7": {
+          "type": "category",
+          "settings": {
+            "title": "Order",
+            "icon": "none",
+            "icon_width": 16
+          }
+        },
+        "question_YrHyfn": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship overseas?",
+            "answer": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.</p>"
+          }
+        },
+        "question_wtDFJV": {
+          "type": "question",
+          "settings": {
+            "question": "How long will it take to get my orders?",
+            "answer": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.</p>"
+          }
+        },
+        "question_rmDfyR": {
+          "type": "question",
+          "settings": {
+            "question": "Any question?",
+            "answer": "<p>You can contact us through our contact page! We will be happy to assist you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_LEpmb7",
+        "question_YrHyfn",
+        "question_wtDFJV",
+        "question_rmDfyR"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "show_categories": false,
+        "subheading": "Need help?",
+        "title": "Frequently Asked Questions",
+        "content": ""
+      }
     }
   },
   "order": [
@@ -506,6 +627,9 @@
     "rich_text_fLYBtM",
     "text_with_icons_RKpjDC",
     "rich_text_4XVYMx",
-    "text_with_icons_hLBGG4"
+    "text_with_icons_hLBGG4",
+    "rich_text_EP6h8T",
+    "image_with_text_overlay_ahGTbm",
+    "faq_pNWWqC"
   ]
 }

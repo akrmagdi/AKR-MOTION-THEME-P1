@@ -1,11 +1,9 @@
 {% comment %}
-Section: Info + Rich-Text Slideshow
-- Tailwind via CDN
-- AOS for scroll animations
-- Swiper.js for slider
-- Richtext for inline editable heading & body
-- Color scheme picker for background
-- Vertical centering wrapper
+Section: Info + Rich-Text Slideshow with Shopify Color Scheme
+- Uses scheme_picker for background
+- Wraps in section-spacing/color-scheme wrapper
+- Vertical centering of content
+- Tailwind, AOS, Swiper as before
 {% endcomment %}
 
 <!-- Tailwind CSS -->
@@ -31,9 +29,16 @@ Section: Info + Rich-Text Slideshow
   });
 </script>
 
-<section
+{%- comment -%}
+Compute hash for scheme background (Shopify theme CSS uses this)
+{%- endcomment -%}
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+   | default: section.settings.color_scheme.settings.background
+   | md5 -%}
+
+<div
   id="shopify-section-{{ section.id }}"
-  class="{{ section.settings.color_scheme }} py-12"
+  class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }}"
   style="
     min-height: {{ section.settings.section_height }}px;
     {% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}
@@ -130,7 +135,7 @@ Section: Info + Rich-Text Slideshow
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {% schema %}
 {
@@ -310,7 +315,7 @@ Section: Info + Rich-Text Slideshow
   ],
   "presets": [
     {
-      "name": "Info/Slideshow",
+      "name": "Info Rich-Text Slideshow",
       "category": "Hero",
       "blocks": [
         {

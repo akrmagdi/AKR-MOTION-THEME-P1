@@ -48,7 +48,6 @@
         "item_VA8iEz",
         "item_MF9egx"
       ],
-      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "separate_section_with_border": true,
@@ -91,6 +90,7 @@
         "section_height": 200,
         "info_position": "left",
         "hover_effect": "none",
+        "color_scheme": "scheme-399acd72-4476-4bdf-a889-40200b1a3249",
         "background_gradient": "",
         "round_title": false,
         "round_buttons": false,

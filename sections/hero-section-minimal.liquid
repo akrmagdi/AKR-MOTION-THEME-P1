@@ -40,7 +40,7 @@ Section: Info + Rich-Text Slideshow
   data-section-type="info-rich-text-slideshow"
   {{ section.shopify_attributes }}
   class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} flex justify-center
- items-center allow-transparent-header"
+ items-center allow-transparent-header" allow-transparent-header=""
   style="
     min-height: {{ section.settings.section_height }}px;
     {% if section.settings.background_gradient %}background: {{ section.settings.background_gradient }};{% endif %}

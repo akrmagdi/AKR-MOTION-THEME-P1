@@ -501,7 +501,7 @@
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Button text",
+            "text": "book a free intro call",
             "url": "",
             "background": "",
             "text_color": ""
@@ -526,21 +526,21 @@
         "heading_jtPNJN": {
           "type": "heading",
           "settings": {
-            "text": "Image with text overlay",
+            "text": "\"Your ideas deserve more than an algorithm. They deserve care.\"",
             "heading_tag": "h4"
           }
         },
         "richtext_q4gdcV": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+            "content": ""
           }
         },
         "button_A6Pagm": {
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Button Text",
+            "text": "Talk to a Human Expert",
             "url": "",
             "background": "",
             "text_color": ""
@@ -554,7 +554,7 @@
       ],
       "name": "Image with Text Overlay",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "image_size": "auto",
         "allow_transparent_header": false,
         "reveal_on_scroll": true,
@@ -580,22 +580,22 @@
         "question_YrHyfn": {
           "type": "question",
           "settings": {
-            "question": "Do you ship overseas?",
-            "answer": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.</p>"
+            "question": "Can't I just use AI for this?",
+            "answer": "<p>While AI tools can help with basic tasks, they lack the nuanced understanding, field expertise, and personalized guidance that human mentors provide for meaningful academic work.</p>"
           }
         },
         "question_wtDFJV": {
           "type": "question",
           "settings": {
-            "question": "How long will it take to get my orders?",
-            "answer": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.</p>"
+            "question": "What if I'm not a native English speaker?",
+            "answer": "<p>We specialize in working with international students and researchers, providing culturally sensitive support that honors your unique perspective while enhancing clarity.</p>"
           }
         },
         "question_rmDfyR": {
           "type": "question",
           "settings": {
-            "question": "Any question?",
-            "answer": "<p>You can contact us through our contact page! We will be happy to assist you.</p>"
+            "question": "How much support do I get?",
+            "answer": "<p>Support levels vary by package, from single-session consultations to ongoing mentorship throughout your entire project. We customize our approach to your needs and timeline.</p>"
           }
         }
       },
@@ -610,7 +610,7 @@
         "color_scheme": "",
         "separate_section_with_border": true,
         "show_categories": false,
-        "subheading": "Need help?",
+        "subheading": "",
         "title": "Frequently Asked Questions",
         "content": ""
       }

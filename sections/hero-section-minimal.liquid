@@ -1,128 +1,58 @@
 {% comment %}
-Section: Info + Slideshow
-- Tailwind via CDN
-- AOS for scroll animations
-- Swiper.js for slider functionality
+Section: Info + Slideshow with custom fonts & rich-text
 {% endcomment %}
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- 1. Font picks -->
+{%- if section.settings.heading_font != blank -%}
+  <link
+    href="https://fonts.googleapis.com/css2?family={{ section.settings.heading_font }}:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+{%- endif -%}
+{%- if section.settings.body_font != blank -%}
+  <link
+    href="https://fonts.googleapis.com/css2?family={{ section.settings.body_font }}:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+{%- endif -%}
 
-<!-- AOS -->
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<style>
+  /* target all headings and .prose paragraphs */
+  .heading,
+  h1, h2, h3, h4, h5, h6 {
+    font-family: '{{ section.settings.heading_font }}', sans-serif;
+  }
 
-<!-- Swiper.js -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  .prose p {
+    font-family: '{{ section.settings.body_font }}', serif;
+  }
+</style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({ once: true });
-    new Swiper('#swiper-{{ section.id }}', {
-      loop: true,
-      autoplay: { delay: {{ section.settings.autoplay_speed }} },
-      pagination: { el: '#swiper-{{ section.id }} .swiper-pagination', clickable: true },
-      slidesPerView: 1,
-    });
-  });
-</script>
+<!-- … rest of your AOS/Swiper includes … -->
 
-<section
-  id="shopify-section-{{ section.id }}"
-  class="py-12"
-  style="
-    min-height: {{ section.settings.section_height }}px;
-    background-color: {{ section.settings.background_color }};
-    {% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}
-    {% if section.settings.background_image_desktop != blank %}
-      background-image:url({{ section.settings.background_image_desktop | img_url:'master' }});
-      background-size:cover; background-position:center;
-    {% endif %}
-  "
->
-  <div class="container mx-auto px-4">
-    <div id="swiper-{{ section.id }}" class="swiper">
-      <div class="swiper-wrapper">
-        {% if section.blocks.size == 0 %}
-          <div class="py-16 text-center text-gray-500">
-            Add at least one Slide block to see the slideshow.
-          </div>
-        {% endif %}
+<section id="shopify-section-{{ section.id }}" class="py-12">
+  <!-- … container / swiper markup … -->
+  {% for block in section.blocks %}
+    <div class="swiper-slide flex lg:flex-row items-center">
+      <!-- INFO -->
+      <div data-aos="fade-right" class="prose w-full lg:w-1/2 p-6">
+        <!-- now richtext for heading -->
+        <div class="heading">
+          {{ block.settings.heading | richtext }}
+        </div>
 
-        {% for block in section.blocks %}
-          <div class="swiper-slide">
-            <div class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}">
-              
-              <!-- INFO -->
-              <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
-                <h2 class="p.h2 {% if section.settings.round_title %} rounded-full px-4 py-2 bg-white inline-block{% endif %}">
-                  {{ block.settings.title }}
-                </h2>
-                <p class="prose text-subdued mt-4 text-gray-700">{{ block.settings.description }}</p>
-                <div class="mt-6 flex space-x-4">
-                  {% for i in (1..2) %}
-                    {% assign text_key       = 'button' | append: i | append: '_text' %}
-                    {% assign link_key       = 'button' | append: i | append: '_link' %}
-                    {% assign style_key      = 'button' | append: i | append: '_style' %}
-                    {% assign bg_key         = 'button' | append: i | append: '_bg_color' %}
-                    {% assign border_key     = 'button' | append: i | append: '_border_color' %}
-                    {% assign text_color_key = 'button' | append: i | append: '_text_color' %}
-                    {% assign text_value     = block.settings[text_key] %}
-                    {% assign link_value     = block.settings[link_key] %}
-                    {% assign style_value    = block.settings[style_key] %}
-                    {% assign bg_value       = block.settings[bg_key] %}
-                    {% assign border_value   = block.settings[border_key] %}
-                    {% assign text_color     = block.settings[text_color_key] %}
-                    {% if text_value %}
-                      {% if style_value == 'solid' %}
-                        <a
-                          href="{{ link_value }}"
-                          class="px-6 py-2 font-semibold {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
-                          style="background-color: {{ bg_value }}; color: {{ text_color }};"
-                        >
-                          {{ text_value }}
-                        </a>
-                      {% else %}
-                        <a
-                          href="{{ link_value }}"
-                          class="px-6 py-2 font-semibold border {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
-                          style="border-color: {{ border_value }}; color: {{ border_value }};"
-                          onmouseover="this.style.backgroundColor='{{ border_value }}'; this.style.color='{{ text_color }}';"
-                          onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ border_value }}';"
-                        >
-                          {{ text_value }}
-                        </a>
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              </div>
+        <!-- and richtext for description -->
+        <div>
+          {{ block.settings.description | richtext }}
+        </div>
 
-              <!-- IMAGE -->
-              <div class="w-full lg:w-1/2 p-6" data-aos="fade-left">
-                {% if block.settings.image %}
-                  <img
-                    src="{{ block.settings.image | img_url:'master' }}"
-                    alt="{{ block.settings.image.alt }}"
-                    class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
-                  />
-                {% else %}
-                  <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-500">
-                    No image selected
-                  </div>
-                {% endif %}
-              </div>
-
-            </div>
-          </div>
-        {% endfor %}
+        <!-- buttons… -->
       </div>
 
-      <!-- Dots -->
-      <div class="swiper-pagination mt-6"></div>
+      <!-- IMAGE… -->
     </div>
-  </div>
+  {% endfor %}
+  <!-- pagination… -->
 </section>
 
 {% schema %}
@@ -130,79 +60,37 @@ Section: Info + Slideshow
   "name": "Info + Slideshow",
   "settings": [
     {
-      "type":"select","id":"autoplay_speed","label":"Slide change every (ms)","options":[
-        {"value":"3000","label":"3s"},
-        {"value":"5000","label":"5s"},
-        {"value":"7000","label":"7s"}
-      ],"default":"5000"
+      "type": "text",
+      "id": "heading_font",
+      "label": "Heading font (Google font name)",
+      "default": "Roboto"
     },
     {
-      "type":"range","id":"section_height","label":"Section Min Height (px)","min":200,"max":1200,"step":50,"unit":"px","default":600
+      "type": "text",
+      "id": "body_font",
+      "label": "Body font (Google font name)",
+      "default": "Merriweather"
     },
-    {
-      "type":"select","id":"info_position","label":"Info Position","options":[
-        {"value":"left","label":"Left"},
-        {"value":"right","label":"Right"}
-      ],"default":"left"
-    },
-    {
-      "type":"select","id":"hover_effect","label":"Slide Hover Effect","options":[
-        {"value":"none","label":"None"},
-        {"value":"scale","label":"Scale"}
-      ],"default":"none"
-    },
-    { "type":"color","id":"background_color","label":"Background Color","default":"#ffffff" },
-    { "type":"color_background","id":"background_gradient","label":"Background Gradient" },
-    { "type":"image_picker","id":"background_image_desktop","label":"Desktop Background Image" },
-    { "type":"checkbox","id":"round_title","label":"Round Title Background","default":false },
-    { "type":"checkbox","id":"round_buttons","label":"Round Buttons","default":false },
-    { "type":"checkbox","id":"round_image","label":"Round Image Corners","default":false }
+    /* … rest of your existing settings … */
   ],
-  "blocks":[
+  "blocks": [
     {
-      "type":"slide","name":"Slide","settings":[
-        { "type":"image_picker","id":"image","label":"Slide Image" },
-        { "type":"text","id":"title","label":"Title" },
-        { "type":"textarea","id":"description","label":"Description" },
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
         {
-          "type":"select","id":"button1_style","label":"Button 1 Style","options":[
-            {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
-          ],"default":"solid"
+          "type": "richtext",
+          "id": "heading",
+          "label": "Slide heading"
         },
-        { "type":"color","id":"button1_bg_color","label":"Button 1 BG Color","default":"#1D4ED8" },
-        { "type":"color","id":"button1_border_color","label":"Button 1 Border Color","default":"#1D4ED8" },
-        { "type":"color","id":"button1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
-        { "type":"text","id":"button1_text","label":"Button 1 Text" },
-        { "type":"url","id":"button1_link","label":"Button 1 Link" },
         {
-          "type":"select","id":"button2_style","label":"Button 2 Style","options":[
-            {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
-          ],"default":"outline"
+          "type": "richtext",
+          "id": "description",
+          "label": "Slide description"
         },
-        { "type":"color","id":"button2_bg_color","label":"Button 2 BG Color","default":"#E5E7EB" },
-        { "type":"color","id":"button2_border_color","label":"Button 2 Border Color","default":"#6B7280" },
-        { "type":"color","id":"button2_text_color","label":"Button 2 Text Color","default":"#000000" },
-        { "type":"text","id":"button2_text","label":"Button 2 Text" },
-        { "type":"url","id":"button2_link","label":"Button 2 Link" }
-      ]
-    }
-  ],
-  "presets":[
-    {
-      "name":"Info Slideshow","category":"Hero","blocks":[
-        {
-          "type":"slide","settings":{
-            "title":"Your Title Here",
-            "description":"Your description here.",
-            "button1_text":"Learn More","button1_link":"/collections/all",
-            "button2_text":"Shop Now","button2_link":"/products/example"
-          }
-        }
+        /* … button & image settings … */
       ]
     }
   ]
 }
-
 {% endschema %}

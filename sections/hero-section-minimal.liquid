@@ -1,17 +1,18 @@
 {% comment %}
 Section: Info + Slideshow
-- Tailwind via CDN (optional)
+- Always include Tailwind via CDN
 - AOS for scroll animations
 - Swiper.js for slider functionality
 {% endcomment %}
 
-{%- if section.settings.include_tailwind_cdn -%}
-  <script src="https://cdn.tailwindcss.com"></script>
-{%- endif -%}
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
 
+<!-- AOS -->
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+<!-- Swiper.js -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -21,7 +22,7 @@ Section: Info + Slideshow
     new Swiper('#swiper-{{ section.id }}', {
       loop: true,
       autoplay: { delay: {{ section.settings.autoplay_speed }} },
-      pagination: { el: '.swiper-pagination', clickable: true },
+      pagination: { el: '#swiper-{{ section.id }} .swiper-pagination', clickable: true },
       slidesPerView: 1,
     });
   });
@@ -43,13 +44,16 @@ Section: Info + Slideshow
   "
 >
   <div class="container mx-auto px-4">
-    <div class="swiper" id="swiper-{{ section.id }}">
+    <div id="swiper-{{ section.id }}" class="swiper-container">
       <div class="swiper-wrapper">
+        {% if section.blocks.size == 0 %}
+          <div class="py-16 text-center text-gray-500">Add at least one Slide block to see the slideshow.</div>
+        {% endif %}
         {% for block in section.blocks %}
           <div class="swiper-slide flex flex-col lg:flex-row items-center">
             <!-- LEFT: Text -->
             <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
-              <h2 class="text-3xl font-bold{% if section.settings.round_title %} rounded-full px-4 py-2 bg-white{% endif %}">
+              <h2 class="text-3xl font-bold{% if section.settings.round_title %} rounded-full px-4 py-2 bg-white inline-block{% endif %}">
                 {{ block.settings.title }}
               </h2>
               <p class="mt-4 text-gray-700">
@@ -58,30 +62,26 @@ Section: Info + Slideshow
               <div class="mt-6 flex space-x-4">
                 {% assign btn_style = section.settings.button_style %}
                 {% if block.settings.button1_text != blank %}
-                  <a
-                    href="{{ block.settings.button1_link }}"
-                    class="px-6 py-2 font-semibold
-                      {% if btn_style == 'solid' %}
-                        {{ section.settings.button1_bg_color }} text-white
-                      {% else %}
-                        border {{ section.settings.button1_border_color }} text-{{ section.settings.button1_border_color }}
-                      {% endif %}
-                      {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
-                  >
+                  <a href="{{ block.settings.button1_link }}"
+                     class="px-6 py-2 font-semibold
+                            {% if btn_style == 'solid' %}
+                              {{ section.settings.button1_bg_color }} text-white
+                            {% else %}
+                              border {{ section.settings.button1_border_color }} text-{{ section.settings.button1_border_color }}
+                            {% endif %}
+                            {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}">
                     {{ block.settings.button1_text }}
                   </a>
                 {% endif %}
                 {% if block.settings.button2_text != blank %}
-                  <a
-                    href="{{ block.settings.button2_link }}"
-                    class="px-6 py-2 font-semibold
-                      {% if btn_style == 'solid' %}
-                        {{ section.settings.button2_bg_color }} text-white
-                      {% else %}
-                        border {{ section.settings.button2_border_color }} text-{{ section.settings.button2_border_color }}
-                      {% endif %}
-                      {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}"
-                  >
+                  <a href="{{ block.settings.button2_link }}"
+                     class="px-6 py-2 font-semibold
+                            {% if btn_style == 'solid' %}
+                              {{ section.settings.button2_bg_color }} text-white
+                            {% else %}
+                              border {{ section.settings.button2_border_color }} text-{{ section.settings.button2_border_color }}
+                            {% endif %}
+                            {% if section.settings.round_buttons %} rounded-full {% else %} rounded-md {% endif %}">
                     {{ block.settings.button2_text }}
                   </a>
                 {% endif %}
@@ -90,15 +90,20 @@ Section: Info + Slideshow
 
             <!-- RIGHT: Image -->
             <div class="w-full lg:w-1/2 p-6" data-aos="fade-left">
-              <img
-                src="{{ block.settings.image | img_url: 'master' }}"
-                alt="{{ block.settings.image.alt }}"
-                class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
-              />
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: 'master' }}"
+                     alt="{{ block.settings.image.alt }}"
+                     class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}" />
+              {% else %}
+                <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image selected
+                </div>
+              {% endif %}
             </div>
           </div>
         {% endfor %}
       </div>
+
       <!-- Pagination Dots -->
       <div class="swiper-pagination mt-6"></div>
     </div>
@@ -109,41 +114,50 @@ Section: Info + Slideshow
 {
   "name": "Info + Slideshow",
   "settings": [
-    { "type": "checkbox", "id": "include_tailwind_cdn", "label": "Include Tailwind via CDN", "default": false },
-    { "type": "select",   "id": "autoplay_speed",      "label": "Slide change every (ms)", "options": [
-       { "value": "3000", "label": "3s" },
-       { "value": "5000", "label": "5s" },
-       { "value": "7000", "label": "7s" }
-     ], "default": "5000"
+    {
+      "type": "select",
+      "id": "autoplay_speed",
+      "label": "Slide change every (ms)",
+      "options": [
+        { "value": "3000", "label": "3s" },
+        { "value": "5000", "label": "5s" },
+        { "value": "7000", "label": "7s" }
+      ],
+      "default": "5000"
     },
-    { "type": "color",            "id": "background_color",         "label": "Background Color",           "default": "#ffffff" },
-    { "type": "color_background", "id": "background_gradient",       "label": "Background Gradient" },
-    { "type": "image_picker",     "id": "background_image_desktop",  "label": "Desktop Background Image" },
-    { "type": "checkbox",         "id": "round_title",               "label": "Round Title Background",      "default": false },
-    { "type": "select",           "id": "button_style",              "label": "Buttons Style",              "options": [
+    { "type": "color",            "id": "background_color",        "label": "Background Color",            "default": "#ffffff" },
+    { "type": "color_background", "id": "background_gradient",     "label": "Background Gradient" },
+    { "type": "image_picker",     "id": "background_image_desktop","label": "Desktop Background Image" },
+    { "type": "checkbox",         "id": "round_title",            "label": "Round Title Background",       "default": false },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Buttons Style",
+      "options": [
         { "value": "solid",   "label": "Solid" },
         { "value": "outline", "label": "Outline" }
-      ], "default": "solid"
+      ],
+      "default": "solid"
     },
-    { "type": "checkbox",         "id": "round_buttons",             "label": "Round Buttons",              "default": false },
-    { "type": "color",            "id": "button1_bg_color",          "label": "Button 1 Solid BG",          "default": "#1D4ED8" },
-    { "type": "color",            "id": "button1_border_color",      "label": "Button 1 Border/Outline Color", "default": "#1D4ED8" },
-    { "type": "color",            "id": "button2_bg_color",          "label": "Button 2 Solid BG",          "default": "#E5E7EB" },
-    { "type": "color",            "id": "button2_border_color",      "label": "Button 2 Border/Outline Color", "default": "#6B7280" },
-    { "type": "checkbox",         "id": "round_image",               "label": "Round Image Corners",        "default": false }
+    { "type": "checkbox", "id": "round_buttons", "label": "Round Buttons",   "default": false },
+    { "type": "color",    "id": "button1_bg_color",    "label": "Button 1 Solid BG",           "default": "#1D4ED8" },
+    { "type": "color",    "id": "button1_border_color","label": "Button 1 Border Color",        "default": "#1D4ED8" },
+    { "type": "color",    "id": "button2_bg_color",    "label": "Button 2 Solid BG",           "default": "#E5E7EB" },
+    { "type": "color",    "id": "button2_border_color","label": "Button 2 Border Color",        "default": "#6B7280" },
+    { "type": "checkbox","id": "round_image", "label": "Round Image Corners", "default": false }
   ],
   "blocks": [
     {
       "type": "slide",
       "name": "Slide",
       "settings": [
-        { "type": "image_picker", "id": "image",         "label": "Slide Image" },
-        { "type": "text",         "id": "title",         "label": "Title" },
-        { "type": "textarea",     "id": "description",   "label": "Description" },
-        { "type": "text",         "id": "button1_text",  "label": "Button 1 Text" },
-        { "type": "url",          "id": "button1_link",  "label": "Button 1 Link" },
-        { "type": "text",         "id": "button2_text",  "label": "Button 2 Text" },
-        { "type": "url",          "id": "button2_link",  "label": "Button 2 Link" }
+        { "type": "image_picker", "id": "image",        "label": "Slide Image" },
+        { "type": "text",         "id": "title",        "label": "Title" },
+        { "type": "textarea",     "id": "description",  "label": "Description" },
+        { "type": "text",         "id": "button1_text", "label": "Button 1 Text" },
+        { "type": "url",          "id": "button1_link", "label": "Button 1 Link" },
+        { "type": "text",         "id": "button2_text", "label": "Button 2 Text" },
+        { "type": "url",          "id": "button2_link", "label": "Button 2 Link" }
       ]
     }
   ],
@@ -155,9 +169,8 @@ Section: Info + Slideshow
         {
           "type": "slide",
           "settings": {
-            "title": "Your Title",
+            "title": "Your Title Here",
             "description": "Your description here.",
-            "image": "",
             "button1_text": "Learn More",
             "button1_link": "/collections/all",
             "button2_text": "Shop Now",

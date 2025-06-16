@@ -163,7 +163,8 @@
         "item_MF9egx"
       ],
       "custom_css": [
-        ".text-with-icons__item {display: flex;}"
+        ".text-with-icons__item {display: flex;}",
+        ".gap-6 {display: flex; }"
       ],
       "settings": {
         "color_scheme": "scheme-1",

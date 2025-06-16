@@ -1,10 +1,5 @@
 {% comment %}
-Section: Info + Rich-Text Slideshow
-– Inspector support via shopify_attributes & data-section / data-block / data-setting IDs
-– Tailwind, AOS, Swiper.js
-– scheme_picker for background
-– Richtext for heading & body
-– Buttons via 'button' snippet
+Section: Info + Rich-Text Slideshow with working Swiper pagination & arrows
 {% endcomment %}
 
 <!-- Tailwind CSS -->
@@ -18,13 +13,35 @@ Section: Info + Rich-Text Slideshow
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+<style>
+  /* Make pagination bullets white and slightly larger */
+  #swiper-{{ section.id }} .swiper-pagination-bullet {
+    background-color: #ffffff;
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+  }
+  /* Style nav arrows */
+  #swiper-{{ section.id }} .swiper-button-next,
+  #swiper-{{ section.id }} .swiper-button-prev {
+    color: #ffffff;
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     AOS.init({ once: true });
     new Swiper('#swiper-{{ section.id }}', {
       loop: true,
       autoplay: { delay: {{ section.settings.autoplay_speed }} },
-      pagination: { el: '#swiper-{{ section.id }} .swiper-pagination', clickable: true },
+      pagination: {
+        el: '#swiper-{{ section.id }} .swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '#swiper-{{ section.id }} .swiper-button-next',
+        prevEl: '#swiper-{{ section.id }} .swiper-button-prev'
+      },
       slidesPerView: 1
     });
   });
@@ -45,7 +62,8 @@ Section: Info + Rich-Text Slideshow
     {% if section.settings.background_gradient %}background: {{ section.settings.background_gradient }};{% endif %}
     {% if section.settings.background_image_desktop %}
       background-image: url({{ section.settings.background_image_desktop | img_url: 'master' }});
-      background-size: cover; background-position: center;
+      background-size: cover;
+      background-position: center;
     {% endif %}
   "
 >
@@ -53,7 +71,6 @@ Section: Info + Rich-Text Slideshow
     <div class="container mx-auto px-4">
       <div id="swiper-{{ section.id }}" class="swiper">
         <div class="swiper-wrapper">
-
           {% if section.blocks.size == 0 %}
             <div class="py-16 text-center text-gray-500">
               Add at least one Slide block to see the slideshow.
@@ -72,21 +89,10 @@ Section: Info + Rich-Text Slideshow
               >
                 <!-- INFO -->
                 <div class="w-full lg:w-1/2 p-6 space-y-6" data-aos="fade-right">
-                  <div
-                    class="prose"
-                    data-block-id="{{ block.id }}"
-                    data-block-type="slide"
-                    data-setting-id="heading"
-                  >
+                  <div class="prose" data-block-id="{{ block.id }}" data-block-type="slide" data-setting-id="heading">
                     {{ block.settings.heading }}
                   </div>
-
-                  <div
-                    class="prose"
-                    data-block-id="{{ block.id }}"
-                    data-block-type="slide"
-                    data-setting-id="body"
-                  >
+                  <div class="prose" data-block-id="{{ block.id }}" data-block-type="slide" data-setting-id="body">
                     {{ block.settings.body }}
                   </div>
 
@@ -103,11 +109,7 @@ Section: Info + Rich-Text Slideshow
 
                     <div class="{{ btn_class | strip }} flex flex-wrap space-x-4 space-y-4">
                       {% if block.settings.button_1_text %}
-                        <div
-                          data-block-id="{{ block.id }}"
-                          data-block-type="slide"
-                          data-setting-id="button_1_text"
-                        >
+                        <div data-block-id="{{ block.id }}" data-block-type="slide" data-setting-id="button_1_text">
                           {%- render 'button',
                               href:        block.settings.button_1_link,
                               content:     block.settings.button_1_text,
@@ -117,11 +119,7 @@ Section: Info + Rich-Text Slideshow
                         </div>
                       {% endif %}
                       {% if block.settings.button_2_text %}
-                        <div
-                          data-block-id="{{ block.id }}"
-                          data-block-type="slide"
-                          data-setting-id="button_2_text"
-                        >
+                        <div data-block-id="{{ block.id }}" data-block-type="slide" data-setting-id="button_2_text">
                           {%- render 'button',
                               href:        block.settings.button_2_link,
                               content:     block.settings.button_2_text,
@@ -154,9 +152,12 @@ Section: Info + Rich-Text Slideshow
               </div>
             </div>
           {% endfor %}
-
         </div>
+
+        <!-- Pagination & Arrows -->
         <div class="swiper-pagination mt-6"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
     </div>
   </div>
@@ -166,140 +167,39 @@ Section: Info + Rich-Text Slideshow
 {
   "name": "Info slideshow",
   "settings": [
-    {
-      "type": "select",
-      "id": "autoplay_speed",
-      "label": "Slide change every (ms)",
-      "options": [
-        { "value": "3000", "label": "3s" },
-        { "value": "5000", "label": "5s" },
-        { "value": "7000", "label": "7s" }
-      ],
-      "default": "5000"
-    },
-    {
-      "type": "range",
-      "id": "section_height",
-      "label": "Section Min Height (px)",
-      "min": 200,
-      "max": 1200,
-      "step": 50,
-      "unit": "px",
-      "default": 600
-    },
-    {
-      "type": "select",
-      "id": "info_position",
-      "label": "Info Position",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "select",
-      "id": "mobile_text_position",
-      "label": "Mobile Text Position",
-      "options": [
-        { "value": "text-start", "label": "Left" },
-        { "value": "text-center", "label": "Center" },
-        { "value": "text-end", "label": "Right" }
-      ],
-      "default": "text-center"
-    },
-    {
-      "type": "select",
-      "id": "desktop_text_position",
-      "label": "Desktop Text Position",
-      "options": [
-        { "value": "text-start", "label": "Left" },
-        { "value": "text-center", "label": "Center" },
-        { "value": "text-end", "label": "Right" }
-      ],
-      "default": "text-start"
-    },
-    {
-      "type": "select",
-      "id": "hover_effect",
-      "label": "Slide Hover Effect",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "scale", "label": "Scale" }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Section Color Scheme"
-    },
-    {
-      "type": "color_background",
-      "id": "background_gradient",
-      "label": "Background Gradient"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image_desktop",
-      "label": "Desktop Background Image"
-    },
-    { "type": "checkbox", "id": "round_buttons", "label": "Round Buttons", "default": false },
-    { "type": "checkbox", "id": "round_image",   "label": "Round Image Corners", "default": false }
+    { "type": "select", "id": "autoplay_speed", "label": "Slide change every (ms)", "options":[{"value":"3000","label":"3s"},{"value":"5000","label":"5s"},{"value":"7000","label":"7s"}], "default":"5000" },
+    { "type":"range","id":"section_height","label":"Section Min Height (px)","min":200,"max":1200,"step":50,"unit":"px","default":600 },
+    { "type":"select","id":"info_position","label":"Info Position","options":[{"value":"left","label":"Left"},{"value":"right","label":"Right"}],"default":"left" },
+    { "type":"select","id":"mobile_text_position","label":"Mobile Text Position","options":[{"value":"text-start","label":"Left"},{"value":"text-center","label":"Center"},{"value":"text-end","label":"Right"}],"default":"text-center" },
+    { "type":"select","id":"desktop_text_position","label":"Desktop Text Position","options":[{"value":"text-start","label":"Left"},{"value":"text-center","label":"Center"},{"value":"text-end","label":"Right"}],"default":"text-start" },
+    { "type":"select","id":"hover_effect","label":"Slide Hover Effect","options":[{"value":"none","label":"None"},{"value":"scale","label":"Scale"}],"default":"none" },
+    { "type":"color_scheme","id":"color_scheme","label":"Section Color Scheme" },
+    { "type":"color_background","id":"background_gradient","label":"Background Gradient" },
+    { "type":"image_picker","id":"background_image_desktop","label":"Desktop Background Image" },
+    { "type":"checkbox","id":"round_buttons","label":"Round Buttons","default":false },
+    { "type":"checkbox","id":"round_image","label":"Round Image Corners","default":false }
   ],
-  "blocks": [
-    {
-      "type": "slide",
-      "name": "Slide",
-      "settings": [
-        { "type": "image_picker", "id": "image",   "label": "Slide Image" },
-        { "type": "richtext",     "id": "heading", "label": "Heading",            "default": "<h2>Your title</h2>" },
-        { "type": "richtext",     "id": "body",    "label": "Text",               "default": "<p>Your description here.</p>" },
-        {
-          "type": "select", "id": "button_1_style", "label": "Button 1 Style",
-          "options": [
-            { "value": "solid",   "label": "Solid" },
-            { "value": "outline", "label": "Outline" },
-            { "value": "link",    "label": "Link" }
-          ],
-          "default": "solid"
-        },
-        { "type": "color", "id": "button_1_background", "label": "Button 1 Background", "default": "#1D4ED8" },
-        { "type": "color", "id": "button_1_text_color", "label": "Button 1 Text Color",  "default": "#ffffff" },
-        { "type": "text",  "id": "button_1_text",       "label": "Button 1 Label" },
-        { "type": "url",   "id": "button_1_link",       "label": "Button 1 Link" },
-        {
-          "type": "select", "id": "button_2_style", "label": "Button 2 Style",
-          "options": [
-            { "value": "solid",   "label": "Solid" },
-            { "value": "outline", "label": "Outline" },
-            { "value": "link",    "label": "Link" }
-          ],
-          "default": "outline"
-        },
-        { "type": "color", "id": "button_2_background", "label": "Button 2 Background", "default": "#E5E7EB" },
-        { "type": "color", "id": "button_2_text_color", "label": "Button 2 Text Color",  "default": "#000000" },
-        { "type": "text",  "id": "button_2_text",       "label": "Button 2 Label" },
-        { "type": "url",   "id": "button_2_link",       "label": "Button 2 Link" }
-      ]
-    }
+  "blocks":[
+    { "type":"slide","name":"Slide","settings":[
+      { "type":"image_picker","id":"image","label":"Slide Image" },
+      { "type":"richtext","id":"heading","label":"Heading","default":"<h2>Your title</h2>" },
+      { "type":"richtext","id":"body","label":"Text","default":"<p>Your description here.</p>" },
+      { "type":"select","id":"button_1_style","label":"Button 1 Style","options":[{"value":"solid","label":"Solid"},{"value":"outline","label":"Outline"},{"value":"link","label":"Link"}],"default":"solid" },
+      { "type":"color","id":"button_1_background","label":"Button 1 Background","default":"#1D4ED8" },
+      { "type":"color","id":"button_1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
+      { "type":"text","id":"button_1_text","label":"Button 1 Label" },
+      { "type":"url","id":"button_1_link","label":"Button 1 Link" },
+      { "type":"select","id":"button_2_style","label":"Button 2 Style","options":[{"value":"solid","label":"Solid"},{"value":"outline","label":"Outline"},{"value":"link","label":"Link"}],"default":"outline" },
+      { "type":"color","id":"button_2_background","label":"Button 2 Background","default":"#E5E7EB" },
+      { "type":"color","id":"button_2_text_color","label":"Button 2 Text Color","default":"#000000" },
+      { "type":"text","id":"button_2_text","label":"Button 2 Label" },
+      { "type":"url","id":"button_2_link","label":"Button 2 Link" }
+    ] }
   ],
-  "presets": [
+  "presets":[
     {
-      "name": "Info Rich-Text Slideshow",
-      "category": "Hero",
-      "blocks": [
-        {
-          "type": "slide",
-          "settings": {
-            "heading":       "<h2>Editable title</h2>",
-            "body":          "<p>Editable description goes here.</p>",
-            "button_1_text":"Learn More",
-            "button_1_link":"/collections/all",
-            "button_2_text":"Shop Now",
-            "button_2_link":"/products/example"
-          }
-        }
+      "name":"Info Rich-Text Slideshow","category":"Hero","blocks":[
+        {"type":"slide","settings":{"heading":"<h2>Editable title</h2>","body":"<p>Editable description goes here.</p>","button_1_text":"Learn More","button_1_link":"/collections/all","button_2_text":"Shop Now","button_2_link":"/products/example"}}
       ]
     }
   ]

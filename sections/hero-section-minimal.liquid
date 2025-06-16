@@ -16,18 +16,6 @@ Section: Info + Slideshow
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<style>
-  .outline-btn {
-    border: 2px solid var(--btn-border-color);
-    color: var(--btn-text-color);
-    transition: background-color .2s, color .2s;
-  }
-  .outline-btn:hover {
-    background-color: var(--btn-border-color);
-    color: #fff;
-  }
-</style>
-
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     AOS.init({ once: true });
@@ -57,12 +45,15 @@ Section: Info + Slideshow
     <div id="swiper-{{ section.id }}" class="swiper">
       <div class="swiper-wrapper">
         {% if section.blocks.size == 0 %}
-          <div class="py-16 text-center text-gray-500">Add at least one Slide block to see the slideshow.</div>
+          <div class="py-16 text-center text-gray-500">
+            Add at least one Slide block to see the slideshow.
+          </div>
         {% endif %}
 
         {% for block in section.blocks %}
           <div class="swiper-slide">
-            <div class="flex flex-col lg:flex-row items-center {% if section.settings.info_position == 'right' %}lg:flex-row-reverse{% endif %} {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}">
+            <div class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}">
+              
               <!-- INFO -->
               <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
                 <h2 class="text-3xl font-bold{% if section.settings.round_title %} rounded-full px-4 py-2 bg-white inline-block{% endif %}">
@@ -71,26 +62,35 @@ Section: Info + Slideshow
                 <p class="mt-4 text-gray-700">{{ block.settings.description }}</p>
                 <div class="mt-6 flex space-x-4">
                   {% for i in (1..2) %}
-                    {% assign text_key    = 'button' | append: i | append: '_text' %}
-                    {% assign link_key    = 'button' | append: i | append: '_link' %}
-                    {% assign style_key   = 'button' | append: i | append: '_style' %}
-                    {% assign bg_key      = 'button' | append: i | append: '_bg_color' %}
-                    {% assign border_key  = 'button' | append: i | append: '_border_color' %}
-                    {% assign text_value  = block.settings[text_key] %}
-                    {% assign link_value  = block.settings[link_key] %}
-                    {% assign style_value = block.settings[style_key] %}
-                    {% assign bg_value    = block.settings[bg_key] %}
-                    {% assign border_value= block.settings[border_key] %}
+                    {% assign text_key       = 'button' | append: i | append: '_text' %}
+                    {% assign link_key       = 'button' | append: i | append: '_link' %}
+                    {% assign style_key      = 'button' | append: i | append: '_style' %}
+                    {% assign bg_key         = 'button' | append: i | append: '_bg_color' %}
+                    {% assign border_key     = 'button' | append: i | append: '_border_color' %}
+                    {% assign text_color_key = 'button' | append: i | append: '_text_color' %}
+                    {% assign text_value     = block.settings[text_key] %}
+                    {% assign link_value     = block.settings[link_key] %}
+                    {% assign style_value    = block.settings[style_key] %}
+                    {% assign bg_value       = block.settings[bg_key] %}
+                    {% assign border_value   = block.settings[border_key] %}
+                    {% assign text_color     = block.settings[text_color_key] %}
                     {% if text_value %}
                       {% if style_value == 'solid' %}
-                        <a href="{{ link_value }}"
-                           class="px-6 py-2 font-semibold {{ bg_value }} text-white {% if section.settings.round_buttons %}rounded-full{% else%}rounded-md{% endif %} hover:opacity-90 transition">
+                        <a
+                          href="{{ link_value }}"
+                          class="px-6 py-2 font-semibold {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
+                          style="background-color: {{ bg_value }}; color: {{ text_color }};"
+                        >
                           {{ text_value }}
                         </a>
                       {% else %}
-                        <a href="{{ link_value }}"
-                           class="px-6 py-2 font-semibold outline-btn {% if section.settings.round_buttons %}rounded-full{% else%}rounded-md{% endif %}"
-                           style="--btn-border-color: {{ border_value }}; --btn-text-color: {{ border_value }};">
+                        <a
+                          href="{{ link_value }}"
+                          class="px-6 py-2 font-semibold border {% if section.settings.round_buttons %}rounded-full{% else %}rounded-md{% endif %} transition"
+                          style="border-color: {{ border_value }}; color: {{ border_value }};"
+                          onmouseover="this.style.backgroundColor='{{ border_value }}'; this.style.color='{{ text_color }}';"
+                          onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ border_value }}';"
+                        >
                           {{ text_value }}
                         </a>
                       {% endif %}
@@ -102,15 +102,18 @@ Section: Info + Slideshow
               <!-- IMAGE -->
               <div class="w-full lg:w-1/2 p-6" data-aos="fade-left">
                 {% if block.settings.image %}
-                  <img src="{{ block.settings.image | img_url:'master' }}"
-                       alt="{{ block.settings.image.alt }}"
-                       class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}" />
+                  <img
+                    src="{{ block.settings.image | img_url:'master' }}"
+                    alt="{{ block.settings.image.alt }}"
+                    class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
+                  />
                 {% else %}
                   <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-500">
                     No image selected
                   </div>
                 {% endif %}
               </div>
+
             </div>
           </div>
         {% endfor %}
@@ -169,6 +172,7 @@ Section: Info + Slideshow
         },
         { "type":"color","id":"button1_bg_color","label":"Button 1 BG Color","default":"#1D4ED8" },
         { "type":"color","id":"button1_border_color","label":"Button 1 Border Color","default":"#1D4ED8" },
+        { "type":"color","id":"button1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
         { "type":"text","id":"button1_text","label":"Button 1 Text" },
         { "type":"url","id":"button1_link","label":"Button 1 Link" },
         {
@@ -179,6 +183,7 @@ Section: Info + Slideshow
         },
         { "type":"color","id":"button2_bg_color","label":"Button 2 BG Color","default":"#E5E7EB" },
         { "type":"color","id":"button2_border_color","label":"Button 2 Border Color","default":"#6B7280" },
+        { "type":"color","id":"button2_text_color","label":"Button 2 Text Color","default":"#000000" },
         { "type":"text","id":"button2_text","label":"Button 2 Text" },
         { "type":"url","id":"button2_link","label":"Button 2 Link" }
       ]
@@ -199,4 +204,5 @@ Section: Info + Slideshow
     }
   ]
 }
+
 {% endschema %}

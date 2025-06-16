@@ -294,14 +294,14 @@
         "richtext_pKUaf6": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+            "content": "<p>For the reflective, the ambitious, the burned-out, and the wildly creative — this is your space to slow down, reconnect, and work in rhythm with your genius<br/><br/></p>"
           }
         },
         "button_8eiGFg": {
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Button text",
+            "text": "shop now",
             "url": "",
             "background": "",
             "text_color": ""
@@ -311,7 +311,7 @@
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Button text",
+            "text": "book a discovery call",
             "url": "",
             "background": "",
             "text_color": ""
@@ -328,6 +328,8 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
+        "image": "shopify://shop_images/Mask_group_10_png.png",
+        "mobile_image": "shopify://shop_images/Mask_group_10_png.png",
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "sm",
@@ -336,12 +338,12 @@
     }
   },
   "order": [
-    "image_with_text_iHMLah",
+    "image_with_text_enKPFt",
     "hero_section_minimal_qXcgdp",
     "text_with_icons_tycr7F",
     "rich_text_YpVNty",
     "text_with_icons_3xWbLX",
     "rich_text_6REikG",
-    "image_with_text_enKPFt"
+    "image_with_text_iHMLah"
   ]
 }

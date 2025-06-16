@@ -1,12 +1,13 @@
 {% comment %}
 Section: Info + Rich-Text Slideshow
+- Inspector support via data-section / data-block / data-setting
 - Tailwind via CDN
 - AOS for scroll animations
 - Swiper.js for slider
 - Richtext for inline editable heading & body
-- Color scheme picker for background
+- scheme_picker for background
 - Vertical centering wrapper
-- Buttons now use your `.button` and `.button--outline` classes
+- Buttons via 'button' snippet
 {% endcomment %}
 
 <!-- Tailwind CSS -->
@@ -39,10 +40,12 @@ Compute hash for scheme background
    | default: section.settings.color_scheme.settings.background
    | md5 -%}
 
-<div
+<section
   id="shopify-section-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="info-rich-text-slideshow"
   class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} flex justify-center
- items-center "
+ items-center"
   style="
     min-height: {{ section.settings.section_height }}px;
     {% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}
@@ -56,6 +59,7 @@ Compute hash for scheme background
     <div class="container mx-auto px-4">
       <div id="swiper-{{ section.id }}" class="swiper">
         <div class="swiper-wrapper">
+
           {% if section.blocks.size == 0 %}
             <div class="py-16 text-center text-gray-500">
               Add at least one Slide block to see the slideshow.
@@ -63,55 +67,63 @@ Compute hash for scheme background
           {% endif %}
 
           {% for block in section.blocks %}
-            <div class="swiper-slide">
+            <div
+              class="swiper-slide"
+              data-block-id="{{ block.id }}"
+              data-block-type="slide"
+            >
               <div
                 class="flex flex-col lg:flex-row{% if section.settings.info_position == 'right' %} lg:flex-row-reverse{% endif %} items-center {% if section.settings.hover_effect == 'scale' %}transition-transform duration-300 hover:scale-105{% endif %}"
               >
                 <!-- INFO -->
                 <div class="w-full lg:w-1/2 p-6" data-aos="fade-right">
-                  <div class="prose">
+                  <div class="prose" data-setting-id="heading">
                     {{ block.settings.heading }}
                   </div>
-                  <div class="prose mt-4">
+                  <div class="prose mt-4" data-setting-id="body">
                     {{ block.settings.body }}
                   </div>
-                  <div class="mt-6 flex space-x-4">
-                    {% for i in (1..2) %}
-                      {% assign tkey = 'button' | append: i | append: '_text' %}
-                      {% assign lkey = 'button' | append: i | append: '_link' %}
-                      {% assign skey = 'button' | append: i | append: '_style' %}
-                      {% assign bgk  = 'button' | append: i | append: '_bg_color' %}
-                      {% assign brk  = 'button' | append: i | append: '_border_color' %}
-                      {% assign txtk = 'button' | append: i | append: '_text_color' %}
-                      {% assign txt  = block.settings[tkey] %}
-                      {% assign lnk  = block.settings[lkey] %}
-                      {% assign sty  = block.settings[skey] %}
-                      {% assign bg   = block.settings[bgk] %}
-                      {% assign brd  = block.settings[brk] %}
-                      {% assign col  = block.settings[txtk] %}
-                      {% if txt %}
-                        {% if sty == 'solid' %}
-                          <a
-                            href="{{ lnk }}"
-                            class="button"
-                            style="background-color: {{ bg }}; color: {{ col }};"
-                          >
-                            {{ txt }}
-                          </a>
-                        {% else %}
-                          <a
-                            href="{{ lnk }}"
-                            class="button button--outline"
-                            style="border-color: {{ brd }}; color: {{ brd }};"
-                            onmouseover="this.style.backgroundColor='{{ brd }}'; this.style.color='{{ col }}';"
-                            onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ brd }}';"
-                          >
-                            {{ txt }}
-                          </a>
-                        {% endif %}
-                      {% endif %}
-                    {% endfor %}
-                  </div>
+
+                  {%- if block.settings.button_1_text != blank or block.settings.button_2_text != blank -%}
+                    {%- assign btn_mobile_pos  = block.settings.mobile_text_position  | split: 'text-' | last -%}
+                    {%- assign btn_desktop_pos = block.settings.desktop_text_position | split: 'text-' | last -%}
+
+                    {%- if block.settings.button_1_style == 'link' 
+                           or block.settings.button_2_style == 'link' 
+                           or block.settings.button_1_text == blank 
+                           or block.settings.button_2_text == blank -%}
+                      {%- capture button_wrapper_class -%}
+                        button-group justify-{{ btn_mobile_pos }} sm:justify-{{ btn_desktop_pos }}
+                      {%- endcapture -%}
+                    {%- else -%}
+                      {%- capture button_wrapper_class -%}
+                        button-group button-group--same-width justify-{{ btn_mobile_pos }} sm:justify-{{ btn_desktop_pos }}
+                      {%- endcapture -%}
+                    {%- endif -%}
+
+                    <div class="{{ button_wrapper_class | strip }}">
+                      {%- if block.settings.button_1_text != blank -%}
+                        {%- render 'button',
+                            href:        block.settings.button_1_link,
+                            content:     block.settings.button_1_text,
+                            style:       block.settings.button_1_style,
+                            background:  block.settings.button_1_background,
+                            text_color:  block.settings.button_1_text_color,
+                            data_attrs:  'data-setting-id=button_1_text' -%}
+                      {%- endif -%}
+
+                      {%- if block.settings.button_2_text != blank -%}
+                        {%- render 'button',
+                            href:        block.settings.button_2_link,
+                            content:     block.settings.button_2_text,
+                            style:       block.settings.button_2_style,
+                            background:  block.settings.button_2_background,
+                            text_color:  block.settings.button_2_text_color,
+                            data_attrs:  'data-setting-id=button_2_text' -%}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+
                 </div>
 
                 <!-- IMAGE -->
@@ -120,6 +132,7 @@ Compute hash for scheme background
                     <img
                       src="{{ block.settings.image | img_url:'master' }}"
                       alt="{{ block.settings.image.alt }}"
+                      data-setting-id="image"
                       class="w-full{% if section.settings.round_image %} rounded-lg{% endif %}"
                     />
                   {% else %}
@@ -131,14 +144,13 @@ Compute hash for scheme background
               </div>
             </div>
           {% endfor %}
-        </div>
 
-        <!-- Pagination Dots -->
+        </div>
         <div class="swiper-pagination mt-6"></div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
@@ -170,10 +182,32 @@ Compute hash for scheme background
       "id": "info_position",
       "label": "Info Position",
       "options": [
-        { "value":"left","label":"Left" },
-        { "value":"right","label":"Right" }
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_position",
+      "label": "Mobile Text Position",
+      "options": [
+        { "value": "text-start", "label": "Left" },
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-end", "label": "Right" }
+      ],
+      "default": "text-center"
+    },
+    {
+      "type": "select",
+      "id": "desktop_text_position",
+      "label": "Desktop Text Position",
+      "options": [
+        { "value": "text-start", "label": "Left" },
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-end", "label": "Right" }
+      ],
+      "default": "text-start"
     },
     {
       "type": "select",
@@ -200,24 +234,9 @@ Compute hash for scheme background
       "id": "background_image_desktop",
       "label": "Desktop Background Image"
     },
-    {
-      "type": "checkbox",
-      "id": "round_title",
-      "label": "Round Title Background",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "round_buttons",
-      "label": "Round Buttons",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "round_image",
-      "label": "Round Image Corners",
-      "default": false
-    }
+    { "type":"checkbox","id":"round_title","label":"Round Title Background","default":false },
+    { "type":"checkbox","id":"round_buttons","label":"Round Buttons","default":false },
+    { "type":"checkbox","id":"round_image","label":"Round Image Corners","default":false }
   ],
   "blocks": [
     {
@@ -228,27 +247,27 @@ Compute hash for scheme background
         { "type":"richtext","id":"heading","label":"Heading","default":"<h2>Your title</h2>" },
         { "type":"richtext","id":"body","label":"Text","default":"<p>Your description here.</p>" },
         {
-          "type":"select","id":"button1_style","label":"Button 1 Style","options":[
+          "type":"select","id":"button_1_style","label":"Button 1 Style","options":[
             {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
+            {"value":"outline","label":"Outline"},
+            {"value":"link","label":"Link"}
           ],"default":"solid"
         },
-        { "type":"color","id":"button1_bg_color","label":"Button 1 BG","default":"#1D4ED8" },
-        { "type":"color","id":"button1_border_color","label":"Button 1 Border","default":"#1D4ED8" },
-        { "type":"color","id":"button1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
-        { "type":"text","id":"button1_text","label":"Button 1 Text" },
-        { "type":"url","id":"button1_link","label":"Button 1 Link" },
+        { "type":"color","id":"button_1_background","label":"Button 1 Background","default":"#1D4ED8" },
+        { "type":"color","id":"button_1_text_color","label":"Button 1 Text Color","default":"#ffffff" },
+        { "type":"text","id":"button_1_text","label":"Button 1 Label" },
+        { "type":"url","id":"button_1_link","label":"Button 1 Link" },
         {
-          "type":"select","id":"button2_style","label":"Button 2 Style","options":[
+          "type":"select","id":"button_2_style","label":"Button 2 Style","options":[
             {"value":"solid","label":"Solid"},
-            {"value":"outline","label":"Outline"}
+            {"value":"outline","label":"Outline"},
+            {"value":"link","label":"Link"}
           ],"default":"outline"
         },
-        { "type":"color","id":"button2_bg_color","label":"Button 2 BG","default":"#E5E7EB" },
-        { "type":"color","id":"button2_border_color","label":"Button 2 Border","default":"#6B7280" },
-        { "type":"color","id":"button2_text_color","label":"Button 2 Text Color","default":"#000000" },
-        { "type":"text","id":"button2_text","label":"Button 2 Text" },
-        { "type":"url","id":"button2_link","label":"Button 2 Link" }
+        { "type":"color","id":"button_2_background","label":"Button 2 Background","default":"#E5E7EB" },
+        { "type":"color","id":"button_2_text_color","label":"Button 2 Text Color","default":"#000000" },
+        { "type":"text","id":"button_2_text","label":"Button 2 Label" },
+        { "type":"url","id":"button_2_link","label":"Button 2 Link" }
       ]
     }
   ],
@@ -262,15 +281,14 @@ Compute hash for scheme background
           "settings": {
             "heading": "<h2>Editable title</h2>",
             "body": "<p>Editable description goes here.</p>",
-            "button1_text": "Learn More",
-            "button1_link": "/collections/all",
-            "button2_text": "Shop Now",
-            "button2_link": "/products/example"
+            "button_1_text": "Learn More",
+            "button_1_link": "/collections/all",
+            "button_2_text": "Shop Now",
+            "button_2_link": "/products/example"
           }
         }
       ]
     }
   ]
 }
-
 {% endschema %}

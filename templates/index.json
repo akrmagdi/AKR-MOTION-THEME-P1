@@ -136,7 +136,19 @@
           "settings": {
             "image": "shopify://shop_images/Mask_group_10_png.png",
             "heading": "<h6>Your title</h6>",
-            "body": "<h6>Your description here.</h6>"
+            "body": "<h6>Your description here.</h6>",
+            "button1_style": "solid",
+            "button1_bg_color": "#1d4ed8",
+            "button1_border_color": "#1d4ed8",
+            "button1_text_color": "#ffffff",
+            "button1_text": "text",
+            "button1_link": "",
+            "button2_style": "outline",
+            "button2_bg_color": "#e5e7eb",
+            "button2_border_color": "#6b7280",
+            "button2_text_color": "#000000",
+            "button2_text": "text",
+            "button2_link": ""
           }
         }
       },

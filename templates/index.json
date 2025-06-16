@@ -9,37 +9,37 @@
  */
 {
   "sections": {
-    "image_with_text_iHMLah": {
+    "image_with_text_enKPFt": {
       "type": "image-with-text",
       "blocks": {
-        "heading_EMj8hP": {
+        "heading_jwGfN6": {
           "type": "heading",
           "settings": {
-            "text": "Image with text",
+            "text": "Curated Marketplace & Coaching",
             "heading_tag": "h1"
           }
         },
-        "richtext_4fP4yL": {
+        "richtext_pKUaf6": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+            "content": "<p>For the reflective, the ambitious, the burned-out, and the wildly creative — this is your space to slow down, reconnect, and work in rhythm with your genius<br/><br/></p>"
           }
         },
-        "button_dcLMfp": {
+        "button_8eiGFg": {
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Button text",
+            "text": "shop now",
             "url": "",
             "background": "",
             "text_color": ""
           }
         },
-        "button_694ENq": {
+        "button_q7QjDL": {
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Button text",
+            "text": "book a discovery call",
             "url": "",
             "background": "",
             "text_color": ""
@@ -47,15 +47,17 @@
         }
       },
       "block_order": [
-        "heading_EMj8hP",
-        "richtext_4fP4yL",
-        "button_dcLMfp",
-        "button_694ENq"
+        "heading_jwGfN6",
+        "richtext_pKUaf6",
+        "button_8eiGFg",
+        "button_q7QjDL"
       ],
       "name": "Image with Text",
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
+        "image": "shopify://shop_images/Mask_group_10_png.png",
+        "mobile_image": "shopify://shop_images/Mask_group_10_png.png",
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "sm",
@@ -257,14 +259,14 @@
         "heading_KGpKNw": {
           "type": "heading",
           "settings": {
-            "text": "What We Offer",
+            "text": "We See What AI Can't.",
             "heading_tag": "h2"
           }
         },
         "subheading_CcUYGG": {
           "type": "subheading",
           "settings": {
-            "text": "Subheading"
+            "text": "Nuance, soul, voice — the things your work needs most."
           }
         }
       },
@@ -281,37 +283,37 @@
         "remove_vertical_spacing": false
       }
     },
-    "image_with_text_enKPFt": {
+    "image_with_text_iHMLah": {
       "type": "image-with-text",
       "blocks": {
-        "heading_jwGfN6": {
+        "heading_EMj8hP": {
           "type": "heading",
           "settings": {
-            "text": "Curated Marketplace & Coaching",
+            "text": "Image with text",
             "heading_tag": "h1"
           }
         },
-        "richtext_pKUaf6": {
+        "richtext_4fP4yL": {
           "type": "richtext",
           "settings": {
-            "content": "<p>For the reflective, the ambitious, the burned-out, and the wildly creative — this is your space to slow down, reconnect, and work in rhythm with your genius<br/><br/></p>"
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
           }
         },
-        "button_8eiGFg": {
+        "button_dcLMfp": {
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "shop now",
+            "text": "Button text",
             "url": "",
             "background": "",
             "text_color": ""
           }
         },
-        "button_q7QjDL": {
+        "button_694ENq": {
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "book a discovery call",
+            "text": "Button text",
             "url": "",
             "background": "",
             "text_color": ""
@@ -319,17 +321,15 @@
         }
       },
       "block_order": [
-        "heading_jwGfN6",
-        "richtext_pKUaf6",
-        "button_8eiGFg",
-        "button_q7QjDL"
+        "heading_EMj8hP",
+        "richtext_4fP4yL",
+        "button_dcLMfp",
+        "button_694ENq"
       ],
       "name": "Image with Text",
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
-        "image": "shopify://shop_images/Mask_group_10_png.png",
-        "mobile_image": "shopify://shop_images/Mask_group_10_png.png",
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "sm",

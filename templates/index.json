@@ -249,7 +249,7 @@
         "item_rJHeHG"
       ],
       "custom_css": [
-        ".text-with-icons__item {background: white; padding: 1rem 1.5rem; border-radius: 1rem; border: 0.1px solid gray;}"
+        ".text-with-icons__item {background: white; padding: 1rem 1.5rem; border-radius: 1rem; border: 0.1px solid #f2f2f2;}"
       ],
       "settings": {
         "color_scheme": "scheme-3",

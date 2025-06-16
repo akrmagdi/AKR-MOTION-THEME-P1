@@ -65,10 +65,18 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Mask_group_10_png.png",
-            "title": "Your Title",
-            "description": "Your description here.",
+            "heading": "<h6>Your title</h6>",
+            "body": "<h6>Your description here.</h6>",
+            "button1_style": "solid",
+            "button1_bg_color": "#1d4ed8",
+            "button1_border_color": "#1d4ed8",
+            "button1_text_color": "#ffffff",
             "button1_text": "Learn More",
             "button1_link": "/collections/all",
+            "button2_style": "outline",
+            "button2_bg_color": "#e5e7eb",
+            "button2_border_color": "#6b7280",
+            "button2_text_color": "#000000",
             "button2_text": "Shop Now",
             "button2_link": "/products/example"
           }
@@ -79,17 +87,13 @@
       ],
       "name": "Info Slideshow",
       "settings": {
-        "include_tailwind_cdn": false,
         "autoplay_speed": "5000",
-        "background_color": "#ffffff",
+        "section_height": 200,
+        "info_position": "left",
+        "hover_effect": "none",
         "background_gradient": "",
         "round_title": false,
-        "button_style": "solid",
         "round_buttons": false,
-        "button1_bg_color": "#1D4ED8",
-        "button1_border_color": "#1D4ED8",
-        "button2_bg_color": "#E5E7EB",
-        "button2_border_color": "#6B7280",
         "round_image": false
       }
     }

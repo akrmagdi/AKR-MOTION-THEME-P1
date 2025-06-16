@@ -9,54 +9,6 @@
  */
 {
   "sections": {
-    "text_with_icons_tycr7F": {
-      "type": "text-with-icons",
-      "blocks": {
-        "item_PDFkUk": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-customer-support",
-            "icon_width": 40,
-            "mobile_icon_width": 24,
-            "title": "48 Hours - Customer service",
-            "content": "<p>We respond to our customers within 48 hours during business hours Monday-Friday, ensuring all your questions are answered promptly. Please email us at info@eightyfour.com with any questions. </p>"
-          }
-        },
-        "item_VA8iEz": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-shield",
-            "icon_width": 40,
-            "mobile_icon_width": 24,
-            "title": "Buy Once to last forever",
-            "content": "<p>We take pride in using high-quality fabrics, hardware, and packaging in everything we do. Our commitment to excellence ensures that the entire story of our product, from creative content to final piece, reflects the utmost quality and attention to detail.</p>"
-          }
-        },
-        "item_MF9egx": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-delivery-truck",
-            "icon_width": 40,
-            "mobile_icon_width": 24,
-            "title": "Free shipping over $100",
-            "content": "<p>Spend $100+ before tax and get free shipping on your entire order (USA and Canada only). If you spend over $100 USD (before tax), you'll receive a free hat with your order. Simply add it to your cart.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "item_PDFkUk",
-        "item_VA8iEz",
-        "item_MF9egx"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": true,
-        "stack_on_mobile": false,
-        "icon_color": "",
-        "text_color": "",
-        "text_alignment": "center"
-      }
-    },
     "hero_section_minimal_qXcgdp": {
       "type": "hero-section-minimal",
       "blocks": {
@@ -64,19 +16,19 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Mask_group_10_png.png",
-            "heading": "<h6>Your title</h6>",
-            "body": "<h6>Your description here.</h6>",
+            "heading": "<h1>Curated Marketplace & Coaching</h1>",
+            "body": "<p>For the reflective, the ambitious, the burned-out, and the wildly creative — this is your space to slow down, reconnect, and work in rhythm with your genius</p>",
             "button1_style": "solid",
             "button1_bg_color": "#1d4ed8",
             "button1_border_color": "#1d4ed8",
             "button1_text_color": "#ffffff",
-            "button1_text": "text",
+            "button1_text": "shop now",
             "button1_link": "",
             "button2_style": "outline",
             "button2_bg_color": "#e5e7eb",
             "button2_border_color": "#6b7280",
             "button2_text_color": "#000000",
-            "button2_text": "text",
+            "button2_text": "book a discovery call",
             "button2_link": ""
           }
         }
@@ -96,10 +48,58 @@
         "round_buttons": true,
         "round_image": false
       }
+    },
+    "text_with_icons_tycr7F": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_PDFkUk": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "Trusted by 300+ graduate students, scholars, and researchers",
+            "content": ""
+          }
+        },
+        "item_VA8iEz": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "Projects supported from undergrad to postdoc",
+            "content": ""
+          }
+        },
+        "item_MF9egx": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "5+ years of personal academic mentoring",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_PDFkUk",
+        "item_VA8iEz",
+        "item_MF9egx"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
     }
   },
   "order": [
-    "text_with_icons_tycr7F",
-    "hero_section_minimal_qXcgdp"
+    "hero_section_minimal_qXcgdp",
+    "text_with_icons_tycr7F"
   ]
 }

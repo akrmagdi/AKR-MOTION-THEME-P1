@@ -115,6 +115,29 @@
         "text_alignment": "center"
       }
     },
+    "rich_text_6REikG": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_KGpKNw": {
+          "type": "heading",
+          "settings": {
+            "text": "What We Offer",
+            "heading_tag": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_KGpKNw"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
     "text_with_icons_3xWbLX": {
       "type": "text-with-icons",
       "blocks": {
@@ -166,8 +189,8 @@
         "item_rJHeHG"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": true,
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
         "stack_on_mobile": false,
         "icon_color": "",
         "text_color": "",
@@ -178,6 +201,7 @@
   "order": [
     "hero_section_minimal_qXcgdp",
     "text_with_icons_tycr7F",
+    "rich_text_6REikG",
     "text_with_icons_3xWbLX"
   ]
 }

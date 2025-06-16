@@ -87,7 +87,7 @@
       "name": "Info Slideshow",
       "settings": {
         "autoplay_speed": "5000",
-        "section_height": 200,
+        "section_height": 850,
         "info_position": "left",
         "hover_effect": "none",
         "color_scheme": "scheme-1",

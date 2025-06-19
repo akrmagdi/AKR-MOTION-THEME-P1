@@ -1,1 +1,25 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"color_scheme":"","show_title":true,"page_width":"xs"}},"image_with_text_hmFQBm":{"type":"image-with-text","blocks":{"subheading_Qba7RE":{"type":"subheading","settings":{"text":"THE STORY OF DAVID KOLLAR"}},"heading_kXTq8U":{"type":"heading","settings":{"text":"BUILT TO LAST.","heading_tag":"h1"}},"richtext_tTEXNb":{"type":"richtext","settings":{"content":"<p>Born in Slovakia and immigrated to Canada, David Kollar established his first brand, Kollar, leveraging a decade of design expertise. His work, sold in over 150+ global retailers creating over 8 figures in sales in his career and featured in Forbes, GQ, and Complex, culminated in a New York Fashion Week debut, which was his last due to an injury that paused his career for three years. With matured style and renewed vision, he now presents By David Kollar.<br\/><br\/>This brand, embodying more than just a label, stands for a lifestyle of understated opulence. Handcrafted for enduring luxury with materials sourced from the world's most exquisite regions.<br\/><br\/>David Kollar's vision is to cater to the everyday man seeking confidence in his appearance. With the use of soft, comfortable fabrics, our attire ensures an impeccable fit and feel, striking a balance between contemporary trends and effortless chill.<\/p>"}}},"block_order":["subheading_Qba7RE","heading_kXTq8U","richtext_tTEXNb"],"settings":{"color_scheme":"scheme-2","separate_section_with_border":true,"image":"shopify:\/\/shop_images\/newnew.webp","reveal_on_scroll":true,"image_position":"start","content_width":"sm","remove_vertical_spacing":true}}},"order":["main","image_with_text_hmFQBm"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -387,18 +387,28 @@
   ]
 }
 {% endschema %}
-
 {%- if section.settings.image != blank or section.blocks.size > 0 -%}
+  {%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+  CSS
+  ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
 
   <style>
     #shopify-section-{{ section.id }} {
       {%- if section.settings.overlay_color != 'rgba(0,0,0,0)' -%}
-        --content-over-media-overlay: {{ section.settings.overlay_color }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+        --content-over-media-overlay: {{ section.settings.overlay_color.rgb }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }};
       {%- endif -%}
 
       --content-over-media-content-max-width: var(--container-{{ section.settings.content_width }}-max-width);
     }
   </style>
+
+  {%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+  LIQUID
+  ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
 
   <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--with-image-overlay" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
     <image-with-text-overlay class="content-over-media content-over-media--{{ section.settings.image_size }}" reveal-on-scroll="{{ section.settings.reveal_on_scroll }}">
@@ -406,10 +416,10 @@
         <picture>
           {%- if section.settings.mobile_image != blank -%}
             <source
-              media="(max-width: 699px)"
-              srcset="{{ section.settings.mobile_image | image_url: width: '400x' }} 400w, {{ section.settings.mobile_image | image_url: width: '600x' }} 600w, {{ section.settings.mobile_image | image_url: width: '800x' }} 800w, {{ section.settings.mobile_image | image_url: width: '1000x' }} 1000w"
-              width="{{ section.settings.mobile_image.width }}"
-              height="{{ section.settings.mobile_image.height }}"
+                media="(max-width: 699px)"
+                srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w"
+                width="{{ section.settings.mobile_image.width }}"
+                height="{{ section.settings.mobile_image.height }}"
             >
           {%- endif -%}
 

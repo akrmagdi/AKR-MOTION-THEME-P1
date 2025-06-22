@@ -36,7 +36,7 @@
     "stagger_products_apparition": true,
     "round_color_swatches": true,
     "color_swatch_config": "Brown:#23130D\nDark Grey: #3b3b3b\nRoyal: #4169e1\nHeather Grey: #99a196",
-    "product_image_aspect_ratio": "natural",
+    "product_image_aspect_ratio": "square",
     "show_secondary_image": true,
     "product_title_max_lines": 2,
     "product_card_text_font": "heading",

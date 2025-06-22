@@ -71,9 +71,9 @@
         "collection_LH6T8T": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "candles",
             "products_count": 8,
-            "title": "",
+            "title": "Can’t-Miss Must-Haves",
             "link_url": "",
             "link_text": "View all"
           }
@@ -92,7 +92,7 @@
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
-        "subheading": "Featured collection"
+        "subheading": ""
       }
     },
     "media_grid_EbmAPG": {

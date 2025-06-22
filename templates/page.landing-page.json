@@ -212,7 +212,7 @@
             "style": "solid",
             "text": "Learn More About Our Services",
             "url": "",
-            "background": "",
+            "background": "#3f4851",
             "text_color": ""
           }
         }
@@ -224,17 +224,17 @@
       ],
       "name": "Image with Text Overlay",
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-4",
         "image_size": "sm",
-        "image": "shopify://shop_images/IMG_4015_8a806871-2d8b-4813-9ed0-b784421287df.jpg",
+        "image": "shopify://shop_images/IMG_5967.jpg",
         "allow_transparent_header": false,
         "reveal_on_scroll": true,
         "remove_vertical_spacing": true,
         "content_width": "md",
         "mobile_text_position": "place-self-center text-center",
         "desktop_text_position": "sm:place-self-center sm:text-center",
-        "overlay_color": "#2d2d2d",
-        "overlay_opacity": 100
+        "overlay_color": "#303030",
+        "overlay_opacity": 46
       }
     },
     "rich_text_ibRVtc": {

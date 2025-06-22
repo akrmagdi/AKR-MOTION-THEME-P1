@@ -84,7 +84,7 @@
       ],
       "name": "Featured Collections",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
         "separate_section_with_border": true,
         "hide_product_information": false,
         "stack_products": true,
@@ -102,6 +102,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "",
+            "image": "shopify://shop_images/Container.png",
             "column_count": "3",
             "row_count": 1,
             "title": "Candles",
@@ -112,13 +113,14 @@
             "link_style": "link",
             "text_position": "place-self-center text-center",
             "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "overlay_opacity": 16
           }
         },
         "image_GFGyaT": {
           "type": "image",
           "settings": {
             "color_scheme": "",
+            "image": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
             "column_count": "3",
             "row_count": 1,
             "title": "Journals & Stationery",
@@ -136,6 +138,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "",
+            "image": "shopify://shop_images/Group_24965_1.png",
             "column_count": "3",
             "row_count": 1,
             "title": "Curated Gift Boxes",
@@ -153,6 +156,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "",
+            "image": "shopify://shop_images/three-people-laughing-under-a-tree-in-a-forest_13d7b89f-4e60-4a8b-832c-6c428a1615a5.jpg",
             "column_count": "3",
             "row_count": 1,
             "title": "Academic Services",
@@ -182,7 +186,7 @@
         "section_width": "lg",
         "spacing": "md",
         "subheading": "",
-        "title": "Media grid",
+        "title": "OUR COLLECTION",
         "content": ""
       }
     },
@@ -220,16 +224,17 @@
       ],
       "name": "Image with Text Overlay",
       "settings": {
-        "color_scheme": "",
-        "image_size": "auto",
+        "color_scheme": "scheme-1",
+        "image_size": "sm",
+        "image": "shopify://shop_images/IMG_4015_8a806871-2d8b-4813-9ed0-b784421287df.jpg",
         "allow_transparent_header": false,
         "reveal_on_scroll": true,
         "remove_vertical_spacing": true,
         "content_width": "md",
         "mobile_text_position": "place-self-center text-center",
         "desktop_text_position": "sm:place-self-center sm:text-center",
-        "overlay_color": "#000000",
-        "overlay_opacity": 30
+        "overlay_color": "#2d2d2d",
+        "overlay_opacity": 100
       }
     },
     "rich_text_ibRVtc": {

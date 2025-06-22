@@ -127,7 +127,7 @@
           "background": "#ffffff",
           "background_gradient": "",
           "text_color": "#303030",
-          "primary_button_background": "rgba(0,0,0,0)",
+          "primary_button_background": "#bb6222",
           "primary_button_text_color": "#ffffff",
           "circle_button_background": "rgba(0,0,0,0)",
           "circle_button_icon": "#000000"

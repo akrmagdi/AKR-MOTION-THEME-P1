@@ -389,20 +389,16 @@
 {% endschema %}
 {%- if section.settings.image != blank or section.blocks.size > 0 -%}
 
-  <style>
-    #shopify-section-{{ section.id }} {
-      {%- if section.settings.overlay_color != 'rgba(0,0,0,0)' -%}
-        --content-over-media-overlay-color: {{ section.settings.overlay_color }};
-        --content-over-media-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-      {%- endif -%}
-      --content-over-media-content-max-width: var(--container-{{ section.settings.content_width }}-max-width);
-    }
-  </style>
-
-  <section
+  <div
     id="shopify-section-{{ section.id }}"
     class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--with-image-overlay"
     {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}
+    style="
+      {%- if section.settings.overlay_color != 'rgba(0,0,0,0)' -%}
+        --content-over-media-overlay: {{ section.settings.overlay_color }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+      {%- endif -%}
+      --content-over-media-content-max-width: var(--container-{{ section.settings.content_width }}-max-width);
+    "
   >
     <image-with-text-overlay
       class="content-over-media content-over-media--{{ section.settings.image_size }}"
@@ -482,6 +478,7 @@
         </div>
       {%- endif -%}
     </image-with-text-overlay>
-  </section>
+  </div>
+
 {%- endif -%}
 

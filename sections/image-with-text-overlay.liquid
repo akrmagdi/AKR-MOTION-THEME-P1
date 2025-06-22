@@ -387,23 +387,21 @@
   ]
 }
 {% endschema %}
+
 {%- if section.settings.image != blank or section.blocks.size > 0 -%}
 
-  <div
-    id="shopify-section-{{ section.id }}"
-    class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--with-image-overlay"
-    {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}
-    style="
+  <style>
+    #shopify-section-{{ section.id }} {
       {%- if section.settings.overlay_color != 'rgba(0,0,0,0)' -%}
         --content-over-media-overlay: {{ section.settings.overlay_color }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }};
       {%- endif -%}
+
       --content-over-media-content-max-width: var(--container-{{ section.settings.content_width }}-max-width);
-    "
-  >
-    <image-with-text-overlay
-      class="content-over-media content-over-media--{{ section.settings.image_size }}"
-      reveal-on-scroll="{{ section.settings.reveal_on_scroll }}"
-    >
+    }
+  </style>
+
+  <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--with-image-overlay" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+    <image-with-text-overlay class="content-over-media content-over-media--{{ section.settings.image_size }}" reveal-on-scroll="{{ section.settings.reveal_on_scroll }}">
       {%- if section.settings.image != blank -%}
         <picture>
           {%- if section.settings.mobile_image != blank -%}
@@ -415,15 +413,10 @@
             >
           {%- endif -%}
 
-          {{- section.settings.image
-              | image_url: width: section.settings.image.width
-              | image_tag: sizes: '100vw',
-                             widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
+          {{- section.settings.image | image_url: width: section.settings.image.width | image_tag: sizes: '100vw', widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
         </picture>
       {%- else -%}
-        {{- 'lifestyle-1'
-            | placeholder_svg_tag: 'placeholder'
-            | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"' -}}
+        {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder' | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"' -}}
       {%- endif -%}
 
       {%- if section.blocks.size > 0 -%}
@@ -457,13 +450,7 @@
 
                 {%- when 'button' -%}
                   {%- if block.settings.text != blank -%}
-                    {%- render 'button',
-                         content: block.settings.text,
-                         href: block.settings.url,
-                         style: block.settings.style,
-                         background: block.settings.background,
-                         text_color: block.settings.text_color,
-                         block: block -%}
+                    {%- render 'button', content: block.settings.text, href: block.settings.url, style: block.settings.style, background: block.settings.background, text_color: block.settings.text_color, block: block -%}
                   {%- endif -%}
 
                 {%- when 'link' -%}
@@ -479,6 +466,4 @@
       {%- endif -%}
     </image-with-text-overlay>
   </div>
-
 {%- endif -%}
-

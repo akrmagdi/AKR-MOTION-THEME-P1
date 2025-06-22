@@ -293,45 +293,15 @@
     "image_with_text_iHMLah": {
       "type": "image-with-text",
       "blocks": {
-        "heading_EMj8hP": {
-          "type": "heading",
-          "settings": {
-            "text": "Image with text",
-            "heading_tag": "h1"
-          }
-        },
         "richtext_4fP4yL": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_dcLMfp": {
-          "type": "button",
-          "settings": {
-            "style": "solid",
-            "text": "Button text",
-            "url": "",
-            "background": "",
-            "text_color": ""
-          }
-        },
-        "button_694ENq": {
-          "type": "button",
-          "settings": {
-            "style": "solid",
-            "text": "Button text",
-            "url": "",
-            "background": "",
-            "text_color": ""
+            "content": "<ul><li><strong>1. We See Your Wholeness, Not Just Your Output</strong>AI can analyze productivity, but it can’t sense when your soul feels disconnected from your work. At Sienna and Slate, we support the<em>whole you</em>—your dreams, your doubts, your healing, and your growth.</li><li><strong>2. We Understand the Weight of Lived Experience</strong>Your cultural context and embodied knowledge matter. We don’t treat your story as data—we treat it as sacred. AI may summarize, but we witness.</li><li><strong>3. We Hold Space for Silence, Processing, and Becoming</strong>AI fills gaps with information. We honor the pauses, the processing, and the spiritual unfolding that are essential to real transformation.</li><li><strong>4. We Know Burnout by Name</strong>We've been there—juggling deadlines, identities, and expectations. We don’t offer surface-level hacks. We walk with you through the fire and help you rise on your own terms.</li><li><strong>5. We Walk the Talk</strong>AI can generate supportive words. But it can’t<em>feel with you</em>. Our work is rooted in care, community, and compassion that meets you where you are.</li><li><strong>6. We See the Patterns Between the Lines</strong>AI follows what’s written. We notice what’s unspoken. We sense the tension in your voice, the resistance in your body, and help you name what you’ve been avoiding.</li><li><strong>7. We Bring Spirit, Not Just Strategy</strong>AI can give you a plan. We co-create<em>rituals</em> and<em>rhythms</em>—practices that bring joy, rest, and meaning to your creative and academic life.</li><li><strong>8. We Challenge with Love, Not Just Logic</strong>Growth isn’t always comfortable. We don’t just tell you what you want to hear—we offer reflection, accountability, and truth-telling.</li><li><strong>9. We Customize with Care, Not Code</strong>Every person’s journey is different. You won’t just get a template—you’ll get mentorship, nuance, and practices tailored to your soul’s pace and purpose</li><li>.<strong>10. We Believe in Your Becoming</strong>AI can’t dream with you. We can. And we will. We don’t just coach, guide, or teach—we<em>believe in you</em>, fiercely and fully.<br/><br/></li></ul>"
           }
         }
       },
       "block_order": [
-        "heading_EMj8hP",
-        "richtext_4fP4yL",
-        "button_dcLMfp",
-        "button_694ENq"
+        "richtext_4fP4yL"
       ],
       "name": "Image with Text",
       "settings": {

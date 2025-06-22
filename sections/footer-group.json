@@ -1,1 +1,55 @@
-{"type":"footer","name":"Footer group","sections":{"footer":{"type":"footer","blocks":{"newsletter_9hripn":{"type":"newsletter","settings":{"title":"Join The Family","content":"<p>SIGN UP FOR EXCLUSIVE ACCESS TO OUR ARCHIVE SALE.<\/p>","button_background":"","button_text_color":""}},"links_Qheefm":{"type":"links","settings":{"menu":"footer","show_menu_title":true,"menu_title":""}}},"block_order":["newsletter_9hripn","links_Qheefm"],"custom_css":[".v-stack {justify-content: left;}","p {text-align: left; justify-content: left;}"," {}"],"settings":{"color_scheme":"scheme-1","separate_section_with_border":true,"show_social_media":true,"show_payment_icons":true,"show_country_selector":true,"show_country_name":true,"show_country_flag":true,"show_locale_selector":true}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "newsletter_9hripn": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Join The Family",
+            "content": "",
+            "button_background": "",
+            "button_text_color": ""
+          }
+        },
+        "links_Qheefm": {
+          "type": "links",
+          "settings": {
+            "menu": "footer",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "newsletter_9hripn",
+        "links_Qheefm"
+      ],
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-399acd72-4476-4bdf-a889-40200b1a3249",
+        "separate_section_with_border": true,
+        "show_social_media": true,
+        "show_payment_icons": true,
+        "show_country_selector": true,
+        "show_country_name": true,
+        "show_country_flag": true,
+        "show_locale_selector": true
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

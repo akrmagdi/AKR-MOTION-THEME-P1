@@ -24,7 +24,7 @@
         "image_iXF83h": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
+            "image": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
             "subheading": "",
             "title": "Thoughtful Gifts for the Mind and Soul",
             "info": "<p><br/>Candles, stationery, and gifts for writers, scholars, and thinkers.<br/><br/></p>",
@@ -38,9 +38,9 @@
             "button_1_text_color": "#000000",
             "button_2_text": "Explore Academic Support",
             "button_2_link": "",
-            "button_2_style": "outline",
-            "button_2_background": "#ffffff",
-            "button_2_text_color": "#000000",
+            "button_2_style": "solid",
+            "button_2_background": "#18566c",
+            "button_2_text_color": "#ffffff",
             "background": "",
             "background_opacity": 50,
             "text_color": "#ffffff",

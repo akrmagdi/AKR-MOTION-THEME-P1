@@ -31,7 +31,7 @@
             "style": "solid",
             "text": "shop now",
             "url": "",
-            "background": "",
+            "background": "#bb6222",
             "text_color": ""
           }
         },
@@ -41,7 +41,7 @@
             "style": "solid",
             "text": "book a discovery call",
             "url": "",
-            "background": "",
+            "background": "#18566c",
             "text_color": ""
           }
         }
@@ -54,7 +54,7 @@
       ],
       "name": "Image with Text",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
         "separate_section_with_border": true,
         "image": "shopify://shop_images/Mask_group_10_png.png",
         "mobile_image": "shopify://shop_images/Mask_group_10_png.png",
@@ -167,7 +167,7 @@
         ".gap-6 {display: flex;}"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": true,
         "stack_on_mobile": false,
         "icon_color": "",
@@ -191,7 +191,7 @@
       ],
       "name": "Rich Text Section",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
         "separate_section_with_border": false,
         "content_width": "sm",
         "text_position": "center",
@@ -252,7 +252,7 @@
         ".text-with-icons__item {background: white; padding: 1rem 1.5rem; border-radius: 1rem; border: 0.1px solid #f2f2f2;}"
       ],
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
         "separate_section_with_border": false,
         "stack_on_mobile": false,
         "icon_color": "",
@@ -366,7 +366,7 @@
       ],
       "name": "Rich Text Section",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-2",
         "separate_section_with_border": false,
         "content_width": "sm",
         "text_position": "center",
@@ -414,7 +414,7 @@
       ],
       "name": "Text with Icons",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-2",
         "separate_section_with_border": false,
         "stack_on_mobile": false,
         "icon_color": "",

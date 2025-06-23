@@ -18,6 +18,45 @@
         "page_width": "xs"
       }
     },
+    "image_with_text_6y4HHE": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_Ae8rPW": {
+          "type": "subheading",
+          "settings": {
+            "text": "ABOUT US"
+          }
+        },
+        "heading_xNwHfT": {
+          "type": "heading",
+          "settings": {
+            "text": "Welcome to Sienna & Slate,",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_y8BQqU": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>where wellness meets community and transformation begins. Our mission is to provide a nurturing space where individuals can explore the profound benefits of yoga, fostering both personal growth and collective harmony.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_Ae8rPW",
+        "heading_xNwHfT",
+        "richtext_y8BQqU"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "scheme-399acd72-4476-4bdf-a889-40200b1a3249",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/IMG_4016.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
     "custom_liquid_dUVR6m": {
       "type": "custom-liquid",
       "name": "Custom Liquid",
@@ -33,6 +72,7 @@
   },
   "order": [
     "main",
+    "image_with_text_6y4HHE",
     "custom_liquid_dUVR6m"
   ]
 }

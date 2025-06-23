@@ -292,25 +292,6 @@
         "content": ""
       }
     },
-    "blog_posts_cKD8q9": {
-      "type": "blog-posts",
-      "name": "Blog Posts Preset",
-      "settings": {
-        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
-        "separate_section_with_border": true,
-        "blog": "a-guide-for-the-mindful-creative",
-        "posts_count": 3,
-        "stack_on_mobile": false,
-        "show_category": true,
-        "show_excerpt": true,
-        "show_read_more": true,
-        "subheading": "",
-        "title": "Blog posts",
-        "content": "",
-        "button_link": "",
-        "button_text": "View all"
-      }
-    },
     "image_with_text_overlay_UMHAmb": {
       "type": "image-with-text-overlay",
       "blocks": {
@@ -357,6 +338,82 @@
         "overlay_color": "#303030",
         "overlay_opacity": 78
       }
+    },
+    "blog_posts_cKD8q9": {
+      "type": "blog-posts",
+      "name": "Blog Posts Preset",
+      "settings": {
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
+        "separate_section_with_border": true,
+        "blog": "a-guide-for-the-mindful-creative",
+        "posts_count": 3,
+        "stack_on_mobile": false,
+        "show_category": true,
+        "show_excerpt": true,
+        "show_read_more": true,
+        "subheading": "",
+        "title": "Blog posts",
+        "content": "",
+        "button_link": "",
+        "button_text": "View all"
+      }
+    },
+    "multi_column_ETLcXX": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_PWwhNk": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4015.jpg",
+            "title": "Column title",
+            "heading_tag": "h3",
+            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_j8gCwy": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/Stephanie_94b4f472-3bfc-4765-81a6-2f9bbae0f7a5.jpg",
+            "title": "Column title",
+            "heading_tag": "h3",
+            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_GbcRUz": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/20210717_002316_2.jpg",
+            "title": "Column title",
+            "heading_tag": "h3",
+            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_PWwhNk",
+        "image_with_text_j8gCwy",
+        "image_with_text_GbcRUz"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "MEET OUR TEAM",
+        "content": ""
+      }
     }
   },
   "order": [
@@ -365,6 +422,7 @@
     "multi_column_4fijVw",
     "multi_column_etEKDr",
     "image_with_text_ckXYny",
+    "multi_column_ETLcXX",
     "media_grid_j3fgKx",
     "image_with_text_overlay_UMHAmb",
     "blog_posts_cKD8q9"

@@ -11,14 +11,60 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "show_title": true,
         "page_width": "xs"
       }
+    },
+    "repressent_MbTrqM": {
+      "type": "Repressent",
+      "blocks": {
+        "image_U7tdJq": {
+          "type": "image",
+          "settings": {
+            "title": "SERVICE 1",
+            "image": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
+            "button_url": "",
+            "button_label": "BOOK A DEMO CALL"
+          }
+        },
+        "image_6rMMak": {
+          "type": "image",
+          "settings": {
+            "title": "SERVICE 2",
+            "image": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
+            "button_url": "",
+            "button_label": ""
+          }
+        },
+        "image_Be94ra": {
+          "type": "image",
+          "settings": {
+            "title": "SERVICE 3",
+            "image": "shopify://shop_images/unnamed.jpg",
+            "button_url": "",
+            "button_label": "Discover"
+          }
+        }
+      },
+      "block_order": [
+        "image_U7tdJq",
+        "image_6rMMak",
+        "image_Be94ra"
+      ],
+      "name": "Parallax Hero Section",
+      "settings": {
+        "heading": "EXPLORE OUR ACADEMIC SUPPORT",
+        "heading_color": "#ffffff",
+        "menu_text_color": "#ffffff",
+        "menu_button_color": "#ffffff"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "repressent_MbTrqM"
   ]
 }

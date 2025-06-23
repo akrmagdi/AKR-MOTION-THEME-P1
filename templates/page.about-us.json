@@ -197,6 +197,63 @@
         "remove_vertical_spacing": false
       }
     },
+    "multi_column_ETLcXX": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_PWwhNk": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4015.jpg",
+            "title": "Keondria McClish-Boyd, Ph.D., CFLE",
+            "heading_tag": "h3",
+            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_j8gCwy": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/Stephanie_94b4f472-3bfc-4765-81a6-2f9bbae0f7a5.jpg",
+            "title": "Stephanie Hinton",
+            "heading_tag": "h3",
+            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_GbcRUz": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/20210717_002316_2.jpg",
+            "title": "Jay Ann Kris O. Sausa",
+            "heading_tag": "h3",
+            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_PWwhNk",
+        "image_with_text_j8gCwy",
+        "image_with_text_GbcRUz"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "MEET OUR TEAM",
+        "content": ""
+      }
+    },
     "media_grid_j3fgKx": {
       "type": "media-grid",
       "blocks": {
@@ -356,63 +413,6 @@
         "content": "",
         "button_link": "",
         "button_text": "View all"
-      }
-    },
-    "multi_column_ETLcXX": {
-      "type": "multi-column",
-      "blocks": {
-        "image_with_text_PWwhNk": {
-          "type": "image_with_text",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4015.jpg",
-            "title": "Column title",
-            "heading_tag": "h3",
-            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_j8gCwy": {
-          "type": "image_with_text",
-          "settings": {
-            "image": "shopify://shop_images/Stephanie_94b4f472-3bfc-4765-81a6-2f9bbae0f7a5.jpg",
-            "title": "Column title",
-            "heading_tag": "h3",
-            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_GbcRUz": {
-          "type": "image_with_text",
-          "settings": {
-            "image": "shopify://shop_images/20210717_002316_2.jpg",
-            "title": "Column title",
-            "heading_tag": "h3",
-            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_with_text_PWwhNk",
-        "image_with_text_j8gCwy",
-        "image_with_text_GbcRUz"
-      ],
-      "name": "Multi-column",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "columns_per_row": 3,
-        "stack_on_mobile": false,
-        "overlap_image": false,
-        "content_alignment": "start",
-        "text_alignment": "start",
-        "spacing": "xs",
-        "subheading": "",
-        "title": "MEET OUR TEAM",
-        "content": ""
       }
     }
   },

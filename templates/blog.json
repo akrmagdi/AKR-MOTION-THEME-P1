@@ -60,15 +60,15 @@
       "settings": {
         "color_scheme": "scheme-4",
         "image_size": "sm",
-        "image": "shopify://shop_images/IMG_5967.jpg",
+        "image": "shopify://shop_images/Mask_group_10_png.png",
         "allow_transparent_header": false,
         "reveal_on_scroll": true,
         "remove_vertical_spacing": true,
         "content_width": "md",
         "mobile_text_position": "place-self-center text-center",
         "desktop_text_position": "sm:place-self-center sm:text-center",
-        "overlay_color": "#303030",
-        "overlay_opacity": 78
+        "overlay_color": "#000000",
+        "overlay_opacity": 46
       }
     }
   },

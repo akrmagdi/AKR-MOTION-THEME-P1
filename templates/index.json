@@ -396,7 +396,7 @@
       "type": "newsletter",
       "name": "Newsletter Preset",
       "settings": {
-        "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": false,
         "image_size": "auto",
         "subheading": "",
@@ -405,6 +405,25 @@
         "button_text": "Subscribe",
         "overlay_color": "#000000",
         "overlay_opacity": 0
+      }
+    },
+    "blog_posts_4YFMre": {
+      "type": "blog-posts",
+      "name": "Blog Posts Preset",
+      "settings": {
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
+        "separate_section_with_border": true,
+        "blog": "a-guide-for-the-mindful-creative",
+        "posts_count": 3,
+        "stack_on_mobile": false,
+        "show_category": true,
+        "show_excerpt": true,
+        "show_read_more": true,
+        "subheading": "",
+        "title": "Blog posts",
+        "content": "",
+        "button_link": "",
+        "button_text": "View all"
       }
     }
   },
@@ -418,7 +437,7 @@
     "text_with_icons_hLhaji",
     "rich_text_H3MtfP",
     "text_with_icons_gdgXMa",
-    "newsletter_ac8VAK"
+    "newsletter_ac8VAK",
+    "blog_posts_4YFMre"
   ]
 }
- 

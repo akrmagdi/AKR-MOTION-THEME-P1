@@ -53,7 +53,7 @@
           "settings": {
             "show_payment_button": true,
             "show_gift_card_recipient": true,
-            "atc_button_background": "#1c1c1c",
+            "atc_button_background": "#ed8a00",
             "atc_button_text_color": "#ffffff",
             "payment_button_background": "#ffffff",
             "payment_button_text_color": "#000000"
@@ -80,63 +80,6 @@
             "liquid": "",
             "page": ""
           }
-        },
-        "quantity_selector_XzHpYJ": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "payment_terms_BTLjjH": {
-          "type": "payment_terms",
-          "settings": {}
-        },
-        "feature_with_icon_nHVNxE": {
-          "type": "feature_with_icon",
-          "settings": {
-            "text": "<strong>Free Shipping Over $300+ USD</strong>",
-            "link": "",
-            "icon": "picto-credit-card",
-            "icon_width": 24,
-            "background": "rgba(0,0,0,0)",
-            "text_color": "#000000",
-            "border_color": ""
-          }
-        },
-        "feature_with_icon_YNxiMH": {
-          "type": "feature_with_icon",
-          "settings": {
-            "text": "<strong>14 Days Return & Exchange</strong>",
-            "link": "",
-            "icon": "picto-return",
-            "icon_width": 24,
-            "background": "rgba(0,0,0,0)",
-            "text_color": "#000000",
-            "border_color": ""
-          }
-        },
-        "offers_8WkD8N": {
-          "type": "offers",
-          "settings": {
-            "stack_offers": false,
-            "offer_1_title": "<strong>FREE HAT WHEN YOU SPEND $400+</strong>",
-            "offer_1_content": "<p>If you spend over $400 USD (before tax), you'll receive a free hat with your order. Simply choose any hat, and its cost will be automatically discounted to 100% in your shopping cart.</p>",
-            "offer_2_title": "",
-            "offer_2_content": "",
-            "offer_3_title": "",
-            "offer_3_content": "",
-            "background": "#e4e4e4",
-            "text_color": "#000000",
-            "border_color": ""
-          }
-        },
-        "complementary_products_wT3HNB": {
-          "type": "complementary_products",
-          "settings": {
-            "title": "<strong>COMPLETE THE LOOK</strong>",
-            "products_count": 10,
-            "show_below_gallery": false,
-            "stack_products": true,
-            "show_quick_buy": true
-          }
         }
       },
       "block_order": [
@@ -147,17 +90,11 @@
         "variant_picker_nBtnEK",
         "buy_buttons_fGpdMT",
         "accordion_JpM4kH",
-        "accordion_pK63gD",
-        "quantity_selector_XzHpYJ",
-        "payment_terms_BTLjjH",
-        "feature_with_icon_nHVNxE",
-        "feature_with_icon_YNxiMH",
-        "offers_8WkD8N",
-        "complementary_products_wT3HNB"
+        "accordion_pK63gD"
       ],
       "custom_css": [],
       "settings": {
-        "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
         "container_size": "full",
         "product_info_size": 52,
         "show_sticky_add_to_cart": true,
@@ -228,6 +165,7 @@
         "question_hGnxGi",
         "question_93w3Vx"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
         "separate_section_with_border": true,
@@ -268,7 +206,11 @@
           }
         }
       },
-      "block_order": ["card_rLE4YM", "card_L6eT6x", "card_ikYGqx"],
+      "block_order": [
+        "card_rLE4YM",
+        "card_L6eT6x",
+        "card_ikYGqx"
+      ],
       "settings": {
         "heading": "Testimonials",
         "title_align": "center",
@@ -295,5 +237,10 @@
       }
     }
   },
-  "order": ["main", "related-products", "faq_AigTR7", "reviews_slider_G7n7ee"]
+  "order": [
+    "main",
+    "related-products",
+    "faq_AigTR7",
+    "reviews_slider_G7n7ee"
+  ]
 }

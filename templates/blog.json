@@ -1,1 +1,79 @@
-{"sections":{"main":{"type":"main-blog","settings":{"color_scheme":"","show_blog_title":true,"show_rss_feed":false,"show_tags":true,"posts_per_page":10,"feature_first_blog_post":true,"featured_blog_post_color_scheme":"","show_category":true,"show_excerpt":true,"show_read_more":true}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "color_scheme": "",
+        "show_blog_title": true,
+        "show_rss_feed": false,
+        "show_tags": true,
+        "posts_per_page": 10,
+        "feature_first_blog_post": true,
+        "featured_blog_post_color_scheme": "",
+        "show_category": true,
+        "show_excerpt": true,
+        "show_read_more": true
+      }
+    },
+    "image_with_text_overlay_ypHcgy": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_x7TRCD": {
+          "type": "heading",
+          "settings": {
+            "text": "Academic Support That Cares",
+            "heading_tag": "h4"
+          }
+        },
+        "richtext_gr9hp8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>For students, researchers, and writers — coaching, editing, and guidance you can trust.</p>"
+          }
+        },
+        "button_6zKg4F": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Learn More About Our Services",
+            "url": "",
+            "background": "#ffffff",
+            "text_color": "#1c1c1c"
+          }
+        }
+      },
+      "block_order": [
+        "heading_x7TRCD",
+        "richtext_gr9hp8",
+        "button_6zKg4F"
+      ],
+      "name": "Image with Text Overlay",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "image_size": "sm",
+        "image": "shopify://shop_images/IMG_5967.jpg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": true,
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "overlay_color": "#303030",
+        "overlay_opacity": 78
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_overlay_ypHcgy"
+  ]
+}

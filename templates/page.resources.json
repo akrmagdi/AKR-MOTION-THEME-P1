@@ -55,10 +55,30 @@
         "content_width": "sm",
         "remove_vertical_spacing": true
       }
+    },
+    "blog_posts_z6QpcK": {
+      "type": "blog-posts",
+      "name": "Blog Posts Preset",
+      "settings": {
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
+        "separate_section_with_border": true,
+        "blog": "a-guide-for-the-mindful-creative",
+        "posts_count": 3,
+        "stack_on_mobile": false,
+        "show_category": true,
+        "show_excerpt": true,
+        "show_read_more": true,
+        "subheading": "",
+        "title": "Blog posts",
+        "content": "",
+        "button_link": "",
+        "button_text": "View all"
+      }
     }
   },
   "order": [
     "main",
-    "image_with_text_nHfDqa"
+    "image_with_text_nHfDqa",
+    "blog_posts_z6QpcK"
   ]
 }

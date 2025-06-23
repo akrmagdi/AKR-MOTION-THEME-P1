@@ -16,9 +16,49 @@
         "show_title": true,
         "page_width": "xs"
       }
+    },
+    "image_with_text_nHfDqa": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_e96aKj": {
+          "type": "subheading",
+          "settings": {
+            "text": "BOX OF THIS MONTH"
+          }
+        },
+        "heading_tDm4tm": {
+          "type": "heading",
+          "settings": {
+            "text": "BOX OF THIS MONTH",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_3x3G8A": {
+          "type": "richtext",
+          "settings": {
+            "content": "<ul><li>This month, delve into the world of ideal gifts for Gemini zodiac signs. Discover the perfect presents that will resonate with their nature. Our comprehensive guide will provide you with all the insights and inspiration you need to make an informed decision.</li><li>This month, delve into the world of ideal gifts for Gemini zodiac signs. Discover the perfect presents that will resonate with their nature. Our comprehensive guide will provide you with all the insights and inspiration you need to make an informed decision.<br/><br/></li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_e96aKj",
+        "heading_tDm4tm",
+        "richtext_3x3G8A"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/Mask_group_10_png.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "image_with_text_nHfDqa"
   ]
 }

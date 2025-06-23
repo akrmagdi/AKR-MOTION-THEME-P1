@@ -197,6 +197,101 @@
         "remove_vertical_spacing": false
       }
     },
+    "media_grid_j3fgKx": {
+      "type": "media-grid",
+      "blocks": {
+        "image_cXFzjP": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Container.png",
+            "column_count": "3",
+            "row_count": 1,
+            "title": "Candles",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 16
+          }
+        },
+        "image_WkCXqU": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
+            "column_count": "3",
+            "row_count": 1,
+            "title": "Journals & Stationery",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_pTLjam": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Group_24965_1.png",
+            "column_count": "3",
+            "row_count": 1,
+            "title": "Curated Gift Boxes",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_KtPWiA": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/three-people-laughing-under-a-tree-in-a-forest_13d7b89f-4e60-4a8b-832c-6c428a1615a5.jpg",
+            "column_count": "3",
+            "row_count": 1,
+            "title": "Academic Services",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_cXFzjP",
+        "image_WkCXqU",
+        "image_pTLjam",
+        "image_KtPWiA"
+      ],
+      "name": "Media Grid",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "desktop_row_height": 290,
+        "mobile_row_height": 180,
+        "section_width": "lg",
+        "spacing": "md",
+        "subheading": "",
+        "title": "EXPLORE OUR COLLECTION",
+        "content": ""
+      }
+    },
     "blog_posts_cKD8q9": {
       "type": "blog-posts",
       "name": "Blog Posts Preset",
@@ -223,6 +318,7 @@
     "multi_column_4fijVw",
     "multi_column_etEKDr",
     "image_with_text_ckXYny",
+    "media_grid_j3fgKx",
     "blog_posts_cKD8q9"
   ]
 }

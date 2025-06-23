@@ -69,17 +69,6 @@
             "liquid": "",
             "page": ""
           }
-        },
-        "accordion_pK63gD": {
-          "type": "accordion",
-          "settings": {
-            "show_below_gallery": false,
-            "icon": "none",
-            "title": "Composition & Care",
-            "content": "<p><strong>Composition<br/></strong>98% Cotton<br/>2% Polyester<br/><br/><strong>Care Instructions<br/></strong>Wash with like colours in cold water and hang to dry. We also recommend dry cleaning to ensure the best results.</p>",
-            "liquid": "",
-            "page": ""
-          }
         }
       },
       "block_order": [
@@ -89,8 +78,7 @@
         "description_WfMyMx",
         "variant_picker_nBtnEK",
         "buy_buttons_fGpdMT",
-        "accordion_JpM4kH",
-        "accordion_pK63gD"
+        "accordion_JpM4kH"
       ],
       "custom_css": [],
       "settings": {

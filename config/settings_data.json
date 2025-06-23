@@ -10,7 +10,7 @@
 {
   "current": {
     "license_key": "383f2d39352f3b3b253f2c2220352f26",
-    "icon_stroke_width": 1,
+    "icon_stroke_width": 2,
     "section_vertical_spacing": "xs",
     "button_border_radius": 0,
     "default_color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
@@ -142,6 +142,17 @@
           "primary_button_text_color": "#ffffff",
           "circle_button_background": "#303030",
           "circle_button_icon": "#ffffff"
+        }
+      },
+      "scheme-2cfb0c4c-b49b-47cc-bd8c-1b6e5ee008ba": {
+        "settings": {
+          "background": "#bb6222",
+          "background_gradient": "",
+          "text_color": "#ffffff",
+          "primary_button_background": "#303030",
+          "primary_button_text_color": "#ffffff",
+          "circle_button_background": "#e7e7e7",
+          "circle_button_icon": "#000000"
         }
       }
     }

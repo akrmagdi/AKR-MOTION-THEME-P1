@@ -17,13 +17,13 @@
         "message_ia4Njn": {
           "type": "message",
           "settings": {
-            "text": "FREE HAT WHEN YOU SPEND <em>$200+USD</em>"
+            "text": "NEW MONTH BOX IS HERE"
           }
         },
         "message_JXcdhE": {
           "type": "message",
           "settings": {
-            "text": "PERCENTAGE OF SALES TO HBCU'S"
+            "text": "EXPLORE OUR ACADEMIC SUPPORT"
           }
         }
       },
@@ -31,9 +31,8 @@
         "message_ia4Njn",
         "message_JXcdhE"
       ],
-      "disabled": true,
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2cfb0c4c-b49b-47cc-bd8c-1b6e5ee008ba",
         "enable_sticky": false,
         "autoplay": true,
         "cycle_speed": 5,

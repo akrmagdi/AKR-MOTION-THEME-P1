@@ -310,6 +310,53 @@
         "button_link": "",
         "button_text": "View all"
       }
+    },
+    "image_with_text_overlay_UMHAmb": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_4BhDFz": {
+          "type": "heading",
+          "settings": {
+            "text": "Academic Support That Cares",
+            "heading_tag": "h4"
+          }
+        },
+        "richtext_ATyVE4": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>For students, researchers, and writers — coaching, editing, and guidance you can trust.</p>"
+          }
+        },
+        "button_zKAT7f": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Learn More About Our Services",
+            "url": "",
+            "background": "#ffffff",
+            "text_color": "#1c1c1c"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4BhDFz",
+        "richtext_ATyVE4",
+        "button_zKAT7f"
+      ],
+      "name": "Image with Text Overlay",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "image_size": "sm",
+        "image": "shopify://shop_images/IMG_5967.jpg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": true,
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "overlay_color": "#303030",
+        "overlay_opacity": 78
+      }
     }
   },
   "order": [
@@ -319,6 +366,7 @@
     "multi_column_etEKDr",
     "image_with_text_ckXYny",
     "media_grid_j3fgKx",
+    "image_with_text_overlay_UMHAmb",
     "blog_posts_cKD8q9"
   ]
 }

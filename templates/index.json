@@ -212,8 +212,8 @@
             "style": "solid",
             "text": "Learn More About Our Services",
             "url": "",
-            "background": "#3f4851",
-            "text_color": ""
+            "background": "#ffffff",
+            "text_color": "#1c1c1c"
           }
         }
       },
@@ -234,7 +234,7 @@
         "mobile_text_position": "place-self-center text-center",
         "desktop_text_position": "sm:place-self-center sm:text-center",
         "overlay_color": "#303030",
-        "overlay_opacity": 46
+        "overlay_opacity": 78
       }
     },
     "rich_text_ibRVtc": {

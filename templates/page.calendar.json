@@ -68,11 +68,31 @@
         "liquid": "<iframe src=\"https://api.usegoplus.com/widget/booking/iwI3aRYFlsMLLcjVsxyN\" style=\"width: 100%;border:none;overflow: hidden;\" scrolling=\"no\" id=\"iwI3aRYFlsMLLcjVsxyN_1750711278729\"></iframe><br><script src=\"https://api.usegoplus.com/js/form_embed.js\" type=\"text/javascript\"></script>",
         "text_alignment": "center"
       }
+    },
+    "blog_posts_dHRYtA": {
+      "type": "blog-posts",
+      "name": "Blog Posts Preset",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "blog": "a-guide-for-the-mindful-creative",
+        "posts_count": 3,
+        "stack_on_mobile": false,
+        "show_category": true,
+        "show_excerpt": true,
+        "show_read_more": true,
+        "subheading": "",
+        "title": "Blog posts",
+        "content": "",
+        "button_link": "",
+        "button_text": "View all"
+      }
     }
   },
   "order": [
     "main",
     "image_with_text_6y4HHE",
-    "custom_liquid_dUVR6m"
+    "custom_liquid_dUVR6m",
+    "blog_posts_dHRYtA"
   ]
 }

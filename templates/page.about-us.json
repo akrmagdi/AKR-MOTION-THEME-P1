@@ -221,23 +221,11 @@
             "link_url": "",
             "link_text": ""
           }
-        },
-        "image_with_text_GbcRUz": {
-          "type": "image_with_text",
-          "settings": {
-            "image": "shopify://shop_images/20210717_002316_2.jpg",
-            "title": "Jay Ann Kris O. Sausa",
-            "heading_tag": "h3",
-            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
         }
       },
       "block_order": [
         "image_with_text_PWwhNk",
-        "image_with_text_j8gCwy",
-        "image_with_text_GbcRUz"
+        "image_with_text_j8gCwy"
       ],
       "name": "Multi-column",
       "settings": {
@@ -318,7 +306,7 @@
             "image": "shopify://shop_images/three-people-laughing-under-a-tree-in-a-forest_13d7b89f-4e60-4a8b-832c-6c428a1615a5.jpg",
             "column_count": "3",
             "row_count": 1,
-            "title": "Academic Services",
+            "title": "Services & Coaching",
             "heading_tag": "h4",
             "content": "",
             "link_text": "",
@@ -355,14 +343,14 @@
         "heading_4BhDFz": {
           "type": "heading",
           "settings": {
-            "text": "Academic Support That Cares",
+            "text": "Productivity and creativity don't have to come at the expense of well-being.",
             "heading_tag": "h4"
           }
         },
         "richtext_ATyVE4": {
           "type": "richtext",
           "settings": {
-            "content": "<p>For students, researchers, and writers — coaching, editing, and guidance you can trust.</p>"
+            "content": "<p>Let's tend to them together.<br/></p>"
           }
         },
         "button_zKAT7f": {

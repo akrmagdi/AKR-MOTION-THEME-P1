@@ -22,7 +22,7 @@
         "richtext_pKUaf6": {
           "type": "richtext",
           "settings": {
-            "content": "<p>For the reflective, the ambitious, the burned-out, and the wildly creative — this is your space to slow down, reconnect, and work in rhythm with your genius<br/><br/></p>"
+            "content": "<p>For the reflective, the ambitious, the worn-out, and the wildly creative — this is your space to slow down, reconnect, and work in rhythm with your genius<br/><br/></p>"
           }
         },
         "button_8eiGFg": {
@@ -132,7 +132,7 @@
             "icon": "picto-customer-support",
             "icon_width": 40,
             "mobile_icon_width": 24,
-            "title": "Trusted by 300+ graduate students, scholars, and researchers",
+            "title": "Trusted by universities, organizations, and non-profits",
             "content": ""
           }
         },
@@ -142,7 +142,7 @@
             "icon": "picto-shield",
             "icon_width": 40,
             "mobile_icon_width": 24,
-            "title": "Projects supported from undergrad to postdoc",
+            "title": "Helping people cultivate focus and flow",
             "content": ""
           }
         },
@@ -152,7 +152,7 @@
             "icon": "picto-delivery-truck",
             "icon_width": 40,
             "mobile_icon_width": 24,
-            "title": "5+ years of personal academic mentoring",
+            "title": "10+ years as an educator and mentor",
             "content": ""
           }
         }
@@ -207,8 +207,8 @@
             "icon": "picto-customer-support",
             "icon_width": 40,
             "mobile_icon_width": 24,
-            "title": "Thesis & Dissertation Coaching",
-            "content": "<p>Comprehensive guidance through your research journey with personalized support.</p>"
+            "title": "Tools for Reflection",
+            "content": "<p>Journals, prompts, and seasonal kits that invite clarity, creativity, and alignment in your work.</p>"
           }
         },
         "item_dgQnLC": {
@@ -217,8 +217,8 @@
             "icon": "picto-shield",
             "icon_width": 40,
             "mobile_icon_width": 24,
-            "title": "Academic Editing & Proofreading",
-            "content": "<p>Expert editing that preserves your voice while enhancing clarity and impact.</p>"
+            "title": "Courses + Community for Growth",
+            "content": "<p>Self-paced programs and group spaces designed for deep reflection, meaningful connection, and sustainable transformation.</p>"
           }
         },
         "item_yhEzEa": {
@@ -227,8 +227,8 @@
             "icon": "picto-delivery-truck",
             "icon_width": 40,
             "mobile_icon_width": 24,
-            "title": "Research & Literature Review",
-            "content": "<p>Strategic guidance for comprehensive and meaningful research development.</p>"
+            "title": "<strong>Thoughtfully Curated Products</strong> ",
+            "content": "<p>Blend productivity, rest, and intention into your daily life.<br/><br/></p>"
           }
         },
         "item_rJHeHG": {
@@ -237,8 +237,8 @@
             "icon": "picto-award-gift",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "HeadingWriting Confidence & Clarity",
-            "content": "<p>Short content aboutBuild lasting skills and confidence in academic and professional writing. your store</p>"
+            "title": "Support for Writers, Thinkers, Doers",
+            "content": "<p>Guidance rooted in research to help you thrive in your personal and professional spaces.</p>"
           }
         }
       },
@@ -354,8 +354,8 @@
             "icon": "picto-delivery-truck",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Sarah M.PhD Candidate",
-            "content": "<p>\"It felt like having a personal mentor. The feedback was so much more nuanced than anything I'd gotten before.\"</p>"
+            "title": "-Steph H., Accountant",
+            "content": "<p>\"The most valuable thought at this time is that everyone has their “something”, so I need to be passionate about my “something” and not see it through the eyes of “what if they don’t like it”, but through my eyes of “I want to share my passion with others\", so let me focus on giving it my all. \"<br/><br/></p>"
           }
         },
         "item_NRbXPc": {
@@ -365,7 +365,7 @@
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Dr. James L.Researcher",
-            "content": "<p>\"Way better than using AI — I felt understood. They got the complexity of my research immediately.\"</p>"
+            "content": "<p>\"I felt understood. They got the complexity of my work immediately.\"</p>"
           }
         },
         "item_gieKRn": {
@@ -375,7 +375,7 @@
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Maria R.Graduate Student",
-            "content": "<p>\"My research finally made sense to me after working with them. The clarity was transformational.\"</p>"
+            "content": "<p>\"My work finally made sense to me after working with them. I could see the misalignment. The clarity was transformational.\"</p>"
           }
         }
       },
@@ -426,8 +426,8 @@
             "icon": "picto-delivery-truck",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Choose your support style",
-            "content": "<p>Select the type of guidance that fits your project and timeline.</p>"
+            "title": "Choose Your Starting Point",
+            "content": "<p>Explore our courses and community and find what sparks your current season.</p>"
           }
         },
         "item_RYWCAK": {
@@ -436,8 +436,8 @@
             "icon": "picto-customer-support",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Meet your personal mentor",
-            "content": "<p>Connect with an expert who understands your field and goals.</p>"
+            "title": "Join our Community or Set up a Discovery Call",
+            "content": "<p>Connect with us so we can get to know you better.<br/><br/></p>"
           }
         },
         "item_t9Kjxa": {
@@ -446,8 +446,8 @@
             "icon": "picto-shield",
             "icon_width": 24,
             "mobile_icon_width": 24,
-            "title": "Submit with confidence",
-            "content": "<p>Move forward knowing your work represents your best thinking.</p>"
+            "title": "Create Your Rhythm",
+            "content": "<p>Continue the journey that supports your flow, rest, and renewal—on your terms, in your time.</p>"
           }
         }
       },

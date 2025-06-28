@@ -561,15 +561,15 @@
         "question_wtDFJV": {
           "type": "question",
           "settings": {
-            "question": "How Much Support Do I Get?",
+            "question": "How much support do I get?",
             "answer": "<p>Support levels vary by package, from single-session consultations to ongoing mentorship throughout your entire project. We work with your needs and timeline.</p><p>We can also  1-1 coaching with an invitation to any of the community events.  The power of shared experiences in overcoming obstacles, coupled with the motivation and support of like-minded people, accelerates your progress. The 1-1 calls allow for deeper exploration and customization of the program to suit your specific needs.</p>"
           }
         },
         "question_rmDfyR": {
           "type": "question",
           "settings": {
-            "question": "How much support do I get?",
-            "answer": "<p>Support levels vary by package, from single-session consultations to ongoing mentorship throughout your entire project. We customize our approach to your needs and timeline.</p>"
+            "question": "What if this doesn't work for me?",
+            "answer": "<p>That's why we have an initial connection call to help carefully identify who is an exceptional fit and who is likely not.  I will only offer a spot if we are a good fit but that does not absolve you from showing up fully.</p>"
           }
         }
       },

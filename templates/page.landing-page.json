@@ -555,14 +555,14 @@
           "type": "question",
           "settings": {
             "question": "Can't I just use AI for this?",
-            "answer": "<p>While AI tools can help with basic tasks, they lack the nuanced understanding, field expertise, and personalized guidance that human mentors provide for meaningful academic work.</p>"
+            "answer": "<p>While AI tools can help with basic tasks, they lack the nuanced understanding, field expertise, and personalized guidance that human mentors provide for meaningful work.</p>"
           }
         },
         "question_wtDFJV": {
           "type": "question",
           "settings": {
-            "question": "What if I'm not a native English speaker?",
-            "answer": "<p>We specialize in working with international students and researchers, providing culturally sensitive support that honors your unique perspective while enhancing clarity.</p>"
+            "question": "How Much Support Do I Get?",
+            "answer": "<p>Support levels vary by package, from single-session consultations to ongoing mentorship throughout your entire project. We work with your needs and timeline.</p><p>We can also  1-1 coaching with an invitation to any of the community events.  The power of shared experiences in overcoming obstacles, coupled with the motivation and support of like-minded people, accelerates your progress. The 1-1 calls allow for deeper exploration and customization of the program to suit your specific needs.</p>"
           }
         },
         "question_rmDfyR": {

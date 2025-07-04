@@ -57,114 +57,6 @@
         "remove_vertical_spacing": true
       }
     },
-    "multi_column_4fijVw": {
-      "type": "multi-column",
-      "blocks": {
-        "image_with_text_ALCwjf": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "<strong>Our Philosophy:</strong>",
-            "heading_tag": "h3",
-            "content": "<p>At the heart of our studio is a belief in the transformative power of yoga. We are dedicated to creating an inclusive and supportive environment where everyone, regardless of age, background, or experience level, can discover the physical, mental, and spiritual benefits of this ancient practice.<br/><br/></p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_PWCpjj": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "<strong>Our Instructors:</strong>",
-            "heading_tag": "h3",
-            "content": "<p>Our team of passionate and experienced instructors bring a wealth of knowledge and a deep love for yoga. Each instructor is committed to guiding you on your journey, offering personalized attention and adapting practices to meet your unique needs and goals. Their expertise spans various styles and traditions, ensuring a rich and diverse experience.<br/><br/></p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_nYFCMC": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "<strong>Our Community:</strong>",
-            "heading_tag": "h3",
-            "content": "<p>Sienna & Slate is more than just a place to practice yoga; it’s a community. We cherish the connections formed within our studio and strive to create a warm, welcoming atmosphere where friendships blossom and support thrives. Our community events, workshops, and retreats provide opportunities for deeper engagement and shared experiences.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_with_text_ALCwjf",
-        "image_with_text_PWCpjj",
-        "image_with_text_nYFCMC"
-      ],
-      "name": "Multi-column",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "columns_per_row": 3,
-        "stack_on_mobile": false,
-        "overlap_image": false,
-        "content_alignment": "start",
-        "text_alignment": "start",
-        "spacing": "md",
-        "subheading": "",
-        "title": "",
-        "content": ""
-      }
-    },
-    "multi_column_etEKDr": {
-      "type": "multi-column",
-      "blocks": {
-        "image_with_text_QBLdna": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "<strong>Our Space:</strong>",
-            "heading_tag": "h3",
-            "content": "<p>Designed to be a sanctuary from the hustle and bustle of daily life, our studio offers a serene and calming environment. From the soothing décor to the carefully curated amenities, every detail is intended to enhance your practice and promote a sense of peace and well-being.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_wdthNt": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "<strong>Our Commitment:</strong>",
-            "heading_tag": "h3",
-            "content": "<p>We are committed to making yoga accessible to everyone. Our diverse schedule of classes, workshops, and special events is designed to cater to a wide range of interests and abilities. Whether you are seeking physical fitness, stress relief, or spiritual growth, we have something for you.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_CpFPNE": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "Join us",
-            "heading_tag": "h3",
-            "content": "<p> at Sienna & Slate and embark on a journey of self-discovery, wellness, and community. Together, we’ll explore the many dimensions of yoga, creating a balanced and harmonious life. Welcome to our family. Namaste.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_with_text_QBLdna",
-        "image_with_text_wdthNt",
-        "image_with_text_CpFPNE"
-      ],
-      "name": "Multi-column",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": false,
-        "columns_per_row": 3,
-        "stack_on_mobile": false,
-        "overlap_image": false,
-        "content_alignment": "start",
-        "text_alignment": "start",
-        "spacing": "md",
-        "subheading": "",
-        "title": "",
-        "content": ""
-      }
-    },
     "image_with_text_ckXYny": {
       "type": "image-with-text",
       "blocks": {
@@ -197,49 +89,105 @@
         "remove_vertical_spacing": false
       }
     },
-    "multi_column_ETLcXX": {
-      "type": "multi-column",
+    "rich_text_9cm7Db": {
+      "type": "rich-text",
       "blocks": {
-        "image_with_text_PWwhNk": {
-          "type": "image_with_text",
+        "heading_ifafN8": {
+          "type": "heading",
           "settings": {
-            "image": "shopify://shop_images/IMG_4015.jpg",
-            "title": "Keondria McClish-Boyd, Ph.D., CFLE",
-            "heading_tag": "h3",
-            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_j8gCwy": {
-          "type": "image_with_text",
-          "settings": {
-            "image": "shopify://shop_images/Stephanie_94b4f472-3bfc-4765-81a6-2f9bbae0f7a5.jpg",
-            "title": "Stephanie Hinton",
-            "heading_tag": "h3",
-            "content": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_url": "",
-            "link_text": ""
+            "text": "Meet the Team",
+            "heading_tag": "h1"
           }
         }
       },
       "block_order": [
-        "image_with_text_PWwhNk",
-        "image_with_text_j8gCwy"
+        "heading_ifafN8"
       ],
-      "name": "Multi-column",
+      "name": "Rich Text Section",
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
-        "columns_per_row": 3,
-        "stack_on_mobile": false,
-        "overlap_image": false,
-        "content_alignment": "start",
-        "text_alignment": "start",
-        "spacing": "xs",
-        "subheading": "",
-        "title": "MEET OUR TEAM",
-        "content": ""
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_9atzjR": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_CxbLCU": {
+          "type": "subheading",
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_WqnBQw": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_xgCkUa": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_CxbLCU",
+        "heading_WqnBQw",
+        "richtext_xgCkUa"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/IMG_4015_8a806871-2d8b-4813-9ed0-b784421287df.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "image_with_text_QfJtQn": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_AYXrbF": {
+          "type": "subheading",
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_8qVXqi": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_3Trzd6": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_AYXrbF",
+        "heading_8qVXqi",
+        "richtext_3Trzd6"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/Stephanie_94b4f472-3bfc-4765-81a6-2f9bbae0f7a5.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
       }
     },
     "media_grid_j3fgKx": {
@@ -407,10 +355,10 @@
   "order": [
     "main",
     "image_with_text_Gh3wNF",
-    "multi_column_4fijVw",
-    "multi_column_etEKDr",
     "image_with_text_ckXYny",
-    "multi_column_ETLcXX",
+    "rich_text_9cm7Db",
+    "image_with_text_9atzjR",
+    "image_with_text_QfJtQn",
     "media_grid_j3fgKx",
     "image_with_text_overlay_UMHAmb",
     "blog_posts_cKD8q9"

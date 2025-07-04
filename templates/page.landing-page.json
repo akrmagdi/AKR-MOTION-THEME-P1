@@ -408,13 +408,13 @@
         "toggle_text_size_mobile": 14,
         "toggle_text_height": 90,
         "content_border_color": "#000000",
-        "content_bg_color": "#F1F0ED",
+        "content_bg_color": "#f1f0ed",
         "heading_color": "#67645e",
         "text_color": "#67645e",
         "toggle_text_border_color": "#c4c4c4",
         "toggle_text_color": "#67645e",
         "image_border_color": "#000000",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "background_gradient": "",
         "border_color": "#000000",
         "margin_top": 0,
@@ -468,7 +468,7 @@
         "item_4yT3PL": {
           "type": "item",
           "settings": {
-            "icon": "picto-delivery-truck",
+            "icon": "picto-star",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "-Steph H., Accountant",
@@ -478,7 +478,7 @@
         "item_NRbXPc": {
           "type": "item",
           "settings": {
-            "icon": "picto-customer-support",
+            "icon": "picto-star",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Dr. James L.Researcher",
@@ -488,7 +488,7 @@
         "item_gieKRn": {
           "type": "item",
           "settings": {
-            "icon": "picto-shield",
+            "icon": "picto-star",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Maria R.Graduate Student",

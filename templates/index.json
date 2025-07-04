@@ -266,12 +266,12 @@
         "item_iNhVkK": {
           "type": "item",
           "settings": {
-            "icon": "picto-coffee",
+            "icon": "picto-award-gift",
             "custom_icon": "shopify://shop_images/spa-candles.png",
             "icon_width": 48,
             "mobile_icon_width": 24,
             "title": "",
-            "content": "<h4>Thoughtfully Curated Products</h4>"
+            "content": "<h5>Thoughtfully Curated Products</h5>"
           }
         },
         "item_zQfwqQ": {
@@ -282,7 +282,7 @@
             "icon_width": 48,
             "mobile_icon_width": 24,
             "title": "",
-            "content": "<h4>Results Without Hustle Culture</h4>"
+            "content": "<h5>Results Without Hustle Culture</h5>"
           }
         },
         "item_V9QUkY": {
@@ -292,7 +292,7 @@
             "icon_width": 48,
             "mobile_icon_width": 24,
             "title": "",
-            "content": "<h4>Lived Experience Meets Expertise</h4>"
+            "content": "<h5>Lived Experience Meets Expertise</h5>"
           }
         },
         "item_mByLeh": {
@@ -302,7 +302,7 @@
             "icon_width": 48,
             "mobile_icon_width": 24,
             "title": "",
-            "content": "<h4>330+ customer likes</h4>"
+            "content": "<h5>330+ customer likes</h5>"
           }
         },
         "item_tRG6KW": {
@@ -312,7 +312,7 @@
             "icon_width": 48,
             "mobile_icon_width": 24,
             "title": "",
-            "content": "<h4>Holistic Support for the Whole Self</h4>"
+            "content": "<h5>Holistic Support for the Whole Self</h5>"
           }
         }
       },

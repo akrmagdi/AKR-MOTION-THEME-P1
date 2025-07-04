@@ -92,7 +92,7 @@
         "sidebar_menu": "",
         "menu_secondary": "",
         "menu_secondary-2": "",
-        "menu_open_trigger": "hover",
+        "menu_open_trigger": "click",
         "enable_search": true,
         "sidebar_color_scheme": "",
         "sidebar_text_font": "heading",

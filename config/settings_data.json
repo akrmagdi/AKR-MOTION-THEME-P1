@@ -47,7 +47,7 @@
     "show_quick_buy": true,
     "discount_mode": "percentage",
     "cart_type": "drawer",
-    "cart_icon": "shopping_bag_sharp",
+    "cart_icon": "shopping_cart",
     "cart_empty_cart_link": "shopify://collections/frontpage",
     "cart_show_free_shipping_bar": true,
     "cart_free_shipping_threshold": "300",

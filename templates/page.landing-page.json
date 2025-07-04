@@ -305,6 +305,7 @@
       "block_order": [
         "richtext_4fP4yL"
       ],
+      "disabled": true,
       "name": "Image with Text",
       "settings": {
         "color_scheme": "",
@@ -323,37 +324,56 @@
         "item_AatiWn": {
           "type": "item",
           "settings": {
-            "toggle_text": "1",
-            "heading": "<h2>H</h2>",
-            "text": "<p>1</p>"
+            "toggle_text": "We See Your Wholeness, Not Just Your Output",
+            "heading": "<p><strong>We See Your Wholeness, Not Just Your Output</strong></p>",
+            "text": "<p>AI can analyze productivity, but it can’t sense when your soul feels disconnected from your work. At Sienna and Slate, we support the <em>whole you</em>—your dreams, your doubts, your healing, and your growth. We honor the pauses, the processing, and the spiritual unfolding that are essential to real transformation.</p>"
           }
         },
         "item_p4hKtk": {
           "type": "item",
           "settings": {
-            "toggle_text": "2",
-            "heading": "<h2>e 2</h2>",
-            "text": "<p>2</p>"
+            "toggle_text": "We Understand the Weight of Lived Experience",
+            "heading": "<p><strong>We Understand the Weight of Lived Experience</strong></p>",
+            "text": "<p>Your cultural context and embodied knowledge matter. We don’t treat your story as data—we treat it as sacred. AI may summarize, but we witness.</p>"
           }
         },
         "item_BxYkEV": {
           "type": "item",
           "settings": {
-            "toggle_text": "3",
-            "heading": "<h2>H 3</h2>",
-            "text": "<p>3</p>"
+            "toggle_text": "We Know Burnout by Name",
+            "heading": "<p><strong>We Know Burnout by Name</strong></p>",
+            "text": "<p>We've been there—juggling deadlines, identities, and expectations. We walk with you through the fire and help you rise on your own terms.</p>"
+          }
+        },
+        "item_8LPHBN": {
+          "type": "item",
+          "settings": {
+            "toggle_text": "We Challenge with Love, Not Just Logic",
+            "heading": "<p><strong>We Challenge with Love, Not Just Logic</strong></p>",
+            "text": "<p>Growth isn’t always comfortable. We don’t just tell you what you want to hear—we offer reflection, accountability, and truth-telling.</p>"
+          }
+        },
+        "item_h864ga": {
+          "type": "item",
+          "settings": {
+            "toggle_text": "We Believe in Your Becoming",
+            "heading": "<p><strong>We Believe in Your Becoming</strong></p>",
+            "text": "<p>Every person’s journey is different. You won’t just get a template—you’ll get mentorship, nuance, and practices tailored to your soul’s pace and purpose. We don’t just coach, guide, or teach—we  <em>believe in you</em>, fiercely and fully.</p>"
           }
         }
       },
       "block_order": [
         "item_AatiWn",
         "item_p4hKtk",
-        "item_BxYkEV"
+        "item_BxYkEV",
+        "item_8LPHBN",
+        "item_h864ga"
       ],
       "name": "Title Image hover",
       "settings": {
         "body_gap": 32,
         "body_gap_mobile": 16,
+        "image": "shopify://shop_images/Body_4.png",
         "image_position": "right",
         "image_position_mobile": "top",
         "image_radius": 12,

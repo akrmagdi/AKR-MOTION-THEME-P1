@@ -46,6 +46,7 @@
         "heading_amkp3V",
         "richtext_BpCHjF"
       ],
+      "disabled": true,
       "name": "Image with Text",
       "settings": {
         "color_scheme": "",
@@ -55,6 +56,43 @@
         "image_position": "start",
         "content_width": "sm",
         "remove_vertical_spacing": true
+      }
+    },
+    "rich_text_4VqepR": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_93dVbB": {
+          "type": "subheading",
+          "settings": {
+            "text": ""
+          }
+        },
+        "heading_J77P77": {
+          "type": "heading",
+          "settings": {
+            "text": "Welcome to Sienna & Slate",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_gKNWFh": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Sienna and Slate is more than programs or products. This is a space for people who are ready to move beyond burnout and reconnect with what matters most. We believe your story, your rhythm, and your well-being deserve as much care as your ambition. If you've been feeling stretched thin, blocked, or out of alignment with what truly matters, you're not alone. Through courses, coaching, and curated tools we help you reclaim your time, creativity, and well-being - without losing yourself in the process.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_93dVbB",
+        "heading_J77P77",
+        "richtext_gKNWFh"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
       }
     },
     "image_with_text_ckXYny": {
@@ -118,13 +156,13 @@
         "subheading_CxbLCU": {
           "type": "subheading",
           "settings": {
-            "text": "Subheading"
+            "text": ""
           }
         },
         "heading_WqnBQw": {
           "type": "heading",
           "settings": {
-            "text": "Image with text",
+            "text": "Keondria McClish Boyd, Ph.d.",
             "heading_tag": "h1"
           }
         },
@@ -157,13 +195,13 @@
         "subheading_AYXrbF": {
           "type": "subheading",
           "settings": {
-            "text": "Subheading"
+            "text": ""
           }
         },
         "heading_8qVXqi": {
           "type": "heading",
           "settings": {
-            "text": "Image with text",
+            "text": "Stephanie Hinton",
             "heading_tag": "h1"
           }
         },
@@ -355,6 +393,7 @@
   "order": [
     "main",
     "image_with_text_Gh3wNF",
+    "rich_text_4VqepR",
     "image_with_text_ckXYny",
     "rich_text_9cm7Db",
     "image_with_text_9atzjR",

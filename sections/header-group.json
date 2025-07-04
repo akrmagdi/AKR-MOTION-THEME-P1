@@ -64,13 +64,13 @@
             "menu_item": "courses & community",
             "images_position": "right",
             "image_1": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
-            "image_1_heading": "",
+            "image_1_heading": "What We Offer",
             "image_1_text": "",
-            "image_1_link": "",
+            "image_1_link": "shopify://pages/what-we-offer",
             "image_2": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
-            "image_2_heading": "",
+            "image_2_heading": "Endarkened Narratives Lab",
             "image_2_text": "",
-            "image_2_link": ""
+            "image_2_link": "shopify://pages/embodied-narratives-membership"
           }
         }
       },

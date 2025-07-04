@@ -139,7 +139,7 @@
         "item_VA8iEz": {
           "type": "item",
           "settings": {
-            "icon": "picto-shield",
+            "icon": "picto-info",
             "icon_width": 40,
             "mobile_icon_width": 24,
             "title": "Helping people cultivate focus and flow",
@@ -149,7 +149,7 @@
         "item_MF9egx": {
           "type": "item",
           "settings": {
-            "icon": "picto-delivery-truck",
+            "icon": "picto-success",
             "icon_width": 40,
             "mobile_icon_width": 24,
             "title": "10+ years as an educator and mentor",
@@ -292,6 +292,48 @@
         "remove_vertical_spacing": false
       }
     },
+    "image_with_text_Xncafm": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_iKyLn6": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_cLxpTV": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "text": "<strong>We See Your Wholeness, Not Just Your Output</strong>",
+            "heading_tag": "h5"
+          }
+        },
+        "richtext_bqryzh": {
+          "type": "richtext",
+          "settings": {
+            "content": "<ul><li><strong>We See Your Wholeness, Not Just Your Output  </strong>AI can analyze productivity, but it can’t sense when your soul feels disconnected from your work. At Sienna and Slate, we support the <em>whole you</em>—your dreams, your doubts, your healing, and your growth. We honor the pauses, the processing, and the spiritual unfolding that are essential to real transformation.</li><li><strong>We Understand the Weight of Lived Experience  </strong>Your cultural context and embodied knowledge matter. We don’t treat your story as data—we treat it as sacred. AI may summarize, but we witness.</li><li><strong>We've Been There                              </strong>We've been there—juggling deadlines, identities, and expectations. We walk with you through the fire and help you rise on your own terms.</li><li><strong>We Challenge with Love, Not Just Logic               </strong>Growth isn’t always comfortable. We don’t just tell you what you want to hear—we offer reflection, accountability, and truth-telling.</li><li><strong>We Believe in Your Becoming        </strong>Every person’s journey is different. You won’t just get a template—you’ll get mentorship, nuance, and practices tailored to your soul’s pace and purpose. We don’t just coach, guide, or teach—we  <em>believe in you</em>, fiercely and fully.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_iKyLn6",
+        "heading_cLxpTV",
+        "richtext_bqryzh"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/Body_4.png",
+        "mobile_image": "shopify://shop_images/Body_4.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
     "image_with_text_iHMLah": {
       "type": "image-with-text",
       "blocks": {
@@ -369,6 +411,7 @@
         "item_8LPHBN",
         "item_h864ga"
       ],
+      "disabled": true,
       "name": "Title Image hover",
       "settings": {
         "body_gap": 16,
@@ -714,6 +757,7 @@
     "rich_text_YpVNty",
     "text_with_icons_3xWbLX",
     "rich_text_6REikG",
+    "image_with_text_Xncafm",
     "image_with_text_iHMLah",
     "title_image_hover_F4rgpm",
     "rich_text_fLYBtM",

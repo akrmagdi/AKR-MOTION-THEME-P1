@@ -109,11 +109,11 @@
             "heading_tag": "h4",
             "content": "",
             "link_text": "",
-            "link_url": "",
+            "link_url": "shopify://collections/candles",
             "link_style": "link",
             "text_position": "place-self-center text-center",
             "overlay_color": "#000000",
-            "overlay_opacity": 16
+            "overlay_opacity": 28
           }
         },
         "image_GFGyaT": {

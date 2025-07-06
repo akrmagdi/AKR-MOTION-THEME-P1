@@ -71,10 +71,10 @@
         "collection_LH6T8T": {
           "type": "collection",
           "settings": {
-            "collection": "candles",
+            "collection": "candles-1",
             "products_count": 8,
             "title": "Can’t-Miss Must-Haves",
-            "link_url": "",
+            "link_url": "shopify://collections",
             "link_text": "View all"
           }
         }

@@ -30,6 +30,7 @@
             "section_padding": 80,
             "hero_title": "Endarkened Narratives Lab",
             "hero_subtitle": "Exploring and elevating diverse perspectives through innovative storytelling and research",
+            "hero_image": "shopify://shop_images/photo_1-Photoroom.jpg",
             "hero_overlay": true,
             "hero_bg_color": "#282828",
             "hero_text_color": "#ffffff",

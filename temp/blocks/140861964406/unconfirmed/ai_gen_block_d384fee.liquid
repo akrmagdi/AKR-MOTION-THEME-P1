@@ -1,6 +1,1028 @@
+{% doc %}
+  @prompt
+    Create a visually stunning and high-converting page layout for the Endarkened Narratives Lab that includes hero sections, benefit highlights, testimonial blocks, call-to-action buttons, and social proof elements with elegant typography and spacing that matches the Sienna & Slate brand aesthetic
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .enl-page-layout-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    color: {{ block.settings.text_color }};
+  }
+
+  .enl-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .enl-container-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Hero Section */
+  .enl-hero-{{ ai_gen_id }} {
+    position: relative;
+    background-color: {{ block.settings.hero_bg_color }};
+    color: {{ block.settings.hero_text_color }};
+    text-align: center;
+    padding: {{ block.settings.hero_padding }}px 0;
+    display: flex;
+    align-items: center;
+    min-height: 500px;
+  }
+
+  .enl-hero-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .enl-hero-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .enl-hero-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .enl-hero-image-container-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .enl-hero-image-container-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .enl-hero-title-{{ ai_gen_id }} {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .enl-hero-subtitle-{{ ai_gen_id }} {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  /* Benefits Section */
+  .enl-benefits-{{ ai_gen_id }} {
+    background-color: {{ block.settings.benefits_bg_color }};
+    text-align: center;
+  }
+
+  .enl-benefits-title-{{ ai_gen_id }} {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .enl-benefits-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .enl-benefit-item-{{ ai_gen_id }} {
+    padding: 30px;
+    background-color: {{ block.settings.benefit_item_bg_color }};
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .enl-benefit-icon-{{ ai_gen_id }} {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: {{ block.settings.accent_color }};
+  }
+
+  .enl-benefit-title-{{ ai_gen_id }} {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .enl-benefit-description-{{ ai_gen_id }} {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Testimonials Section */
+  .enl-testimonials-{{ ai_gen_id }} {
+    background-color: {{ block.settings.testimonials_bg_color }};
+    text-align: center;
+  }
+
+  .enl-testimonials-title-{{ ai_gen_id }} {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .enl-testimonials-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .enl-testimonial-item-{{ ai_gen_id }} {
+    padding: 30px;
+    background-color: {{ block.settings.testimonial_item_bg_color }};
+    border-radius: 8px;
+    text-align: left;
+    position: relative;
+  }
+
+  .enl-testimonial-quote-{{ ai_gen_id }} {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .enl-testimonial-author-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+  }
+
+  .enl-testimonial-avatar-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+  }
+
+  .enl-testimonial-avatar-container-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .enl-testimonial-avatar-container-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .enl-testimonial-info-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .enl-testimonial-name-{{ ai_gen_id }} {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .enl-testimonial-position-{{ ai_gen_id }} {
+    font-size: 0.9rem;
+    color: {{ block.settings.secondary_text_color }};
+  }
+
+  /* Call to Action Section */
+  .enl-cta-{{ ai_gen_id }} {
+    background-color: {{ block.settings.cta_bg_color }};
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .enl-cta-title-{{ ai_gen_id }} {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: {{ block.settings.cta_text_color }};
+  }
+
+  .enl-cta-description-{{ ai_gen_id }} {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: {{ block.settings.cta_text_color }};
+  }
+
+  /* Social Proof Section */
+  .enl-social-proof-{{ ai_gen_id }} {
+    background-color: {{ block.settings.social_proof_bg_color }};
+    text-align: center;
+  }
+
+  .enl-social-proof-title-{{ ai_gen_id }} {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .enl-logos-grid-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .enl-logo-item-{{ ai_gen_id }} {
+    max-width: 150px;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .enl-logo-item-{{ ai_gen_id }}:hover {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+
+  /* Button Styles */
+  .enl-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .enl-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .enl-secondary-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: transparent;
+    color: {{ block.settings.button_bg_color }};
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid {{ block.settings.button_bg_color }};
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 15px;
+  }
+
+  .enl-secondary-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+  }
+
+  /* Stats Section */
+  .enl-stats-{{ ai_gen_id }} {
+    background-color: {{ block.settings.stats_bg_color }};
+  }
+
+  .enl-stats-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .enl-stat-item-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .enl-stat-number-{{ ai_gen_id }} {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: {{ block.settings.accent_color }};
+  }
+
+  .enl-stat-label-{{ ai_gen_id }} {
+    font-size: 1.1rem;
+    color: {{ block.settings.secondary_text_color }};
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 991px) {
+    .enl-benefits-grid-{{ ai_gen_id }},
+    .enl-testimonials-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .enl-stats-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .enl-hero-title-{{ ai_gen_id }} {
+      font-size: 2.8rem;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .enl-benefits-grid-{{ ai_gen_id }},
+    .enl-testimonials-grid-{{ ai_gen_id }},
+    .enl-stats-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .enl-hero-title-{{ ai_gen_id }} {
+      font-size: 2.2rem;
+    }
+
+    .enl-hero-subtitle-{{ ai_gen_id }} {
+      font-size: 1.2rem;
+    }
+
+    .enl-section-{{ ai_gen_id }} {
+      padding: 50px 0;
+    }
+
+    .enl-cta-{{ ai_gen_id }} {
+      padding: 60px 0;
+    }
+
+    .enl-cta-title-{{ ai_gen_id }} {
+      font-size: 2rem;
+    }
+
+    .enl-button-{{ ai_gen_id }},
+    .enl-secondary-button-{{ ai_gen_id }} {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .enl-secondary-button-{{ ai_gen_id }} {
+      margin-left: 0;
+    }
+  }
+{% endstyle %}
+
+<div class="enl-page-layout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <!-- Hero Section -->
+  <section class="enl-hero-{{ ai_gen_id }} enl-section-{{ ai_gen_id }}">
+    {% if block.settings.hero_image %}
+      <img 
+        src="{{ block.settings.hero_image | image_url: width: 2000 }}" 
+        alt="{{ block.settings.hero_image.alt | escape }}" 
+        class="enl-hero-image-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.hero_image.width }}"
+        height="{{ block.settings.hero_image.height }}"
+      >
+    {% else %}
+      <div class="enl-hero-image-container-{{ ai_gen_id }}">
+        {{ 'hero-apparel-1' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+    
+    {% if block.settings.hero_overlay %}
+      <div class="enl-hero-overlay-{{ ai_gen_id }}"></div>
+    {% endif %}
+    
+    <div class="enl-container-{{ ai_gen_id }}">
+      <div class="enl-hero-content-{{ ai_gen_id }}">
+        <h1 class="enl-hero-title-{{ ai_gen_id }}">{{ block.settings.hero_title }}</h1>
+        <p class="enl-hero-subtitle-{{ ai_gen_id }}">{{ block.settings.hero_subtitle }}</p>
+        <a href="{{ block.settings.hero_button_link }}" class="enl-button-{{ ai_gen_id }}">{{ block.settings.hero_button_text }}</a>
+        {% if block.settings.hero_secondary_button_text != blank %}
+          <a href="{{ block.settings.hero_secondary_button_link }}" class="enl-secondary-button-{{ ai_gen_id }}">{{ block.settings.hero_secondary_button_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="enl-benefits-{{ ai_gen_id }} enl-section-{{ ai_gen_id }}">
+    <div class="enl-container-{{ ai_gen_id }}">
+      <h2 class="enl-benefits-title-{{ ai_gen_id }}">{{ block.settings.benefits_title }}</h2>
+      <div class="enl-benefits-grid-{{ ai_gen_id }}">
+        <!-- Benefit 1 -->
+        <div class="enl-benefit-item-{{ ai_gen_id }}">
+          <div class="enl-benefit-icon-{{ ai_gen_id }}">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+              <line x1="6" y1="1" x2="6" y2="4"></line>
+              <line x1="10" y1="1" x2="10" y2="4"></line>
+              <line x1="14" y1="1" x2="14" y2="4"></line>
+            </svg>
+          </div>
+          <h3 class="enl-benefit-title-{{ ai_gen_id }}">{{ block.settings.benefit_1_title }}</h3>
+          <p class="enl-benefit-description-{{ ai_gen_id }}">{{ block.settings.benefit_1_description }}</p>
+        </div>
+        
+        <!-- Benefit 2 -->
+        <div class="enl-benefit-item-{{ ai_gen_id }}">
+          <div class="enl-benefit-icon-{{ ai_gen_id }}">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3 class="enl-benefit-title-{{ ai_gen_id }}">{{ block.settings.benefit_2_title }}</h3>
+          <p class="enl-benefit-description-{{ ai_gen_id }}">{{ block.settings.benefit_2_description }}</p>
+        </div>
+        
+        <!-- Benefit 3 -->
+        <div class="enl-benefit-item-{{ ai_gen_id }}">
+          <div class="enl-benefit-icon-{{ ai_gen_id }}">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="enl-benefit-title-{{ ai_gen_id }}">{{ block.settings.benefit_3_title }}</h3>
+          <p class="enl-benefit-description-{{ ai_gen_id }}">{{ block.settings.benefit_3_description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="enl-stats-{{ ai_gen_id }} enl-section-{{ ai_gen_id }}">
+    <div class="enl-container-{{ ai_gen_id }}">
+      <div class="enl-stats-grid-{{ ai_gen_id }}">
+        <!-- Stat 1 -->
+        <div class="enl-stat-item-{{ ai_gen_id }}">
+          <div class="enl-stat-number-{{ ai_gen_id }}">{{ block.settings.stat_1_number }}</div>
+          <div class="enl-stat-label-{{ ai_gen_id }}">{{ block.settings.stat_1_label }}</div>
+        </div>
+        
+        <!-- Stat 2 -->
+        <div class="enl-stat-item-{{ ai_gen_id }}">
+          <div class="enl-stat-number-{{ ai_gen_id }}">{{ block.settings.stat_2_number }}</div>
+          <div class="enl-stat-label-{{ ai_gen_id }}">{{ block.settings.stat_2_label }}</div>
+        </div>
+        
+        <!-- Stat 3 -->
+        <div class="enl-stat-item-{{ ai_gen_id }}">
+          <div class="enl-stat-number-{{ ai_gen_id }}">{{ block.settings.stat_3_number }}</div>
+          <div class="enl-stat-label-{{ ai_gen_id }}">{{ block.settings.stat_3_label }}</div>
+        </div>
+        
+        <!-- Stat 4 -->
+        <div class="enl-stat-item-{{ ai_gen_id }}">
+          <div class="enl-stat-number-{{ ai_gen_id }}">{{ block.settings.stat_4_number }}</div>
+          <div class="enl-stat-label-{{ ai_gen_id }}">{{ block.settings.stat_4_label }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="enl-testimonials-{{ ai_gen_id }} enl-section-{{ ai_gen_id }}">
+    <div class="enl-container-{{ ai_gen_id }}">
+      <h2 class="enl-testimonials-title-{{ ai_gen_id }}">{{ block.settings.testimonials_title }}</h2>
+      <div class="enl-testimonials-grid-{{ ai_gen_id }}">
+        <!-- Testimonial 1 -->
+        <div class="enl-testimonial-item-{{ ai_gen_id }}">
+          <p class="enl-testimonial-quote-{{ ai_gen_id }}">{{ block.settings.testimonial_1_quote }}</p>
+          <div class="enl-testimonial-author-{{ ai_gen_id }}">
+            {% if block.settings.testimonial_1_avatar %}
+              <img 
+                src="{{ block.settings.testimonial_1_avatar | image_url: width: 120 }}" 
+                alt="{{ block.settings.testimonial_1_name }}" 
+                class="enl-testimonial-avatar-{{ ai_gen_id }}"
+                loading="lazy"
+                width="60"
+                height="60"
+              >
+            {% else %}
+              <div class="enl-testimonial-avatar-container-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+            <div class="enl-testimonial-info-{{ ai_gen_id }}">
+              <div class="enl-testimonial-name-{{ ai_gen_id }}">{{ block.settings.testimonial_1_name }}</div>
+              <div class="enl-testimonial-position-{{ ai_gen_id }}">{{ block.settings.testimonial_1_position }}</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="enl-testimonial-item-{{ ai_gen_id }}">
+          <p class="enl-testimonial-quote-{{ ai_gen_id }}">{{ block.settings.testimonial_2_quote }}</p>
+          <div class="enl-testimonial-author-{{ ai_gen_id }}">
+            {% if block.settings.testimonial_2_avatar %}
+              <img 
+                src="{{ block.settings.testimonial_2_avatar | image_url: width: 120 }}" 
+                alt="{{ block.settings.testimonial_2_name }}" 
+                class="enl-testimonial-avatar-{{ ai_gen_id }}"
+                loading="lazy"
+                width="60"
+                height="60"
+              >
+            {% else %}
+              <div class="enl-testimonial-avatar-container-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+            <div class="enl-testimonial-info-{{ ai_gen_id }}">
+              <div class="enl-testimonial-name-{{ ai_gen_id }}">{{ block.settings.testimonial_2_name }}</div>
+              <div class="enl-testimonial-position-{{ ai_gen_id }}">{{ block.settings.testimonial_2_position }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section class="enl-social-proof-{{ ai_gen_id }} enl-section-{{ ai_gen_id }}">
+    <div class="enl-container-{{ ai_gen_id }}">
+      <h2 class="enl-social-proof-title-{{ ai_gen_id }}">{{ block.settings.social_proof_title }}</h2>
+      <div class="enl-logos-grid-{{ ai_gen_id }}">
+        {% if block.settings.logo_1 %}
+          <img 
+            src="{{ block.settings.logo_1 | image_url: width: 150 }}" 
+            alt="Partner logo" 
+            class="enl-logo-item-{{ ai_gen_id }}"
+            loading="lazy"
+            width="150"
+          >
+        {% endif %}
+        
+        {% if block.settings.logo_2 %}
+          <img 
+            src="{{ block.settings.logo_2 | image_url: width: 150 }}" 
+            alt="Partner logo" 
+            class="enl-logo-item-{{ ai_gen_id }}"
+            loading="lazy"
+            width="150"
+          >
+        {% endif %}
+        
+        {% if block.settings.logo_3 %}
+          <img 
+            src="{{ block.settings.logo_3 | image_url: width: 150 }}" 
+            alt="Partner logo" 
+            class="enl-logo-item-{{ ai_gen_id }}"
+            loading="lazy"
+            width="150"
+          >
+        {% endif %}
+        
+        {% if block.settings.logo_4 %}
+          <img 
+            src="{{ block.settings.logo_4 | image_url: width: 150 }}" 
+            alt="Partner logo" 
+            class="enl-logo-item-{{ ai_gen_id }}"
+            loading="lazy"
+            width="150"
+          >
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="enl-cta-{{ ai_gen_id }} enl-section-{{ ai_gen_id }}">
+    <div class="enl-container-{{ ai_gen_id }}">
+      <h2 class="enl-cta-title-{{ ai_gen_id }}">{{ block.settings.cta_title }}</h2>
+      <p class="enl-cta-description-{{ ai_gen_id }}">{{ block.settings.cta_description }}</p>
+      <a href="{{ block.settings.cta_button_link }}" class="enl-button-{{ ai_gen_id }}">{{ block.settings.cta_button_text }}</a>
+    </div>
+  </section>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Endarkened Narratives Lab",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#303030"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary text color",
+      "default": "#707070"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#5c5c5c"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Title",
+      "default": "Endarkened Narratives Lab"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Subtitle",
+      "default": "Exploring and elevating diverse perspectives through innovative storytelling and research"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Background image"
+    },
+    {
+      "type": "checkbox",
+      "id": "hero_overlay",
+      "label": "Add overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "hero_bg_color",
+      "label": "Background color",
+      "default": "#282828"
+    },
+    {
+      "type": "color",
+      "id": "hero_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "hero_secondary_button_text",
+      "label": "Secondary button text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "hero_secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "range",
+      "id": "hero_padding",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding",
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "Benefits Section"
+    },
+    {
+      "type": "text",
+      "id": "benefits_title",
+      "label": "Section title",
+      "default": "Our Approach"
+    },
+    {
+      "type": "color",
+      "id": "benefits_bg_color",
+      "label": "Background color",
+      "default": "#f6f6f6"
+    },
+    {
+      "type": "color",
+      "id": "benefit_item_bg_color",
+      "label": "Item background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Benefit 1 title",
+      "default": "Inclusive Research"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_1_description",
+      "label": "Benefit 1 description",
+      "default": "Our research methodologies center diverse voices and perspectives, ensuring inclusive and representative findings."
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Benefit 2 title",
+      "default": "Innovative Storytelling"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_2_description",
+      "label": "Benefit 2 description",
+      "default": "We employ cutting-edge narrative techniques to amplify underrepresented stories and create impactful experiences."
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Benefit 3 title",
+      "default": "Transformative Education"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_3_description",
+      "label": "Benefit 3 description",
+      "default": "Our educational resources and workshops foster critical thinking and promote understanding across diverse communities."
+    },
+    {
+      "type": "header",
+      "content": "Stats Section"
+    },
+    {
+      "type": "color",
+      "id": "stats_bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_number",
+      "label": "Stat 1 number",
+      "default": "500+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 label",
+      "default": "Research Participants"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_number",
+      "label": "Stat 2 number",
+      "default": "25+"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 label",
+      "default": "Published Studies"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_number",
+      "label": "Stat 3 number",
+      "default": "100+"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 label",
+      "default": "Educational Workshops"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_number",
+      "label": "Stat 4 number",
+      "default": "10k+"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_label",
+      "label": "Stat 4 label",
+      "default": "Lives Impacted"
+    },
+    {
+      "type": "header",
+      "content": "Testimonials Section"
+    },
+    {
+      "type": "text",
+      "id": "testimonials_title",
+      "label": "Section title",
+      "default": "What People Are Saying"
+    },
+    {
+      "type": "color",
+      "id": "testimonials_bg_color",
+      "label": "Background color",
+      "default": "#f6f6f6"
+    },
+    {
+      "type": "color",
+      "id": "testimonial_item_bg_color",
+      "label": "Item background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_1_quote",
+      "label": "Testimonial 1 quote",
+      "default": "The Endarkened Narratives Lab has transformed how our organization approaches diversity and inclusion. Their research-backed methodologies have helped us create more inclusive environments and better serve our diverse communities."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_name",
+      "label": "Testimonial 1 name",
+      "default": "Dr. Maya Johnson"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_position",
+      "label": "Testimonial 1 position",
+      "default": "Director of Diversity, Equity & Inclusion"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_1_avatar",
+      "label": "Testimonial 1 avatar"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_2_quote",
+      "label": "Testimonial 2 quote",
+      "default": "Working with the Endarkened Narratives Lab has been eye-opening. Their innovative approach to storytelling and research has provided us with invaluable insights that have significantly improved our community engagement strategies."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_name",
+      "label": "Testimonial 2 name",
+      "default": "James Wilson"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_position",
+      "label": "Testimonial 2 position",
+      "default": "Community Outreach Coordinator"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_2_avatar",
+      "label": "Testimonial 2 avatar"
+    },
+    {
+      "type": "header",
+      "content": "Social Proof Section"
+    },
+    {
+      "type": "text",
+      "id": "social_proof_title",
+      "label": "Section title",
+      "default": "Trusted By"
+    },
+    {
+      "type": "color",
+      "id": "social_proof_bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_1",
+      "label": "Logo 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_2",
+      "label": "Logo 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_3",
+      "label": "Logo 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_4",
+      "label": "Logo 4"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action Section"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "Title",
+      "default": "Ready to Transform Your Approach?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_description",
+      "label": "Description",
+      "default": "Join us in our mission to elevate diverse voices and create more inclusive narratives. Contact us today to learn how we can collaborate."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "Button text",
+      "default": "Get Started"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Background color",
+      "default": "#5c5c5c"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Button Styles"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#5c5c5c"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Endarkened Narratives Lab"
+    }
+  ],
+  "class": "enl-page-block"
+}
 {% endschema %}

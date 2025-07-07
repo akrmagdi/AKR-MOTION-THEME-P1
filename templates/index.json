@@ -120,7 +120,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
+            "image": "shopify://shop_images/person-writes-in-a-notebook-with-a-puppy-sleeping-next-to-them.jpg",
             "column_count": "3",
             "row_count": 1,
             "title": "Journals & Stationery",
@@ -131,7 +131,7 @@
             "link_style": "link",
             "text_position": "place-self-center text-center",
             "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "overlay_opacity": 34
           }
         },
         "image_CVrTXM": {

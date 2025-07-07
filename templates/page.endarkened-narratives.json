@@ -97,24 +97,31 @@
             "heading_tag": "h1"
           }
         },
-        "richtext_4CgkKP": {
-          "type": "richtext",
-          "settings": {
-            "content": "<p>In a world that often asks us to perform instead of reflect, <em>The Endarkened Narrative Lab</em> offers a sacred pause—a place to remember who you are, reclaim your voice, and reimagine your story on your own terms.</p><p><strong>The Endarkened Narrative Lab</strong> is a creative and contemplative space rooted in the principles of <em>Endarkened Narrative Inquiry</em>—a methodology that honors the personal, cultural, and spiritual dimensions of storytelling and knowledge-making.</p><p>Throughout our 12 weeks together, you’ll move through the <strong>Reflexive Cycle for Endarkened Narrative Inquiry</strong>, a six-part journey that invites you to:</p><ul><li><br/> of self, context, and legacy<br/></li><li><br/> with others, history, and land<br/></li><li><br/> as valid ways of knowing<br/></li><li><br/> what stories you’ve inherited or internalized<br/></li><li><br/> into wisdom through narrative<br/></li><li>your truth in a final creative artifact<br/></li></ul><p>This hybrid experience is for people ready to explore the depths of their lived experiences through a lens of embodiment, spirituality, relationality, and resistance.</p><p>Here, your story is not data.<br/><br/>It’s sacred. It’s layered. It’s alive.</p>"
-          }
-        },
         "richtext_NF8efr": {
           "type": "richtext",
           "settings": {
+            "content": "<p>In a world that often asks us to perform instead of reflect, <em>The Endarkened Narrative Lab</em> offers a sacred pause—a place to remember who you are, reclaim your voice, and reimagine your story on your own terms.</p><p><strong>The Endarkened Narrative Lab</strong> is a creative and contemplative space rooted in the principles of <em>Endarkened Narrative Inquiry</em>—a methodology that honors the personal, cultural, and spiritual dimensions of storytelling and knowledge-making.</p><p>Throughout our 12 weeks together, you’ll move through the <strong>Reflexive Cycle for Endarkened Narrative Inquiry</strong>, a six-part journey that invites you to:</p><p></p>"
+          }
+        },
+        "richtext_UNAikh": {
+          "type": "richtext",
+          "settings": {
             "content": "<ul><li><strong>Awaken Awareness</strong> of self, context, and legacy</li><li><strong>Engage relationships</strong> with others, history, and land</li><li><strong>Integrate spirituality and culture</strong> as valid ways of knowing</li><li><strong>Critically examine </strong>the way we show up in our stories</li><li><strong>Transform knowledge</strong> into wisdom through narrative</li><li><strong>Document and embody </strong>your storied experiences in a final creative artifact</li></ul>"
+          }
+        },
+        "richtext_4CgkKP": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>This hybrid experience is for people ready to explore the depths of their lived experiences through a lens of embodiment, spirituality, relationality, and resistance.</p><p>Here, your story is not data.<br/><br/>It’s sacred. It’s layered. It’s alive.</p>"
           }
         }
       },
       "block_order": [
         "subheading_ARf7Mr",
         "heading_bL6aXN",
-        "richtext_4CgkKP",
-        "richtext_NF8efr"
+        "richtext_NF8efr",
+        "richtext_UNAikh",
+        "richtext_4CgkKP"
       ],
       "name": "Rich Text Section",
       "settings": {

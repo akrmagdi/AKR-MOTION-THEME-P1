@@ -214,7 +214,7 @@
       ],
       "name": "Rich Text Section",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": true,
         "content_width": "sm",
         "text_position": "center",
@@ -229,7 +229,7 @@
           "settings": {
             "layout_desktop": "side-by-side",
             "background_color": "",
-            "icon": "picto-delivery-truck",
+            "icon": "picto-star",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "This is not just a course. It's Reclamation",
@@ -275,6 +275,21 @@
         "text_color": "",
         "text_alignment": "center"
       }
+    },
+    "newsletter_ebVtQD": {
+      "type": "newsletter",
+      "name": "Newsletter Preset",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image_size": "auto",
+        "subheading": "Keep me updated",
+        "title": "The Next Cohort Begins August 2025",
+        "content": "<p>Join a circle of fellow seekers, storytellers, and scholars.<br/><br/>Bring your full self. Your story is waiting.<br/><br/></p>",
+        "button_text": "Join the waitlist",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
     }
   },
   "order": [
@@ -283,6 +298,7 @@
     "image_with_text_overlay_DbMgrr",
     "rich_text_6eRWVc",
     "rich_text_Dd3YdX",
-    "text_with_icon_row_7RQzBr"
+    "text_with_icon_row_7RQzBr",
+    "newsletter_ebVtQD"
   ]
 }

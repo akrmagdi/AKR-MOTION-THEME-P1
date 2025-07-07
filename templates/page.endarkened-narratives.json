@@ -214,7 +214,7 @@
       ],
       "name": "Rich Text Section",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-2cfb0c4c-b49b-47cc-bd8c-1b6e5ee008ba",
         "separate_section_with_border": true,
         "content_width": "sm",
         "text_position": "center",

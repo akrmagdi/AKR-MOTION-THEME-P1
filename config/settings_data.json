@@ -82,7 +82,7 @@
       },
       "scheme-3": {
         "settings": {
-          "background": "#114759",
+          "background": "#0b3848",
           "background_gradient": "",
           "text_color": "#ffffff",
           "primary_button_background": "#000000",
@@ -148,7 +148,7 @@
       },
       "scheme-2cfb0c4c-b49b-47cc-bd8c-1b6e5ee008ba": {
         "settings": {
-          "background": "#bb6222",
+          "background": "#a34e12",
           "background_gradient": "",
           "text_color": "#ffffff",
           "primary_button_background": "#303030",

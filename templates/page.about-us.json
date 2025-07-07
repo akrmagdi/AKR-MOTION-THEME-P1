@@ -208,7 +208,7 @@
         "richtext_3Trzd6": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+            "content": "<p><strong>Stephanie Hinton </strong>is a creative who has a passion for community-building, and wellness practices to help people reconnect with their inner voice and become their best selves. When she’s not facilitating workshops or dreaming up new projects, you’ll find her enjoying time with her family and traveling.</p>"
           }
         }
       },
@@ -221,7 +221,7 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
-        "image": "shopify://shop_images/Stephanie_94b4f472-3bfc-4765-81a6-2f9bbae0f7a5.jpg",
+        "image": "shopify://shop_images/IMG_4296.jpg",
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "sm",
@@ -235,7 +235,6 @@
           "type": "image",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/Container.png",
             "column_count": "3",
             "row_count": 1,
             "title": "Candles",

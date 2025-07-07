@@ -739,6 +739,7 @@
         "question_wtDFJV",
         "question_rmDfyR"
       ],
+      "disabled": true,
       "name": "FAQ",
       "settings": {
         "color_scheme": "",

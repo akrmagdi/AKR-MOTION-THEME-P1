@@ -181,12 +181,108 @@
         "text_position": "center",
         "remove_vertical_spacing": false
       }
+    },
+    "rich_text_Dd3YdX": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_8db673": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_cma3w6": {
+          "type": "heading",
+          "settings": {
+            "text": "What makes us different?",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_BXEK9R": {
+          "type": "richtext",
+          "disabled": true,
+          "settings": {
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_8db673",
+        "heading_cma3w6",
+        "richtext_BXEK9R"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "text_with_icon_row_7RQzBr": {
+      "type": "text-with-icon-row",
+      "blocks": {
+        "item_kWn8fN": {
+          "type": "item",
+          "settings": {
+            "layout_desktop": "side-by-side",
+            "background_color": "",
+            "icon": "picto-delivery-truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "This is not just a course. It's Reclamation",
+            "content": "<p>We don't force a tidy ending.</p>"
+          }
+        },
+        "item_nrYNR4": {
+          "type": "item",
+          "settings": {
+            "layout_desktop": "side-by-side",
+            "background_color": "",
+            "icon": "picto-customer-support",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Make Space for Your Story",
+            "content": "<p>We honor silence, contradiction, and the stories that live in the body.</p>"
+          }
+        },
+        "item_VVKUhT": {
+          "type": "item",
+          "settings": {
+            "layout_desktop": "side-by-side",
+            "background_color": "",
+            "icon": "picto-shield",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "We move slowly, with care",
+            "content": "<p>We do not center productivity—we center presence.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_kWn8fN",
+        "item_nrYNR4",
+        "item_VVKUhT"
+      ],
+      "name": "Text with Icons",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
     }
   },
   "order": [
     "main",
     "175181047239981966",
     "image_with_text_overlay_DbMgrr",
-    "rich_text_6eRWVc"
+    "rich_text_6eRWVc",
+    "rich_text_Dd3YdX",
+    "text_with_icon_row_7RQzBr"
   ]
 }

@@ -34,7 +34,7 @@
             "hero_overlay": true,
             "hero_bg_color": "#282828",
             "hero_text_color": "#ffffff",
-            "hero_button_text": "Learn More",
+            "hero_button_text": "Join the Waitlist",
             "hero_button_link": "",
             "hero_secondary_button_text": "Contact Us",
             "hero_secondary_button_link": "",
@@ -85,10 +85,108 @@
         "ai_gen_block_d384fee_FfNgwg"
       ],
       "settings": {}
+    },
+    "image_with_text_overlay_DbMgrr": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_7jJapk": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>Endarkened Narratives lab</strong>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_YbHjLx": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h4>A Journey to Reclaim Story, Embody Truth, and Write Toward TRANSFORMATION</h4>"
+          }
+        },
+        "button_JHYt9m": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Join the waitlist",
+            "url": "",
+            "background": "#948584",
+            "text_color": "#ffffff"
+          }
+        },
+        "button_Ai6YqT": {
+          "type": "button",
+          "settings": {
+            "style": "outline",
+            "text": "Contact Us",
+            "url": "",
+            "background": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "heading_7jJapk",
+        "richtext_YbHjLx",
+        "button_JHYt9m",
+        "button_Ai6YqT"
+      ],
+      "name": "Image with Text Overlay",
+      "settings": {
+        "color_scheme": "",
+        "image_size": "md",
+        "image": "shopify://shop_images/photo_1-Photoroom.jpg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": true,
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "rich_text_6eRWVc": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_ARf7Mr": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_bL6aXN": {
+          "type": "heading",
+          "settings": {
+            "text": "wELCOME TO THE LAB",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_4CgkKP": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>In a world that often asks us to perform instead of reflect, <em>The Endarkened Narrative Lab</em> offers a sacred pause—a place to remember who you are, reclaim your voice, and reimagine your story on your own terms.</p><p><strong>The Endarkened Narrative Lab</strong> is a creative and contemplative space rooted in the principles of <em>Endarkened Narrative Inquiry</em>—a methodology that honors the personal, cultural, and spiritual dimensions of storytelling and knowledge-making.</p><p>Throughout our 12 weeks together, you’ll move through the <strong>Reflexive Cycle for Endarkened Narrative Inquiry</strong>, a six-part journey that invites you to:</p><ol><li><br/> of self, context, and legacy<br/></li><li><br/> with others, history, and land<br/></li><li><br/> as valid ways of knowing<br/></li><li><br/> what stories you’ve inherited or internalized<br/></li><li><br/> into wisdom through narrative<br/></li><li><br/> your truth in a final creative artifact<br/></li></ol><p>This hybrid experience is for people ready to explore the depths of their lived experiences through a lens of embodiment, spirituality, relationality, and resistance.</p><p>Here, your story is not data.<br/><br/>It’s sacred. It’s layered. It’s alive.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_ARf7Mr",
+        "heading_bL6aXN",
+        "richtext_4CgkKP"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
     }
   },
   "order": [
     "main",
-    "175181047239981966"
+    "175181047239981966",
+    "image_with_text_overlay_DbMgrr",
+    "rich_text_6eRWVc"
   ]
 }

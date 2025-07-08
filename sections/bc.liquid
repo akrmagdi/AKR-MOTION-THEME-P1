@@ -1,15 +1,30 @@
 {% comment %}
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
-  Redesigned Top Icon & Progress Layout to match provided style.
-  External scripts/styles (Tailwind, Font Awesome) should be added in theme layout.
+  Enhancements:
+    • Progress bar with ProgressBar.js
+    • Pre-rendered step contents for stable "Add to Box" behavior
+    • Sticky summary bar with thumbnails
+    • Fixed Add/Next/Back actions
 {% endcomment %}
 
-<section class="customizer max-w-7xl mx-auto p-8" data-id="gift-flow">
+<!-- Include external libs (move to layout if desired) -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
+
+<section class="gift-flow max-w-7xl mx-auto p-8" data-id="gift-flow">
+  <!-- Sticky Summary -->
+  <div id="summary-bar" class="sticky top-4 bg-white p-4 border rounded-md shadow mb-6 z-10">
+    <h4 class="font-semibold mb-2">Your Box (<span id="summary-count">0</span> items)</h4>
+    <div id="summary-thumbs" class="flex space-x-2"></div>
+  </div>
+
   <!-- Top Icons -->
   <div class="grid grid-cols-4 gap-8 mb-8">
     {% assign icons = "box-open,gift,credit-card,check-circle" | split: ',' %}
-    {% assign labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Enjoy Gifting" | split: ',' %}
+    {% assign labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Review" | split: ',' %}
     {% for icon in icons %}
       <div class="text-center">
         <div class="mx-auto w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-2">
@@ -21,112 +36,139 @@
   </div>
 
   <!-- Progress Bar -->
-  <div class="relative mb-6">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-300"></div>
-    </div>
-    <div class="relative flex justify-between">
-      {% for i in (1..4) %}
-        <div class="flex flex-col items-center">
-          <span class="step-marker w-4 h-4 rounded-full border-2 transition-colors"
-                data-step="{{ i }}"
-                ></span>
-        </div>
-      {% endfor %}
-    </div>
-    <div class="flex justify-between mt-2 text-xs text-gray-500">
-      <span>STEP 1<br>Packaging</span>
-      <span>STEP 2<br>Gifts</span>
-      <span>STEP 3<br>Card</span>
-      <span>DONE!<br>Done!</span>
-    </div>
-  </div>
+  <div id="progress-container" class="mb-8"></div>
 
   <!-- Step Header -->
-  <div class="text-center mb-4">
+  <div class="text-center mb-6">
     <p class="text-xs uppercase text-gray-500 mb-1">Step <span id="current-step">1</span> of 3</p>
     <h2 id="current-title" class="text-3xl font-bold text-gray-900">{{ section.settings.packaging_heading }}</h2>
     <p id="current-sub" class="text-gray-600 mt-2">{{ section.settings.packaging_subheading }}</p>
   </div>
 
-  <!-- Step Content -->
-  <div id="step-content" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    {% assign cur = 1 %}
-    {% for p in collections[section.settings.packaging_collection].products %}
-      <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
-        <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
-        <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
-        <p class="text-blue-600 font-semibold mb-3">{{ p.price | money }}</p>
-        <button class="select-item btn btn-sm btn-primary w-full uppercase">Add to Box</button>
+  <!-- Steps Content (pre-rendered) -->
+  <div id="steps-wrapper">
+    <!-- Packaging -->
+    <div class="step-content" data-step="1">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for p in collections[section.settings.packaging_collection].products %}
+        <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
+          <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
+          <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
+          <p class="text-blue-600 font-semibold mb-3">{{ p.price | money }}</p>
+          <button class="select-item btn btn-primary w-full"><i class="fas fa-plus mr-2"></i>Add to Box</button>
+        </div>
+        {% endfor %}
       </div>
-    {% endfor %}
+    </div>
+    <!-- Gifts -->
+    <div class="step-content hidden" data-step="2">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for p in collections[section.settings.gifts_collection].products %}
+        <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
+          <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
+          <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
+          <p class="text-blue-600 font-semibold mb-3">{{ p.price | money }}</p>
+          <button class="select-item btn btn-primary w-full"><i class="fas fa-plus mr-2"></i>Add to Box</button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- Card -->
+    <div class="step-content hidden" data-step="3">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for p in collections[section.settings.card_collection].products %}
+        <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="0" data-img="{{ p.featured_image | img_url:'200x' }}">
+          <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
+          <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
+          <button class="select-item btn btn-secondary w-full"><i class="fas fa-check mr-2"></i>Select Card</button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
-  <!-- Navigation Buttons -->
+  <!-- Nav Buttons -->
   <div class="flex justify-between mt-8">
-    <button id="back-btn" class="btn btn-outline btn-secondary" disabled>Back</button>
-    <button id="next-btn" class="btn btn-primary">Next</button>
+    <button id="back-btn" class="btn btn-outline btn-secondary" disabled><i class="fas fa-arrow-left mr-2"></i>{{ section.settings.back_button_label }}</button>
+    <button id="next-btn" class="btn btn-primary">{{ section.settings.next_button_label }}<i class="fas fa-arrow-right ml-2"></i></button>
   </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded',()=>{
-    const steps = ['Packaging','Gifts','Card','Done!'];
-    const headings = ['{{ section.settings.packaging_heading }}','{{ section.settings.gifts_heading }}','{{ section.settings.card_heading }}','Done!'];
-    const subs = ['{{ section.settings.packaging_subheading }}','{{ section.settings.gifts_subheading }}','{{ section.settings.card_subheading }}',''];
-    const collectionsIds = ['{{ section.settings.packaging_collection }}','{{ section.settings.gifts_collection }}','{{ section.settings.card_collection }}'];
+  document.addEventListener('DOMContentLoaded', ()=>{
+    // Init ProgressBar.js
+    const bar = new ProgressBar.Line('#progress-container', { strokeWidth:4, duration:300, color:'#3b82f6', trailColor:'#e5e7eb' });
+
+    const steps = [1,2,3,4];
     let current = 1;
-    const markers = document.querySelectorAll('.step-marker');
+    const totalSteps = 4;
+    const stepContents = document.querySelectorAll('.step-content');
+    const backBtn = document.getElementById('back-btn');
+    const nextBtn = document.getElementById('next-btn');
     const currentStepEl = document.getElementById('current-step');
     const currentTitle = document.getElementById('current-title');
     const currentSub = document.getElementById('current-sub');
-    const contentGrid = document.getElementById('step-content');
-    const backBtn = document.getElementById('back-btn');
-    const nextBtn = document.getElementById('next-btn');
+    const summaryCount = document.getElementById('summary-count');
+    const summaryThumbs = document.getElementById('summary-thumbs');
 
-    function renderStep() {
-      // update markers
-      markers.forEach(m=>{
-        const step = parseInt(m.dataset.step,10);
-        m.classList.toggle('bg-blue-600 border-blue-600',step<=current);
-        m.classList.toggle('border-gray-300',step>current);
-      });
-      // update header
+    const headings = [
+      {{ section.settings.packaging_heading | json }},
+      {{ section.settings.gifts_heading | json }},
+      {{ section.settings.card_heading | json }},
+      'Done!'
+    ];
+    const subs = [
+      {{ section.settings.packaging_subheading | json }},
+      {{ section.settings.gifts_subheading | json }},
+      {{ section.settings.card_subheading | json }},
+      ''
+    ];
+
+    let selected = [];
+
+    function updateProgress(){
+      bar.animate((current-1)/(totalSteps-1));
       currentStepEl.textContent = current<4?current:3;
       currentTitle.textContent = headings[current-1];
       currentSub.textContent = subs[current-1];
-      // update content
-      let html='';
-      if(current<4) {
-        const col = collectionsIds[current-1];
-        const products = window.Shopify.theme.sections['collections'][col] || [];
-        // fallback: assume global collections object
-        const prods = window["collections"][col].products;
-        prods.forEach(p=>{
-          html+=`<div class="card border rounded-lg p-4 shadow-sm" data-id="${p.id}" data-price="${p.variants[0].price}\">`+
-                `<img src="${p.image}" class="w-full h-48 object-cover rounded-md mb-3">`+
-                `<h3 class="font-medium truncate mb-2">${p.title}</h3>`+
-                `<p class="text-blue-600 font-semibold mb-3">${p.price}</p>`+
-                `<button class="select-item btn btn-sm btn-primary w-full uppercase">Add to Box</button>`+
-                `</div>`;
-        });
-      } else {
-        html='<p class="text-center text-gray-500 col-span-3">Done selecting items.</p>';
-      }
-      contentGrid.innerHTML = html;
-      // buttons
+
+      stepContents.forEach(div=>{
+        div.classList.toggle('hidden', parseInt(div.dataset.step)!==current);
+      });
       backBtn.disabled = current===1;
-      nextBtn.textContent = current<3?'Next':'Review';
-      if(current===4) nextBtn.textContent='Proceed to Checkout';
+      nextBtn.innerHTML = current<3 ? '{{ section.settings.next_button_label }} <i class="fas fa-arrow-right ml-2"></i>'
+                          : current===3 ? 'Review <i class="fas fa-arrow-right ml-2"></i>'
+                          : '<i class="fas fa-shopping-cart mr-2"></i>{{ section.settings.checkout_button_label }}';
+
+      // summary
+      summaryCount.textContent = selected.length;
+      summaryThumbs.innerHTML = selected.map(i=>`<img src="${i.img}" class="w-10 h-10 object-cover rounded" title="${i.title}">`).join('');
     }
 
-    backBtn.addEventListener('click',()=>{ if(current>1) current--; renderStep(); });
-    nextBtn.addEventListener('click',()=>{
-      if(current<4) current++; else window.location.href='/checkout';
-      renderStep();
+    function addItem(card){
+      const id = card.dataset.id;
+      const price= card.dataset.price;
+      const title= card.dataset.title;
+      const img = card.dataset.img;
+      selected.push({id,price,title,img});
+    }
+
+    document.body.addEventListener('click', e=>{
+      if(e.target.closest('.select-item')){
+        addItem(e.target.closest('[data-id]'));
+        updateProgress();
+      }
+      if(e.target.closest('#next-btn')){
+        if(current<4) current++; else window.location.href='/checkout';
+        updateProgress();
+      }
+      if(e.target.closest('#back-btn')){
+        if(current>1) current--;
+        updateProgress();
+      }
     });
 
-    renderStep();
+    updateProgress();
   });
 </script>
 

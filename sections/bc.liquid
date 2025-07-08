@@ -1,7 +1,7 @@
 {% comment %}
 Section: Box Customizer for Shopify
-Enhanced with animated progress bar using JavaScript and CSS transitions.
-Drop this file into /sections/box-customizer.liquid and add to a page template.
+Improved animated progress bar, ensures all collections render, and smaller product images.
+Drop into /sections/box-customizer.liquid and attach to a page template.
 {% endcomment %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -9,22 +9,14 @@ Drop this file into /sections/box-customizer.liquid and add to a page template.
 <div class="box-customizer">
   <!-- ICON NAV -->
   <div class="customizer-icons">
-    <div class="icon-step active" data-step="1">
-      <i class="fas fa-box-open fa-2x"></i>
-      <p>PICK YOUR GIFTBOX</p>
-    </div>
-    <div class="icon-step" data-step="2">
-      <i class="fas fa-gifts fa-2x"></i>
-      <p>CHOOSE YOUR GIFTS</p>
-    </div>
-    <div class="icon-step" data-step="3">
-      <i class="fas fa-id-card fa-2x"></i>
-      <p>PICK A CARD</p>
-    </div>
-    <div class="icon-step" data-step="4">
-      <i class="fas fa-magic fa-2x"></i>
-      <p>ENJOY GIFTING</p>
-    </div>
+    {% assign labels = "PICK YOUR GIFTBOX,CHOOSE YOUR GIFTS,PICK A CARD,ENJOY GIFTING" | split: "," %}
+    {% assign icons = "fas fa-box-open,faa fa-gifts,faa fa-id-card,faa fa-magic" | split: "," %}
+    {% for i in (1..4) %}
+      <div class="icon-step{% if i == 1 %} active{% endif %}" data-step="{{ i }}">
+        <i class="{{ icons[i-1] }} fa-2x"></i>
+        <p>{{ labels[i-1] }}</p>
+      </div>
+    {% endfor %}
   </div>
 
   <!-- PROGRESS BAR -->
@@ -47,15 +39,15 @@ Drop this file into /sections/box-customizer.liquid and add to a page template.
 
   <!-- STEP CONTENT -->
   <div class="customizer-content">
-    <!-- STEP 1 -->
+    {% comment %} STEP PANES {% endcomment %}
     <div class="step-content active" id="step-1">
       <p class="small-label">STEP 1 OF 3</p>
       <h2>CHOOSE YOUR BOX COLOR</h2>
-      <p class="description">Welcome to the easiest way to send someone a custom gift, in 3 simple steps. Add to cart and repeat for multiple boxes, or update your quantity in the cart.</p>
+      <p class="description">Welcome to the easiest way to send someone a custom gift in 3 simple steps.</p>
       <div class="box-options">
         {% for product in collections[section.settings.packaging_collection].products %}
           <div class="option-item" data-product-id="{{ product.id }}">
-            <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}">
             <p>{{ product.title }}</p>
           </div>
         {% endfor %}
@@ -63,15 +55,14 @@ Drop this file into /sections/box-customizer.liquid and add to a page template.
       <button class="btn btn--primary" data-action="next-step">Choose Your Gifts</button>
     </div>
 
-    <!-- STEP 2 -->
-    <div class="step-content hidden" id="step-2">
+    <div class="step-content" id="step-2">
       <p class="small-label">STEP 2 OF 3</p>
       <h2>CHOOSE YOUR GIFTS</h2>
-      <p class="description">We've hand-selected the best gifts in one place. Select from the items below and fill up your gift box!</p>
+      <p class="description">Select from these hand-picked gifts!</p>
       <div class="gift-options">
         {% for product in collections[section.settings.gifts_collection].products %}
           <div class="option-item" data-product-id="{{ product.id }}">
-            <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            <img src="{{ product.featured_image | img_url: '150x150' }}" alt="{{ product.title }}">
             <p>{{ product.title }}</p>
             <p class="price">{{ product.price | money }}</p>
           </div>
@@ -80,84 +71,78 @@ Drop this file into /sections/box-customizer.liquid and add to a page template.
       <aside class="box-summary">
         <h3>Box Content</h3>
         <ul id="summary-list"></ul>
-        <p class="subtotal">Box Subtotal: <span id="box-subtotal">{{ section.settings.base_box_price | money }}</span></p>
+        <p class="subtotal">Subtotal: <span id="box-subtotal">{{ section.settings.base_box_price | money }}</span></p>
         <button class="btn btn--primary" data-action="next-step">Choose Your Card</button>
       </aside>
     </div>
 
-    <!-- STEP 3 -->
-    <div class="step-content hidden" id="step-3">
+    <div class="step-content" id="step-3">
       <p class="small-label">STEP 3 OF 3</p>
       <h2>CHOOSE YOUR CARD</h2>
-      <p class="description">Choose the perfect card for the occasion from our selection of exclusive designs.</p>
+      <p class="description">Pick the perfect card design.</p>
       <div class="card-options">
         {% for product in collections[section.settings.cards_collection].products %}
           <div class="option-item" data-product-id="{{ product.id }}">
-            <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            <img src="{{ product.featured_image | img_url: '150x150' }}" alt="{{ product.title }}">
             <p>{{ product.title }}</p>
-            <p class="price">{{ product.price | money }}</p>
           </div>
         {% endfor %}
       </div>
       <button class="btn btn--primary" data-action="next-step">Build My Box</button>
     </div>
 
-    <!-- DONE -->
-    <div class="step-content hidden" id="step-4">
+    <div class="step-content" id="step-4">
       <p class="small-label">DONE!</p>
       <h2>BUILDING YOUR BOX</h2>
-      <p>Please wait a moment while we prepare your custom gift box!</p>
+      <p>Please wait while we prepare your custom gift box!</p>
       <div class="checkmark-circle">
         <svg viewBox="0 0 52 52" class="checkmark"><path d="M14 27l7 7 16-16"/></svg>
       </div>
-      <button class="btn btn--primary" onclick="window.location='{{ routes.cart_url }}';">PROCEED TO CHECKOUT</button>
+      <button class="btn btn--primary" onclick="location.href='{{ routes.cart_url }}';">PROCEED TO CHECKOUT</button>
       <button class="btn btn--secondary" onclick="location.reload();">BUILD ANOTHER BOX</button>
     </div>
   </div>
 </div>
 
 <style>
-.box-customizer { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; font-family: sans-serif; text-align: center; }
+.box-customizer { max-width: 960px; margin: 0 auto; padding: 2rem; font-family: Arial, sans-serif; }
 .customizer-icons { display: flex; justify-content: space-between; margin-bottom: 2rem; }
-.icon-step { flex: 1; opacity: .5; transition: opacity .3s, transform .3s; cursor: pointer; }
-.icon-step.active, .icon-step:hover { opacity: 1; transform: translateY(-4px); }
-.icon-step i { color: #191E3A; transition: color .3s; }
+.icon-step { flex: 1; text-align: center; opacity: 0.4; transition: all 0.3s; cursor: pointer; }
+.icon-step.active, .icon-step:hover { opacity: 1; transform: translateY(-6px); }
+.icon-step i { color: #333; transition: color 0.3s; }
 .icon-step.active i { color: #E00060; }
-.icon-step p { margin-top: .5rem; font-weight: bold; color: #191E3A; }
-.customizer-progress { position: relative; margin-bottom: 3rem; height: 24px; }
-.progress-line-bg, .progress-line-fill { position: absolute; top: 12px; left: 5%; right: 5%; height: 2px; }
-.progress-line-bg { background: #E0E0E0; }
-.progress-line-fill { background: #E00060; width: 0; transition: width .6s ease-in-out; }
-.progress-step { position: absolute; width: 0; text-align: center; }
-.progress-step::before { content: ''; display: block; width: 16px; height: 16px; background: #E0E0E0; border-radius: 50%; margin: auto; transition: background .3s, transform .3s; }
-.progress-step.active::before { background: #E00060; transform: scale(1.2); }
-.step-label { display: none; font-size: .75rem; color: #AAA; }
-.progress-step.active .step-label { display: block; color: #E00060; font-weight: bold; }
+.icon-step p { margin-top: 0.5rem; font-weight: 600; }
+
+.customizer-progress { position: relative; height: 4px; background: #eee; margin-bottom: 3rem; overflow: hidden; }
+.progress-line-bg { position: absolute; width: 100%; height: 100%; background: #eee; }
+.progress-line-fill { position: absolute; width: 0; height: 100%; background: #E00060; transition: width 0.5s ease; }
+.progress-step { position: absolute; top: -6px; width: 16px; height: 16px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; }
+.progress-step::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: transparent; transition: background 0.3s, transform 0.3s; }
+.progress-step.active, .progress-step.active::before { background: #E00060; transform: scale(1.3); }
+.step-label { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #888; white-space: nowrap; }
+.progress-step.active .step-label { color: #E00060; font-weight: bold; }
 
 .step-content { display: none; }
 .step-content.active { display: block; }
-.small-label { font-size: .9rem; font-weight: bold; color: #888; margin-bottom: .5rem; }
-h2 { font-size: 2rem; margin-bottom: .5rem; }
-.description { font-size: 1rem; margin-bottom: 1.5rem; color: #555; }
-.option-item { display: inline-block; margin: 0 1rem; cursor: pointer; text-align: center; transition: transform .3s; }
-.option-item img { border: 2px solid transparent; border-radius: 8px; transition: transform .3s, border-color .3s, box-shadow .3s; }
-.option-item:hover img { transform: scale(1.1); }
-.option-item.selected img { border-color: #E00060; box-shadow: 0 4px 12px rgba(224,0,96,0.3); }
-.option-item p { margin-top: .5rem; font-weight: bold; }
-.price { color: #191E3A; font-weight: bold; }
-.btn { display: inline-block; padding: .75rem 1.5rem; margin: 1rem auto; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: opacity .3s; }
-.btn--primary { background: #191E3A; color: #FFF; }
-.btn--primary:hover { opacity: .85; }
+.small-label { font-size: 12px; color: #666; font-weight: 600; }
+h2 { font-size: 24px; margin: 10px 0; }
+.description { font-size: 14px; margin-bottom: 20px; color: #555; }
+.option-item { margin: 0 10px 20px; display: inline-block; vertical-align: top; }
+.option-item img { width: 100px; height: 100px; object-fit: cover; border: 2px solid transparent; border-radius: 8px; transition: all 0.3s; }
+.option-item:hover img { transform: scale(1.05); }
+.option-item.selected img { border-color: #E00060; box-shadow: 0 4px 8px rgba(224,0,96,0.3); }
+.option-item p { margin-top: 8px; font-size: 14px; }
+.price { font-size: 14px; font-weight: bold; margin-top: 4px; color: #333; }
+.btn { display: block; width: fit-content; margin: 20px auto; padding: 10px 20px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
+.btn--primary { background: #191E3A; color: #fff; }
 .btn--secondary { background: transparent; color: #191E3A; border: 2px solid #191E3A; }
-.box-options, .gift-options, .card-options { display: flex; flex-wrap: wrap; justify-content: center; }
-.box-summary { background: #F9F9F9; padding: 1rem; border-radius: 8px; display: inline-block; width: 260px; vertical-align: top; margin-left: 2rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-.box-summary h3 { margin-bottom: .5rem; }
-.box-summary ul { list-style: none; padding: 0; margin: 0 0 1rem; text-align: left; }
-.box-summary li { margin-bottom: .5rem; }
-.subtotal { font-weight: bold; }
-.checkmark-circle { margin: 2rem auto; width: 80px; height: 80px; border-radius: 50%; background: #E00060; display: flex; align-items: center; justify-content: center; }
-.checkmark { stroke: #FFF; stroke-width: 4; fill: none; width: 40px; height: 40px; }
-.hidden { display: none !important; }
+.box-options, .gift-options, .card-options { text-align: center; }
+.box-summary { margin-top: 20px; background: #f9f9f9; padding: 10px; border-radius: 8px; }
+.box-summary h3 { margin-bottom: 8px; }
+.box-summary ul { padding: 0; list-style: none; font-size: 14px; color: #333; }
+.subtotal { margin-top: 10px; font-weight: bold; }
+.checkmark-circle { margin: 20px auto; width: 60px; height: 60px; background: #E00060; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.checkmark { stroke: #fff; stroke-width: 4; fill: none; width: 30px; height: 30px; }
 </style>
 
 <script>
@@ -167,25 +152,29 @@ h2 { font-size: 2rem; margin-bottom: .5rem; }
   var steps = document.querySelectorAll('.progress-step');
   function updateProgress(step){
     var percent = ((step-1)/(total-1))*100;
-    fill.style.width=percent + '%';
+    fill.style.width = percent + '%';
     steps.forEach(el=>{
-      var s=+el.dataset.step;
+      var s = +el.dataset.step;
       el.classList.toggle('active', s===step);
-      el.style.left = (5 + ((s-1)/(total-1))*90) + '%';
+      el.style.left = (percent * (1/(total-1)) + (s-1)*((100/(total-1)))/(100))*100 + '%';
     });
   }
-  function showStep(s){ current=s; updateProgress(s);
+  function showStep(s){
+    current=s; updateProgress(s);
     document.querySelectorAll('.icon-step').forEach(el=>el.classList.toggle('active', +el.dataset.step===s));
     document.querySelectorAll('.step-content').forEach(el=>el.classList.toggle('active', el.id==='step-'+s));
   }
   document.querySelectorAll('[data-action="next-step"]').forEach(btn=>btn.addEventListener('click',()=>{ if(current<total) showStep(current+1); }));
   document.querySelectorAll('.option-item').forEach(item=>item.addEventListener('click',function(){
     var pane=this.closest('.step-content'); pane.querySelectorAll('.option-item').forEach(i=>i.classList.remove('selected'));
-    this.classList.add('selected'); if(pane.id==='step-2'){ var title=this.querySelector('p').innerText;
-      var price=this.querySelector('.price').innerText; document.getElementById('summary-list').innerHTML=`<li>${title} - ${price}</li>`;
-      document.getElementById('box-subtotal').innerText=price; }
+    this.classList.add('selected');
+    if(pane.id==='step-2'){
+      var title=this.querySelector('p').innerText;
+      var price=this.querySelector('.price').innerText;
+      document.getElementById('summary-list').innerHTML = `<li>${title} - ${price}</li>`;
+      document.getElementById('box-subtotal').innerText = price;
+    }
   }));
-  // init
   updateProgress(1);
 })();
 </script>

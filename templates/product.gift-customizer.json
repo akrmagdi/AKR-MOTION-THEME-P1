@@ -13,9 +13,20 @@
       "type": "bc",
       "name": "Custom Gift Flow",
       "settings": {
-        "packaging_collection": "frontpage",
-        "gifts_collection": "frontpage",
-        "card_collection": "frontpage"
+        "icon1": "shopify://shop_images/Artboard_1.webp",
+        "icon1_label": "Fast Shipping",
+        "icon2": "shopify://shop_images/Artboard_2.webp",
+        "icon2_label": "Premium Wrap",
+        "icon3": "shopify://shop_images/Artboard_3.webp",
+        "icon3_label": "Handpicked Gifts",
+        "icon4": "shopify://shop_images/Artboard_4.webp",
+        "icon4_label": "Personal Card",
+        "step1_collection": "frontpage",
+        "step1_mode": "multiple",
+        "step2_collection": "frontpage",
+        "step2_mode": "multiple",
+        "step3_collection": "frontpage",
+        "step3_mode": "single"
       }
     },
     "main": {

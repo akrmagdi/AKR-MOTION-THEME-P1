@@ -1,26 +1,28 @@
 {% comment %}
 Section: Box Customizer for Shopify
-A single-file section including inline styles and scripts to implement a 3‑step gift box builder that matches the provided design.
-Place this file in your theme under /sections/box-customizer.liquid and attach it to a page template.
+Drop this file into /sections/box-customizer.liquid and add to a page template.
+This version uses Font Awesome icons, collection-based product loops for each step, and enhanced hover/selection styling.
 {% endcomment %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 <div class="box-customizer">
   <!-- ICON NAV -->
   <div class="customizer-icons">
     <div class="icon-step active" data-step="1">
-      <img src="{{ 'icon-packaging.svg' | asset_url }}" alt="Pick your giftbox">
+      <i class="fas fa-box-open fa-2x"></i>
       <p>PICK YOUR GIFTBOX</p>
     </div>
     <div class="icon-step" data-step="2">
-      <img src="{{ 'icon-gifts.svg' | asset_url }}" alt="Choose your gifts">
+      <i class="fas fa-gifts fa-2x"></i>
       <p>CHOOSE YOUR GIFTS</p>
     </div>
     <div class="icon-step" data-step="3">
-      <img src="{{ 'icon-card.svg' | asset_url }}" alt="Pick a card">
+      <i class="fas fa-id-card fa-2x"></i>
       <p>PICK A CARD</p>
     </div>
     <div class="icon-step" data-step="4">
-      <img src="{{ 'icon-enjoy.svg' | asset_url }}" alt="Enjoy gifting">
+      <i class="fas fa-magic fa-2x"></i>
       <p>ENJOY GIFTING</p>
     </div>
   </div>
@@ -45,18 +47,16 @@ Place this file in your theme under /sections/box-customizer.liquid and attach i
   <!-- STEP CONTENT -->
   <div class="customizer-content">
     <!-- STEP 1 -->
-    <div class="step-content" id="step-1">
+    <div class="step-content active" id="step-1">
       <p class="small-label">STEP 1 OF 3</p>
       <h2>CHOOSE YOUR BOX COLOR</h2>
       <p class="description">Welcome to the easiest way to send someone a custom gift, in 3 simple steps. Add to cart and repeat for multiple boxes, or update your quantity in the cart.</p>
       <div class="box-options">
-        {% for block in section.blocks %}
-          {% if block.type == 'box_color' %}
-            <div class="option-item" data-block-id="{{ block.id }}">
-              <img src="{{ block.settings.box_image | img_url: '300x' }}" alt="{{ block.settings.box_label }}">
-              <p>{{ block.settings.box_label }}</p>
-            </div>
-          {% endif %}
+        {% for product in collections[section.settings.packaging_collection].products %}
+          <div class="option-item" data-product-id="{{ product.id }}">
+            <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            <p>{{ product.title }}</p>
+          </div>
         {% endfor %}
       </div>
       <button class="btn btn--primary" data-action="next-step">Choose Your Gifts</button>
@@ -68,7 +68,7 @@ Place this file in your theme under /sections/box-customizer.liquid and attach i
       <h2>CHOOSE YOUR GIFTS</h2>
       <p class="description">We've hand-selected the best gifts in one place. Select from the items below and fill up your gift box!</p>
       <div class="gift-options">
-        {% for product in section.settings.gift_products %}
+        {% for product in collections[section.settings.gifts_collection].products %}
           <div class="option-item" data-product-id="{{ product.id }}">
             <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
             <p>{{ product.title }}</p>
@@ -90,13 +90,12 @@ Place this file in your theme under /sections/box-customizer.liquid and attach i
       <h2>CHOOSE YOUR CARD</h2>
       <p class="description">Choose the perfect card for the occasion from our selection of exclusive designs.</p>
       <div class="card-options">
-        {% for block in section.blocks %}
-          {% if block.type == 'card_design' %}
-            <div class="option-item" data-block-id="{{ block.id }}">
-              <img src="{{ block.settings.card_image | img_url: '300x' }}" alt="{{ block.settings.card_label }}">
-              <p>{{ block.settings.card_label }}</p>
-            </div>
-          {% endif %}
+        {% for product in collections[section.settings.cards_collection].products %}
+          <div class="option-item" data-product-id="{{ product.id }}">
+            <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            <p>{{ product.title }}</p>
+            <p class="price">{{ product.price | money }}</p>
+          </div>
         {% endfor %}
       </div>
       <button class="btn btn--primary" data-action="next-step">Build My Box</button>
@@ -117,39 +116,41 @@ Place this file in your theme under /sections/box-customizer.liquid and attach i
 </div>
 
 <style>
-.box-customizer { max-width: 960px; margin: 0 auto; font-family: sans-serif; text-align: center; }
+.box-customizer { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; font-family: sans-serif; text-align: center; }
 .customizer-icons { display: flex; justify-content: space-between; margin-bottom: 2rem; }
-.customizer-icons .icon-step { flex: 1; opacity: .5; transition: opacity .3s; }
-.customizer-icons .icon-step.active { opacity: 1; }
-.customizer-icons .icon-step img { max-width: 60px; }
-.customizer-icons .icon-step p { margin-top: .5rem; font-weight: bold; color: #191E3A; }
+.icon-step { flex: 1; opacity: .5; transition: opacity .3s, transform .3s; cursor: pointer; }
+.icon-step.active, .icon-step:hover { opacity: 1; transform: translateY(-4px); }
+.icon-step i { color: #191E3A; }
+.icon-step p { margin-top: .5rem; font-weight: bold; color: #191E3A; }
 .customizer-progress { position: relative; margin-bottom: 3rem; }
-.customizer-progress .progress-line { height: 2px; background: #E0E0E0; position: absolute; top: 12px; left: 5%; right: 5%; }
+.progress-line { height: 2px; background: #E0E0E0; position: absolute; top: 12px; left: 5%; right: 5%; }
 .progress-step { position: relative; display: inline-block; width: 20%; text-align: center; }
-.progress-step span.step-label { display: none; font-size: .75rem; color: #AAA; }
-.progress-step.active span.step-label { display: block; color: #E00060; font-weight: bold; }
-.progress-step::before { content: ''; display: block; width: 16px; height: 16px; background: #E0E0E0; border-radius: 50%; margin: 0 auto; position: relative; top: -8px; }
+.progress-step::before { content: ''; display: block; width: 16px; height: 16px; background: #E0E0E0; border-radius: 50%; margin: 0 auto; position: relative; top: -8px; transition: background .3s; }
 .progress-step.active::before { background: #E00060; }
+.step-label { display: none; font-size: .75rem; color: #AAA; }
+.progress-step.active .step-label { display: block; color: #E00060; font-weight: bold; }
 
-.customizer-content .step-content { display: none; }
-.customizer-content .step-content:first-child { display: block; }
-.customizer-content .step-content.active { display: block; }
-.customizer-content .small-label { font-size: .9rem; font-weight: bold; color: #888; margin-bottom: .5rem; }
-.customizer-content h2 { font-size: 2rem; margin-bottom: .5rem; }
-.customizer-content .description { font-size: 1rem; margin-bottom: 1.5rem; color: #555; }
-.option-item { display: inline-block; margin: 0 1rem; cursor: pointer; text-align: center; }
-.option-item img { border: 2px solid transparent; border-radius: 8px; transition: border-color .3s; }
-.option-item.selected img { border-color: #E00060; }
+.step-content { display: none; }
+.step-content.active { display: block; }
+.small-label { font-size: .9rem; font-weight: bold; color: #888; margin-bottom: .5rem; }
+h2 { font-size: 2rem; margin-bottom: .5rem; }
+.description { font-size: 1rem; margin-bottom: 1.5rem; color: #555; }
+.option-item { display: inline-block; margin: 0 1rem; cursor: pointer; text-align: center; transition: transform .3s; }
+.option-item img { border: 2px solid transparent; border-radius: 8px; transition: transform .3s, border-color .3s, box-shadow .3s; }
+.option-item:hover img { transform: scale(1.1); }
+.option-item.selected img { border-color: #E00060; box-shadow: 0 4px 12px rgba(224,0,96,0.3); }
 .option-item p { margin-top: .5rem; font-weight: bold; }
-.btn { display: inline-block; padding: .75rem 1.5rem; margin: 1rem auto; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.price { color: #191E3A; font-weight: bold; }
+.btn { display: inline-block; padding: .75rem 1.5rem; margin: 1rem auto; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: opacity .3s; }
 .btn--primary { background: #191E3A; color: #FFF; }
+.btn--primary:hover { opacity: .85; }
 .btn--secondary { background: transparent; color: #191E3A; border: 2px solid #191E3A; }
 .box-options, .gift-options, .card-options { display: flex; flex-wrap: wrap; justify-content: center; }
-.box-summary { background: #F9F9F9; padding: 1rem; border-radius: 8px; display: inline-block; width: 260px; vertical-align: top; margin-left: 2rem; }
+.box-summary { background: #F9F9F9; padding: 1rem; border-radius: 8px; display: inline-block; width: 260px; vertical-align: top; margin-left: 2rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
 .box-summary h3 { margin-bottom: .5rem; }
-.box-summary ul { list-style: none; padding: 0; margin: 0 0 1rem; }
-.box-summary li { margin-bottom: .5rem; text-align: left; }
-.box-summary .subtotal { font-weight: bold; }
+.box-summary ul { list-style: none; padding: 0; margin: 0 0 1rem; text-align: left; }
+.box-summary li { margin-bottom: .5rem; }
+.subtotal { font-weight: bold; }
 .checkmark-circle { margin: 2rem auto; width: 80px; height: 80px; border-radius: 50%; background: #E00060; display: flex; align-items: center; justify-content: center; }
 .checkmark { stroke: #FFF; stroke-width: 4; fill: none; width: 40px; height: 40px; }
 .hidden { display: none !important; }
@@ -159,29 +160,23 @@ Place this file in your theme under /sections/box-customizer.liquid and attach i
 (function(){
   var current = 1;
   function showStep(step) {
+    current = step;
     document.querySelectorAll('.icon-step').forEach(el => el.classList.toggle('active', +el.dataset.step === step));
     document.querySelectorAll('.progress-step').forEach(el => el.classList.toggle('active', +el.dataset.step === step));
-    document.querySelectorAll('.step-content').forEach(el => el.style.display = (el.id === 'step-'+step) ? 'block' : 'none');
+    document.querySelectorAll('.step-content').forEach(el => el.classList.toggle('active', el.id === 'step-'+step));
   }
   document.querySelectorAll('[data-action="next-step"]').forEach(btn => {
-    btn.addEventListener('click', function(){
-      if(current < 4) current++;
-      showStep(current);
-    });
+    btn.addEventListener('click', function(){ if(current < 4) showStep(current+1); });
   });
-  // Option selection
   document.querySelectorAll('.option-item').forEach(item => {
     item.addEventListener('click', function(){
-      var parent = item.closest('.step-content');
-      parent.querySelectorAll('.option-item').forEach(i => i.classList.remove('selected'));
+      var pane = item.closest('.step-content');
+      pane.querySelectorAll('.option-item').forEach(i => i.classList.remove('selected'));
       item.classList.add('selected');
-      // update summary for gifts
-      if(parent.id === 'step-2') {
-        var id = item.dataset.productId;
+      if(pane.id === 'step-2') {
         var title = item.querySelector('p').innerText;
         var price = item.querySelector('.price').innerText;
-        var list = document.getElementById('summary-list');
-        list.innerHTML = `<li>${title} - ${price}</li>`;
+        document.getElementById('summary-list').innerHTML = `<li>${title} - ${price}</li>`;
         document.getElementById('box-subtotal').innerText = price;
       }
     });
@@ -193,20 +188,10 @@ Place this file in your theme under /sections/box-customizer.liquid and attach i
 {
   "name": "Box Customizer",
   "settings": [
-    { "type": "number", "id": "base_box_price", "label": "Base Box Price", "default": 21000 },
-    { "type": "product_list", "id": "gift_products", "label": "Gift products", "limit": 10 }
-  ],
-  "blocks": [
-    { "type": "box_color", "name": "Box Color Option", "settings": [
-        { "type": "image_picker", "id": "box_image", "label": "Box image" },
-        { "type": "text", "id": "box_label", "label": "Label" }
-      ]
-    },
-    { "type": "card_design", "name": "Card Design Option", "settings": [
-        { "type": "image_picker", "id": "card_image", "label": "Card image" },
-        { "type": "text", "id": "card_label", "label": "Label" }
-      ]
-    }
+    { "type": "collection", "id": "packaging_collection", "label": "Packaging Collection" },
+    { "type": "collection", "id": "gifts_collection", "label": "Gifts Collection" },
+    { "type": "collection", "id": "cards_collection", "label": "Cards Collection" },
+    { "type": "number", "id": "base_box_price", "label": "Base Box Price", "default": 21000 }
   ],
   "presets": [ { "name": "Box Customizer" } ]
 }

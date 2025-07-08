@@ -1,0 +1,114 @@
+{% comment %}
+  Custom 3-Step Gift Box Builder – Shopify Liquid 2.0
+  Place this in /sections/custom-gift-box.liquid
+{% endcomment %}
+
+<section class="custom-box-builder" data-id="custom-box-builder">
+  <div class="builder-container" id="gift-box-app">
+
+    <!-- STEP 1: Choose Products -->
+    <div class="step step-1" data-id="step-1">
+      <h2>Step 1: Choose Your Items</h2>
+      <div class="product-grid" id="product-options">
+        {% for product in collections['customize-your-box'].products %}
+          <div class="product-card" data-id="product-{{ product.id }}" data-handle="{{ product.handle }}">
+            <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}">
+            <h3>{{ product.title }}</h3>
+            <button class="add-product" data-product-id="{{ product.id }}">Add to Box</button>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="next-step" data-id="to-step-2">Next: Choose Add-ons</button>
+    </div>
+
+    <!-- STEP 2: Add-ons (Optional) -->
+    <div class="step step-2 hidden" data-id="step-2">
+      <h2>Step 2: Optional Add-ons</h2>
+      <div class="product-grid" id="addon-options">
+        {% for product in collections['gift-box-addons'].products %}
+          <div class="product-card" data-id="addon-{{ product.id }}" data-handle="{{ product.handle }}">
+            <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}">
+            <h3>{{ product.title }}</h3>
+            <button class="add-product" data-product-id="{{ product.id }}">Add to Box</button>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="prev-step" data-id="back-to-step-1">Back</button>
+      <button class="next-step" data-id="to-step-3">Next: Review Your Box</button>
+    </div>
+
+    <!-- STEP 3: Review -->
+    <div class="step step-3 hidden" data-id="step-3">
+      <h2>Step 3: Review Your Gift Box</h2>
+      <ul id="selected-items-list"></ul>
+      <button class="prev-step" data-id="back-to-step-2">Back</button>
+      <button id="checkout-btn">Go to Checkout</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const selectedItems = [];
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const steps = document.querySelectorAll(".step");
+
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle("hidden", i !== index);
+      });
+    }
+
+    document.querySelectorAll(".add-product").forEach(button => {
+      button.addEventListener("click", () => {
+        const productId = button.dataset.productId;
+        if (!selectedItems.includes(productId)) {
+          selectedItems.push(productId);
+          alert("Added!");
+        }
+      });
+    });
+
+    document.querySelector("[data-id='to-step-2']").addEventListener("click", () => showStep(1));
+    document.querySelector("[data-id='to-step-3']").addEventListener("click", () => {
+      showStep(2);
+      renderReview();
+    });
+    document.querySelector("[data-id='back-to-step-1']").addEventListener("click", () => showStep(0));
+    document.querySelector("[data-id='back-to-step-2']").addEventListener("click", () => showStep(1));
+
+    function renderReview() {
+      const list = document.getElementById("selected-items-list");
+      list.innerHTML = "";
+      selectedItems.forEach(id => {
+        const el = document.createElement("li");
+        el.innerText = `Product ID: ${id}`;
+        list.appendChild(el);
+      });
+    }
+
+    document.getElementById("checkout-btn").addEventListener("click", () => {
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = "/cart";
+
+      selectedItems.forEach(id => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = `items[][id]`;
+        input.value = id;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+    });
+  });
+</script>
+
+<style>
+  .hidden { display: none; }
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+  .product-card { border: 1px solid #ddd; padding: 10px; text-align: center; }
+  button { margin-top: 10px; padding: 10px 15px; }
+</style>

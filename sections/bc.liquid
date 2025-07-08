@@ -2,11 +2,9 @@
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
   Adjustments:
-    • Fixed Liquid syntax by replacing inline ternary with if/elsif for collection assignment
-    • Made product cards smaller (h-32 images, smaller padding)
-    • Added placeholder to summary thumbs when empty
-    • Ensured progress bar container has explicit height
-    • Refined Add/Next/Back functionality
+    • Updated stepper to four steps: Pick Box, Choose Gifts, Pick Card, Enjoy Gifting
+    • Refined product grid and cards for modern look
+    • Progress bar and step indicators match Giftopiia style
 {% endcomment %}
 
 <!-- Include necessary libs (preferably in layout) -->
@@ -24,13 +22,13 @@
     </div>
   </div>
 
-  <!-- Top Icons -->
+  <!-- Top Stepper -->
   <div class="grid grid-cols-4 gap-8 mb-8">
-    {% assign icons = "box-open,gift,credit-card,check-circle" | split: ',' %}
-    {% assign labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Review" | split: ',' %}
+    {% assign icons = "box-open,gift,credit-card,smile" | split: ',' %}
+    {% assign labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Enjoy Gifting" | split: ',' %}
     {% for icon in icons %}
       <div class="text-center">
-        <div class="mx-auto w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-2">
+        <div class="mx-auto w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-2 step-indicator" data-step="{{ forloop.index }}">
           <i class="fas fa-{{ icon }} text-2xl text-blue-600"></i>
         </div>
         <p class="text-sm font-semibold text-gray-800">{{ labels[forloop.index0] }}</p>
@@ -43,39 +41,50 @@
 
   <!-- Step Header -->
   <div class="text-center mb-6">
-    <p class="text-xs uppercase text-gray-500 mb-1">Step <span id="current-step">1</span> of 3</p>
+    <p class="text-xs uppercase text-gray-500 mb-1">Step <span id="current-step">1</span> of 4</p>
     <h2 id="current-title" class="text-3xl font-bold text-gray-900">{{ section.settings.packaging_heading }}</h2>
     <p id="current-sub" class="text-gray-600 mt-2">{{ section.settings.packaging_subheading }}</p>
   </div>
 
   <!-- Steps Content (pre-rendered) -->
   <div id="steps-wrapper">
-    {% for idx in (1..3) %}
-      {% comment %} Assign correct collection based on idx {% endcomment %}
-      {% if idx == 1 %}
-        {% assign col = collections[section.settings.packaging_collection] %}
-      {% elsif idx == 2 %}
-        {% assign col = collections[section.settings.gifts_collection] %}
-      {% else %}
-        {% assign col = collections[section.settings.card_collection] %}
-      {% endif %}
+    {% for idx in (1..4) %}
       <div class="step-content {% unless idx == 1 %}hidden{% endunless %}" data-step="{{ idx }}">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {% for p in col.products %}
-          <div class="card border rounded-lg p-2 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
-            {% if p.featured_image %}
-              <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-32 object-cover rounded-md mb-2">
-            {% endif %}
-            <h3 class="font-medium truncate mb-1 text-sm">{{ p.title }}</h3>
-            {% if idx < 3 %}
-              <p class="text-blue-600 font-semibold mb-1 text-sm">{{ p.price | money }}</p>
-              <button class="select-item btn btn-xs btn-primary w-full uppercase"><i class="fas fa-plus mr-1"></i>Add</button>
-            {% else %}
-              <button class="select-item btn btn-xs btn-secondary w-full uppercase"><i class="fas fa-check mr-1"></i>Select Card</button>
-            {% endif %}
+        {% if idx < 4 %}
+          {% if idx == 1 %}
+            {% assign col = collections[section.settings.packaging_collection] %}
+          {% elsif idx == 2 %}
+            {% assign col = collections[section.settings.gifts_collection] %}
+          {% elsif idx == 3 %}
+            {% assign col = collections[section.settings.card_collection] %}
+          {% else %}
+            {% assign col = blank %}
+          {% endif %}
+          {% if col %}
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for p in col.products %}
+            <div class="card border rounded-lg p-4 shadow hover:shadow-lg transition" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
+              {% if p.featured_image %}
+                <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-40 object-cover rounded-md mb-3">
+              {% endif %}
+              <h3 class="font-medium truncate mb-1 text-base">{{ p.title }}</h3>
+              {% if idx < 3 %}
+                <p class="text-blue-600 font-semibold mb-2 text-base">{{ p.price | money }}</p>
+                <button class="select-item btn btn-primary w-full uppercase"><i class="fas fa-plus mr-1"></i>Add to Box</button>
+              {% else %}
+                <button class="select-item btn btn-secondary w-full uppercase"><i class="fas fa-check mr-1"></i>Select Card</button>
+              {% endif %}
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+          {% endif %}
+        {% else %}
+        <div class="flex flex-col items-center justify-center h-48">
+          <i class="fas fa-smile text-5xl text-blue-500 mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">Enjoy Gifting!</h3>
+          <p class="text-gray-600">You're all set. Proceed to checkout or build another box.</p>
         </div>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -90,7 +99,7 @@
 <script>
   document.addEventListener('DOMContentLoaded',()=>{
     const bar = new ProgressBar.Line('#progress-container',{ strokeWidth:6,duration:200,color:'#3b82f6',trailColor:'#e5e7eb' });
-    const totals = 3;
+    const totals = 4;
     let current = 1;
     const contents = document.querySelectorAll('.step-content');
     const btnNext = document.getElementById('next-btn');
@@ -104,12 +113,14 @@
     const headings=[
       {{ section.settings.packaging_heading | json }},
       {{ section.settings.gifts_heading | json }},
-      {{ section.settings.card_heading | json }}
+      {{ section.settings.card_heading | json }},
+      "Enjoy Gifting!"
     ];
     const subs=[
       {{ section.settings.packaging_subheading | json }},
       {{ section.settings.gifts_subheading | json }},
-      {{ section.settings.card_subheading | json }}
+      {{ section.settings.card_subheading | json }},
+      "You're all set. Proceed to checkout or build another box."
     ];
     function update(){
       bar.animate((current-1)/(totals-1));

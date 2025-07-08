@@ -1,0 +1,234 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_Yw7WCz": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h5"
+          }
+        },
+        "price_KXE3LT": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": true
+          }
+        },
+        "rating_V3wwYW": {
+          "type": "rating",
+          "settings": {
+            "show_empty": true,
+            "rating_mode": "rating"
+          }
+        },
+        "description_WfMyMx": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker_nBtnEK": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": "contact"
+          }
+        },
+        "buy_buttons_fGpdMT": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#ed8a00",
+            "atc_button_text_color": "#ffffff",
+            "payment_button_background": "#ffffff",
+            "payment_button_text_color": "#000000"
+          }
+        },
+        "accordion_JpM4kH": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "Shipping & Delivery",
+            "content": "<p>All North American orders are typically delivered within 3-5 business days. International is 6-10 business days.</p>",
+            "liquid": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "title_Yw7WCz",
+        "price_KXE3LT",
+        "rating_V3wwYW",
+        "description_WfMyMx",
+        "variant_picker_nBtnEK",
+        "buy_buttons_fGpdMT",
+        "accordion_JpM4kH"
+      ],
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
+        "container_size": "full",
+        "product_info_size": 52,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": true,
+        "desktop_media_layout": "grid",
+        "desktop_media_grid_gap": 16,
+        "mobile_controls": "free_scroll",
+        "enable_media_autoplay": true,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 2
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 5,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Related products",
+        "content": ""
+      }
+    },
+    "faq_AigTR7": {
+      "type": "faq",
+      "blocks": {
+        "category_hfqt8b": {
+          "type": "category",
+          "settings": {
+            "title": "Order",
+            "icon": "none",
+            "icon_width": 16
+          }
+        },
+        "question_3UwbXC": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship overseas?",
+            "answer": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.</p>"
+          }
+        },
+        "question_hGnxGi": {
+          "type": "question",
+          "settings": {
+            "question": "How long will it take to get my orders?",
+            "answer": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.</p>"
+          }
+        },
+        "question_93w3Vx": {
+          "type": "question",
+          "settings": {
+            "question": "Any question?",
+            "answer": "<p>You can contact us through our contact page! We will be happy to assist you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_hfqt8b",
+        "question_3UwbXC",
+        "question_hGnxGi",
+        "question_93w3Vx"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
+        "separate_section_with_border": true,
+        "show_categories": false,
+        "subheading": "Need help?",
+        "title": "Frequently Asked Questions",
+        "content": ""
+      }
+    },
+    "reviews_slider_G7n7ee": {
+      "type": "reviews-slider",
+      "blocks": {
+        "card_rLE4YM": {
+          "type": "card",
+          "settings": {
+            "icon": "5 stars",
+            "title": "<p> Add customer reviews and testimonials to showcase your store’s happy customers.  </p>",
+            "author": "author",
+            "info": "New Info"
+          }
+        },
+        "card_L6eT6x": {
+          "type": "card",
+          "settings": {
+            "icon": "5 stars",
+            "title": "<p> Add customer reviews and testimonials to showcase your store’s happy customers.  </p>",
+            "author": "author",
+            "info": "New Info"
+          }
+        },
+        "card_ikYGqx": {
+          "type": "card",
+          "settings": {
+            "icon": "5 stars",
+            "title": "<p> Add customer reviews and testimonials to showcase your store’s happy customers.  </p>",
+            "author": "author",
+            "info": "New Info"
+          }
+        }
+      },
+      "block_order": [
+        "card_rLE4YM",
+        "card_L6eT6x",
+        "card_ikYGqx"
+      ],
+      "settings": {
+        "heading": "Testimonials",
+        "title_align": "center",
+        "text_align": "center",
+        "autoplay_delay": 5,
+        "autoplay_disable_on_interaction": true,
+        "heading_font_size": 14,
+        "p_font_size": 12,
+        "author_font_size": 12,
+        "info_font_size": 12,
+        "image_size": 45,
+        "image_border_radius": 0,
+        "text_color": "#000000",
+        "background-color": "#f9f9f9",
+        "card_color": "#ffffff",
+        "header_color": "#000000",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_x": 0,
+        "padding_x_desktop": 0,
+        "margin_top": 4,
+        "margin_bottom": 4,
+        "section-width": 160
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "faq_AigTR7",
+    "reviews_slider_G7n7ee"
+  ]
+}

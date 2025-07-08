@@ -9,6 +9,15 @@
  */
 {
   "sections": {
+    "bc_7HjKwi": {
+      "type": "bc",
+      "name": "Custom Gift Flow",
+      "settings": {
+        "packaging_collection": "frontpage",
+        "gifts_collection": "frontpage",
+        "card_collection": "frontpage"
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -80,6 +89,7 @@
         "buy_buttons_fGpdMT",
         "accordion_JpM4kH"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
@@ -230,7 +240,14 @@
         "collection_8Q7kmy": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "frontpage",
+            "heading": ""
+          }
+        },
+        "collection_eyh9bP": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage",
             "heading": ""
           }
         },
@@ -251,9 +268,11 @@
       },
       "block_order": [
         "collection_8Q7kmy",
+        "collection_eyh9bP",
         "feature_inai3w",
         "feature_qyiFPW"
       ],
+      "disabled": true,
       "name": "Bundle Customizable",
       "settings": {
         "body_gap": 40,
@@ -402,44 +421,44 @@
         "feature_text_height": 150,
         "heading_color": "#000000",
         "heading_number_color": "#d7eee7",
-        "image_border_color": "#FFFFFF",
-        "image_border_active_color": "#7BC5AE",
+        "image_border_color": "#ffffff",
+        "image_border_active_color": "#7bc5ae",
         "title_color": "#000000",
         "description_color": "#828282",
         "price_color": "#000000",
         "price_original_color": "#000000",
         "select_color": "#000000",
-        "select_bg_color": "#FFFFFF",
+        "select_bg_color": "#ffffff",
         "select_border_color": "#000000",
-        "check_bg_color": "#FFFFFF",
-        "check_bg_active_color": "#7BC5AE",
-        "check_border_color": "#9D9D9D",
-        "check_border_active_color": "#7BC5AE",
-        "check_icon_color": "#FFFFFF",
-        "sidebar_bg_color": "#FFFFFF",
-        "sidebar_border_color": "#E1E1E1",
+        "check_bg_color": "#ffffff",
+        "check_bg_active_color": "#7bc5ae",
+        "check_border_color": "#9d9d9d",
+        "check_border_active_color": "#7bc5ae",
+        "check_icon_color": "#ffffff",
+        "sidebar_bg_color": "#ffffff",
+        "sidebar_border_color": "#e1e1e1",
         "text_color": "#000000",
-        "discount_wrapper_bg_color": "#F6FBF9",
+        "discount_wrapper_bg_color": "#f6fbf9",
         "discount_text_color": "#000000",
-        "discount_text_precent_color": "#A0D6C5",
-        "discount_bar_bg_color": "#F2F2F2",
-        "discount_bar_bg_active_color": "#7BC5AE",
+        "discount_text_precent_color": "#a0d6c5",
+        "discount_bar_bg_color": "#f2f2f2",
+        "discount_bar_bg_active_color": "#7bc5ae",
         "discount_icon_color": "#000000",
         "total_border_color": "#000000",
         "total_heading_color": "#000000",
         "total_price_color": "#828282",
         "total_price_original_color": "#000000",
-        "total_save_bg_color": "#7BC5AE",
+        "total_save_bg_color": "#7bc5ae",
         "total_save_color": "#000000",
-        "button_color": "#FFFFFF",
-        "button_hover_color": "#FFFFFF",
+        "button_color": "#ffffff",
+        "button_hover_color": "#ffffff",
         "button_bg_color": "#000000",
         "button_bg_hover_color": "#000000",
         "button_border_color": "#000000",
         "button_border_hover_color": "#000000",
         "feature_icon_color": "#000000",
         "feature_text_color": "#000000",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "border_color": "#000000",
         "margin_top": 0,
         "margin_bottom": 0,
@@ -455,32 +474,14 @@
         "section_radius": 0,
         "lazy": true
       }
-    },
-    "bc_7HjKwi": {
-      "type": "bc",
-      "name": "Custom Gift Flow",
-      "settings": {
-        "packaging_collection": "frontpage",
-        "gifts_collection": "frontpage",
-        "card_collection": "frontpage",
-        "packaging_heading": "Choose Your Box Color",
-        "gifts_heading": "Choose Your Gifts",
-        "card_heading": "Pick A Card",
-        "packaging_subheading": "Welcome to the easiest way to send someone a custom gift, in 3 simple steps.",
-        "gifts_subheading": "We've hand-selected the best gifts in one place. Select from the items below and fill up your gift box!",
-        "card_subheading": "Complete your box with a hand-written card.",
-        "next_button_label": "Next",
-        "back_button_label": "Back",
-        "checkout_button_label": "Go to Checkout"
-      }
     }
   },
   "order": [
+    "bc_7HjKwi",
     "main",
     "related-products",
     "faq_AigTR7",
     "reviews_slider_G7n7ee",
-    "bundle_customizable_HbpLEx",
-    "bc_7HjKwi"
+    "bundle_customizable_HbpLEx"
   ]
 }

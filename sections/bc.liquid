@@ -3,7 +3,17 @@
   File: sections/custom-gift-box-flow.liquid
   A pure section file. External scripts and global styles should be loaded in theme layout.
 {% endcomment %}
+<!-- Tailwind Browser (for runtime utility classes) -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+<!-- DaisyUI (builds on Tailwind for component classes) -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet" />
+
+<!-- Font Awesome (for all the icons we reference) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+        integrity="sha512-…"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 <section class="gift-flow grid grid-cols-1 lg:grid-cols-4 gap-8" data-id="gift-flow">
   <!-- Main Steps Column -->
   <div class="lg:col-span-3 space-y-12">

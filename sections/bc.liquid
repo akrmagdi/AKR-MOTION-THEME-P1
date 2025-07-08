@@ -1,8 +1,16 @@
 {% comment %}
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
-  Updated: Bypass cart drawer by redirecting to_checkout; includes Tailwind Browser, DaisyUI, Font Awesome, and schema.
+  Update: Override cart drawer events to prevent opening, and schema.
 {% endcomment %}
+
+<!-- Prevent theme cart drawer from opening -->
+<script>
+  document.addEventListener('cart:open', function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }, true);
+</script>
 
 <!-- Load Tailwind Browser & DaisyUI + Font Awesome -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -27,7 +35,6 @@
       <li class="step">Done!</li>
     </ul>
     <!-- Step Contents -->
-    {% assign collections_list = "packaging,gifts,card,review" | split: ',' %}
     {% for idx in (1..4) %}
       <div class="step-content {% unless forloop.first %}hidden{% endunless %}" data-step="{{ idx }}">
         {% case idx %}
@@ -36,12 +43,12 @@
           <p class="text-gray-600 mb-6">{{ section.settings.packaging_subheading }}</p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for p in collections[section.settings.packaging_collection].products %}
-              <div class="card card-compact bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+              <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
                 <figure><img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md"/></figure>
-                <div class="card-body p-2">
-                  <h3 class="card-title truncate">{{ p.title }}</h3>
+                <div class="p-2">
+                  <h3 class="font-medium truncate">{{ p.title }}</h3>
                   <p class="text-primary font-semibold">{{ p.price | money }}</p>
-                  <button class="select-item btn btn-primary btn-block mt-2 transition-transform transform group-hover:scale-105"><i class="fas fa-plus mr-2"></i>Add to Box</button>
+                  <button class="select-item btn btn-primary w-full mt-2"><i class="fas fa-plus mr-2"></i>Add to Box</button>
                 </div>
               </div>
             {% endfor %}
@@ -51,12 +58,12 @@
           <p class="text-gray-600 mb-6">{{ section.settings.gifts_subheading }}</p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for p in collections[section.settings.gifts_collection].products %}
-              <div class="card card-compact bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+              <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
                 <figure><img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md"/></figure>
-                <div class="card-body p-2">
-                  <h3 class="card-title truncate">{{ p.title }}</h3>
+                <div class="p-2">
+                  <h3 class="font-medium truncate">{{ p.title }}</h3>
                   <p class="text-primary font-semibold">{{ p.price | money }}</p>
-                  <button class="select-item btn btn-primary btn-block mt-2 transition-transform transform group-hover:scale-105"><i class="fas fa-plus mr-2"></i>Add to Box</button>
+                  <button class="select-item btn btn-primary w-full mt-2"><i class="fas fa-plus mr-2"></i>Add to Box</button>
                 </div>
               </div>
             {% endfor %}
@@ -66,11 +73,11 @@
           <p class="text-gray-600 mb-6">{{ section.settings.card_subheading }}</p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for p in collections[section.settings.card_collection].products %}
-              <div class="card card-compact bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+              <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
                 <figure><img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md"/></figure>
-                <div class="card-body p-2">
-                  <h3 class="card-title truncate">{{ p.title }}</h3>
-                  <button class="select-item btn btn-secondary btn-block mt-2 transition-transform transform group-hover:scale-105"><i class="fas fa-check mr-2"></i>Select Card</button>
+                <div class="p-2">
+                  <h3 class="font-medium truncate">{{ p.title }}</h3>
+                  <button class="select-item btn btn-secondary w-full mt-2"><i class="fas fa-check mr-2"></i>Select Card</button>
                 </div>
               </div>
             {% endfor %}
@@ -79,7 +86,7 @@
           <h2 class="text-2xl font-bold mb-4">Review Your Box</h2>
           <div id="review-list" class="space-y-4 mb-4"></div>
           <div class="text-right text-xl font-bold mb-6">Total: <span id="review-total">$0.00</span></div>
-          <button class="checkout-step btn btn-success btn-block transition-colors"><i class="fas fa-shopping-cart mr-2"></i>Proceed to Checkout</button>
+          <button class="checkout-step btn btn-success w-full"><i class="fas fa-shopping-cart mr-2"></i>Proceed to Checkout</button>
         {% endcase %}
         {% unless forloop.last %}
           <div class="flex justify-end mt-8">
@@ -98,33 +105,69 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded',()=>{
-  let selected=[];
-  const contents=document.querySelectorAll('.step-content');
-  const markers=document.querySelectorAll('.step-marker');
-  const sidebar=document.getElementById('sidebar-summary-list');
-  const stotal=document.getElementById('sidebar-total');
-  const rlist=document.getElementById('review-list');
-  const rtotal=document.getElementById('review-total');
-  function updateAll(){let sum=0;sidebar.innerHTML=selected.map(i=>`<li class="flex justify-between"><span>${i.title}</span><span>$${(+i.price).toFixed(2)}</span></li>`).join('');selected.forEach(i=>sum+=+i.price);stotal.textContent='$'+sum.toFixed(2);if(rlist)rlist.innerHTML=sidebar.innerHTML;if(rtotal)rtotal.textContent='$'+sum.toFixed(2);}  function goTo(step){contents.forEach(c=>c.classList.toggle('hidden',c.dataset.step!==step));markers.forEach(m=>m.classList.toggle('border-blue-600 bg-blue-600',m.dataset.step===step));updateAll();}  document.body.addEventListener('click',e=>{if(e.target.closest('.select-item')){const card=e.target.closest('.card');selected.push({id:card.dataset.id,price:card.dataset.price,title:card.querySelector('h3').innerText});updateAll()}if(e.target.closest('.next-step')){const cur=document.querySelector('.step-marker.bg-blue-600').dataset.step;goTo((+cur+1).toString())}if(e.target.closest('.back-step')){const cur=document.querySelector('.step-marker.bg-blue-600').dataset.step;goTo((+cur-1).toString())}if(e.target.closest('.checkout-step')){window.location.href='/checkout';}});  goTo('1');});
+  document.addEventListener('DOMContentLoaded', function() {
+    let selected = [];
+    const contents = document.querySelectorAll('.step-content');
+    const markers = document.querySelectorAll('.step-marker');
+    const sidebar = document.getElementById('sidebar-summary-list');
+    const stotal = document.getElementById('sidebar-total');
+    const rlist = document.getElementById('review-list');
+    const rtotal = document.getElementById('review-total');
+
+    function updateAll() {
+      let sum = 0;
+      sidebar.innerHTML = selected.map(i => `<li class="flex justify-between"><span>${i.title}</span><span>$${(+i.price).toFixed(2)}</span></li>`).join('');
+      selected.forEach(i => sum += +i.price);
+      stotal.textContent = '$' + sum.toFixed(2);
+      if (rlist) rlist.innerHTML = sidebar.innerHTML;
+      if (rtotal) rtotal.textContent = '$' + sum.toFixed(2);
+    }
+
+    function goTo(step) {
+      contents.forEach(c => c.classList.toggle('hidden', c.dataset.step !== step));
+      markers.forEach(m => m.classList.toggle('border-blue-600 bg-blue-600', m.dataset.step === step));
+      updateAll();
+    }
+
+    document.body.addEventListener('click', e => {
+      if (e.target.closest('.select-item')) {
+        const card = e.target.closest('.card');
+        selected.push({ id: card.dataset.id, price: card.dataset.price, title: card.querySelector('h3').innerText });
+        updateAll();
+      }
+      if (e.target.closest('.next-step')) {
+        const cur = document.querySelector('.step-marker.bg-blue-600').dataset.step;
+        goTo((+cur + 1).toString());
+      }
+      if (e.target.closest('.back-step')) {
+        const cur = document.querySelector('.step-marker.bg-blue-600').dataset.step;
+        goTo((+cur - 1).toString());
+      }
+      if (e.target.closest('.checkout-step')) {
+        window.location.href = '/checkout';
+      }
+    });
+
+    goTo('1');
+  });
 </script>
 
 {% schema %}
 {
   "name": "Custom Gift Flow",
   "settings": [
-    { "type":"collection","id":"packaging_collection","label":"Packaging Collection" },
-    { "type":"text","id":"packaging_heading","label":"Packaging Heading","default":"Choose Your Box Color" },
-    { "type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Pick your favorite box style." },
-    { "type":"collection","id":"gifts_collection","label":"Gifts Collection" },
-    { "type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts" },
-    { "type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"Select items to fill your box." },
-    { "type":"collection","id":"card_collection","label":"Card Collection" },
-    { "type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card" },
-    { "type":"text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message." },
-    { "type":"text","id":"next_button_label","label":"Next Button Label","default":"Next" },
-    { "type":"text","id":"back_button_label","label":"Back Button Label","default":"Back" },
-    { "type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Proceed to Checkout" }
+    { "type": "collection", "id": "packaging_collection", "label": "Packaging Collection" },
+    { "type": "text", "id": "packaging_heading", "label": "Packaging Heading", "default": "Choose Your Box Color" },
+    { "type": "text", "id": "packaging_subheading", "label": "Packaging Subheading", "default": "Pick your favorite box style." },
+    { "type": "collection", "id": "gifts_collection", "label": "Gifts Collection" },
+    { "type": "text", "id": "gifts_heading", "label": "Gifts Heading", "default": "Choose Your Gifts" },
+    { "type": "text", "id": "gifts_subheading", "label": "Gifts Subheading", "default": "Select items to fill your box." },
+    { "type": "collection", "id": "card_collection", "label": "Card Collection" },
+    { "type": "text", "id": "card_heading", "label": "Card Heading", "default": "Select a Card" },
+    { "type": "text", "id": "card_subheading", "label": "Card Subheading", "default": "Add a personal message." },
+    { "type": "text", "id": "next_button_label", "label": "Next Button Label", "default": "Next" },
+    { "type": "text", "id": "back_button_label", "label": "Back Button Label", "default": "Back" },
+    { "type": "text", "id": "checkout_button_label", "label": "Checkout Button Label", "default": "Proceed to Checkout" }
   ],
   "presets": [
     { "name": "Custom Gift Flow", "category": "Custom Sections" }

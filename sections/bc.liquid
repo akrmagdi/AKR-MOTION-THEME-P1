@@ -1,14 +1,15 @@
 {% comment %}
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
-  Enhancements:
-    • Progress bar with ProgressBar.js
-    • Pre-rendered step contents for stable "Add to Box" behavior
-    • Sticky summary bar with thumbnails
-    • Fixed Add/Next/Back actions
+  Adjustments:
+    • Fixed Liquid syntax by replacing inline ternary with if/elsif for collection assignment
+    • Made product cards smaller (h-32 images, smaller padding)
+    • Added placeholder to summary thumbs when empty
+    • Ensured progress bar container has explicit height
+    • Refined Add/Next/Back functionality
 {% endcomment %}
 
-<!-- Include external libs (move to layout if desired) -->
+<!-- Include necessary libs (preferably in layout) -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -18,7 +19,9 @@
   <!-- Sticky Summary -->
   <div id="summary-bar" class="sticky top-4 bg-white p-4 border rounded-md shadow mb-6 z-10">
     <h4 class="font-semibold mb-2">Your Box (<span id="summary-count">0</span> items)</h4>
-    <div id="summary-thumbs" class="flex space-x-2"></div>
+    <div id="summary-thumbs" class="flex space-x-2">
+      <span class="text-gray-400">No items yet</span>
+    </div>
   </div>
 
   <!-- Top Icons -->
@@ -36,7 +39,7 @@
   </div>
 
   <!-- Progress Bar -->
-  <div id="progress-container" class="mb-8"></div>
+  <div id="progress-container" class="mb-8" style="height:6px;"></div>
 
   <!-- Step Header -->
   <div class="text-center mb-6">
@@ -47,128 +50,92 @@
 
   <!-- Steps Content (pre-rendered) -->
   <div id="steps-wrapper">
-    <!-- Packaging -->
-    <div class="step-content" data-step="1">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for p in collections[section.settings.packaging_collection].products %}
-        <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
-          <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
-          <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
-          <p class="text-blue-600 font-semibold mb-3">{{ p.price | money }}</p>
-          <button class="select-item btn btn-primary w-full"><i class="fas fa-plus mr-2"></i>Add to Box</button>
+    {% for idx in (1..3) %}
+      {% comment %} Assign correct collection based on idx {% endcomment %}
+      {% if idx == 1 %}
+        {% assign col = collections[section.settings.packaging_collection] %}
+      {% elsif idx == 2 %}
+        {% assign col = collections[section.settings.gifts_collection] %}
+      {% else %}
+        {% assign col = collections[section.settings.card_collection] %}
+      {% endif %}
+      <div class="step-content {% unless idx == 1 %}hidden{% endunless %}" data-step="{{ idx }}">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {% for p in col.products %}
+          <div class="card border rounded-lg p-2 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
+            {% if p.featured_image %}
+              <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-32 object-cover rounded-md mb-2">
+            {% endif %}
+            <h3 class="font-medium truncate mb-1 text-sm">{{ p.title }}</h3>
+            {% if idx < 3 %}
+              <p class="text-blue-600 font-semibold mb-1 text-sm">{{ p.price | money }}</p>
+              <button class="select-item btn btn-xs btn-primary w-full uppercase"><i class="fas fa-plus mr-1"></i>Add</button>
+            {% else %}
+              <button class="select-item btn btn-xs btn-secondary w-full uppercase"><i class="fas fa-check mr-1"></i>Select Card</button>
+            {% endif %}
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
-    </div>
-    <!-- Gifts -->
-    <div class="step-content hidden" data-step="2">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for p in collections[section.settings.gifts_collection].products %}
-        <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
-          <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
-          <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
-          <p class="text-blue-600 font-semibold mb-3">{{ p.price | money }}</p>
-          <button class="select-item btn btn-primary w-full"><i class="fas fa-plus mr-2"></i>Add to Box</button>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    <!-- Card -->
-    <div class="step-content hidden" data-step="3">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for p in collections[section.settings.card_collection].products %}
-        <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="0" data-img="{{ p.featured_image | img_url:'200x' }}">
-          <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
-          <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
-          <button class="select-item btn btn-secondary w-full"><i class="fas fa-check mr-2"></i>Select Card</button>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+    {% endfor %}
   </div>
 
   <!-- Nav Buttons -->
-  <div class="flex justify-between mt-8">
-    <button id="back-btn" class="btn btn-outline btn-secondary" disabled><i class="fas fa-arrow-left mr-2"></i>{{ section.settings.back_button_label }}</button>
-    <button id="next-btn" class="btn btn-primary">{{ section.settings.next_button_label }}<i class="fas fa-arrow-right ml-2"></i></button>
+  <div class="flex justify-between mt-6">
+    <button id="back-btn" class="btn btn-outline btn-secondary btn-sm" disabled><i class="fas fa-arrow-left mr-1"></i>{{ section.settings.back_button_label }}</button>
+    <button id="next-btn" class="btn btn-primary btn-sm">{{ section.settings.next_button_label }}<i class="fas fa-arrow-right ml-1"></i></button>
   </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', ()=>{
-    // Init ProgressBar.js
-    const bar = new ProgressBar.Line('#progress-container', { strokeWidth:4, duration:300, color:'#3b82f6', trailColor:'#e5e7eb' });
-
-    const steps = [1,2,3,4];
+  document.addEventListener('DOMContentLoaded',()=>{
+    const bar = new ProgressBar.Line('#progress-container',{ strokeWidth:6,duration:200,color:'#3b82f6',trailColor:'#e5e7eb' });
+    const totals = 3;
     let current = 1;
-    const totalSteps = 4;
-    const stepContents = document.querySelectorAll('.step-content');
-    const backBtn = document.getElementById('back-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const currentStepEl = document.getElementById('current-step');
-    const currentTitle = document.getElementById('current-title');
-    const currentSub = document.getElementById('current-sub');
-    const summaryCount = document.getElementById('summary-count');
-    const summaryThumbs = document.getElementById('summary-thumbs');
-
-    const headings = [
+    const contents = document.querySelectorAll('.step-content');
+    const btnNext = document.getElementById('next-btn');
+    const btnBack = document.getElementById('back-btn');
+    const curStep = document.getElementById('current-step');
+    const curTitle= document.getElementById('current-title');
+    const curSub  = document.getElementById('current-sub');
+    const sumCount= document.getElementById('summary-count');
+    const sumThumbs= document.getElementById('summary-thumbs');
+    let selected=[];
+    const headings=[
       {{ section.settings.packaging_heading | json }},
       {{ section.settings.gifts_heading | json }},
-      {{ section.settings.card_heading | json }},
-      'Done!'
+      {{ section.settings.card_heading | json }}
     ];
-    const subs = [
+    const subs=[
       {{ section.settings.packaging_subheading | json }},
       {{ section.settings.gifts_subheading | json }},
-      {{ section.settings.card_subheading | json }},
-      ''
+      {{ section.settings.card_subheading | json }}
     ];
-
-    let selected = [];
-
-    function updateProgress(){
-      bar.animate((current-1)/(totalSteps-1));
-      currentStepEl.textContent = current<4?current:3;
-      currentTitle.textContent = headings[current-1];
-      currentSub.textContent = subs[current-1];
-
-      stepContents.forEach(div=>{
-        div.classList.toggle('hidden', parseInt(div.dataset.step)!==current);
-      });
-      backBtn.disabled = current===1;
-      nextBtn.innerHTML = current<3 ? '{{ section.settings.next_button_label }} <i class="fas fa-arrow-right ml-2"></i>'
-                          : current===3 ? 'Review <i class="fas fa-arrow-right ml-2"></i>'
-                          : '<i class="fas fa-shopping-cart mr-2"></i>{{ section.settings.checkout_button_label }}';
-
-      // summary
-      summaryCount.textContent = selected.length;
-      summaryThumbs.innerHTML = selected.map(i=>`<img src="${i.img}" class="w-10 h-10 object-cover rounded" title="${i.title}">`).join('');
+    function update(){
+      bar.animate((current-1)/(totals-1));
+      curStep.textContent = current;
+      curTitle.textContent= headings[current-1];
+      curSub.textContent  = subs[current-1];
+      contents.forEach((div,i)=>div.classList.toggle('hidden',i+1!==current));
+      btnBack.disabled = current===1;
+      btnNext.innerHTML = current<totals ? '{{ section.settings.next_button_label }} <i class="fas fa-arrow-right ml-1"></i>' : '<i class="fas fa-shopping-cart mr-1"></i>{{ section.settings.checkout_button_label }}';
+      sumCount.textContent = selected.length;
+      sumThumbs.innerHTML = selected.length ? selected.map(i=>`<img src="${i.img}" class="w-10 h-10 rounded" title="${i.title}">`).join('') : '<span class="text-gray-400">No items</span>';
     }
-
-    function addItem(card){
-      const id = card.dataset.id;
-      const price= card.dataset.price;
-      const title= card.dataset.title;
-      const img = card.dataset.img;
-      selected.push({id,price,title,img});
-    }
-
-    document.body.addEventListener('click', e=>{
+    document.body.addEventListener('click',e=>{
       if(e.target.closest('.select-item')){
-        addItem(e.target.closest('[data-id]'));
-        updateProgress();
+        const card=e.target.closest('[data-id]');
+        selected.push({id:card.dataset.id,price:card.dataset.price,title:card.dataset.title,img:card.dataset.img});
+        update();
       }
       if(e.target.closest('#next-btn')){
-        if(current<4) current++; else window.location.href='/checkout';
-        updateProgress();
+        if(current<totals) current++; else window.location.href='/checkout'; update();
       }
       if(e.target.closest('#back-btn')){
-        if(current>1) current--;
-        updateProgress();
+        if(current>1) current--; update();
       }
     });
-
-    updateProgress();
+    update();
   });
 </script>
 

@@ -10,70 +10,75 @@
 {%- comment -%}
 / sections/box-fitter.liquid
 4-step “box builder” wizard with:
-• Fully responsive (mobile → desktop)
-• Accent-color setting
-• Scroll-into-view on navigation
-• Clickable stepper (Done locked until all chosen)
-• Animated progress lines
-• Only current step circle is filled; past steps’ connectors animate
+• 4 small icons in a single row on mobile  
+• Configurable product columns (mobile & desktop)  
+• Fully responsive, dynamic grids via CSS vars  
+• Accent color setting  
+• Scroll-into-view on navigation  
+• Clickable, animated stepper  
 {%- endcomment -%}
 
 <style>
-  /* CSS variables */
+  /* CSS variables & container */
   .box-fitter { 
     --accent: {{ section.settings.accent_color }};
     --base-border: #D1D5DB;
+    --mobile-cols: {{ section.settings.mobile_columns }};
+    --desktop-cols: {{ section.settings.desktop_columns }};
+    background: #f9fafb; border-radius: 1rem;
   }
-
-  /* Container & typography */
-  .box-fitter { background: #f9fafb; border-radius: 1rem; }
   .box-fitter h3 { font-size: 1.25rem; font-weight: 600; }
   .box-fitter h4, .box-fitter h5 { color: #111827; }
   .box-fitter p    { color: #4B5563; }
 
+  /* Features row: always 4 columns */
+  .box-fitter .features {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 0.75rem;
+  }
+
   /* Stepper */
   .stepper { counter-reset: step; margin-bottom: 2rem; display: flex; }
   .stepper li { 
-    flex: 1; 
-    list-style: none; 
-    position: relative; 
-    text-align: center; 
+    flex: 1; list-style: none; position: relative; text-align: center;
     cursor: pointer;
   }
   .stepper li:before {
     counter-increment: step;
     content: counter(step);
-    display: block;
-    margin: 0 auto .5rem;
-    width: 2.5rem; height: 2.5rem; line-height: 2.5rem;
-    border: 2px solid var(--base-border);
-    border-radius: 50%;
-    background: white;
-    transition: background .3s, border-color .3s, color .3s;
+    display: block; margin: 0 auto .5rem;
+    width: 2rem; height: 2rem; line-height: 2rem;
+    border: 2px solid var(--base-border); border-radius: 50%;
+    background: white; transition: background .3s, border-color .3s, color .3s;
   }
-  /* connector line */
   .stepper li:after {
     content: '';
-    position: absolute;
-    top: 1.25rem; left: 100%;
-    width: 100%; height: 2px;
-    background: var(--base-border);
+    position: absolute; top: 1rem; left: 100%;
+    width: 100%; height: 2px; background: var(--base-border);
     transition: background .3s;
   }
   .stepper li:last-child:after { display: none; }
-
-  /* current step circle */
   .stepper li.active:before {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: white;
+    border-color: var(--accent); background: var(--accent); color: white;
   }
-  /* animate connectors for past steps */
   .stepper li.completed:after {
     background: var(--accent);
     animation: expandLine .4s ease forwards;
   }
   @keyframes expandLine { from { width: 0; } to { width: 100%; } }
+
+  /* Product grid using CSS vars */
+  .product-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(var(--mobile-cols),1fr);
+  }
+  @media (min-width: 640px) {
+    .product-grid {
+      grid-template-columns: repeat(var(--desktop-cols),1fr);
+    }
+  }
 
   /* Product cards */
   .product-card {
@@ -107,25 +112,21 @@
   x-data="boxFitter()"
   class="box-fitter max-w-4xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 space-y-8"
 >
-  <!-- Features Row -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <!-- Top 4 icons, always 4 in a row -->
+  <div class="features">
     {% for i in (1..4) %}
       {% assign iconKey  = 'icon'  | append: i %}
       {% assign labelKey = 'icon'  | append: i  | append: '_label' %}
-      <div class="bg-white p-4 rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+      <div class="bg-white p-3 rounded-xl shadow flex flex-col items-center">
         {% if section.settings[iconKey] %}
-          <img
-            src="{{ section.settings[iconKey] | img_url: '80x80' }}"
-            alt=""
-            class="mb-2"
-          >
+          <img src="{{ section.settings[iconKey] | img_url: '48x48' }}" alt="" class="mb-1">
         {% endif %}
-        <p class="text-sm font-medium">{{ section.settings[labelKey] }}</p>
+        <p class="text-xs font-medium text-center">{{ section.settings[labelKey] }}</p>
       </div>
     {% endfor %}
   </div>
 
-  <!-- Progress Stepper -->
+  <!-- Progress stepper -->
   <ul class="stepper">
     <template x-for="(step, idx) in steps" :key="idx">
       <li
@@ -140,58 +141,56 @@
     </template>
   </ul>
 
-  <!-- Steps Content -->
+  <!-- Step contents -->
   <div class="space-y-6">
 
-    <!-- Step 1: Packaging -->
+    <!-- Step 1 -->
     <div x-show="currentStep===1" class="space-y-4">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="product-grid">
         <template x-for="prod in step1Products" :key="prod.id">
           <div
-            class="product-card p-4 cursor-pointer"
+            class="product-card p-3 cursor-pointer"
             :class="{ 'selected': isSelected(prod.id,1) }"
             @click="toggleSelect(prod,1)"
           >
-            <img :src="prod.featured_image"
-                 class="mb-2 rounded-md w-full h-32 object-cover">
-            <h4 class="text-sm mb-1" x-text="prod.title"></h4>
+            <img :src="prod.featured_image" class="mb-1 rounded-md w-full h-24 object-cover">
+            <h4 class="text-sm" x-text="prod.title"></h4>
             <p class="text-xs" x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
         </template>
       </div>
       <button
-        class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-6 py-2"
+        class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-5 py-2"
         :disabled="selectedCount(1)===0"
         @click="nextStep()"
       >
         Next
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M9 5l7 7-7 7" />
         </svg>
       </button>
     </div>
 
-    <!-- Step 2: Gifts -->
+    <!-- Step 2 -->
     <div x-show="currentStep===2" class="space-y-4">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="product-grid">
         <template x-for="prod in step2Products" :key="prod.id">
           <div
-            class="product-card p-4 cursor-pointer"
+            class="product-card p-3 cursor-pointer"
             :class="{ 'selected': isSelected(prod.id,2) }"
             @click="toggleSelect(prod,2)"
           >
-            <img :src="prod.featured_image"
-                 class="mb-2 rounded-md w-full h-32 object-cover">
-            <h4 class="text-sm mb-1" x-text="prod.title"></h4>
+            <img :src="prod.featured_image" class="mb-1 rounded-md w-full h-24 object-cover">
+            <h4 class="text-sm" x-text="prod.title"></h4>
             <p class="text-xs" x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
         </template>
       </div>
       <div class="flex justify-between">
         <button
-          class="btn bg-gray-300 hover:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-gray-700 px-5 py-2"
+          class="btn bg-gray-300 hover:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-gray-700 px-4 py-2"
           @click="prevStep()"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
@@ -202,7 +201,7 @@
           Back
         </button>
         <button
-          class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-6 py-2"
+          class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-5 py-2"
           :disabled="selectedCount(2)===0"
           @click="nextStep()"
         >
@@ -216,25 +215,24 @@
       </div>
     </div>
 
-    <!-- Step 3: Card -->
+    <!-- Step 3 -->
     <div x-show="currentStep===3" class="space-y-4">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="product-grid">
         <template x-for="prod in step3Products" :key="prod.id">
           <div
-            class="product-card p-4 cursor-pointer"
+            class="product-card p-3 cursor-pointer"
             :class="{ 'selected': isSelected(prod.id,3) }"
             @click="toggleSelect(prod,3)"
           >
-            <img :src="prod.featured_image"
-                 class="mb-2 rounded-md w-full h-32 object-cover">
-            <h4 class="text-sm mb-1" x-text="prod.title"></h4>
+            <img :src="prod.featured_image" class="mb-1 rounded-md w-full h-24 object-cover">
+            <h4 class="text-sm" x-text="prod.title"></h4>
             <p class="text-xs" x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
         </template>
       </div>
       <div class="flex justify-between">
         <button
-          class="btn bg-gray-300 hover:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-gray-700 px-5 py-2"
+          class="btn bg-gray-300 hover:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-gray-700 px-4 py-2"
           @click="prevStep()"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
@@ -245,7 +243,7 @@
           Back
         </button>
         <button
-          class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-6 py-2"
+          class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-5 py-2"
           :disabled="selectedCount(3)===0"
           @click="nextStep()"
         >
@@ -278,7 +276,6 @@
             </template>
           </div>
         </template>
-
         <template x-if="selectedCount(2)>0">
           <div>
             <h4 class="font-medium mb-2" x-text="steps[1]"></h4>
@@ -293,7 +290,6 @@
             </template>
           </div>
         </template>
-
         <template x-if="selectedCount(3)>0">
           <div>
             <h4 class="font-medium mb-2" x-text="steps[2]"></h4>
@@ -413,7 +409,36 @@
 {
   "name": "Box Fitter",
   "settings": [
-    { "type":"color","id":"accent_color","label":"Accent Color","default":"#2563EB" },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2563EB"
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Products per row (mobile)",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "desktop_columns",
+      "label": "Products per row (desktop)",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    },
 
     { "type":"image_picker","id":"icon1","label":"Icon 1" },
     { "type":"text","id":"icon1_label","label":"Icon 1 Label","default":"Fast Shipping" },
@@ -448,6 +473,8 @@
       ],"default":"single"
     }
   ],
-  "presets":[{ "name":"Box Fitter","category":"Custom" }]
+  "presets": [
+    { "name": "Box Fitter", "category": "Custom" }
+  ]
 }
 {% endschema %}

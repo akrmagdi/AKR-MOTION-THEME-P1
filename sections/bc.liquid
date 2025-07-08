@@ -1,174 +1,152 @@
 {% comment %}
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
-  Self-contained section: loads required scripts/styles, handles all Next/Add/Back actions.
+  Redesigned Top Icon & Progress Layout to match provided style.
+  External scripts/styles (Tailwind, Font Awesome) should be added in theme layout.
 {% endcomment %}
 
-<!-- These scripts and styles should ideally be in your layout, but included here per request -->
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<section class="customizer max-w-7xl mx-auto p-8" data-id="gift-flow">
+  <!-- Top Icons -->
+  <div class="grid grid-cols-4 gap-8 mb-8">
+    {% assign icons = "box-open,gift,credit-card,check-circle" | split: ',' %}
+    {% assign labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Enjoy Gifting" | split: ',' %}
+    {% for icon in icons %}
+      <div class="text-center">
+        <div class="mx-auto w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-2">
+          <i class="fas fa-{{ icon }} text-2xl text-blue-600"></i>
+        </div>
+        <p class="text-sm font-semibold text-gray-800">{{ labels[forloop.index0] }}</p>
+      </div>
+    {% endfor %}
+  </div>
 
-<section class="gift-flow grid grid-cols-1 lg:grid-cols-4 gap-8" data-id="gift-flow">
-  <!-- Steps + Contents -->
-  <div class="lg:col-span-3 space-y-12">
-    <!-- Icons Row -->
-    <div class="grid grid-cols-4 gap-6 text-center">
-      <div><i class="fas fa-box-open text-4xl text-primary mb-1"></i><p class="font-semibold text-sm">Pick Box</p></div>
-      <div><i class="fas fa-gift text-4xl text-primary mb-1"></i><p class="font-semibold text-sm">Pick Gifts</p></div>
-      <div><i class="fas fa-credit-card text-4xl text-primary mb-1"></i><p class="font-semibold text-sm">Pick Card</p></div>
-      <div><i class="fas fa-check-circle text-4xl text-primary mb-1"></i><p class="font-semibold text-sm">Review</p></div>
+  <!-- Progress Bar -->
+  <div class="relative mb-6">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-300"></div>
     </div>
-
-    <!-- DaisyUI Steps -->
-    <ul id="stepsNav" class="steps steps-horizontal mb-8">
-      <li class="step step-primary">Packaging</li>
-      <li class="step">Gifts</li>
-      <li class="step">Card</li>
-      <li class="step">Done!</li>
-    </ul>
-
-    <!-- Step Contents -->
-    <div id="stepContents">
-      <!-- Step 1 -->
-      <div class="step-content" data-step="1">
-        <h2 class="text-2xl font-bold mb-3">{{ section.settings.packaging_heading }}</h2>
-        <p class="text-gray-600 mb-6">{{ section.settings.packaging_subheading }}</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {% for p in collections[section.settings.packaging_collection].products %}
-          <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
-            <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="h-48 w-full object-cover rounded mb-3">
-            <h3 class="font-medium truncate mb-1">{{ p.title }}</h3>
-            <p class="text-primary font-semibold mb-3">{{ p.price | money }}</p>
-            <button class="select-item btn btn-primary btn-block"><i class="fas fa-plus mr-2"></i>Add to Box</button>
-          </div>
-          {% endfor %}
+    <div class="relative flex justify-between">
+      {% for i in (1..4) %}
+        <div class="flex flex-col items-center">
+          <span class="step-marker w-4 h-4 rounded-full border-2 transition-colors"
+                data-step="{{ i }}"
+                ></span>
         </div>
-        <div class="flex justify-end mt-8">
-          <button data-action="next" class="btn btn-accent"><i class="fas fa-arrow-right mr-2"></i>{{ section.settings.next_button_label }}</button>
-        </div>
-      </div>
-      <!-- Step 2 -->
-      <div class="step-content hidden" data-step="2">
-        <h2 class="text-2xl font-bold mb-3">{{ section.settings.gifts_heading }}</h2>
-        <p class="text-gray-600 mb-6">{{ section.settings.gifts_subheading }}</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {% for p in collections[section.settings.gifts_collection].products %}
-          <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
-            <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="h-48 w-full object-cover rounded mb-3">
-            <h3 class="font-medium truncate mb-1">{{ p.title }}</h3>
-            <p class="text-primary font-semibold mb-3">{{ p.price | money }}</p>
-            <button class="select-item btn btn-primary btn-block"><i class="fas fa-plus mr-2"></i>Add to Box</button>
-          </div>
-          {% endfor %}
-        </div>
-        <div class="flex justify-between mt-8">
-          <button data-action="back" class="btn btn-secondary"><i class="fas fa-arrow-left mr-2"></i>{{ section.settings.back_button_label }}</button>
-          <button data-action="next" class="btn btn-accent"><i class="fas fa-arrow-right mr-2"></i>{{ section.settings.next_button_label }}</button>
-        </div>
-      </div>
-      <!-- Step 3 -->
-      <div class="step-content hidden" data-step="3">
-        <h2 class="text-2xl font-bold mb-3">{{ section.settings.card_heading }}</h2>
-        <p class="text-gray-600 mb-6">{{ section.settings.card_subheading }}</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {% for p in collections[section.settings.card_collection].products %}
-          <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
-            <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="h-48 w-full object-cover rounded mb-3">
-            <h3 class="font-medium truncate mb-1">{{ p.title }}</h3>
-            <button class="select-item btn btn-secondary btn-block"><i class="fas fa-check mr-2"></i>Select Card</button>
-          </div>
-          {% endfor %}
-        </div>
-        <div class="flex justify-between mt-8">
-          <button data-action="back" class="btn btn-secondary"><i class="fas fa-arrow-left mr-2"></i>{{ section.settings.back_button_label }}</button>
-          <button data-action="next" class="btn btn-accent"><i class="fas fa-arrow-right mr-2"></i>Review</button>
-        </div>
-      </div>
-      <!-- Step 4 -->
-      <div class="step-content hidden" data-step="4">
-        <h2 class="text-2xl font-bold mb-3">Review Your Box</h2>
-        <div id="review-list" class="space-y-4 mb-4"></div>
-        <div class="text-right text-xl font-bold mb-6">Total: <span id="review-total">$0.00</span></div>
-        <button class="checkout-step btn btn-success btn-block"><i class="fas fa-shopping-cart mr-2"></i>{{ section.settings.checkout_button_label }}</button>
-      </div>
+      {% endfor %}
+    </div>
+    <div class="flex justify-between mt-2 text-xs text-gray-500">
+      <span>STEP 1<br>Packaging</span>
+      <span>STEP 2<br>Gifts</span>
+      <span>STEP 3<br>Card</span>
+      <span>DONE!<br>Done!</span>
     </div>
   </div>
-  <!-- Summary Sidebar -->
-  <aside class="summary-col lg:col-span-1 p-6 rounded-xl shadow-xl">
-    <h4 class="text-lg font-semibold mb-4">Box Summary</h4>
-    <ul id="sidebar-summary-list" class="space-y-3 max-h-80 overflow-auto"></ul>
-    <div class="mt-6 text-lg font-bold">Total: <span id="sidebar-total">$0.00</span></div>
-  </aside>
+
+  <!-- Step Header -->
+  <div class="text-center mb-4">
+    <p class="text-xs uppercase text-gray-500 mb-1">Step <span id="current-step">1</span> of 3</p>
+    <h2 id="current-title" class="text-3xl font-bold text-gray-900">{{ section.settings.packaging_heading }}</h2>
+    <p id="current-sub" class="text-gray-600 mt-2">{{ section.settings.packaging_subheading }}</p>
+  </div>
+
+  <!-- Step Content -->
+  <div id="step-content" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    {% assign cur = 1 %}
+    {% for p in collections[section.settings.packaging_collection].products %}
+      <div class="card border rounded-lg p-4 shadow-sm" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+        <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-48 object-cover rounded-md mb-3">
+        <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
+        <p class="text-blue-600 font-semibold mb-3">{{ p.price | money }}</p>
+        <button class="select-item btn btn-sm btn-primary w-full uppercase">Add to Box</button>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="flex justify-between mt-8">
+    <button id="back-btn" class="btn btn-outline btn-secondary" disabled>Back</button>
+    <button id="next-btn" class="btn btn-primary">Next</button>
+  </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    let selected = [];
-    const contents = document.querySelectorAll('.step-content');
-    const steps = document.querySelectorAll('#stepsNav li.step');
-    const sidebar = document.getElementById('sidebar-summary-list');
-    const stotal = document.getElementById('sidebar-total');
-    const rlist = document.getElementById('review-list');
-    const rtotal = document.getElementById('review-total');
-
-    function updateAll() {
-      let sum = 0;
-      sidebar.innerHTML = selected.map(i => `<li class="flex justify-between"><span>${i.title}</span><span>$${(+i.price).toFixed(2)}</span></li>`).join('');
-      selected.forEach(i => sum += +i.price);
-      stotal.textContent = '$' + sum.toFixed(2);
-      if (rlist) rlist.innerHTML = sidebar.innerHTML;
-      if (rtotal) rtotal.textContent = '$' + sum.toFixed(2);
-    }
-
+  document.addEventListener('DOMContentLoaded',()=>{
+    const steps = ['Packaging','Gifts','Card','Done!'];
+    const headings = ['{{ section.settings.packaging_heading }}','{{ section.settings.gifts_heading }}','{{ section.settings.card_heading }}','Done!'];
+    const subs = ['{{ section.settings.packaging_subheading }}','{{ section.settings.gifts_subheading }}','{{ section.settings.card_subheading }}',''];
+    const collectionsIds = ['{{ section.settings.packaging_collection }}','{{ section.settings.gifts_collection }}','{{ section.settings.card_collection }}'];
     let current = 1;
-    function showStep(n) {
-      current = n;
-      contents.forEach((c, i) => c.classList.toggle('hidden', i+1 !== n));
-      steps.forEach((s, i) => s.classList.toggle('step-primary', i+1 === n));
-      updateAll();
+    const markers = document.querySelectorAll('.step-marker');
+    const currentStepEl = document.getElementById('current-step');
+    const currentTitle = document.getElementById('current-title');
+    const currentSub = document.getElementById('current-sub');
+    const contentGrid = document.getElementById('step-content');
+    const backBtn = document.getElementById('back-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    function renderStep() {
+      // update markers
+      markers.forEach(m=>{
+        const step = parseInt(m.dataset.step,10);
+        m.classList.toggle('bg-blue-600 border-blue-600',step<=current);
+        m.classList.toggle('border-gray-300',step>current);
+      });
+      // update header
+      currentStepEl.textContent = current<4?current:3;
+      currentTitle.textContent = headings[current-1];
+      currentSub.textContent = subs[current-1];
+      // update content
+      let html='';
+      if(current<4) {
+        const col = collectionsIds[current-1];
+        const products = window.Shopify.theme.sections['collections'][col] || [];
+        // fallback: assume global collections object
+        const prods = window["collections"][col].products;
+        prods.forEach(p=>{
+          html+=`<div class="card border rounded-lg p-4 shadow-sm" data-id="${p.id}" data-price="${p.variants[0].price}\">`+
+                `<img src="${p.image}" class="w-full h-48 object-cover rounded-md mb-3">`+
+                `<h3 class="font-medium truncate mb-2">${p.title}</h3>`+
+                `<p class="text-blue-600 font-semibold mb-3">${p.price}</p>`+
+                `<button class="select-item btn btn-sm btn-primary w-full uppercase">Add to Box</button>`+
+                `</div>`;
+        });
+      } else {
+        html='<p class="text-center text-gray-500 col-span-3">Done selecting items.</p>';
+      }
+      contentGrid.innerHTML = html;
+      // buttons
+      backBtn.disabled = current===1;
+      nextBtn.textContent = current<3?'Next':'Review';
+      if(current===4) nextBtn.textContent='Proceed to Checkout';
     }
 
-    document.body.addEventListener('click', e => {
-      if (e.target.closest('.select-item')) {
-        const card = e.target.closest('[data-id]');
-        selected.push({ id: card.dataset.id, price: card.dataset.price, title: card.querySelector('h3').innerText });
-        updateAll();
-      }
-      if (e.target.dataset.action === 'next') {
-        if (current < contents.length) showStep(current+1);
-      }
-      if (e.target.dataset.action === 'back') {
-        if (current > 1) showStep(current-1);
-      }
-      if (e.target.closest('.checkout-step')) {
-        window.location.href = '/checkout';
-      }
+    backBtn.addEventListener('click',()=>{ if(current>1) current--; renderStep(); });
+    nextBtn.addEventListener('click',()=>{
+      if(current<4) current++; else window.location.href='/checkout';
+      renderStep();
     });
 
-    showStep(1);
+    renderStep();
   });
 </script>
 
 {% schema %}
 {
-  "name": "Custom Gift Flow",
-  "settings": [
-    { "type": "collection", "id": "packaging_collection", "label": "Packaging Collection" },
-    { "type": "text", "id": "packaging_heading", "label": "Packaging Heading", "default": "Choose Your Box Color" },
-    { "type": "text", "id": "packaging_subheading", "label": "Packaging Subheading", "default": "Pick your favorite box style." },
-    { "type": "collection", "id": "gifts_collection", "label": "Gifts Collection" },
-    { "type": "text", "id": "gifts_heading", "label": "Gifts Heading", "default": "Choose Your Gifts" },
-    { "type": "text", "id": "gifts_subheading", "label": "Gifts Subheading", "default": "Select items to fill your box." },
-    { "type": "collection", "id": "card_collection", "label": "Card Collection" },
-    { "type": "text", "id": "card_heading","label":"Card Heading","default":"Select a Card"},
-    { "type": "text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message."},
-    { "type": "text","id":"next_button_label","label":"Next Button Label","default":"Next"},
-    { "type": "text","id":"back_button_label","label":"Back Button Label","default":"Back"},
-    { "type": "text","id":"checkout_button_label","label":"Checkout Button Label","default":"Proceed to Checkout"}
+  "name":"Custom Gift Flow",
+  "settings":[
+    {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
+    {"type":"text","id":"packaging_heading","label":"Packaging Heading","default":"Choose Your Box Color"},
+    {"type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Pick your favorite box style."},
+    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
+    {"type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts"},
+    {"type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"Select items to fill your box."},
+    {"type":"collection","id":"card_collection","label":"Card Collection"},
+    {"type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card"},
+    {"type":"text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message."},
+    {"type":"text","id":"next_button_label","label":"Next Button Label","default":"Next"},
+    {"type":"text","id":"back_button_label","label":"Back Button Label","default":"Back"},
+    {"type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Proceed to Checkout"}
   ],
-  "presets": [
-    { "name": "Custom Gift Flow", "category": "Custom Sections" }
-  ]
+  "presets":[{"name":"Custom Gift Flow","category":"Custom Sections"}]
 }
 {% endschema %}

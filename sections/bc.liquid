@@ -1,16 +1,8 @@
 {% comment %}
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
-  Update: Override cart drawer events to prevent opening, and schema.
+  Updated: Removed all cart drawer overrides and direct cart interactions.
 {% endcomment %}
-
-<!-- Prevent theme cart drawer from opening -->
-<script>
-  document.addEventListener('cart:open', function(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-  }, true);
-</script>
 
 <!-- Load Tailwind Browser & DaisyUI + Font Awesome -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>

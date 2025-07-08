@@ -1,104 +1,105 @@
-{% comment %}
-  Custom Gift Flow – Shopify Liquid 2.0
-  File: sections/custom-gift-box-flow.liquid
-  Updated: Added Tailwind browser CDN, Font Awesome, improved UI/UX, animations, spacing.
-{% endcomment %}
-
-<!-- Load Tailwind Browser and Font Awesome -->
+<!-- Load Tailwind Browser & DaisyUI + Font Awesome -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-…" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet">
 
-<section class="gift-flow container mx-auto py-12 grid grid-cols-1 lg:grid-cols-4 gap-8" data-id="gift-flow">
+<section class="gift-flow container mx-auto py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
   <!-- Main Steps Column -->
   <div class="lg:col-span-3 space-y-12">
 
     <!-- Top Icon Steps -->
     <div class="grid grid-cols-4 gap-6 text-center">
-      <div><i class="fas fa-box-open text-3xl text-blue-600 mb-2"></i><p class="font-semibold">Pick Your Giftbox</p></div>
-      <div><i class="fas fa-gift text-3xl text-blue-600 mb-2"></i><p class="font-semibold">Choose Your Gifts</p></div>
-      <div><i class="fas fa-credit-card text-3xl text-blue-600 mb-2"></i><p class="font-semibold">Pick A Card</p></div>
-      <div><i class="fas fa-heart text-3xl text-blue-600 mb-2"></i><p class="font-semibold">Enjoy Gifting</p></div>
+      <div><i class="fas fa-box-open text-4xl text-primary mb-2"></i><p class="font-semibold">Pick Your Giftbox</p></div>
+      <div><i class="fas fa-gift text-4xl text-primary mb-2"></i><p class="font-semibold">Choose Your Gifts</p></div>
+      <div><i class="fas fa-credit-card text-4xl text-primary mb-2"></i><p class="font-semibold">Pick A Card</p></div>
+      <div><i class="fas fa-heart text-4xl text-primary mb-2"></i><p class="font-semibold">Enjoy Gifting</p></div>
     </div>
 
-    <!-- Progress Bar -->
-    <div class="flex items-center justify-between mb-8">
-      {% for i in (1..4) %}
-        <div class="relative flex-1">
-          <span class="step-marker block mx-auto w-6 h-6 rounded-full border-2 border-gray-300 bg-white transition-all duration-300 ease-in-out" data-step="{{ i }}"></span>
-          {% if forloop.index < 4 %}
-            <div class="absolute top-1/2 right-0 w-full h-1 bg-gray-300"></div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
+    <!-- DaisyUI Horizontal Steps -->
+    <ul class="steps steps-horizontal mb-8">  
+      <li class="step step-primary">Packaging</li>  
+      <li class="step">Gifts</li>  
+      <li class="step">Card</li>  
+      <li class="step">Done!</li>  
+    </ul><!-- :contentReference[oaicite:0]{index=0} -->
 
-    <!-- Step Content Blocks -->
-    {% assign steps = "packaging,gifts,card,review" | split: "," %}
-    {% for step in steps %}
-      <div class="step-content transition-opacity duration-500" data-step="{{ forloop.index }}">
-        {% case step %}
-        {% when 'packaging' %}
+    <!-- Step Contents -->
+    {% assign labels = "packaging,gifts,card,review" | split: "," %}
+    {% for idx in (1..4) %}
+      <div class="step-content {% unless forloop.first %}hidden{% endunless %}" data-step="{{ idx }}">
+        {% case idx %}
+        {% when 1 %}
           <h2 class="text-2xl font-bold mb-4">{{ section.settings.packaging_heading }}</h2>
           <p class="text-gray-600 mb-6">{{ section.settings.packaging_subheading }}</p>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for product in collections[section.settings.packaging_collection].products %}
-              <div class="card group relative p-6 border rounded-lg bg-white hover:shadow-xl transition-transform transform hover:-translate-y-2" data-id="product-{{ product.id }}" data-price="{{ product.price | money_without_currency }}">
-                {% if product.featured_image %}
-                  <img class="w-full h-48 object-cover rounded-md mb-4" src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}">
-                {% endif %}
-                <h3 class="font-medium text-lg truncate mb-2">{{ product.title }}</h3>
-                <p class="text-blue-600 font-semibold mb-4">{{ product.price | money }}</p>
-                <button type="button" class="select-item flex items-center justify-center w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"><i class="fas fa-plus mr-2"></i>Add to Box</button>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for p in collections[section.settings.packaging_collection].products %}
+              <div class="card card-compact bg-base-100 shadow-lg group">
+                <figure><img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full"/></figure>
+                <div class="card-body p-4">
+                  <h3 class="card-title truncate">{{ p.title }}</h3>
+                  <p class="text-primary font-semibold">{{ p.price | money }}</p>
+                  <button class="select-item btn btn-primary btn-block mt-2 transition-transform transform group-hover:scale-105" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+                    <i class="fas fa-plus mr-2"></i>Add to Box
+                  </button>
+                </div>
               </div>
             {% endfor %}
           </div>
-        {% when 'gifts' %}
+        {% when 2 %}
           <h2 class="text-2xl font-bold mb-4">{{ section.settings.gifts_heading }}</h2>
           <p class="text-gray-600 mb-6">{{ section.settings.gifts_subheading }}</p>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for product in collections[section.settings.gifts_collection].products %}
-              <div class="card group p-6 border rounded-lg hover:shadow-xl transition-transform transform hover:-translate-y-2" data-id="product-{{ product.id }}" data-price="{{ product.price | money_without_currency }}">
-                {% if product.featured_image %}
-                  <img class="w-full h-48 object-cover rounded-md mb-4" src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}">
-                {% endif %}
-                <h3 class="font-medium text-lg truncate mb-2">{{ product.title }}</h3>
-                <p class="text-blue-600 font-semibold mb-4">{{ product.price | money }}</p>
-                <button type="button" class="select-item flex items-center justify-center w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"><i class="fas fa-plus mr-2"></i>Add to Box</button>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for p in collections[section.settings.gifts_collection].products %}
+              <div class="card card-compact bg-base-100 shadow-lg group">
+                <figure><img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full"/></figure>
+                <div class="card-body p-4">
+                  <h3 class="card-title truncate">{{ p.title }}</h3>
+                  <p class="text-primary font-semibold">{{ p.price | money }}</p>
+                  <button class="select-item btn btn-primary btn-block mt-2 transition-transform transform group-hover:scale-105" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+                    <i class="fas fa-plus mr-2"></i>Add to Box
+                  </button>
+                </div>
               </div>
             {% endfor %}
           </div>
-        {% when 'card' %}
+        {% when 3 %}
           <h2 class="text-2xl font-bold mb-4">{{ section.settings.card_heading }}</h2>
           <p class="text-gray-600 mb-6">{{ section.settings.card_subheading }}</p>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for product in collections[section.settings.card_collection].products %}
-              <div class="card group p-6 border rounded-lg hover:shadow-xl transition-transform transform hover:-translate-y-2" data-id="product-{{ product.id }}" data-price="{{ product.price | money_without_currency }}">
-                {% if product.featured_image %}
-                  <img class="w-full h-48 object-cover rounded-md mb-4" src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}">
-                {% endif %}
-                <h3 class="font-medium text-lg truncate mb-2">{{ product.title }}</h3>
-                <button type="button" class="select-item flex items-center justify-center w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"><i class="fas fa-plus mr-2"></i>Select Card</button>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for p in collections[section.settings.card_collection].products %}
+              <div class="card card-compact bg-base-100 shadow-lg group">
+                <figure><img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full"/></figure>
+                <div class="card-body p-4">
+                  <h3 class="card-title truncate">{{ p.title }}</h3>
+                  <button class="select-item btn btn-secondary btn-block mt-2 transition-transform transform group-hover:scale-105" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+                    <i class="fas fa-check mr-2"></i>Select Card
+                  </button>
+                </div>
               </div>
             {% endfor %}
           </div>
-        {% when 'review' %}
+        {% when 4 %}
           <h2 class="text-2xl font-bold mb-4">Review Your Box</h2>
           <div id="review-list" class="space-y-4 mb-4"></div>
           <div class="text-right text-xl font-bold mb-6">Total: <span id="review-total">$0.00</span></div>
-          <button class="checkout-step flex items-center justify-center w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"><i class="fas fa-shopping-cart mr-2"></i>Proceed to Checkout</button>
+          <button class="checkout-step btn btn-success btn-block transition-colors">
+            <i class="fas fa-shopping-cart mr-2"></i>Proceed to Checkout
+          </button>
         {% endcase %}
 
         {% unless forloop.last %}
-          <div class="flex justify-end mt-6">
-            <button class="next-step flex items-center bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors"><i class="fas fa-arrow-right mr-2"></i>Next</button>
+          <div class="flex justify-end mt-8">
+            <button class="next-step btn btn-accent transition-colors">
+              <i class="fas fa-arrow-right mr-2"></i>{{ section.settings.next_button_label }}
+            </button>
           </div>
         {% endunless %}
       </div>
     {% endfor %}
   </div>
 
-  <!-- Summary Sidebar -->
-  <aside class="summary-col lg:col-span-1 sticky top-32 bg-white p-6 rounded-xl shadow-lg">
+  <!-- Sticky Summary Sidebar -->
+  <aside class="summary-col lg:col-span-1 sticky top-32 bg-base-100 p-6 rounded-xl shadow-xl">
     <h4 class="text-lg font-semibold mb-4">Box Summary</h4>
     <ul id="sidebar-summary-list" class="space-y-3 max-h-80 overflow-auto"></ul>
     <div class="mt-6 text-lg font-bold">Total: <span id="sidebar-total">$0.00</span></div>
@@ -106,58 +107,69 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    let selected = [];
-    const contents = document.querySelectorAll('.step-content');
-    const markers = document.querySelectorAll('.step-marker');
-    const sidebarList = document.getElementById('sidebar-summary-list');
-    const sidebarTotal = document.getElementById('sidebar-total');
-    const reviewList = document.getElementById('review-list');
-    const reviewTotal = document.getElementById('review-total');
+document.addEventListener('DOMContentLoaded',()=>{
+  let selected = [];
+  const contents = document.querySelectorAll('.step-content');
+  const markers  = document.querySelectorAll('.step-marker');
+  const sidebar  = document.getElementById('sidebar-summary-list');
+  const stotal   = document.getElementById('sidebar-total');
+  const rlist    = document.getElementById('review-list');
+  const rtotal   = document.getElementById('review-total');
 
-    function updateAll() {
-      let total = 0;
-      sidebarList.innerHTML = selected.map(i => `<li class="flex justify-between"><span>${i.title}</span><span>$${(+i.price).toFixed(2)}</span></li>`).join('');
-      selected.forEach(i => total += parseFloat(i.price));
-      sidebarTotal.textContent = `$${total.toFixed(2)}`;
-      if(reviewList) reviewList.innerHTML = sidebarList.innerHTML;
-      if(reviewTotal) reviewTotal.textContent = `$${total.toFixed(2)}`;
-    }
+  function updateAll(){
+    let sum=0;
+    sidebar.innerHTML = selected.map(i=>`
+      <li class="flex justify-between">
+        <span>${i.title}</span><span>$${(+i.price).toFixed(2)}</span>
+      </li>
+    `).join('');
+    selected.forEach(i=>sum+=+i.price);
+    stotal.textContent = '$'+sum.toFixed(2);
+    if(rlist) rlist.innerHTML = sidebar.innerHTML;
+    if(rtotal) rtotal.textContent = '$'+sum.toFixed(2);
+  }
 
-    function goTo(step) {
-      contents.forEach(c => c.classList.toggle('hidden', c.dataset.step !== step));
-      markers.forEach(m => m.classList.toggle('border-blue-600 bg-blue-600', m.dataset.step === step));
+  function goTo(step){
+    contents.forEach(c=>c.classList.toggle('hidden', c.dataset.step!==step));
+    markers.forEach(m=>m.classList.toggle('border-blue-600 bg-blue-600', m.dataset.step===step));
+    updateAll();
+  }
+
+  document.body.addEventListener('click',e=>{
+    if(e.target.closest('.select-item')){
+      const card = e.target.closest('.card');
+      selected.push({
+        id: card.dataset.id,
+        price: card.dataset.price,
+        title: card.querySelector('h3').innerText
+      });
       updateAll();
     }
-
-    document.body.addEventListener('click', e => {
-      if(e.target.closest('.select-item')) {
-        const card = e.target.closest('.card');
-        selected.push({
-          id: card.dataset.id,
-          price: card.dataset.price,
-          title: card.querySelector('h3').innerText
-        });
-        updateAll();
-      }
-      if(e.target.closest('.next-step')) {
-        const cur = document.querySelector('.step-marker.bg-blue-600').dataset.step;
-        goTo((+cur + 1).toString());
-      }
-      if(e.target.closest('.back-step')) {
-        const cur = document.querySelector('.step-marker.bg-blue-600').dataset.step;
-        goTo((+cur - 1).toString());
-      }
-      if(e.target.closest('.checkout-step')) {
-        const form = document.createElement('form'); form.method='POST'; form.action='/cart/add';
-        selected.forEach(i => { const inp=document.createElement('input'); inp.type='hidden'; inp.name='items[][id]'; inp.value=i.id; form.appendChild(inp); });
-        document.body.appendChild(form); form.submit();
-      }
-    });
-
-    goTo('1');
+    if(e.target.closest('.next-step')){
+      const cur = document.querySelector('.step-marker.bg-blue-600').dataset.step;
+      goTo((+cur+1).toString());
+    }
+    if(e.target.closest('.back-step')){
+      const cur = document.querySelector('.step-marker.bg-blue-600').dataset.step;
+      goTo((+cur-1).toString());
+    }
+    if(e.target.closest('.checkout-step')){
+      const form = document.createElement('form');
+      form.method='POST'; form.action='/cart/add';
+      selected.forEach(i=>{
+        const inp = document.createElement('input');
+        inp.type='hidden'; inp.name='items[][id]'; inp.value=i.id;
+        form.appendChild(inp);
+      });
+      document.body.appendChild(form);
+      form.submit();
+    }
   });
+
+  goTo('1');
+});
 </script>
+
 
 {% schema %}
 { "name": "Custom Gift Flow", "settings": [

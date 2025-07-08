@@ -13,6 +13,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
 
+{% assign headings_string = section.settings.packaging_heading | append: '||' | append: section.settings.gifts_heading | append: '||' | append: section.settings.card_heading | append: '||Enjoy Gifting!' %}
+{% assign headings_array = headings_string | split: '||' %}
+
+{% assign subs_string = section.settings.packaging_subheading | append: '||' | append: section.settings.gifts_subheading | append: '||' | append: section.settings.card_subheading | append: "||You're all set. Proceed to checkout or build another box." %}
+{% assign subs_array = subs_string | split: '||' %}
+
+<script id="headings-json" type="application/json">{{ headings_array | json }}</script>
+<script id="subs-json" type="application/json">{{ subs_array | json }}</script>
+
 <section class="gift-flow max-w-7xl mx-auto p-8" data-id="gift-flow">
   <!-- Sticky Summary -->
   <div id="summary-bar" class="sticky top-4 bg-white p-4 border rounded-md shadow mb-6 z-10">
@@ -22,22 +31,27 @@
     </div>
   </div>
 
-  <!-- Top Stepper -->
-  <div class="grid grid-cols-4 gap-8 mb-8">
-    {% assign icons = "box-open,gift,credit-card,smile" | split: ',' %}
-    {% assign labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Enjoy Gifting" | split: ',' %}
-    {% for icon in icons %}
-      <div class="text-center">
-        <div class="mx-auto w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-2 step-indicator" data-step="{{ forloop.index }}">
-          <i class="fas fa-{{ icon }} text-2xl text-blue-600"></i>
+  <!-- Stepper Progress Bar -->
+  <div class="flex justify-between items-center mb-8 relative">
+    {% assign step_icons = "box-open,gift,credit-card,smile" | split: ',' %}
+    {% assign step_labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Enjoy Gifting" | split: ',' %}
+    {% for icon in step_icons %}
+      <div class="flex-1 flex flex-col items-center relative">
+        <div class="step-circle w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 bg-white text-gray-400 mb-2 transition-all duration-300" data-step="{{ forloop.index }}">
+          <span class="step-number font-bold">{{ forloop.index }}</span>
         </div>
-        <p class="text-sm font-semibold text-gray-800">{{ labels[forloop.index0] }}</p>
+        <div class="text-xs text-center font-semibold text-gray-700">{{ step_labels[forloop.index0] }}</div>
+        {% unless forloop.last %}
+          <div class="absolute top-5 right-0 w-full h-1 bg-gray-200 z-0 step-bar"></div>
+        {% endunless %}
       </div>
     {% endfor %}
+    <style>
+      .step-circle.active { border-color: #3b82f6; background: #3b82f6; color: #fff; }
+      .step-circle.completed { border-color: #3b82f6; background: #fff; color: #3b82f6; }
+      .step-bar.completed { background: #3b82f6; }
+    </style>
   </div>
-
-  <!-- Progress Bar -->
-  <div id="progress-container" class="mb-8" style="height:6px;"></div>
 
   <!-- Step Header -->
   <div class="text-center mb-6">
@@ -98,7 +112,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded',()=>{
-    const bar = new ProgressBar.Line('#progress-container',{ strokeWidth:6,duration:200,color:'#3b82f6',trailColor:'#e5e7eb' });
     const totals = 4;
     let current = 1;
     const contents = document.querySelectorAll('.step-content');
@@ -110,20 +123,27 @@
     const sumCount= document.getElementById('summary-count');
     const sumThumbs= document.getElementById('summary-thumbs');
     let selected=[];
-    const headings=[
-      {{ section.settings.packaging_heading | json }},
-      {{ section.settings.gifts_heading | json }},
-      {{ section.settings.card_heading | json }},
-      "Enjoy Gifting!"
-    ];
-    const subs=[
-      {{ section.settings.packaging_subheading | json }},
-      {{ section.settings.gifts_subheading | json }},
-      {{ section.settings.card_subheading | json }},
-      "You're all set. Proceed to checkout or build another box."
-    ];
+    const headings = JSON.parse(document.getElementById('headings-json').textContent);
+    const subs = JSON.parse(document.getElementById('subs-json').textContent);
+    function updateStepper() {
+      const stepCircles = document.querySelectorAll('.step-circle');
+      const stepBars = document.querySelectorAll('.step-bar');
+      stepCircles.forEach((circle, i) => {
+        circle.classList.remove('active', 'completed');
+        if (i + 1 === current) {
+          circle.classList.add('active');
+        } else if (i + 1 < current) {
+          circle.classList.add('completed');
+        }
+      });
+      stepBars.forEach((bar, i) => {
+        bar.classList.remove('completed');
+        if (i + 1 < current) {
+          bar.classList.add('completed');
+        }
+      });
+    }
     function update(){
-      bar.animate((current-1)/(totals-1));
       curStep.textContent = current;
       curTitle.textContent= headings[current-1];
       curSub.textContent  = subs[current-1];
@@ -132,6 +152,7 @@
       btnNext.innerHTML = current<totals ? '{{ section.settings.next_button_label }} <i class="fas fa-arrow-right ml-1"></i>' : '<i class="fas fa-shopping-cart mr-1"></i>{{ section.settings.checkout_button_label }}';
       sumCount.textContent = selected.length;
       sumThumbs.innerHTML = selected.length ? selected.map(i=>`<img src="${i.img}" class="w-10 h-10 rounded" title="${i.title}">`).join('') : '<span class="text-gray-400">No items</span>';
+      updateStepper();
     }
     document.body.addEventListener('click',e=>{
       if(e.target.closest('.select-item')){

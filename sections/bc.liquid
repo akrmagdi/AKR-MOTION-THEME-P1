@@ -2,80 +2,78 @@
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
   3-step builder: Packaging -> Gifts -> Card -> Checkout
-  Packaging uses a collection, not product variants
+  Simplified: ensure collections set via theme settings
 {% endcomment %}
 
 <section class="gift-flow" data-id="gift-flow">
-  <!-- Debug Info (remove in production) -->
+  <!-- Debug Info (remove after verifying) -->
   <div class="debug-info">
-    <p>Packaging Collection: "{{ section.settings.packaging_collection }}" ({{ collections[section.settings.packaging_collection].products_count }} products)</p>
-    <p>Gifts Collection: "{{ section.settings.gifts_collection }}" ({{ collections[section.settings.gifts_collection].products_count }} products)</p>
-    <p>Card Collection: "{{ section.settings.card_collection }}" ({{ collections[section.settings.card_collection].products_count }} products)</p>
+    <p>Packaging Collection: "{{ section.settings.packaging_collection }}" — {{ collections[section.settings.packaging_collection].products_count }} products</p>
+    <p>Gifts Collection: "{{ section.settings.gifts_collection }}" — {{ collections[section.settings.gifts_collection].products_count }} products</p>
+    <p>Card Collection: "{{ section.settings.card_collection }}" — {{ collections[section.settings.card_collection].products_count }} products</p>
   </div>
 
   <!-- Step Indicators -->
-  <div class="flow-indicators" data-id="flow-indicators">
+  <div class="flow-indicators">
     <div class="indicator active" data-step="1">{{ section.settings.packaging_step_label }}</div>
     <div class="indicator" data-step="2">{{ section.settings.gifts_step_label }}</div>
     <div class="indicator" data-step="3">{{ section.settings.card_step_label }}</div>
   </div>
 
-  <!-- Steps Container -->
-  <div class="flow-steps" data-id="flow-steps">
-    <!-- STEP 1: Packaging -->
-    <div class="step step-1" data-id="step-1">
+  <!-- Steps -->
+  <div class="flow-steps">
+    <!-- Packaging -->
+    <div class="step step-1">
       <h2>{{ section.settings.packaging_heading }}</h2>
       <p>{{ section.settings.packaging_subheading }}</p>
-      <div class="grid packaging-grid" data-id="packaging-grid">
-        {% assign pack_col = collections[section.settings.packaging_collection] %}
-        {% if pack_col and pack_col.products_count > 0 %}
+      {% assign pack_col = collections[section.settings.packaging_collection] %}
+      {% if pack_col and pack_col.products_count > 0 %}
+        <div class="grid">
           {% for product in pack_col.products %}
             {% render 'product-card', product: product %}
           {% endfor %}
-        {% else %}
-          <p>No packaging options found. Please select a valid packing collection in theme settings.</p>
-        {% endif %}
-      </div>
-      <button type="button" class="btn next-step" data-id="to-step-2">{{ section.settings.next_button_label }}</button>
+        </div>
+      {% else %}
+        <p><strong>Packaging collection not set or empty.</strong> Please select a valid collection in the section settings.</p>
+      {% endif %}
+      <button class="btn next-step" data-step="2">{{ section.settings.next_button_label }}</button>
     </div>
-
-    <!-- STEP 2: Gifts -->
-    <div class="step step-2 hidden" data-id="step-2">
+    <!-- Gifts -->
+    <div class="step step-2 hidden">
       <h2>{{ section.settings.gifts_heading }}</h2>
       <p>{{ section.settings.gifts_subheading }}</p>
-      <div class="grid gifts-grid" data-id="gifts-grid">
-        {% assign gifts_col = collections[section.settings.gifts_collection] %}
-        {% if gifts_col and gifts_col.products_count > 0 %}
+      {% assign gifts_col = collections[section.settings.gifts_collection] %}
+      {% if gifts_col and gifts_col.products_count > 0 %}
+        <div class="grid">
           {% for product in gifts_col.products %}
             {% render 'product-card', product: product %}
           {% endfor %}
-        {% else %}
-          <p>No gift items found. Please select a valid gifts collection in theme settings.</p>
-        {% endif %}
-      </div>
+        </div>
+      {% else %}
+        <p><strong>Gifts collection not set or empty.</strong> Please select a valid collection in the section settings.</p>
+      {% endif %}
       <div class="flow-nav">
-        <button type="button" class="btn back-step" data-id="back-to-step-1">{{ section.settings.back_button_label }}</button>
-        <button type="button" class="btn next-step" data-id="to-step-3">{{ section.settings.next_button_label }}</button>
+        <button class="btn back-step" data-step="1">{{ section.settings.back_button_label }}</button>
+        <button class="btn next-step" data-step="3">{{ section.settings.next_button_label }}</button>
       </div>
     </div>
-
-    <!-- STEP 3: Card -->
-    <div class="step step-3 hidden" data-id="step-3">
+    <!-- Card -->
+    <div class="step step-3 hidden">
       <h2>{{ section.settings.card_heading }}</h2>
       <p>{{ section.settings.card_subheading }}</p>
-      <div class="grid card-grid" data-id="card-grid">
-        {% assign card_col = collections[section.settings.card_collection] %}
-        {% if card_col and card_col.products_count > 0 %}
+      {% assign card_col = collections[section.settings.card_collection] %}
+      {% if card_col and card_col.products_count > 0 %}
+        <div class="grid">
           {% for product in card_col.products %}
             {% render 'product-card', product: product %}
           {% endfor %}
-        {% else %}
-          <p>No cards found. Please select a valid card collection in theme settings.</p>
-        {% endif %}
-      </div>
+        </div>
+      {% else %}
+        <p><strong>Card collection not set or empty.</strong> Please select a valid collection in the section settings.</p>
+      {% endif %}
       <div class="flow-nav">
-        <button type="button" class="btn back-step" data-id="back-to-step-2">{{ section.settings.back_button_label }}</button>
-        <button type="button" class="btn checkout-step" data-id="flow-checkout">{{ section.settings.checkout_button_label }}</button>
+        <button class="btn back-step" data-step="2">{{ section.settings.back_button_label }}</button>
+        <button class="btn checkout-step">{{ section.settings.checkout_button_label }}</button>
       </div>
     </div>
   </div>
@@ -83,61 +81,28 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var selectedPackaging = [];
-    var selectedGifts = [];
-    var selectedCard = null;
-
-    function showStep(step) {
-      document.querySelectorAll('[data-id^="step-"]').forEach(function(el) {
-        el.classList.toggle('hidden', el.getAttribute('data-id') !== 'step-' + step);
+    var steps = document.querySelectorAll('.step');
+    var buttons = document.querySelectorAll('[data-step]');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var target = parseInt(btn.getAttribute('data-step'), 10);
+        steps.forEach(function(s, i) {
+          s.classList.toggle('hidden', i + 1 !== target);
+        });
+        document.querySelectorAll('.indicator').forEach(function(ind, i) {
+          ind.classList.toggle('active', i + 1 === target);
+        });
       });
-      document.querySelectorAll('.flow-indicators .indicator').forEach(function(ind) {
-        ind.classList.toggle('active', parseInt(ind.getAttribute('data-step')) === step);
-      });
-    }
-
-    document.body.addEventListener('click', function(event) {
-      var btn = event.target;
-      if (btn.matches('.select-packaging')) {
-        var id = btn.dataset.productId;
-        if (!selectedPackaging.includes(id)) selectedPackaging.push(id);
-      } else if (btn.matches('.add-gift')) {
-        var id = btn.dataset.productId;
-        if (!selectedGifts.includes(id)) selectedGifts.push(id);
-      } else if (btn.matches('.select-card')) {
-        selectedCard = btn.dataset.productId;
-      }
-    });
-
-    showStep(1);
-
-    document.querySelector('[data-id="to-step-2"]').addEventListener('click', function() { showStep(2); });
-    document.querySelector('[data-id="back-to-step-1"]').addEventListener('click', function() { showStep(1); });
-    document.querySelector('[data-id="to-step-3"]').addEventListener('click', function() { showStep(3); });
-    document.querySelector('[data-id="back-to-step-2"]').addEventListener('click', function() { showStep(2); });
-
-    document.querySelector('[data-id="flow-checkout"]').addEventListener('click', function() {
-      var form = document.createElement('form');
-      form.method = 'POST';
-      form.action = '/cart/add';
-      selectedPackaging.forEach(function(id){ var inp = document.createElement('input'); inp.type='hidden'; inp.name='items[][id]'; inp.value=id; form.appendChild(inp); });
-      selectedGifts.forEach(function(id){ var inp = document.createElement('input'); inp.type='hidden'; inp.name='items[][id]'; inp.value=id; form.appendChild(inp); });
-      if (selectedCard) { var inp = document.createElement('input'); inp.type='hidden'; inp.name='items[][id]'; inp.value=selectedCard; form.appendChild(inp); }
-      document.body.appendChild(form);
-      form.submit();
     });
   });
 </script>
 
 <style>
   .hidden { display: none; }
-  .gift-flow { padding: 2rem; }
-  .debug-info p { font-size: 0.85rem; color: #555; }
-  .flow-indicators { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
-  .indicator { flex: 1; text-align: center; padding: 0.75rem; border-bottom: 2px solid #ddd; }
+  .flow-indicators { display: flex; gap: 1rem; margin-bottom: 1rem; }
+  .indicator { flex: 1; padding: .5rem; border-bottom: 2px solid #ccc; text-align: center; }
   .indicator.active { border-color: #333; font-weight: bold; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-  .btn { background: #333; color: #fff; padding: 0.5rem 1rem; border: none; cursor: pointer; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; }
 </style>
 
 {% schema %}
@@ -145,20 +110,20 @@
   "name": "Custom Gift Flow",
   "settings": [
     {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
+    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
+    {"type":"collection","id":"card_collection","label":"Card Collection"},
     {"type":"text","id":"packaging_step_label","label":"Packaging Step Label","default":"Packaging"},
     {"type":"text","id":"packaging_heading","label":"Packaging Heading","default":"Choose Your Box Color"},
-    {"type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Welcome to the easiest way to send someone a custom gift, in 3 simple steps."},
-    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
+    {"type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Pick your favorite box style before adding gifts."},
     {"type":"text","id":"gifts_step_label","label":"Gifts Step Label","default":"Gifts"},
     {"type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts"},
-    {"type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"We've hand-selected the best gifts in one place. Select from the items below and fill up your gift box!"},
-    {"type":"collection","id":"card_collection","label":"Card Collection"},
+    {"type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"Select items to fill your box."},
     {"type":"text","id":"card_step_label","label":"Card Step Label","default":"Card"},
-    {"type":"text","id":"card_heading","label":"Card Heading","default":"Pick A Card"},
-    {"type":"text","id":"card_subheading","label":"Card Subheading","default":"Complete your box with a hand-written card."},
+    {"type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card"},
+    {"type":"text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message to your gift."},
     {"type":"text","id":"next_button_label","label":"Next Button Label","default":"Next"},
     {"type":"text","id":"back_button_label","label":"Back Button Label","default":"Back"},
-    {"type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Go to Checkout"}
+    {"type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Checkout"}
   ],
   "presets":[{"name":"Custom Gift Flow","category":"Custom Sections"}]
 }

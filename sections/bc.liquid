@@ -1,230 +1,221 @@
 {% comment %}
-  Custom Gift Flow – Shopify Liquid 2.0 Section
-  File: sections/custom-gift-box-flow.liquid
-  Adjustments:
-    • Swapped in ProgressBar.js for a smooth, styled progress line
-    • “Add to Box” buttons are now type="button" and correctly wired
-    • Fixed Liquid collection assignment—no inline ternary
+Section: Box Customizer for Shopify
+Enhanced with animated progress bar, restored original icons, fixed collection loops and image sizing.
+Drop this file into /sections/box-customizer.liquid and add to a page template.
 {% endcomment %}
 
-<!-- Include necessary libs (preferably in layout) -->
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-{% assign headings_string = section.settings.packaging_heading | append: '||' | append: section.settings.gifts_heading | append: '||' | append: section.settings.card_heading | append: '||Enjoy Gifting!' %}
-{% assign headings_array  = headings_string | split: '||' %}
-{% assign subs_string     = section.settings.packaging_subheading | append: '||' | append: section.settings.gifts_subheading | append: '||' | append: section.settings.card_subheading | append: "||You're all set. Proceed to checkout or build another box." %}
-{% assign subs_array      = subs_string | split: '||' %}
-
-<script id="headings-json" type="application/json">{{ headings_array | json }}</script>
-<script id="subs-json"     type="application/json">{{ subs_array    | json }}</script>
-
-<section class="gift-flow max-w-7xl mx-auto p-8" data-id="gift-flow">
-  <!-- Sticky Summary -->
-  <div id="summary-bar" class="sticky top-4 bg-white p-4 border rounded-md shadow mb-6 z-10">
-    <h4 class="font-semibold mb-2">Your Box (<span id="summary-count">0</span> items)</h4>
-    <div id="summary-thumbs" class="flex space-x-2">
-      <span class="text-gray-400">No items yet</span>
+<div class="box-customizer">
+  <!-- ICON NAV -->
+  <div class="customizer-icons">
+    <div class="icon-step active" data-step="1">
+      <img src="{{ 'icon-packaging.svg' | asset_url }}" alt="Pick your giftbox">
+      <p>PICK YOUR GIFTBOX</p>
+    </div>
+    <div class="icon-step" data-step="2">
+      <img src="{{ 'icon-gifts.svg' | asset_url }}" alt="Choose your gifts">
+      <p>CHOOSE YOUR GIFTS</p>
+    </div>
+    <div class="icon-step" data-step="3">
+      <img src="{{ 'icon-card.svg' | asset_url }}" alt="Pick a card">
+      <p>PICK A CARD</p>
+    </div>
+    <div class="icon-step" data-step="4">
+      <img src="{{ 'icon-enjoy.svg' | asset_url }}" alt="Enjoy gifting">
+      <p>ENJOY GIFTING</p>
     </div>
   </div>
 
-  <!-- Smooth Progress Line via ProgressBar.js -->
-  <div id="progress-line" class="mb-8 h-2"></div>
-
-  <!-- Stepper Circles + Labels -->
-  <div class="flex justify-between items-center mb-8 relative">
-    {% assign step_icons  = "box-open,gift,credit-card,smile" | split: ',' %}
-    {% assign step_labels = "Pick Your Giftbox,Choose Your Gifts,Pick A Card,Enjoy Gifting" | split: ',' %}
-    {% for icon in step_icons %}
-      <div class="flex-1 flex flex-col items-center relative">
-        <div class="step-circle w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 bg-white text-gray-400 mb-2 transition-all duration-300" data-step="{{ forloop.index }}">
-          <i class="fas fa-{{ icon }}"></i>
-        </div>
-        <div class="text-xs text-center font-semibold text-gray-700">{{ step_labels[forloop.index0] }}</div>
+  <!-- PROGRESS BAR -->
+  <div class="customizer-progress">
+    <div class="progress-line-bg"></div>
+    <div class="progress-line-fill"></div>
+    {% for i in (1..4) %}
+      <div class="progress-step{% if i == 1 %} active{% endif %}" data-step="{{ i }}">
+        <span class="step-label">
+          {% case i %}
+            {% when 1 %}STEP 1<br>Packaging
+            {% when 2 %}STEP 2<br>Gifts
+            {% when 3 %}STEP 3<br>Card
+            {% when 4 %}DONE<br>Done!
+          {% endcase %}
+        </span>
       </div>
     {% endfor %}
-    <style>
-      .step-circle.active    { border-color: #3b82f6; background: #3b82f6; color: #fff; }
-      .step-circle.completed { border-color: #3b82f6; background: #fff; color: #3b82f6; }
-    </style>
   </div>
 
-  <!-- Step Header -->
-  <div class="text-center mb-6">
-    <p class="text-xs uppercase text-gray-500 mb-1">Step <span id="current-step">1</span> of 4</p>
-    <h2 id="current-title" class="text-3xl font-bold text-gray-900">{{ section.settings.packaging_heading }}</h2>
-    <p id="current-sub" class="text-gray-600 mt-2">{{ section.settings.packaging_subheading }}</p>
-  </div>
-
-  <!-- Steps Content -->
-  <div id="steps-wrapper">
-    {% for idx in (1..4) %}
-      <div class="step-content {% unless idx == 1 %}hidden{% endunless %}" data-step="{{ idx }}">
-        {% if idx < 4 %}
-          {% comment %}Proper Liquid if/elsif for collections{% endcomment %}
-          {% if idx == 1 %}
-            {% assign col = collections[section.settings.packaging_collection] %}
-          {% elsif idx == 2 %}
-            {% assign col = collections[section.settings.gifts_collection] %}
-          {% else %}
-            {% assign col = collections[section.settings.card_collection] %}
-          {% endif %}
-
-          {% if col %}
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {% for p in col.products %}
-                <div class="card border rounded-lg p-4 shadow hover:shadow-lg transition"
-                     data-id="{{ p.id }}"
-                     data-title="{{ p.title }}"
-                     data-price="{{ p.price | money_without_currency }}"
-                     data-img="{{ p.featured_image | img_url:'200x' }}">
-                  {% if p.featured_image %}
-                    <img src="{{ p.featured_image | img_url:'400x' }}"
-                         alt="{{ p.title }}"
-                         class="w-full h-40 object-cover rounded-md mb-3">
-                  {% endif %}
-                  <h3 class="font-medium truncate mb-1 text-base">{{ p.title }}</h3>
-                  <p class="text-blue-600 font-semibold mb-2 text-base">{{ p.price | money }}</p>
-                  <button type="button" class="select-item btn btn-primary w-full uppercase">
-                    <i class="fas fa-plus mr-1"></i>
-                    {% if idx < 3 %}Add to Box{% else %}Select Card{% endif %}
-                  </button>
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% else %}
-          <div class="flex flex-col items-center justify-center h-48">
-            <i class="fas fa-smile text-5xl text-blue-500 mb-4"></i>
-            <h3 class="text-2xl font-bold mb-2">Enjoy Gifting!</h3>
-            <p class="text-gray-600">You're all set. Proceed to checkout or build another box.</p>
+  <!-- STEP CONTENT -->
+  <div class="customizer-content">
+    <!-- STEP 1 -->
+    <div class="step-content active" id="step-1">
+      <p class="small-label">STEP 1 OF 3</p>
+      <h2>CHOOSE YOUR BOX COLOR</h2>
+      <p class="description">Welcome to the easiest way to send someone a custom gift in 3 simple steps.</p>
+      <div class="box-options">
+        {% for product in collections[section.settings.packaging_collection].products %}
+          <div class="option-item" data-product-id="{{ product.id }}">
+            <img src="{{ product.featured_image | img_url: '150x150' }}" alt="{{ product.title }}">
+            <p>{{ product.title }}</p>
           </div>
-        {% endif %}
+        {% endfor %}
       </div>
-    {% endfor %}
-  </div>
+      <button class="btn btn--primary" data-action="next-step">Choose Your Gifts</button>
+    </div>
 
-  <!-- Navigation Buttons -->
-  <div class="flex justify-between mt-6">
-    <button id="back-btn" class="btn btn-outline btn-secondary btn-sm" type="button" disabled>
-      <i class="fas fa-arrow-left mr-1"></i>{{ section.settings.back_button_label }}
-    </button>
-    <button id="next-btn" class="btn btn-primary btn-sm" type="button">
-      {{ section.settings.next_button_label }}<i class="fas fa-arrow-right ml-1"></i>
-    </button>
+    <!-- STEP 2 -->
+    <div class="step-content" id="step-2">
+      <p class="small-label">STEP 2 OF 3</p>
+      <h2>CHOOSE YOUR GIFTS</h2>
+      <p class="description">Select from these hand-picked gifts!</p>
+      <div class="gift-options">
+        {% for product in collections[section.settings.gifts_collection].products %}
+          <div class="option-item" data-product-id="{{ product.id }}">
+            <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
+            <p>{{ product.title }}</p>
+            <p class="price">{{ product.price | money }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <aside class="box-summary">
+        <h3>Box Content</h3>
+        <ul id="summary-list"></ul>
+        <p class="subtotal">Subtotal: <span id="box-subtotal">{{ section.settings.base_box_price | money }}</span></p>
+        <button class="btn btn--primary" data-action="next-step">Choose Your Card</button>
+      </aside>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-content" id="step-3">
+      <p class="small-label">STEP 3 OF 3</p>
+      <h2>CHOOSE YOUR CARD</h2>
+      <p class="description">Pick the perfect card design.</p>
+      <div class="card-options">
+        {% for product in collections[section.settings.cards_collection].products %}
+          <div class="option-item" data-product-id="{{ product.id }}">
+            <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
+            <p>{{ product.title }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="btn btn--primary" data-action="next-step">Build My Box</button>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-content" id="step-4">
+      <p class="small-label">DONE!</p>
+      <h2>BUILDING YOUR BOX</h2>
+      <p>Please wait while we prepare your custom gift box!</p>
+      <div class="checkmark-circle">
+        <svg viewBox="0 0 52 52" class="checkmark"><path d="M14 27l7 7 16-16"/></svg>
+      </div>
+      <button class="btn btn--primary" onclick="location.href='{{ routes.cart_url }}';">PROCEED TO CHECKOUT</button>
+      <button class="btn btn--secondary" onclick="location.reload();">BUILD ANOTHER BOX</button>
+    </div>
   </div>
-</section>
+</div>
+
+<style>
+.box-customizer { max-width: 960px; margin: 0 auto; padding: 2rem; font-family: Arial, sans-serif; }
+.customizer-icons { display: flex; justify-content: space-between; margin-bottom: 2rem; }
+.icon-step { flex: 1; text-align: center; opacity: 0.4; transition: all 0.3s; cursor: pointer; }
+.icon-step.active, .icon-step:hover { opacity: 1; transform: translateY(-6px); }
+.icon-step img { max-width: 40px; }
+.icon-step p { margin-top: 0.5rem; font-weight: 600; }
+.customizer-progress { position: relative; height: 4px; background: #eee; margin-bottom: 3rem; overflow: hidden; }
+.progress-line-bg { position: absolute; width: 100%; height: 100%; background: #eee; }
+.progress-line-fill { position: absolute; width: 0; height: 100%; background: #E00060; transition: width 0.5s ease; }
+.progress-step { position: absolute; top: -6px; width: 16px; height: 16px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; }
+.progress-step::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: transparent; transition: background 0.3s, transform 0.3s; }
+.progress-step.active, .progress-step.active::before { background: #E00060; transform: scale(1.3); }
+.step-label { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #888; white-space: nowrap; }
+.progress-step.active .step-label { color: #E00060; font-weight: bold; }
+.step-content { display: none; }
+.step-content.active { display: block; }
+.small-label { font-size: 12px; color: #666; font-weight: 600; }
+h2 { font-size: 24px; margin: 10px 0; }
+.description { font-size: 14px; margin-bottom: 20px; color: #555; }
+.option-item { margin: 0 10px 20px; display: inline-block; vertical-align: top; }
+.option-item img { width: 100px; height: 100px; object-fit: cover; border: 2px solid transparent; border-radius: 8px; transition: all 0.3s; }
+.option-item:hover img { transform: scale(1.05); }
+.option-item.selected img { border-color: #E00060; box-shadow: 0 4px 8px rgba(224,0,96,0.3); }
+.option-item p { margin-top: 8px; font-size: 14px; }
+.price { font-size: 14px; font-weight: bold; margin-top: 4px; color: #333; }
+.btn { display: block; width: fit-content; margin: 20px auto; padding: 10px 20px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
+.btn--primary { background: #191E3A; color: #fff; }
+.btn--secondary { background: transparent; color: #191E3A; border: 2px solid #191E3A; }
+.box-options, .gift-options, .card-options { text-align: center; }
+.box-summary { margin-top: 20px; background: #f9f9f9; padding: 10px; border-radius: 8px; width: 240px; display: inline-block; vertical-align: top; }
+.box-summary h3 { margin-bottom: 8px; }
+.box-summary ul { padding: 0; list-style: none; font-size: 14px; color: #333; }
+.subtotal { margin-top: 10px; font-weight: bold; }
+.checkmark-circle { margin: 20px auto; width: 60px; height: 60px; background: #E00060; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.checkmark { stroke: #fff; stroke-width: 4; fill: none; width: 30px; height: 30px; }
+</style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const totals    = 4;
-    let current     = 1;
-    const headings  = JSON.parse(document.getElementById('headings-json').textContent);
-    const subs      = JSON.parse(document.getElementById('subs-json').textContent);
-    const contents  = document.querySelectorAll('.step-content');
-    const circles   = document.querySelectorAll('.step-circle');
-    const btnNext   = document.getElementById('next-btn');
-    const btnBack   = document.getElementById('back-btn');
-    const curStep   = document.getElementById('current-step');
-    const curTitle  = document.getElementById('current-title');
-    const curSub    = document.getElementById('current-sub');
-    const sumCount  = document.getElementById('summary-count');
-    const sumThumbs = document.getElementById('summary-thumbs');
-    let selected    = [];
+(function(){
+  var current = 1, total = 4;
+  var fill = document.querySelector('.progress-line-fill');
+  var steps = document.querySelectorAll('.progress-step');
 
-    // Initialize ProgressBar.js
-    const bar = new ProgressBar.Line('#progress-line', {
-      strokeWidth: 4,
-      trailWidth: 4,
-      trailColor: '#e5e7eb',
-      strokeColor: '#3b82f6',
-      easing: 'easeInOut',
-      duration: 300,
-      svgStyle: { width: '100%', height: '100%' }
+  function updateProgress(step){
+    var percent = (step-1)/(total-1)*100;
+    fill.style.width = percent + '%';
+    steps.forEach(function(el){
+      var s = parseInt(el.dataset.step,10);
+      el.classList.toggle('active', s === step);
+      // Position dots evenly between 5% and 95%
+      var left = 5 + (s-1)*(90/(total-1));
+      el.style.left = left + '%';
     });
+  }
 
-    function updateStepper() {
-      circles.forEach((c,i) => {
-        c.classList.toggle('active',    i+1 === current);
-        c.classList.toggle('completed', i+1 < current);
-      });
-    }
-
-    function update() {
-      // Animate progress
-      bar.animate((current - 1) / (totals - 1));
-
-      // Header
-      curStep.textContent  = current;
-      curTitle.textContent = headings[current-1];
-      curSub.textContent   = subs[current-1];
-
-      // Content
-      contents.forEach((el,i) => el.classList.toggle('hidden', i+1 !== current));
-
-      // Buttons
-      btnBack.disabled = current === 1;
-      if (current < totals) {
-        btnNext.innerHTML = '{{ section.settings.next_button_label }} <i class="fas fa-arrow-right ml-1"></i>';
-      } else {
-        btnNext.innerHTML = '<i class="fas fa-shopping-cart mr-1"></i>{{ section.settings.checkout_button_label }}';
-      }
-
-      // Summary
-      sumCount.textContent = selected.length;
-      sumThumbs.innerHTML = selected.length
-        ? selected.map(x => `<img src="${x.img}" class="w-10 h-10 rounded" title="${x.title}">`).join('')
-        : '<span class="text-gray-400">No items yet</span>';
-
-      updateStepper();
-    }
-
-    // Add to Box / Select Card
-    document.querySelectorAll('.select-item').forEach(btn => {
-      btn.addEventListener('click', e => {
-        const card = e.currentTarget.closest('[data-id]');
-        selected.push({
-          id:    card.dataset.id,
-          title: card.dataset.title,
-          price: card.dataset.price,
-          img:   card.dataset.img
-        });
-        update();
-      });
+  function showStep(step){
+    current = step;
+    updateProgress(step);
+    document.querySelectorAll('.icon-step').forEach(function(el){
+      el.classList.toggle('active', parseInt(el.dataset.step,10)===step);
     });
-
-    // Next / Back handlers
-    btnNext.addEventListener('click', () => {
-      if (current < totals) { current++; update(); }
-      else { window.location.href = '/checkout'; }
+    document.querySelectorAll('.step-content').forEach(function(el){
+      el.classList.toggle('active', el.id==='step-'+step);
     });
-    btnBack.addEventListener('click', () => {
-      if (current > 1) { current--; update(); }
-    });
+  }
 
-    update();
+  document.querySelectorAll('[data-action="next-step"]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(current<total) showStep(current+1);
+    });
   });
+
+  document.querySelectorAll('.option-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      var pane = this.closest('.step-content');
+      pane.querySelectorAll('.option-item').forEach(function(i){ i.classList.remove('selected'); });
+      this.classList.add('selected');
+      if(pane.id==='step-2'){
+        var title = this.querySelector('p').innerText;
+        var price = this.querySelector('.price').innerText;
+        document.getElementById('summary-list').innerHTML = '<li>'+title+' – '+price+'</li>';
+        document.getElementById('box-subtotal').innerText = price;
+      }
+    });
+  });
+
+  // Initialize on page load
+  updateProgress(1);
+})();
 </script>
 
 {% schema %}
 {
-  "name":"Custom Gift Flow",
-  "settings":[
+  "name": "Box Customizer",
+  "settings": [
     { "type":"collection","id":"packaging_collection","label":"Packaging Collection" },
-    { "type":"text","id":"packaging_heading","label":"Packaging Heading","default":"Choose Your Box Color" },
-    { "type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Pick your favorite box style." },
     { "type":"collection","id":"gifts_collection","label":"Gifts Collection" },
-    { "type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts" },
-    { "type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"Select items to fill your box." },
-    { "type":"collection","id":"card_collection","label":"Card Collection" },
-    { "type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card" },
-    { "type":"text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message." },
-    { "type":"text","id":"next_button_label","label":"Next Button Label","default":"Next" },
-    { "type":"text","id":"back_button_label","label":"Back Button Label","default":"Back" },
-    { "type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Proceed to Checkout" }
+    { "type":"collection","id":"cards_collection","label":"Cards Collection" },
+    { "type":"number","id":"base_box_price","label":"Base Box Price","default":21000 }
   ],
-  "presets":[{ "name":"Custom Gift Flow","category":"Custom Sections" }]
+  "presets": [{ "name":"Box Customizer" }]
 }
 {% endschema %}

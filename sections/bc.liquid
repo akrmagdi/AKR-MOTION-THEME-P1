@@ -9,6 +9,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet">
 
+<!-- Override any cart-drawer overlay from theme -->
+<style>
+  .drawer-overlay, .drawer-backdrop, #CartDrawer, .cart-drawer, .modal-backdrop { display: none !important; }
+</style>
+
 <section class="gift-flow container mx-auto py-12 grid grid-cols-1 lg:grid-cols-4 gap-8" data-id="gift-flow">
   <!-- Main Steps Column -->
   <div class="lg:col-span-3 space-y-12">

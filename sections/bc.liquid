@@ -1,154 +1,183 @@
 {% comment %}
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
-  3-step builder: Packaging -> Gifts -> Card -> Checkout
-  Ensure you create the snippet 'snippets/product-card.liquid' with the provided markup.
+  4-step builder: Packaging -> Gifts -> Card -> Review -> Checkout
+  Enhanced UI/UX with top summary bar and final review step. No external snippet.
 {% endcomment %}
 
-<!-- Snippet: product-card.liquid -->
-{% comment %} Place this file in snippets/product-card.liquid {% endcomment %}
-{% raw %}
-{% comment %} product-card.liquid {% endcomment %}
-<div class="card product-card" data-product-id="{{ product.id }}">
-  <a href="{{ product.url }}">
-    {% if product.featured_image %}
-      <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
-    {% endif %}
-    <h3>{{ product.title }}</h3>
-    <p class="price">{{ product.price | money }}</p>
-  </a>
-  <button type="button" class="btn select-item" data-item-id="{{ product.id }}">Add</button>
-</div>
-{% endraw %}
-
-<!-- Section: Custom Gift Flow -->
 <section class="gift-flow" data-id="gift-flow">
-  <!-- Debug Info -->
-  <div class="debug-info">
-    <p>Packaging Count: {{ collections[section.settings.packaging_collection].products_count }}</p>
-    <p>Gifts Count: {{ collections[section.settings.gifts_collection].products_count }}</p>
-    <p>Card Count: {{ collections[section.settings.card_collection].products_count }}</p>
+  <!-- Top Summary Bar -->
+  <div class="box-summary" id="box-summary">
+    <h4>Your Box (<span id="summary-count">0</span> items)</h4>
+    <div id="summary-items">Start selecting items...</div>
   </div>
 
-  <!-- Indicators -->
+  <!-- Step Indicators -->
   <div class="flow-indicators">
-    <div class="indicator active" data-step="1">{{ section.settings.packaging_step_label }}</div>
-    <div class="indicator" data-step="2">{{ section.settings.gifts_step_label }}</div>
-    <div class="indicator" data-step="3">{{ section.settings.card_step_label }}</div>
+    <div class="indicator active" data-step="1">Packaging</div>
+    <div class="indicator" data-step="2">Gifts</div>
+    <div class="indicator" data-step="3">Card</div>
+    <div class="indicator" data-step="4">Review</div>
   </div>
 
   <!-- Steps -->
   <div class="flow-steps">
+    <!-- Step 1: Packaging -->
     <div class="step" data-step="1">
       <h2>{{ section.settings.packaging_heading }}</h2>
       <p>{{ section.settings.packaging_subheading }}</p>
-      {% assign pack_col = collections[section.settings.packaging_collection] %}
-      {% if pack_col.products_count > 0 %}
-        <div class="grid">
-          {% for product in pack_col.products %}
-            {% render 'product-card' product: product %}
-          {% endfor %}
-        </div>
-      {% else %}
-        <p><strong>No packaging items.</strong> Set a valid collection.</p>
-      {% endif %}
+      <div class="grid">
+        {% assign col = collections[section.settings.packaging_collection] %}
+        {% for product in col.products %}
+          <div class="card" data-id="product-{{ product.id }}" data-price="{{ product.price | money_without_currency }}">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            {% endif %}
+            <h3>{{ product.title }}</h3>
+            <span class="price">{{ product.price | money }}</span>
+            <button type="button" class="btn select-item" data-id="{{ product.id }}" data-price="{{ product.price | money_without_currency }}">Add</button>
+          </div>
+        {% endfor %}
+      </div>
       <button class="btn next-step">{{ section.settings.next_button_label }}</button>
     </div>
 
+    <!-- Step 2: Gifts -->
     <div class="step hidden" data-step="2">
       <h2>{{ section.settings.gifts_heading }}</h2>
       <p>{{ section.settings.gifts_subheading }}</p>
-      {% assign gifts_col = collections[section.settings.gifts_collection] %}
-      {% if gifts_col.products_count > 0 %}
-        <div class="grid">
-          {% for product in gifts_col.products %}
-            {% render 'product-card' product: product %}
-          {% endfor %}
-        </div>
-      {% else %}
-        <p><strong>No gift items.</strong> Set a valid collection.</p>
-      {% endif %}
+      <div class="grid">
+        {% assign col = collections[section.settings.gifts_collection] %}
+        {% for product in col.products %}
+          <div class="card" data-id="product-{{ product.id }}" data-price="{{ product.price | money_without_currency }}">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            {% endif %}
+            <h3>{{ product.title }}</h3>
+            <span class="price">{{ product.price | money }}</span>
+            <button type="button" class="btn select-item" data-id="{{ product.id }}" data-price="{{ product.price | money_without_currency }}">Add</button>
+          </div>
+        {% endfor %}
+      </div>
       <div class="flow-nav">
         <button class="btn back-step">{{ section.settings.back_button_label }}</button>
         <button class="btn next-step">{{ section.settings.next_button_label }}</button>
       </div>
     </div>
 
+    <!-- Step 3: Card -->
     <div class="step hidden" data-step="3">
       <h2>{{ section.settings.card_heading }}</h2>
       <p>{{ section.settings.card_subheading }}</p>
-      {% assign card_col = collections[section.settings.card_collection] %}
-      {% if card_col.products_count > 0 %}
-        <div class="grid">
-          {% for product in card_col.products %}
-            {% render 'product-card' product: product %}
-          {% endfor %}
-        </div>
-      {% else %}
-        <p><strong>No cards.</strong> Set a valid collection.</p>
-      {% endif %}
+      <div class="grid">
+        {% assign col = collections[section.settings.card_collection] %}
+        {% for product in col.products %}
+          <div class="card" data-id="product-{{ product.id }}" data-price="{{ product.price | money_without_currency }}">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}">
+            {% endif %}
+            <h3>{{ product.title }}</h3>
+            <span class="price">{{ product.price | money }}</span>
+            <button type="button" class="btn select-item" data-id="{{ product.id }}" data-price="{{ product.price | money_without_currency }}">Add</button>
+          </div>
+        {% endfor %}
+      </div>
       <div class="flow-nav">
         <button class="btn back-step">{{ section.settings.back_button_label }}</button>
-        <button class="btn checkout-step">{{ section.settings.checkout_button_label }}</button>
+        <button class="btn next-step">Review</button>
       </div>
+    </div>
+
+    <!-- Step 4: Review -->
+    <div class="step hidden" data-step="4">
+      <h2>Review Your Box</h2>
+      <div id="review-list"></div>
+      <div class="total">Total: <span id="review-total">$0.00</span></div>
+      <button class="btn back-step">{{ section.settings.back_button_label }}</button>
+      <button class="btn checkout-step">{{ section.settings.checkout_button_label }}</button>
     </div>
   </div>
 </section>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    var selected = [];
     var steps = document.querySelectorAll('.step');
     var indicators = document.querySelectorAll('.indicator');
-    function goToStep(n) {
-      steps.forEach(function(s) { s.classList.add('hidden'); });
-      indicators.forEach(function(i) { i.classList.remove('active'); });
-      document.querySelector('.step[data-step="' + n + '"]').classList.remove('hidden');
-      document.querySelector('.indicator[data-step="' + n + '"]').classList.add('active');
+    var summaryCount = document.getElementById('summary-count');
+    var summaryItems = document.getElementById('summary-items');
+    var reviewList = document.getElementById('review-list');
+    var reviewTotal = document.getElementById('review-total');
+
+    function updateSummary() {
+      summaryCount.textContent = selected.length;
+      summaryItems.innerHTML = selected.map(function(i){ return '<div>'+i.title+'</div>'; }).join('');
     }
-    document.body.addEventListener('click', function(e) {
-      if (e.target.matches('.next-step')) {
-        var current = parseInt(document.querySelector('.indicator.active').getAttribute('data-step'));
-        goToStep(current + 1);
-      } else if (e.target.matches('.back-step')) {
-        var current = parseInt(document.querySelector('.indicator.active').getAttribute('data-step'));
-        goToStep(current - 1);
-      } else if (e.target.matches('.checkout-step')) {
-        document.querySelector('button.checkout-step').innerText = 'Redirecting…';
-        // implement checkout logic
+
+    function goToStep(n) {
+      steps.forEach(function(s){ s.classList.toggle('hidden', parseInt(s.getAttribute('data-step')) !== n); });
+      indicators.forEach(function(ind){ ind.classList.toggle('active', parseInt(ind.getAttribute('data-step')) === n); });
+      if(n===4) renderReview();
+    }
+
+    function renderReview() {
+      var total=0;
+      reviewList.innerHTML = selected.map(function(item){ total+=parseFloat(item.price); return '<div>'+item.title+' - $'+(+item.price).toFixed(2)+'</div>'; }).join('');
+      reviewTotal.textContent = '$'+total.toFixed(2);
+    }
+
+    document.body.addEventListener('click', function(e){
+      if(e.target.matches('.select-item')){
+        var id=e.target.getAttribute('data-id'), price=e.target.getAttribute('data-price'), title=e.target.parentNode.querySelector('h3').innerText;
+        selected.push({id:id,price:price,title:title});
+        updateSummary();
+      }
+      if(e.target.matches('.next-step')){
+        var cur=parseInt(document.querySelector('.indicator.active').getAttribute('data-step'));
+        goToStep(cur+1);
+      }
+      if(e.target.matches('.back-step')){
+        var cur=parseInt(document.querySelector('.indicator.active').getAttribute('data-step'));
+        goToStep(cur-1);
+      }
+      if(e.target.matches('.checkout-step')){
+        var form=document.createElement('form');form.method='POST';form.action='/cart/add';
+        selected.forEach(function(item){ var inp=document.createElement('input');inp.type='hidden';inp.name='items[][id]';inp.value=item.id;form.appendChild(inp); });
+        document.body.appendChild(form);form.submit();
       }
     });
+
+    goToStep(1);
   });
 </script>
 
 <style>
-  .hidden { display: none; }
-  .flow-indicators { display: flex; gap: 1rem; margin-bottom: 1rem; }
-  .indicator { flex: 1; padding: .5rem; border-bottom: 2px solid #ccc; text-align: center; cursor: default; }
-  .indicator.active { border-color: #333; font-weight: bold; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; }
-  .btn { background: #333; color: #fff; padding: .5rem 1rem; border: none; cursor: pointer; }
+  .box-summary { position: sticky; top:0; background:#f9f9f9; padding:1rem; border-bottom:1px solid #ddd; }
+  .flow-indicators { display:flex; gap:1rem; margin:1rem 0; }
+  .indicator { flex:1; padding:.5rem; border-bottom:2px solid #ccc; text-align:center; }
+  .indicator.active { border-color:#333; font-weight:bold; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:1rem; }
+  .card { border:1px solid #eee; padding:1rem; text-align:center; }
+  .card img { max-width:100%; height:auto; }
+  .btn { background:#333; color:#fff; padding:.5rem 1rem; margin-top:.5rem; border:none; cursor:pointer; }
+  #review-list div { margin-bottom:.5rem; }
+  .total { font-weight:bold; margin:1rem 0; }
 </style>
 
 {% schema %}
-{
-  "name": "Custom Gift Flow",
-  "settings": [
+{  "name": "Custom Gift Flow",  "settings": [
     {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
-    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
-    {"type":"collection","id":"card_collection","label":"Card Collection"},
-    {"type":"text","id":"packaging_step_label","label":"Packaging Step Label","default":"Packaging"},
-    {"type":"text","id":"gifts_step_label","label":"Gifts Step Label","default":"Gifts"},
-    {"type":"text","id":"card_step_label","label":"Card Step Label","default":"Card"},
     {"type":"text","id":"packaging_heading","label":"Packaging Heading","default":"Choose Your Box Color"},
-    {"type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts"},
-    {"type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card"},
     {"type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Pick your favorite box style before adding gifts."},
+    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
+    {"type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts"},
     {"type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"Select items to fill your box."},
+    {"type":"collection","id":"card_collection","label":"Card Collection"},
+    {"type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card"},
     {"type":"text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message to your gift."},
     {"type":"text","id":"next_button_label","label":"Next Button Label","default":"Next"},
     {"type":"text","id":"back_button_label","label":"Back Button Label","default":"Back"},
     {"type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Checkout"}
-  ],
-  "presets":[{"name":"Custom Gift Flow","category":"Custom Sections"}]
+  ],  "presets":[{"name":"Custom Gift Flow","category":"Custom Sections"}]
 }
 {% endschema %}

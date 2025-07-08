@@ -1,7 +1,7 @@
 {% comment %}
 Section: Box Customizer for Shopify
+Enhanced with animated progress bar using JavaScript and CSS transitions.
 Drop this file into /sections/box-customizer.liquid and add to a page template.
-This version uses Font Awesome icons, collection-based product loops for each step, and enhanced hover/selection styling.
 {% endcomment %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -29,7 +29,8 @@ This version uses Font Awesome icons, collection-based product loops for each st
 
   <!-- PROGRESS BAR -->
   <div class="customizer-progress">
-    <div class="progress-line"></div>
+    <div class="progress-line-bg"></div>
+    <div class="progress-line-fill"></div>
     {% for i in (1..4) %}
       <div class="progress-step{% if i == 1 %} active{% endif %}" data-step="{{ i }}">
         <span class="step-label">
@@ -120,13 +121,16 @@ This version uses Font Awesome icons, collection-based product loops for each st
 .customizer-icons { display: flex; justify-content: space-between; margin-bottom: 2rem; }
 .icon-step { flex: 1; opacity: .5; transition: opacity .3s, transform .3s; cursor: pointer; }
 .icon-step.active, .icon-step:hover { opacity: 1; transform: translateY(-4px); }
-.icon-step i { color: #191E3A; }
+.icon-step i { color: #191E3A; transition: color .3s; }
+.icon-step.active i { color: #E00060; }
 .icon-step p { margin-top: .5rem; font-weight: bold; color: #191E3A; }
-.customizer-progress { position: relative; margin-bottom: 3rem; }
-.progress-line { height: 2px; background: #E0E0E0; position: absolute; top: 12px; left: 5%; right: 5%; }
-.progress-step { position: relative; display: inline-block; width: 20%; text-align: center; }
-.progress-step::before { content: ''; display: block; width: 16px; height: 16px; background: #E0E0E0; border-radius: 50%; margin: 0 auto; position: relative; top: -8px; transition: background .3s; }
-.progress-step.active::before { background: #E00060; }
+.customizer-progress { position: relative; margin-bottom: 3rem; height: 24px; }
+.progress-line-bg, .progress-line-fill { position: absolute; top: 12px; left: 5%; right: 5%; height: 2px; }
+.progress-line-bg { background: #E0E0E0; }
+.progress-line-fill { background: #E00060; width: 0; transition: width .6s ease-in-out; }
+.progress-step { position: absolute; width: 0; text-align: center; }
+.progress-step::before { content: ''; display: block; width: 16px; height: 16px; background: #E0E0E0; border-radius: 50%; margin: auto; transition: background .3s, transform .3s; }
+.progress-step.active::before { background: #E00060; transform: scale(1.2); }
 .step-label { display: none; font-size: .75rem; color: #AAA; }
 .progress-step.active .step-label { display: block; color: #E00060; font-weight: bold; }
 
@@ -158,41 +162,43 @@ h2 { font-size: 2rem; margin-bottom: .5rem; }
 
 <script>
 (function(){
-  var current = 1;
-  function showStep(step) {
-    current = step;
-    document.querySelectorAll('.icon-step').forEach(el => el.classList.toggle('active', +el.dataset.step === step));
-    document.querySelectorAll('.progress-step').forEach(el => el.classList.toggle('active', +el.dataset.step === step));
-    document.querySelectorAll('.step-content').forEach(el => el.classList.toggle('active', el.id === 'step-'+step));
-  }
-  document.querySelectorAll('[data-action="next-step"]').forEach(btn => {
-    btn.addEventListener('click', function(){ if(current < 4) showStep(current+1); });
-  });
-  document.querySelectorAll('.option-item').forEach(item => {
-    item.addEventListener('click', function(){
-      var pane = item.closest('.step-content');
-      pane.querySelectorAll('.option-item').forEach(i => i.classList.remove('selected'));
-      item.classList.add('selected');
-      if(pane.id === 'step-2') {
-        var title = item.querySelector('p').innerText;
-        var price = item.querySelector('.price').innerText;
-        document.getElementById('summary-list').innerHTML = `<li>${title} - ${price}</li>`;
-        document.getElementById('box-subtotal').innerText = price;
-      }
+  var current=1, total=4;
+  var fill = document.querySelector('.progress-line-fill');
+  var steps = document.querySelectorAll('.progress-step');
+  function updateProgress(step){
+    var percent = ((step-1)/(total-1))*100;
+    fill.style.width=percent + '%';
+    steps.forEach(el=>{
+      var s=+el.dataset.step;
+      el.classList.toggle('active', s===step);
+      el.style.left = (5 + ((s-1)/(total-1))*90) + '%';
     });
-  });
+  }
+  function showStep(s){ current=s; updateProgress(s);
+    document.querySelectorAll('.icon-step').forEach(el=>el.classList.toggle('active', +el.dataset.step===s));
+    document.querySelectorAll('.step-content').forEach(el=>el.classList.toggle('active', el.id==='step-'+s));
+  }
+  document.querySelectorAll('[data-action="next-step"]').forEach(btn=>btn.addEventListener('click',()=>{ if(current<total) showStep(current+1); }));
+  document.querySelectorAll('.option-item').forEach(item=>item.addEventListener('click',function(){
+    var pane=this.closest('.step-content'); pane.querySelectorAll('.option-item').forEach(i=>i.classList.remove('selected'));
+    this.classList.add('selected'); if(pane.id==='step-2'){ var title=this.querySelector('p').innerText;
+      var price=this.querySelector('.price').innerText; document.getElementById('summary-list').innerHTML=`<li>${title} - ${price}</li>`;
+      document.getElementById('box-subtotal').innerText=price; }
+  }));
+  // init
+  updateProgress(1);
 })();
 </script>
 
 {% schema %}
 {
-  "name": "Box Customizer",
-  "settings": [
-    { "type": "collection", "id": "packaging_collection", "label": "Packaging Collection" },
-    { "type": "collection", "id": "gifts_collection", "label": "Gifts Collection" },
-    { "type": "collection", "id": "cards_collection", "label": "Cards Collection" },
-    { "type": "number", "id": "base_box_price", "label": "Base Box Price", "default": 21000 }
+  "name":"Box Customizer",
+  "settings":[
+    {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
+    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
+    {"type":"collection","id":"cards_collection","label":"Cards Collection"},
+    {"type":"number","id":"base_box_price","label":"Base Box Price","default":21000}
   ],
-  "presets": [ { "name": "Box Customizer" } ]
+  "presets":[{"name":"Box Customizer"}]
 }
 {% endschema %}

@@ -1,7 +1,7 @@
 {% comment %}
 Section: Box Customizer for Shopify
-Enhanced with animated progress bar, restored original icons, fixed collection loops and image sizing.
-Drop this file into /sections/box-customizer.liquid and add to a page template.
+Full code with validation for Collections and fallback messaging.
+Drop into /sections/box-customizer.liquid and include on a page.
 {% endcomment %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -53,12 +53,17 @@ Drop this file into /sections/box-customizer.liquid and add to a page template.
       <h2>CHOOSE YOUR BOX COLOR</h2>
       <p class="description">Welcome to the easiest way to send someone a custom gift in 3 simple steps.</p>
       <div class="box-options">
-        {% for product in collections[section.settings.packaging_collection].products %}
-          <div class="option-item" data-product-id="{{ product.id }}">
-            <img src="{{ product.featured_image | img_url: '150x150' }}" alt="{{ product.title }}">
-            <p>{{ product.title }}</p>
-          </div>
-        {% endfor %}
+        {% assign packCol = collections[section.settings.packaging_collection] %}
+        {% if packCol and packCol.products_count > 0 %}
+          {% for product in packCol.products %}
+            <div class="option-item" data-product-id="{{ product.id }}">
+              <img src="{{ product.featured_image | img_url: '150x150' }}" alt="{{ product.title }}">
+              <p>{{ product.title }}</p>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="empty-message">Please select a Packaging Collection in the section settings.</p>
+        {% endif %}
       </div>
       <button class="btn btn--primary" data-action="next-step">Choose Your Gifts</button>
     </div>
@@ -69,13 +74,18 @@ Drop this file into /sections/box-customizer.liquid and add to a page template.
       <h2>CHOOSE YOUR GIFTS</h2>
       <p class="description">Select from these hand-picked gifts!</p>
       <div class="gift-options">
-        {% for product in collections[section.settings.gifts_collection].products %}
-          <div class="option-item" data-product-id="{{ product.id }}">
-            <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
-            <p>{{ product.title }}</p>
-            <p class="price">{{ product.price | money }}</p>
-          </div>
-        {% endfor %}
+        {% assign giftsCol = collections[section.settings.gifts_collection] %}
+        {% if giftsCol and giftsCol.products_count > 0 %}
+          {% for product in giftsCol.products %}
+            <div class="option-item" data-product-id="{{ product.id }}">
+              <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
+              <p>{{ product.title }}</p>
+              <p class="price">{{ product.price | money }}</p>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="empty-message">Please select a Gifts Collection in the section settings.</p>
+        {% endif %}
       </div>
       <aside class="box-summary">
         <h3>Box Content</h3>
@@ -91,12 +101,17 @@ Drop this file into /sections/box-customizer.liquid and add to a page template.
       <h2>CHOOSE YOUR CARD</h2>
       <p class="description">Pick the perfect card design.</p>
       <div class="card-options">
-        {% for product in collections[section.settings.cards_collection].products %}
-          <div class="option-item" data-product-id="{{ product.id }}">
-            <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
-            <p>{{ product.title }}</p>
-          </div>
-        {% endfor %}
+        {% assign cardCol = collections[section.settings.cards_collection] %}
+        {% if cardCol and cardCol.products_count > 0 %}
+          {% for product in cardCol.products %}
+            <div class="option-item" data-product-id="{{ product.id }}">
+              <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
+              <p>{{ product.title }}</p>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="empty-message">Please select a Cards Collection in the section settings.</p>
+        {% endif %}
       </div>
       <button class="btn btn--primary" data-action="next-step">Build My Box</button>
     </div>
@@ -145,6 +160,7 @@ h2 { font-size: 24px; margin: 10px 0; }
 .btn--primary { background: #191E3A; color: #fff; }
 .btn--secondary { background: transparent; color: #191E3A; border: 2px solid #191E3A; }
 .box-options, .gift-options, .card-options { text-align: center; }
+.empty-message { color: #E00060; font-style: italic; margin: 20px 0; }
 .box-summary { margin-top: 20px; background: #f9f9f9; padding: 10px; border-radius: 8px; width: 240px; display: inline-block; vertical-align: top; }
 .box-summary h3 { margin-bottom: 8px; }
 .box-summary ul { padding: 0; list-style: none; font-size: 14px; color: #333; }
@@ -155,25 +171,23 @@ h2 { font-size: 24px; margin: 10px 0; }
 
 <script>
 (function(){
-  var current = 1, total = 4;
-  var fill = document.querySelector('.progress-line-fill');
-  var steps = document.querySelectorAll('.progress-step');
+  var current=1, total=4;
+  var fill=document.querySelector('.progress-line-fill');
+  var steps=document.querySelectorAll('.progress-step');
 
   function updateProgress(step){
-    var percent = (step-1)/(total-1)*100;
-    fill.style.width = percent + '%';
+    var percent=(step-1)/(total-1)*100;
+    fill.style.width=percent+'%';
     steps.forEach(function(el){
-      var s = parseInt(el.dataset.step,10);
-      el.classList.toggle('active', s === step);
-      // Position dots evenly between 5% and 95%
-      var left = 5 + (s-1)*(90/(total-1));
-      el.style.left = left + '%';
+      var s=parseInt(el.dataset.step,10);
+      el.classList.toggle('active', s===step);
+      var left=5 + (s-1)*(90/(total-1));
+      el.style.left=left+'%';
     });
   }
 
   function showStep(step){
-    current = step;
-    updateProgress(step);
+    current=step; updateProgress(step);
     document.querySelectorAll('.icon-step').forEach(function(el){
       el.classList.toggle('active', parseInt(el.dataset.step,10)===step);
     });
@@ -183,39 +197,36 @@ h2 { font-size: 24px; margin: 10px 0; }
   }
 
   document.querySelectorAll('[data-action="next-step"]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if(current<total) showStep(current+1);
-    });
+    btn.addEventListener('click', function(){ if(current<total) showStep(current+1); });
   });
 
   document.querySelectorAll('.option-item').forEach(function(item){
     item.addEventListener('click', function(){
-      var pane = this.closest('.step-content');
+      var pane=this.closest('.step-content');
       pane.querySelectorAll('.option-item').forEach(function(i){ i.classList.remove('selected'); });
       this.classList.add('selected');
       if(pane.id==='step-2'){
-        var title = this.querySelector('p').innerText;
-        var price = this.querySelector('.price').innerText;
-        document.getElementById('summary-list').innerHTML = '<li>'+title+' – '+price+'</li>';
-        document.getElementById('box-subtotal').innerText = price;
+        var title=this.querySelector('p').innerText;
+        var price=this.querySelector('.price').innerText;
+        document.getElementById('summary-list').innerHTML='<li>'+title+' – '+price+'</li>';
+        document.getElementById('box-subtotal').innerText=price;
       }
     });
   });
 
-  // Initialize on page load
   updateProgress(1);
 })();
 </script>
 
 {% schema %}
 {
-  "name": "Box Customizer",
-  "settings": [
-    { "type":"collection","id":"packaging_collection","label":"Packaging Collection" },
-    { "type":"collection","id":"gifts_collection","label":"Gifts Collection" },
-    { "type":"collection","id":"cards_collection","label":"Cards Collection" },
-    { "type":"number","id":"base_box_price","label":"Base Box Price","default":21000 }
+  "name":"Box Customizer",
+  "settings":[
+    {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
+    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
+    {"type":"collection","id":"cards_collection","label":"Cards Collection"},
+    {"type":"number","id":"base_box_price","label":"Base Box Price","default":21000}
   ],
-  "presets": [{ "name":"Box Customizer" }]
+  "presets":[{"name":"Box Customizer"}]
 }
 {% endschema %}

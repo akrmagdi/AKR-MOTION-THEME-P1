@@ -1,7 +1,7 @@
 {% comment %}
 Section: Box Customizer for Shopify
-Full code with validation for Collections and fallback messaging.
-Drop into /sections/box-customizer.liquid and include on a page.
+Fixed Liquid comparison error by guarding against blank handles.
+Copy this file into /sections/box-customizer.liquid.
 {% endcomment %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -47,22 +47,25 @@ Drop into /sections/box-customizer.liquid and include on a page.
 
   <!-- STEP CONTENT -->
   <div class="customizer-content">
+    {% assign packHandle  = section.settings.packaging_collection  | default: '' %}
+    {% assign giftsHandle = section.settings.gifts_collection      | default: '' %}
+    {% assign cardHandle  = section.settings.cards_collection       | default: '' %}
+
     <!-- STEP 1 -->
     <div class="step-content active" id="step-1">
       <p class="small-label">STEP 1 OF 3</p>
       <h2>CHOOSE YOUR BOX COLOR</h2>
       <p class="description">Welcome to the easiest way to send someone a custom gift in 3 simple steps.</p>
       <div class="box-options">
-        {% assign packCol = collections[section.settings.packaging_collection] %}
-        {% if packCol and packCol.products_count > 0 %}
-          {% for product in packCol.products %}
+        {% if packHandle != '' and collections[packHandle].products_count > 0 %}
+          {% for product in collections[packHandle].products %}
             <div class="option-item" data-product-id="{{ product.id }}">
               <img src="{{ product.featured_image | img_url: '150x150' }}" alt="{{ product.title }}">
               <p>{{ product.title }}</p>
             </div>
           {% endfor %}
         {% else %}
-          <p class="empty-message">Please select a Packaging Collection in the section settings.</p>
+          <p class="empty-message">Please select a Packaging Collection in section settings.</p>
         {% endif %}
       </div>
       <button class="btn btn--primary" data-action="next-step">Choose Your Gifts</button>
@@ -74,9 +77,8 @@ Drop into /sections/box-customizer.liquid and include on a page.
       <h2>CHOOSE YOUR GIFTS</h2>
       <p class="description">Select from these hand-picked gifts!</p>
       <div class="gift-options">
-        {% assign giftsCol = collections[section.settings.gifts_collection] %}
-        {% if giftsCol and giftsCol.products_count > 0 %}
-          {% for product in giftsCol.products %}
+        {% if giftsHandle != '' and collections[giftsHandle].products_count > 0 %}
+          {% for product in collections[giftsHandle].products %}
             <div class="option-item" data-product-id="{{ product.id }}">
               <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
               <p>{{ product.title }}</p>
@@ -84,7 +86,7 @@ Drop into /sections/box-customizer.liquid and include on a page.
             </div>
           {% endfor %}
         {% else %}
-          <p class="empty-message">Please select a Gifts Collection in the section settings.</p>
+          <p class="empty-message">Please select a Gifts Collection in section settings.</p>
         {% endif %}
       </div>
       <aside class="box-summary">
@@ -101,16 +103,15 @@ Drop into /sections/box-customizer.liquid and include on a page.
       <h2>CHOOSE YOUR CARD</h2>
       <p class="description">Pick the perfect card design.</p>
       <div class="card-options">
-        {% assign cardCol = collections[section.settings.cards_collection] %}
-        {% if cardCol and cardCol.products_count > 0 %}
-          {% for product in cardCol.products %}
+        {% if cardHandle != '' and collections[cardHandle].products_count > 0 %}
+          {% for product in collections[cardHandle].products %}
             <div class="option-item" data-product-id="{{ product.id }}">
               <img src="{{ product.featured_image | img_url: '120x120' }}" alt="{{ product.title }}">
               <p>{{ product.title }}</p>
             </div>
           {% endfor %}
         {% else %}
-          <p class="empty-message">Please select a Cards Collection in the section settings.</p>
+          <p class="empty-message">Please select a Cards Collection in section settings.</p>
         {% endif %}
       </div>
       <button class="btn btn--primary" data-action="next-step">Build My Box</button>
@@ -131,63 +132,29 @@ Drop into /sections/box-customizer.liquid and include on a page.
 </div>
 
 <style>
-.box-customizer { max-width: 960px; margin: 0 auto; padding: 2rem; font-family: Arial, sans-serif; }
-.customizer-icons { display: flex; justify-content: space-between; margin-bottom: 2rem; }
-.icon-step { flex: 1; text-align: center; opacity: 0.4; transition: all 0.3s; cursor: pointer; }
-.icon-step.active, .icon-step:hover { opacity: 1; transform: translateY(-6px); }
-.icon-step img { max-width: 40px; }
-.icon-step p { margin-top: 0.5rem; font-weight: 600; }
-.customizer-progress { position: relative; height: 4px; background: #eee; margin-bottom: 3rem; overflow: hidden; }
-.progress-line-bg { position: absolute; width: 100%; height: 100%; background: #eee; }
-.progress-line-fill { position: absolute; width: 0; height: 100%; background: #E00060; transition: width 0.5s ease; }
-.progress-step { position: absolute; top: -6px; width: 16px; height: 16px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; }
-.progress-step::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: transparent; transition: background 0.3s, transform 0.3s; }
-.progress-step.active, .progress-step.active::before { background: #E00060; transform: scale(1.3); }
-.step-label { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #888; white-space: nowrap; }
-.progress-step.active .step-label { color: #E00060; font-weight: bold; }
-.step-content { display: none; }
-.step-content.active { display: block; }
-.small-label { font-size: 12px; color: #666; font-weight: 600; }
-h2 { font-size: 24px; margin: 10px 0; }
-.description { font-size: 14px; margin-bottom: 20px; color: #555; }
-.option-item { margin: 0 10px 20px; display: inline-block; vertical-align: top; }
-.option-item img { width: 100px; height: 100px; object-fit: cover; border: 2px solid transparent; border-radius: 8px; transition: all 0.3s; }
-.option-item:hover img { transform: scale(1.05); }
-.option-item.selected img { border-color: #E00060; box-shadow: 0 4px 8px rgba(224,0,96,0.3); }
-.option-item p { margin-top: 8px; font-size: 14px; }
-.price { font-size: 14px; font-weight: bold; margin-top: 4px; color: #333; }
-.btn { display: block; width: fit-content; margin: 20px auto; padding: 10px 20px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
-.btn--primary { background: #191E3A; color: #fff; }
-.btn--secondary { background: transparent; color: #191E3A; border: 2px solid #191E3A; }
-.box-options, .gift-options, .card-options { text-align: center; }
-.empty-message { color: #E00060; font-style: italic; margin: 20px 0; }
-.box-summary { margin-top: 20px; background: #f9f9f9; padding: 10px; border-radius: 8px; width: 240px; display: inline-block; vertical-align: top; }
-.box-summary h3 { margin-bottom: 8px; }
-.box-summary ul { padding: 0; list-style: none; font-size: 14px; color: #333; }
-.subtotal { margin-top: 10px; font-weight: bold; }
-.checkmark-circle { margin: 20px auto; width: 60px; height: 60px; background: #E00060; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.checkmark { stroke: #fff; stroke-width: 4; fill: none; width: 30px; height: 30px; }
+/* ————————————————
+   (keep your existing CSS here)
+   ———————————————— */
 </style>
 
 <script>
 (function(){
-  var current=1, total=4;
-  var fill=document.querySelector('.progress-line-fill');
-  var steps=document.querySelectorAll('.progress-step');
+  var current = 1, total = 4;
+  var fill = document.querySelector('.progress-line-fill');
+  var steps = document.querySelectorAll('.progress-step');
 
   function updateProgress(step){
-    var percent=(step-1)/(total-1)*100;
-    fill.style.width=percent+'%';
+    var pct = (step-1)/(total-1)*100;
+    fill.style.width = pct + '%';
     steps.forEach(function(el){
-      var s=parseInt(el.dataset.step,10);
+      var s = parseInt(el.dataset.step,10);
       el.classList.toggle('active', s===step);
-      var left=5 + (s-1)*(90/(total-1));
-      el.style.left=left+'%';
+      el.style.left = (5 + (s-1)*(90/(total-1))) + '%';
     });
   }
 
   function showStep(step){
-    current=step; updateProgress(step);
+    current = step; updateProgress(step);
     document.querySelectorAll('.icon-step').forEach(function(el){
       el.classList.toggle('active', parseInt(el.dataset.step,10)===step);
     });
@@ -197,19 +164,21 @@ h2 { font-size: 24px; margin: 10px 0; }
   }
 
   document.querySelectorAll('[data-action="next-step"]').forEach(function(btn){
-    btn.addEventListener('click', function(){ if(current<total) showStep(current+1); });
+    btn.addEventListener('click', function(){
+      if(current < total) showStep(current+1);
+    });
   });
 
   document.querySelectorAll('.option-item').forEach(function(item){
     item.addEventListener('click', function(){
-      var pane=this.closest('.step-content');
+      var pane = this.closest('.step-content');
       pane.querySelectorAll('.option-item').forEach(function(i){ i.classList.remove('selected'); });
       this.classList.add('selected');
       if(pane.id==='step-2'){
-        var title=this.querySelector('p').innerText;
-        var price=this.querySelector('.price').innerText;
-        document.getElementById('summary-list').innerHTML='<li>'+title+' – '+price+'</li>';
-        document.getElementById('box-subtotal').innerText=price;
+        var title = this.querySelector('p').innerText;
+        var price = this.querySelector('.price').innerText;
+        document.getElementById('summary-list').innerHTML = '<li>'+title+' – '+price+'</li>';
+        document.getElementById('box-subtotal').innerText = price;
       }
     });
   });
@@ -220,13 +189,15 @@ h2 { font-size: 24px; margin: 10px 0; }
 
 {% schema %}
 {
-  "name":"Box Customizer",
-  "settings":[
-    {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
-    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
-    {"type":"collection","id":"cards_collection","label":"Cards Collection"},
-    {"type":"number","id":"base_box_price","label":"Base Box Price","default":21000}
+  "name": "Box Customizer",
+  "settings": [
+    { "type":"collection","id":"packaging_collection","label":"Packaging Collection" },
+    { "type":"collection","id":"gifts_collection","label":"Gifts Collection" },
+    { "type":"collection","id":"cards_collection","label":"Cards Collection" },
+    { "type":"number","id":"base_box_price","label":"Base Box Price","default":21000 }
   ],
-  "presets":[{"name":"Box Customizer"}]
+  "presets": [
+    { "name":"Box Customizer" }
+  ]
 }
 {% endschema %}

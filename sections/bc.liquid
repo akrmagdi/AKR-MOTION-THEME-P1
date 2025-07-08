@@ -5,13 +5,14 @@
     • Updated stepper to four steps: Pick Box, Choose Gifts, Pick Card, Enjoy Gifting
     • Refined product grid and cards for modern look
     • Progress bar and step indicators match Giftopiia style
+    • Added an animated progress bar
+    • “Add to Box” buttons now type="button" and wired with dedicated listeners
 {% endcomment %}
 
 <!-- Include necessary libs (preferably in layout) -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link href="https://cdn.jsdelivr.net/npm/daisyui@3/dist/full.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
 
 {% assign headings_string = section.settings.packaging_heading | append: '||' | append: section.settings.gifts_heading | append: '||' | append: section.settings.card_heading | append: '||Enjoy Gifting!' %}
 {% assign headings_array = headings_string | split: '||' %}
@@ -28,6 +29,13 @@
     <h4 class="font-semibold mb-2">Your Box (<span id="summary-count">0</span> items)</h4>
     <div id="summary-thumbs" class="flex space-x-2">
       <span class="text-gray-400">No items yet</span>
+    </div>
+  </div>
+
+  <!-- Animated Progress Bar -->
+  <div class="mb-6">
+    <div class="w-full h-2 bg-gray-200 rounded overflow-hidden">
+      <div id="progress-fill" class="h-2 bg-blue-600 rounded" style="width:0%"></div>
     </div>
   </div>
 
@@ -69,35 +77,37 @@
             {% assign col = collections[section.settings.packaging_collection] %}
           {% elsif idx == 2 %}
             {% assign col = collections[section.settings.gifts_collection] %}
-          {% elsif idx == 3 %}
-            {% assign col = collections[section.settings.card_collection] %}
           {% else %}
-            {% assign col = blank %}
+            {% assign col = collections[section.settings.card_collection] %}
           {% endif %}
           {% if col %}
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {% for p in col.products %}
-            <div class="card border rounded-lg p-4 shadow hover:shadow-lg transition" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
-              {% if p.featured_image %}
-                <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-40 object-cover rounded-md mb-3">
-              {% endif %}
-              <h3 class="font-medium truncate mb-1 text-base">{{ p.title }}</h3>
-              {% if idx < 3 %}
-                <p class="text-blue-600 font-semibold mb-2 text-base">{{ p.price | money }}</p>
-                <button class="select-item btn btn-primary w-full uppercase"><i class="fas fa-plus mr-1"></i>Add to Box</button>
-              {% else %}
-                <button class="select-item btn btn-secondary w-full uppercase"><i class="fas fa-check mr-1"></i>Select Card</button>
-              {% endif %}
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {% for p in col.products %}
+                <div class="card border rounded-lg p-4 shadow hover:shadow-lg transition" data-id="{{ p.id }}" data-title="{{ p.title }}" data-price="{{ p.price | money_without_currency }}" data-img="{{ p.featured_image | img_url:'200x' }}">
+                  {% if p.featured_image %}
+                    <img src="{{ p.featured_image | img_url:'400x' }}" alt="{{ p.title }}" class="w-full h-40 object-cover rounded-md mb-3">
+                  {% endif %}
+                  <h3 class="font-medium truncate mb-1 text-base">{{ p.title }}</h3>
+                  {% if idx < 3 %}
+                    <p class="text-blue-600 font-semibold mb-2 text-base">{{ p.price | money }}</p>
+                    <button type="button" class="select-item btn btn-primary w-full uppercase">
+                      <i class="fas fa-plus mr-1"></i>Add to Box
+                    </button>
+                  {% else %}
+                    <button type="button" class="select-item btn btn-secondary w-full uppercase">
+                      <i class="fas fa-check mr-1"></i>Select Card
+                    </button>
+                  {% endif %}
+                </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-          </div>
           {% endif %}
         {% else %}
-        <div class="flex flex-col items-center justify-center h-48">
-          <i class="fas fa-smile text-5xl text-blue-500 mb-4"></i>
-          <h3 class="text-2xl font-bold mb-2">Enjoy Gifting!</h3>
-          <p class="text-gray-600">You're all set. Proceed to checkout or build another box.</p>
-        </div>
+          <div class="flex flex-col items-center justify-center h-48">
+            <i class="fas fa-smile text-5xl text-blue-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Enjoy Gifting!</h3>
+            <p class="text-gray-600">You're all set. Proceed to checkout or build another box.</p>
+          </div>
         {% endif %}
       </div>
     {% endfor %}
@@ -105,68 +115,98 @@
 
   <!-- Nav Buttons -->
   <div class="flex justify-between mt-6">
-    <button id="back-btn" class="btn btn-outline btn-secondary btn-sm" disabled><i class="fas fa-arrow-left mr-1"></i>{{ section.settings.back_button_label }}</button>
-    <button id="next-btn" class="btn btn-primary btn-sm">{{ section.settings.next_button_label }}<i class="fas fa-arrow-right ml-1"></i></button>
+    <button id="back-btn" class="btn btn-outline btn-secondary btn-sm" disabled type="button">
+      <i class="fas fa-arrow-left mr-1"></i>{{ section.settings.back_button_label }}
+    </button>
+    <button id="next-btn" class="btn btn-primary btn-sm" type="button">
+      {{ section.settings.next_button_label }}<i class="fas fa-arrow-right ml-1"></i>
+    </button>
   </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded',()=>{
+  document.addEventListener('DOMContentLoaded', () => {
     const totals = 4;
     let current = 1;
-    const contents = document.querySelectorAll('.step-content');
-    const btnNext = document.getElementById('next-btn');
-    const btnBack = document.getElementById('back-btn');
-    const curStep = document.getElementById('current-step');
-    const curTitle= document.getElementById('current-title');
-    const curSub  = document.getElementById('current-sub');
-    const sumCount= document.getElementById('summary-count');
-    const sumThumbs= document.getElementById('summary-thumbs');
-    let selected=[];
-    const headings = JSON.parse(document.getElementById('headings-json').textContent);
-    const subs = JSON.parse(document.getElementById('subs-json').textContent);
+    const contents   = document.querySelectorAll('.step-content');
+    const btnNext    = document.getElementById('next-btn');
+    const btnBack    = document.getElementById('back-btn');
+    const curStep    = document.getElementById('current-step');
+    const curTitle   = document.getElementById('current-title');
+    const curSub     = document.getElementById('current-sub');
+    const sumCount   = document.getElementById('summary-count');
+    const sumThumbs  = document.getElementById('summary-thumbs');
+    const progressFill = document.getElementById('progress-fill');
+    let selected     = [];
+    const headings   = JSON.parse(document.getElementById('headings-json').textContent);
+    const subs       = JSON.parse(document.getElementById('subs-json').textContent);
+
     function updateStepper() {
-      const stepCircles = document.querySelectorAll('.step-circle');
-      const stepBars = document.querySelectorAll('.step-bar');
-      stepCircles.forEach((circle, i) => {
-        circle.classList.remove('active', 'completed');
-        if (i + 1 === current) {
-          circle.classList.add('active');
-        } else if (i + 1 < current) {
-          circle.classList.add('completed');
-        }
+      const circles = document.querySelectorAll('.step-circle');
+      const bars    = document.querySelectorAll('.step-bar');
+      circles.forEach((c,i) => {
+        c.classList.remove('active','completed');
+        if (i+1 === current)      c.classList.add('active');
+        else if (i+1 < current)   c.classList.add('completed');
       });
-      stepBars.forEach((bar, i) => {
-        bar.classList.remove('completed');
-        if (i + 1 < current) {
-          bar.classList.add('completed');
-        }
+      bars.forEach((b,i) => {
+        b.classList.toggle('completed', i+1 < current);
       });
     }
-    function update(){
-      curStep.textContent = current;
-      curTitle.textContent= headings[current-1];
-      curSub.textContent  = subs[current-1];
-      contents.forEach((div,i)=>div.classList.toggle('hidden',i+1!==current));
-      btnBack.disabled = current===1;
-      btnNext.innerHTML = current<totals ? '{{ section.settings.next_button_label }} <i class="fas fa-arrow-right ml-1"></i>' : '<i class="fas fa-shopping-cart mr-1"></i>{{ section.settings.checkout_button_label }}';
+
+    function update() {
+      // Step header
+      curStep.textContent  = current;
+      curTitle.textContent = headings[current-1];
+      curSub.textContent   = subs[current-1];
+
+      // Show/hide content
+      contents.forEach((el,i) => el.classList.toggle('hidden', i+1 !== current));
+
+      // Buttons state
+      btnBack.disabled = current === 1;
+      if (current < totals) {
+        btnNext.innerHTML = '{{ section.settings.next_button_label }} <i class="fas fa-arrow-right ml-1"></i>';
+      } else {
+        btnNext.innerHTML = '<i class="fas fa-shopping-cart mr-1"></i>{{ section.settings.checkout_button_label }}';
+      }
+
+      // Summary bar
       sumCount.textContent = selected.length;
-      sumThumbs.innerHTML = selected.length ? selected.map(i=>`<img src="${i.img}" class="w-10 h-10 rounded" title="${i.title}">`).join('') : '<span class="text-gray-400">No items</span>';
+      sumThumbs.innerHTML = selected.length
+        ? selected.map(item => `<img src="${item.img}" class="w-10 h-10 rounded" title="${item.title}">`).join('')
+        : '<span class="text-gray-400">No items yet</span>';
+
+      // Progress bar fill
+      const percent = ((current - 1) / (totals - 1)) * 100;
+      progressFill.style.width = percent + '%';
+
       updateStepper();
     }
-    document.body.addEventListener('click',e=>{
-      if(e.target.closest('.select-item')){
-        const card=e.target.closest('[data-id]');
-        selected.push({id:card.dataset.id,price:card.dataset.price,title:card.dataset.title,img:card.dataset.img});
+
+    // Wire up “Add to Box” & “Select Card”
+    document.querySelectorAll('.select-item').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const card = e.currentTarget.closest('[data-id]');
+        selected.push({
+          id:    card.dataset.id,
+          title: card.dataset.title,
+          price: card.dataset.price,
+          img:   card.dataset.img
+        });
         update();
-      }
-      if(e.target.closest('#next-btn')){
-        if(current<totals) current++; else window.location.href='/checkout'; update();
-      }
-      if(e.target.closest('#back-btn')){
-        if(current>1) current--; update();
-      }
+      });
     });
+
+    // Next / Back
+    btnNext.addEventListener('click', () => {
+      if (current < totals) { current++; update(); }
+      else { window.location.href = '/checkout'; }
+    });
+    btnBack.addEventListener('click', () => {
+      if (current > 1) { current--; update(); }
+    });
+
     update();
   });
 </script>
@@ -175,19 +215,19 @@
 {
   "name":"Custom Gift Flow",
   "settings":[
-    {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
-    {"type":"text","id":"packaging_heading","label":"Packaging Heading","default":"Choose Your Box Color"},
-    {"type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Pick your favorite box style."},
-    {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
-    {"type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts"},
-    {"type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"Select items to fill your box."},
-    {"type":"collection","id":"card_collection","label":"Card Collection"},
-    {"type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card"},
-    {"type":"text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message."},
-    {"type":"text","id":"next_button_label","label":"Next Button Label","default":"Next"},
-    {"type":"text","id":"back_button_label","label":"Back Button Label","default":"Back"},
-    {"type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Proceed to Checkout"}
+    { "type":"collection","id":"packaging_collection","label":"Packaging Collection" },
+    { "type":"text","id":"packaging_heading","label":"Packaging Heading","default":"Choose Your Box Color" },
+    { "type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Pick your favorite box style." },
+    { "type":"collection","id":"gifts_collection","label":"Gifts Collection" },
+    { "type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts" },
+    { "type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"Select items to fill your box." },
+    { "type":"collection","id":"card_collection","label":"Card Collection" },
+    { "type":"text","id":"card_heading","label":"Card Heading","default":"Select a Card" },
+    { "type":"text","id":"card_subheading","label":"Card Subheading","default":"Add a personal message." },
+    { "type":"text","id":"next_button_label","label":"Next Button Label","default":"Next" },
+    { "type":"text","id":"back_button_label","label":"Back Button Label","default":"Back" },
+    { "type":"text","id":"checkout_button_label","label":"Checkout Button Label","default":"Proceed to Checkout" }
   ],
-  "presets":[{"name":"Custom Gift Flow","category":"Custom Sections"}]
+  "presets":[{ "name":"Custom Gift Flow","category":"Custom Sections" }]
 }
 {% endschema %}

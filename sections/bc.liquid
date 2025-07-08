@@ -2,6 +2,7 @@
   Custom Gift Flow – Shopify Liquid 2.0 Section using product-card snippet
   File: sections/custom-gift-box-flow.liquid
   3-step builder: Packaging -> Gifts -> Card -> Checkout
+  Debug-info added; fixed product count comparisons to use products_count
 {% endcomment %}
 
 <section class="gift-flow" data-id="gift-flow">
@@ -82,7 +83,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var currentStep = 1;
     var selectedPackaging = null;
     var selectedGifts = [];
     var selectedCard = null;
@@ -108,6 +108,8 @@
       }
     });
 
+    showStep(1);
+
     document.querySelector('[data-id="to-step-2"]').addEventListener('click', function() { showStep(2); });
     document.querySelector('[data-id="back-to-step-1"]').addEventListener('click', function() { showStep(1); });
     document.querySelector('[data-id="to-step-3"]').addEventListener('click', function() { showStep(3); });
@@ -123,8 +125,6 @@
       document.body.appendChild(form);
       form.submit();
     });
-
-    showStep(1);
   });
 </script>
 
@@ -147,7 +147,7 @@
     {"type":"text","id":"packaging_subheading","label":"Packaging Subheading","default":"Welcome to the easiest way to send someone a custom gift, in 3 simple steps."},
     {"type":"collection","id":"packaging_collection","label":"Packaging Collection"},
     {"type":"text","id":"gifts_heading","label":"Gifts Heading","default":"Choose Your Gifts"},
-    {"type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"We’ve hand-selected the best gifts in one place. Select from the items below and fill up your gift box!"},
+    {"type":"text","id":"gifts_subheading","label":"Gifts Subheading","default":"We've hand-selected the best gifts in one place. Select from the items below and fill up your gift box!"},
     {"type":"collection","id":"gifts_collection","label":"Gifts Collection"},
     {"type":"text","id":"card_heading","label":"Card Heading","default":"Pick A Card"},
     {"type":"text","id":"card_subheading","label":"Card Subheading","default":"Complete your box with a hand-written card."},

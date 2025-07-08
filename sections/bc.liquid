@@ -1,7 +1,7 @@
 {% comment %}
   Custom Gift Flow – Shopify Liquid 2.0 Section
   File: sections/custom-gift-box-flow.liquid
-  (This is a section-only file; external scripts and styles should be included in your theme layout.)
+  A pure section file. External scripts and global styles should be loaded in theme layout.
 {% endcomment %}
 
 <section class="gift-flow grid grid-cols-1 lg:grid-cols-4 gap-8" data-id="gift-flow">
@@ -30,13 +30,13 @@
           <p class="text-gray-600 mb-6">{{ section.settings.packaging_subheading }}</p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for p in collections[section.settings.packaging_collection].products %}
-              <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
-                <figure><img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md"/></figure>
-                <div class="p-2">
-                  <h3 class="font-medium truncate">{{ p.title }}</h3>
-                  <p class="text-primary font-semibold">{{ p.price | money }}</p>
-                  <button class="select-item btn btn-primary w-full mt-2"><i class="fas fa-plus mr-2"></i>Add to Box</button>
-                </div>
+              <div class="card shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+                {% if p.featured_image %}
+                  <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md mb-3"/>
+                {% endif %}
+                <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
+                <p class="text-primary font-semibold mb-3">{{ p.price | money }}</p>
+                <button class="select-item btn btn-primary w-full"><i class="fas fa-plus mr-2"></i>Add to Box</button>
               </div>
             {% endfor %}
           </div>
@@ -45,13 +45,13 @@
           <p class="text-gray-600 mb-6">{{ section.settings.gifts_subheading }}</p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for p in collections[section.settings.gifts_collection].products %}
-              <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
-                <figure><img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md"/></figure>
-                <div class="p-2">
-                  <h3 class="font-medium truncate">{{ p.title }}</h3>
-                  <p class="text-primary font-semibold">{{ p.price | money }}</p>
-                  <button class="select-item btn btn-primary w-full mt-2"><i class="fas fa-plus mr-2"></i>Add to Box</button>
-                </div>
+              <div class="card shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+                {% if p.featured_image %}
+                  <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md mb-3"/>
+                {% endif %}
+                <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
+                <p class="text-primary font-semibold mb-3">{{ p.price | money }}</p>
+                <button class="select-item btn btn-primary w-full"><i class="fas fa-plus mr-2"></i>Add to Box</button>
               </div>
             {% endfor %}
           </div>
@@ -60,12 +60,12 @@
           <p class="text-gray-600 mb-6">{{ section.settings.card_subheading }}</p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for p in collections[section.settings.card_collection].products %}
-              <div class="card bg-base-100 shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
-                <figure><img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md"/></figure>
-                <div class="p-2">
-                  <h3 class="font-medium truncate">{{ p.title }}</h3>
-                  <button class="select-item btn btn-secondary w-full mt-2"><i class="fas fa-check mr-2"></i>Select Card</button>
-                </div>
+              <div class="card shadow-lg group p-4" data-id="{{ p.id }}" data-price="{{ p.price | money_without_currency }}">
+                {% if p.featured_image %}
+                  <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="object-cover h-48 w-full rounded-md mb-3"/>
+                {% endif %}
+                <h3 class="font-medium truncate mb-2">{{ p.title }}</h3>
+                <button class="select-item btn btn-secondary w-full"><i class="fas fa-check mr-2"></i>Select Card</button>
               </div>
             {% endfor %}
           </div>
@@ -84,7 +84,7 @@
     {% endfor %}
   </div>
   <!-- Summary Sidebar -->
-  <aside class="summary-col lg:col-span-1 sticky top-32 p-6 rounded-xl shadow-xl">
+  <aside class="summary-col lg:col-span-1 p-6 rounded-xl shadow-xl">
     <h4 class="text-lg font-semibold mb-4">Box Summary</h4>
     <ul id="sidebar-summary-list" class="space-y-3 max-h-80 overflow-auto"></ul>
     <div class="mt-6 text-lg font-bold">Total: <span id="sidebar-total">$0.00</span></div>

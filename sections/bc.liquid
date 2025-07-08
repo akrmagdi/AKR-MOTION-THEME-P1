@@ -7,38 +7,73 @@
 • richer Step 4 summary grouped by step  
 {%- endcomment -%}
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+{%- comment -%}
+/ sections/box-fitter.liquid
+4-step “box builder” wizard with:
+• Fully responsive (mobile → desktop)
+• Accent-color setting
+• Scroll-into-view on navigation
+• Clickable stepper (Done locked until all chosen)
+• Animated progress lines
+• Only current step circle is filled; past steps’ connectors animate
+{%- endcomment -%}
 
 <style>
+  /* CSS variables */
+  .box-fitter { 
+    --accent: {{ section.settings.accent_color }};
+    --base-border: #D1D5DB;
+  }
+
   /* Container & typography */
   .box-fitter { background: #f9fafb; border-radius: 1rem; }
   .box-fitter h3 { font-size: 1.25rem; font-weight: 600; }
   .box-fitter h4, .box-fitter h5 { color: #111827; }
-  .box-fitter p { color: #4B5563; }
+  .box-fitter p    { color: #4B5563; }
 
   /* Stepper */
-  .stepper { counter-reset: step; margin-bottom: 2rem; }
-  .stepper li { list-style: none; position: relative; text-align: center; }
+  .stepper { counter-reset: step; margin-bottom: 2rem; display: flex; }
+  .stepper li { 
+    flex: 1; 
+    list-style: none; 
+    position: relative; 
+    text-align: center; 
+    cursor: pointer;
+  }
   .stepper li:before {
     counter-increment: step;
     content: counter(step);
-    display: block; margin: 0 auto .5rem;
+    display: block;
+    margin: 0 auto .5rem;
     width: 2.5rem; height: 2.5rem; line-height: 2.5rem;
-    border: 2px solid #D1D5DB; border-radius: 50%;
-    background: white; transition: all .3s;
+    border: 2px solid var(--base-border);
+    border-radius: 50%;
+    background: white;
+    transition: background .3s, border-color .3s, color .3s;
   }
-  .stepper li + li:after {
+  /* connector line */
+  .stepper li:after {
     content: '';
-    position: absolute; top: 1.25rem; left: -50%;
-    width: 100%; height: 2px; background: #D1D5DB; z-index: -1;
+    position: absolute;
+    top: 1.25rem; left: 100%;
+    width: 100%; height: 2px;
+    background: var(--base-border);
     transition: background .3s;
   }
+  .stepper li:last-child:after { display: none; }
+
+  /* current step circle */
   .stepper li.active:before {
-    border-color: #2563EB; background: #2563EB; color: white;
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
   }
-  .stepper li.active + li:after { background: #2563EB; }
-  .stepper li.cursor-pointer:hover:before {
-    border-color: #1D4ED8; color: #1D4ED8;
+  /* animate connectors for past steps */
+  .stepper li.completed:after {
+    background: var(--accent);
+    animation: expandLine .4s ease forwards;
   }
+  @keyframes expandLine { from { width: 0; } to { width: 100%; } }
 
   /* Product cards */
   .product-card {
@@ -51,12 +86,12 @@
     box-shadow: 0 4px 6px rgba(0,0,0,.1);
   }
   .product-card.selected {
-    box-shadow: 0 0 0 3px #2563EB;
+    box-shadow: 0 0 0 3px var(--accent);
   }
 
   /* Buttons */
   .btn {
-    display: inline-flex; align-items: center;
+    display: inline-flex; align-items: center; gap: .5rem;
     font-weight: 500; border-radius: .5rem;
     transition: background .2s, transform .1s;
   }
@@ -68,7 +103,10 @@
   }
 </style>
 
-<div x-data="boxFitter()" class="box-fitter max-w-4xl mx-auto p-8 space-y-8">
+<div
+  x-data="boxFitter()"
+  class="box-fitter max-w-4xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 space-y-8"
+>
   <!-- Features Row -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     {% for i in (1..4) %}
@@ -76,7 +114,11 @@
       {% assign labelKey = 'icon'  | append: i  | append: '_label' %}
       <div class="bg-white p-4 rounded-xl shadow hover:shadow-lg flex flex-col items-center">
         {% if section.settings[iconKey] %}
-          <img src="{{ section.settings[iconKey] | img_url: '80x80' }}" alt="" class="mb-2">
+          <img
+            src="{{ section.settings[iconKey] | img_url: '80x80' }}"
+            alt=""
+            class="mb-2"
+          >
         {% endif %}
         <p class="text-sm font-medium">{{ section.settings[labelKey] }}</p>
       </div>
@@ -84,14 +126,12 @@
   </div>
 
   <!-- Progress Stepper -->
-  <ul class="stepper flex justify-between">
+  <ul class="stepper">
     <template x-for="(step, idx) in steps" :key="idx">
       <li
-        class="flex-1"
         :class="{
-          'active': currentStep-1 >= idx,
-          'cursor-pointer': canClick(idx),
-          'cursor-not-allowed opacity-50': !canClick(idx)
+          'active': idx+1 === currentStep,
+          'completed': idx < currentStep-1
         }"
         @click="handleStepClick(idx)"
       >
@@ -105,41 +145,45 @@
 
     <!-- Step 1: Packaging -->
     <div x-show="currentStep===1" class="space-y-4">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <template x-for="prod in step1Products" :key="prod.id">
           <div
             class="product-card p-4 cursor-pointer"
             :class="{ 'selected': isSelected(prod.id,1) }"
             @click="toggleSelect(prod,1)"
           >
-            <img :src="prod.featured_image" class="mb-2 rounded-md w-full h-32 object-cover">
+            <img :src="prod.featured_image"
+                 class="mb-2 rounded-md w-full h-32 object-cover">
             <h4 class="text-sm mb-1" x-text="prod.title"></h4>
             <p class="text-xs" x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
         </template>
       </div>
       <button
-        class="btn bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white px-6 py-2"
+        class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-6 py-2"
         :disabled="selectedCount(1)===0"
         @click="nextStep()"
       >
         Next
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+             stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5l7 7-7 7" />
         </svg>
       </button>
     </div>
 
     <!-- Step 2: Gifts -->
     <div x-show="currentStep===2" class="space-y-4">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <template x-for="prod in step2Products" :key="prod.id">
           <div
             class="product-card p-4 cursor-pointer"
             :class="{ 'selected': isSelected(prod.id,2) }"
             @click="toggleSelect(prod,2)"
           >
-            <img :src="prod.featured_image" class="mb-2 rounded-md w-full h-32 object-cover">
+            <img :src="prod.featured_image"
+                 class="mb-2 rounded-md w-full h-32 object-cover">
             <h4 class="text-sm mb-1" x-text="prod.title"></h4>
             <p class="text-xs" x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
@@ -147,22 +191,26 @@
       </div>
       <div class="flex justify-between">
         <button
-          class="btn bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 px-5 py-2"
+          class="btn bg-gray-300 hover:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-gray-700 px-5 py-2"
           @click="prevStep()"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 19l-7-7 7-7" />
           </svg>
           Back
         </button>
         <button
-          class="btn bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white px-6 py-2"
+          class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-6 py-2"
           :disabled="selectedCount(2)===0"
           @click="nextStep()"
         >
           Next
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
@@ -170,14 +218,15 @@
 
     <!-- Step 3: Card -->
     <div x-show="currentStep===3" class="space-y-4">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <template x-for="prod in step3Products" :key="prod.id">
           <div
             class="product-card p-4 cursor-pointer"
             :class="{ 'selected': isSelected(prod.id,3) }"
             @click="toggleSelect(prod,3)"
           >
-            <img :src="prod.featured_image" class="mb-2 rounded-md w-full h-32 object-cover">
+            <img :src="prod.featured_image"
+                 class="mb-2 rounded-md w-full h-32 object-cover">
             <h4 class="text-sm mb-1" x-text="prod.title"></h4>
             <p class="text-xs" x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
@@ -185,22 +234,26 @@
       </div>
       <div class="flex justify-between">
         <button
-          class="btn bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 px-5 py-2"
+          class="btn bg-gray-300 hover:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-gray-700 px-5 py-2"
           @click="prevStep()"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 19l-7-7 7-7" />
           </svg>
           Back
         </button>
         <button
-          class="btn bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white px-6 py-2"
+          class="btn bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-white px-6 py-2"
           :disabled="selectedCount(3)===0"
           @click="nextStep()"
         >
           Next
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
@@ -210,7 +263,7 @@
     <div x-show="currentStep===4" class="lg:flex gap-8">
       <div class="lg:w-2/3 space-y-6">
         <h3>Summary</h3>
-
+        {% raw %}
         <template x-if="selectedCount(1)>0">
           <div>
             <h4 class="font-medium mb-2" x-text="steps[0]"></h4>
@@ -255,13 +308,13 @@
             </template>
           </div>
         </template>
-
+        {% endraw %}
       </div>
       <div class="lg:w-1/3 bg-white p-6 rounded-lg shadow space-y-4">
         <h3>Total</h3>
         <p class="text-2xl font-semibold" x-text="formatMoney(totalPrice)"></p>
         <button
-          class="btn bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 text-white w-full py-2"
+          class="btn bg-green-600 hover:bg-green-700 focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-white w-full py-2"
           @click="checkout()"
         >Checkout</button>
       </div>
@@ -310,11 +363,8 @@
       },
       handleStepClick(idx){
         const stepNum = idx + 1;
-        if(stepNum < 4){
+        if(this.canClick(idx)){
           this.currentStep = stepNum;
-          this.scrollToTop();
-        } else if(stepNum === 4 && this.canClick(3)){
-          this.currentStep = 4;
           this.scrollToTop();
         }
       },
@@ -331,7 +381,6 @@
           this.scrollToTop();
         }
       },
-
       scrollToTop(){
         this.$nextTick(() => {
           document.querySelector('.box-fitter')
@@ -364,6 +413,12 @@
 {
   "name": "Box Fitter",
   "settings": [
+{ 
+  "type": "color",
+  "id": "accent_color",
+  "label": "Accent Color",
+  "default": "#2563EB"
+},
     { "type":"image_picker","id":"icon1","label":"Icon 1" },
     { "type":"text","id":"icon1_label","label":"Icon 1 Label","default":"Fast Shipping" },
     { "type":"image_picker","id":"icon2","label":"Icon 2" },

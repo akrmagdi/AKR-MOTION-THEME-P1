@@ -163,7 +163,7 @@
       <div class="product-grid">
         <template x-for="prod in step1Products" :key="prod.id">
           <div
-            class="product-card p-3 cursor-pointer"
+            class="product-card p-3 cursor-pointer flex flex-column place-content-between"
             :class="{ 'selected': isSelected(prod.id,1) }"
             @click="toggleSelect(prod,1)"
           >
@@ -206,7 +206,7 @@
       <div class="product-grid">
         <template x-for="prod in step2Products" :key="prod.id">
           <div
-            class="product-card p-3 cursor-pointer"
+            class="product-card p-3 cursor-pointer flex flex-column place-content-between"
             :class="{ 'selected': isSelected(prod.id,2) }"
             @click="toggleSelect(prod,2)"
           >
@@ -250,7 +250,7 @@
       <div class="product-grid">
         <template x-for="prod in step3Products" :key="prod.id">
           <div
-            class="product-card p-3 cursor-pointer"
+            class="product-card p-3 cursor-pointer flex flex-column place-content-between"
             :class="{ 'selected': isSelected(prod.id,3) }"
             @click="toggleSelect(prod,3)"
           >

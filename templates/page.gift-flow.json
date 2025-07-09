@@ -18,20 +18,37 @@
         "page_width": "xs"
       }
     },
-    "contact_WVDg3B": {
-      "type": "contact",
-      "name": "Contact Form",
+    "bc_bfQYPL": {
+      "type": "bc",
+      "name": "Custom Gift Flow",
       "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "subheading": "Let us know what's on your mind...",
-        "title": "VIP Rewards",
-        "content": ""
+        "accent_color": "#a34e12",
+        "mobile_columns": "2",
+        "desktop_columns": "4",
+        "step1_heading": "<strong>Packaging</strong>",
+        "step1_subheading": "Choose packaging",
+        "step1_text": "Select your preferred packaging.",
+        "step2_heading": "Gifts",
+        "step2_subheading": "Pick gifts",
+        "step2_text": "Choose gifts to include.",
+        "step3_heading": "<strong>Card</strong>",
+        "step3_subheading": "Select a card",
+        "step3_text": "Add a personal card.",
+        "icon1_label": "<strong>Fast Shipping</strong>",
+        "icon2_label": "<strong>Premium Wrap</strong>",
+        "icon3_label": "<strong>Handpicked Gifts</strong>",
+        "icon4_label": "<strong>Personal Card</strong>",
+        "step1_collection": "frontpage",
+        "step1_mode": "multiple",
+        "step2_collection": "frontpage",
+        "step2_mode": "multiple",
+        "step3_collection": "frontpage",
+        "step3_mode": "single"
       }
     }
   },
   "order": [
     "main",
-    "contact_WVDg3B"
+    "bc_bfQYPL"
   ]
 }

@@ -286,9 +286,8 @@
 
     <!-- Step 4: Summary -->
         <div x-show="currentStep === 4" class="lg:flex gap-8 space-y-6">
-      <h3 class='h4 py-4'>Summary</h3>
-<div class='flex'>
       <div class="lg:w-2/3 space-y-4">
+              <h3 class='h4 py-4'>Summary</h3>
         {% raw %}
         <template x-if="selectedCount(1)>0">
           <div>
@@ -346,8 +345,8 @@
       </div>
     </div>
   </div>
-            </div>
-              <!-- Sticky mobile nav -->
+
+  <!-- Sticky mobile nav -->
   <div class="sticky-nav md:hidden" x-show="!navVisible" x-cloak>
     <template x-if="currentStep>1 && currentStep<4">
       <button class="btn bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2" @click="prevStep()">

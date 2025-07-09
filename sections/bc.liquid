@@ -291,7 +291,7 @@
         {% raw %}
         <template x-if="selectedCount(1)>0">
           <div>
-            <h4 class="font-medium mb-2" x-text="steps[0]"></h4>
+            <h4 class="font-medium mb-2 h4" x-text="steps[0]"></h4>
             <template x-for="prod in selected[1]" :key="prod.id">
               <div class="flex items-center bg-white p-4 rounded-lg shadow mb-2">
                 <img :src="prod.featured_image" class="w-16 h-16 rounded-md mr-4 object-cover">
@@ -305,7 +305,7 @@
         </template>
         <template x-if="selectedCount(2)>0">
           <div>
-            <h4 class="font-medium mb-2" x-text="steps[1]"></h4>
+            <h4 class="font-medium mb-2 h4" x-text="steps[1]"></h4>
             <template x-for="prod in selected[2]" :key="prod.id">
               <div class="flex items-center bg-white p-4 rounded-lg shadow mb-2">
                 <img :src="prod.featured_image" class="w-16 h-16 rounded-md mr-4 object-cover">
@@ -319,7 +319,7 @@
         </template>
         <template x-if="selectedCount(3)>0">
           <div>
-            <h4 class="font-medium mb-2" x-text="steps[2]"></h4>
+            <h4 class="font-medium mb-2 h4" x-text="steps[2]"></h4>
             <template x-for="prod in selected[3]" :key="prod.id">
               <div class="flex items-center bg-white p-4 rounded-lg shadow mb-2">
                 <img :src="prod.featured_image" class="w-16 h-16 rounded-md mr-4 object-cover">

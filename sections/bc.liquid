@@ -172,7 +172,7 @@
               class="mb-1 rounded-md w-full h-24 object-cover"
             >
             <h4 class="prod.title h6" x-text="prod.title"></h4>
-            <p  x-text="formatMoney(prod.variants[0].price)"></p>
+            <p  x-text="formatMoney(prod.variants[0].price)" class='h6 text-subdued'></p>
           </div>
         </template>
       </div>
@@ -325,7 +325,7 @@
                 <img :src="prod.featured_image" class="w-16 h-16 rounded-md mr-4 object-cover">
                 <div>
                   <h5 x-text="prod.title" class='h6'></h5>
-                  <p  x-text="formatMoney(prod.variants[0].price)"></p>
+                  <p  x-text="formatMoney(prod.variants[0].price)" class='h6 text-subdued'></p>
                 </div>
               </div>
             </template>

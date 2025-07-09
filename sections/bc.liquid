@@ -129,7 +129,7 @@
       {% assign labelKey = 'icon'  | append: i  | append: '_label' %}
       <div class="bg-white p-3 flex flex-col items-center">
         {% if section.settings[iconKey] %}
-          <img src="{{ section.settings[iconKey] | img_url: '48x48' }}" alt="" class="mb-1">
+          <img src="{{ section.settings[iconKey] | img_url: '64x64' }}" alt="" class="mb-1">
         {% endif %}
         <p class="text-xs font-medium text-center">{{ section.settings[labelKey] }}</p>
       </div>

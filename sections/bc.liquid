@@ -126,11 +126,11 @@
     {% for i in (1..4) %}
       {% assign iconKey  = 'icon'  | append: i %}
       {% assign labelKey = 'icon'  | append: i  | append: '_label' %}
-      <div class="bg-white p-3 flex flex-col items-center">
+      <div class=" p-3 flex flex-col items-center">
         {% if section.settings[iconKey] %}
           <img src="{{ section.settings[iconKey] | img_url: 'master' }}" alt="" class="mb-1 icon-s">
         {% endif %}
-        <p class="text-xs font-medium text-center">{{ section.settings[labelKey] }}</p>
+        <p class=" font-medium text-center">{{ section.settings[labelKey] }}</p>
       </div>
     {% endfor %}
   </div>

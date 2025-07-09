@@ -157,7 +157,7 @@
     <div x-show="currentStep === 1" class="space-y-4">
       <div class="space-y-2 text-center text-center">
         <h3>{{ section.settings.step1_heading }}</h3>
-        <h5 class="text-sm text-gray-600">{{ section.settings.step1_subheading }}</h5>
+        <h5 class="prod.title h6 text-gray-600">{{ section.settings.step1_subheading }}</h5>
         <p>{{ section.settings.step1_text }}</p>
       </div>
       <div class="product-grid">
@@ -171,7 +171,7 @@
               :src="prod.featured_image"
               class="mb-1 rounded-md w-full h-24 object-cover"
             >
-            <h4 class="text-sm" x-text="prod.title"></h4>
+            <h4 class="prod.title h6" x-text="prod.title"></h4>
             <p  x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
         </template>
@@ -200,7 +200,7 @@
     <div x-show="currentStep === 2" class="space-y-4">
       <div class="space-y-2 text-center">
         <h3>{{ section.settings.step2_heading }}</h3>
-        <h5 class="text-sm text-gray-600">{{ section.settings.step2_subheading }}</h5>
+        <h5 class="prod.title h6 text-gray-600">{{ section.settings.step2_subheading }}</h5>
         <p >{{ section.settings.step2_text }}</p>
       </div>
       <div class="product-grid">
@@ -214,7 +214,7 @@
               :src="prod.featured_image"
               class="mb-1 rounded-md w-full h-24 object-cover"
             >
-            <h4 class="text-sm" x-text="prod.title"></h4>
+            <h4 class="prod.title h6" x-text="prod.title"></h4>
             <p " x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
         </template>
@@ -244,7 +244,7 @@
     <div x-show="currentStep === 3" class="space-y-4">
       <div class="space-y-2 text-center">
         <h3>{{ section.settings.step3_heading }}</h3>
-        <h5 class="text-sm text-gray-600">{{ section.settings.step3_subheading }}</h5>
+        <h5 class="prod.title h6 text-gray-600">{{ section.settings.step3_subheading }}</h5>
         <p ">{{ section.settings.step3_text }}</p>
       </div>
       <div class="product-grid">
@@ -258,7 +258,7 @@
               :src="prod.featured_image"
               class="mb-1 rounded-md w-full h-24 object-cover"
             >
-            <h4 class="text-sm" x-text="prod.title"></h4>
+            <h4 class="prod.title h6" x-text="prod.title"></h4>
             <p x-text="formatMoney(prod.variants[0].price)"></p>
           </div>
         </template>

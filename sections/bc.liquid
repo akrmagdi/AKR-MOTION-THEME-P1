@@ -296,8 +296,8 @@
               <div class="flex items-center bg-white p-4 rounded-lg shadow mb-2">
                 <img :src="prod.featured_image" class="w-16 h-16 rounded-md mr-4 object-cover">
                 <div>
-                  <h5 x-text="prod.title"></h5>
-                  <p" x-text="formatMoney(prod.variants[0].price)"></p>
+                  <h5 x-text="prod.title" class='product-title h6'></h5>
+                  <p" x-text="formatMoney(prod.variants[0].price)" class='h6 text-subdued></p>
                 </div>
               </div>
             </template>
@@ -310,7 +310,7 @@
               <div class="flex items-center bg-white p-4 rounded-lg shadow mb-2">
                 <img :src="prod.featured_image" class="w-16 h-16 rounded-md mr-4 object-cover">
                 <div>
-                  <h5 x-text="prod.title"></h5>
+                  <h5 x-text="prod.title" class='product-title h6'></h5>
                   <p x-text="formatMoney(prod.variants[0].price)"></p>
                 </div>
               </div>
@@ -324,7 +324,7 @@
               <div class="flex items-center bg-white p-4 rounded-lg shadow mb-2">
                 <img :src="prod.featured_image" class="w-16 h-16 rounded-md mr-4 object-cover">
                 <div>
-                  <h5 x-text="prod.title"></h5>
+                  <h5 x-text="prod.title" class='product-title h6'></h5>
                   <p  x-text="formatMoney(prod.variants[0].price)"></p>
                 </div>
               </div>

@@ -382,6 +382,7 @@
 <script>
   function boxFitter(){
     return {
+      // ───────────────────────────────────────────
       currentStep: 1,
       steps: ['Packaging','Gifts','Card','Done'],
       navVisible: false,
@@ -396,71 +397,125 @@
         2: '{{ section.settings.step2_mode }}',
         3: '{{ section.settings.step3_mode }}'
       },
+      // ───────────────────────────────────────────
 
-      toggleSelect(prod, step){
-        let arr = this.selected[step];
-        let idx = arr.findIndex(p => p.id === prod.id);
-        if(idx >= 0) arr.splice(idx,1);
-        else {
-          if(this.mode[step] === 'single') arr.splice(0);
-          arr.push(prod);
+      init() {
+        // Load saved state from cookie (if any)
+        const cookie = this.getCookie('boxFitterData');
+        if (cookie) {
+          try {
+            const data = JSON.parse(decodeURIComponent(cookie));
+            this.selected = data.selected || this.selected;
+            this.currentStep = data.currentStep || this.currentStep;
+          } catch(e) {
+            console.warn('BoxFitter cookie parse error', e);
+          }
         }
       },
-      isSelected(id, step){
+
+      getCookie(name) {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? match[2] : null;
+      },
+
+      setCookie(name, value, days = 7) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days*24*60*60*1000));
+        document.cookie = `${name}=${encodeURIComponent(value)};path=/;expires=${d.toUTCString()}`;
+      },
+
+      saveToCookie() {
+        const payload = {
+          selected: this.selected,
+          currentStep: this.currentStep
+        };
+        this.setCookie('boxFitterData', JSON.stringify(payload));
+      },
+
+      toggleSelect(prod, step) {
+        let arr = this.selected[step];
+        let idx = arr.findIndex(p => p.id === prod.id);
+        if (idx >= 0) arr.splice(idx, 1);
+        else {
+          if (this.mode[step] === 'single') arr.splice(0);
+          arr.push(prod);
+        }
+        this.saveToCookie();
+      },
+
+      isSelected(id, step) {
         return this.selected[step].some(p => p.id === id);
       },
-      selectedCount(step){
+
+      selectedCount(step) {
         return this.selected[step].length;
       },
 
-      canClick(idx){
-        if(idx < 3) return true;
-        return this.selectedCount(1)>0 && this.selectedCount(2)>0 && this.selectedCount(3)>0;
+      canClick(idx) {
+        if (idx < 3) return true;
+        return this.selectedCount(1) > 0
+            && this.selectedCount(2) > 0
+            && this.selectedCount(3) > 0;
       },
-      handleStepClick(idx){
-        if(this.canClick(idx)){
-          this.currentStep = idx+1;
+
+      handleStepClick(idx) {
+        if (this.canClick(idx)) {
+          this.currentStep = idx + 1;
+          this.saveToCookie();
           this.scrollToTop();
         }
       },
-      nextStep(){
-        if(this.currentStep < 4){
+
+      nextStep() {
+        if (this.currentStep < 4) {
           this.currentStep++;
+          this.saveToCookie();
           this.scrollToTop();
         }
       },
-      prevStep(){
-        if(this.currentStep > 1){
+
+      prevStep() {
+        if (this.currentStep > 1) {
           this.currentStep--;
+          this.saveToCookie();
           this.scrollToTop();
         }
       },
-      scrollToTop(){
+
+      scrollToTop() {
         this.$nextTick(() => {
           document.querySelector('.box-fitter')
                   .scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       },
 
-      get allSelected(){
+      get allSelected() {
         return [...this.selected[1], ...this.selected[2], ...this.selected[3]];
       },
-      get totalPrice(){
-        return this.allSelected.reduce((sum,p)=>sum + p.variants[0].price,0);
+
+      get totalPrice() {
+        return this.allSelected
+                   .reduce((sum, p) => sum + p.variants[0].price, 0);
       },
-      formatMoney(cents){
-        return new Intl.NumberFormat('{{ shop.locale }}',{
-          style:'currency', currency:'{{ shop.currency }}'
-        }).format(cents/100);
+
+      formatMoney(cents) {
+        return new Intl.NumberFormat('{{ shop.locale }}', {
+          style: 'currency',
+          currency: '{{ shop.currency }}'
+        }).format(cents / 100);
       },
-      checkout(){
-        if(!this.canClick(3)){
+
+      checkout() {
+        if (!this.canClick(3)) {
           alert("Please select at least one item from each step before checkout.");
           return;
         }
-        let param = this.allSelected.map(p=>p.variants[0].id+':1').join(',');
+        const param = this.allSelected
+                          .map(p => p.variants[0].id + ':1')
+                          .join(',');
         window.location.href = `/cart/${param}?checkout`;
       }
+      // ───────────────────────────────────────────
     }
   }
 </script>

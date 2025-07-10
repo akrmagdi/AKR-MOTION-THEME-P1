@@ -18,20 +18,47 @@
         "page_width": "xs"
       }
     },
-    "contact_WVDg3B": {
-      "type": "contact",
-      "name": "Contact Form",
+    "hero_section_minimal_M4YFRP": {
+      "type": "hero-section-minimal",
+      "blocks": {
+        "slide_FkYyYr": {
+          "type": "slide",
+          "settings": {
+            "heading": "<h2>Editable title</h2>",
+            "body": "<p>Editable description goes here.</p>",
+            "button_1_style": "solid",
+            "button_1_background": "#1D4ED8",
+            "button_1_text_color": "#ffffff",
+            "button_1_text": "Learn More",
+            "button_1_link": "/collections/all",
+            "button_2_style": "outline",
+            "button_2_background": "#E5E7EB",
+            "button_2_text_color": "#000000",
+            "button_2_text": "Shop Now",
+            "button_2_link": "/products/example"
+          }
+        }
+      },
+      "block_order": [
+        "slide_FkYyYr"
+      ],
+      "name": "Info Rich-Text Slideshow",
       "settings": {
+        "autoplay_speed": "5000",
+        "section_height": 600,
+        "info_position": "left",
+        "mobile_text_position": "text-center",
+        "desktop_text_position": "text-start",
+        "hover_effect": "none",
         "color_scheme": "",
-        "separate_section_with_border": true,
-        "subheading": "Let us know what's on your mind...",
-        "title": "VIP Rewards",
-        "content": ""
+        "background_gradient": "",
+        "round_buttons": false,
+        "round_image": false
       }
     }
   },
   "order": [
     "main",
-    "contact_WVDg3B"
+    "hero_section_minimal_M4YFRP"
   ]
 }

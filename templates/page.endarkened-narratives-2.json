@@ -1,0 +1,419 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "image_with_text_nrQeEe": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_4V9e7e": {
+          "type": "subheading",
+          "settings": {
+            "text": "<strong>This Isn’t Just Another Productivity Program.</strong>"
+          }
+        },
+        "heading_RVHp4P": {
+          "type": "heading",
+          "settings": {
+            "text": "FOUCS & FLOW",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_wnGKWT": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5>A program for high-achieving people and emerging creatives who crave more than just surface level productivity. Our program honors the transformative power of self-discovery, identity, and independence to cultivate purpose, creativity, and deep work while feeling in control of your time.</h5>"
+          }
+        },
+        "button_UfXXU9": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "JOIN TODAY",
+            "url": "",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "subheading_4V9e7e",
+        "heading_RVHp4P",
+        "richtext_wnGKWT",
+        "button_UfXXU9"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "rich_text_NcebWP": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7HkqWy": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>What if deep work felt… freeing?</strong>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_HTnV3Y": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>In a world that confuses chaos with ambition — <strong>Focus + Flow offers something rare:</strong>a space to breathe · to think · to actually be with your work.</p><p>⟶ This is where high-achievers and emerging creatives reclaim their energy, time, and creative vision —not just hustle harder.</p><h3>✦ Because productivity should never cost your peace.</h3><p>Here, deep work doesn’t mean burnout — it means tuning in.</p><p>We take a restorative, intentional approach to focus  one that honors your identity, values your independence,and gives your creativity room to breathe.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_7HkqWy",
+        "richtext_HTnV3Y"
+      ],
+      "custom_css": [
+        "p {text-align: left;}",
+        "p.h1 {text-align: center;}"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-2cfb0c4c-b49b-47cc-bd8c-1b6e5ee008ba",
+        "separate_section_with_border": true,
+        "content_width": "lg",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "multi_column_pPMUjY": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_PkQmVx": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Overthinking",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_B3qDJG": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Productivity guilt",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_hVDNaE": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Exhaustion",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_PkQmVx",
+        "image_with_text_B3qDJG",
+        "image_with_text_hVDNaE"
+      ],
+      "custom_css": [
+        "img {width: 6rem; display: flex; justify-content: center;}"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing": "xs",
+        "subheading": "Sounds like you?",
+        "title": "<strong>What brilliance is buried beneath your burnout?</strong>",
+        "content": "<p>What are the talents you haven’t touched —because you’re too tired to feel them?</p><p><strong>Most high performers are stuck in a loop:</strong></p>"
+      }
+    },
+    "image_with_text_block_YFWLLQ": {
+      "type": "image-with-text-block",
+      "blocks": {
+        "richtext_jwpDVQ": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h4>What are your talents that are untapped because you are too exhausted?</h4><p>Most high performers are trapped in cycles of overthinking, productivity guilt and exhaustion, believing they must \"push through\" to succeed.</p><p>The result? A relentless cycle of overwork and burnout.</p>"
+          }
+        },
+        "link_DqwMH6": {
+          "type": "link",
+          "settings": {
+            "text": "SOUNDS LIKE ME",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "richtext_jwpDVQ",
+        "link_DqwMH6"
+      ],
+      "custom_css": [
+        "p {text-align: left;}",
+        "h4 {text-align: center;}"
+      ],
+      "name": "Image with Text Block",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_size": "lg",
+        "content_width": "lg",
+        "enable_parallax": true,
+        "remove_vertical_spacing": true
+      }
+    },
+    "testimonials_4QBXqw": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_3tH4xe": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>\"…before we started our journey together, I definitely felt imposter syndrome, like I wasn’t good enough, like I didn’t know enough and I struggle with that but working together has helped me put things into perspective.\" -Ananda M.<br/></p>",
+            "logo_max_width": 140,
+            "logo_mobile_max_width": 100,
+            "author": ""
+          }
+        },
+        "testimonial_6ri7Kg": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>",
+            "logo_max_width": 140,
+            "logo_mobile_max_width": 100,
+            "author": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_3tH4xe",
+        "testimonial_6ri7Kg"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "color_scheme": "scheme-399acd72-4476-4bdf-a889-40200b1a3249",
+        "separate_section_with_border": true,
+        "auto_rotate_between_testimonials": true,
+        "cycle_speed": 5,
+        "font_size_factor": 0.8,
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "scrolling_content_9Jy8jn": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text_tVyTMP": {
+          "type": "text",
+          "settings": {
+            "text": "like you were exactly where you’re meant to be."
+          }
+        },
+        "text_dJiLNb": {
+          "type": "text",
+          "settings": {
+            "text": "like time was expanding, not slipping away."
+          }
+        }
+      },
+      "block_order": [
+        "text_tVyTMP",
+        "text_dJiLNb"
+      ],
+      "name": "Scrolling Content",
+      "settings": {
+        "separate_section_with_border": true,
+        "scrolling_speed": 0.2,
+        "scroll_direction": "left",
+        "pause_on_hover": false,
+        "text_font": "heading",
+        "text_font_size_mobile": 14,
+        "text_font_size_desktop": 12,
+        "section_vertical_spacing_mobile": 20,
+        "section_vertical_spacing_desktop": 18,
+        "item_horizontal_spacing_mobile": 35,
+        "item_horizontal_spacing_desktop": 25,
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "multi_column_PpQRFf": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_4YMF3n": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Phase 1: Clarify & Ground",
+            "heading_tag": "h2",
+            "content": "<p><strong>| Before you can focus, you need to feel grounded.</strong><br/>This phase helps you reconnect with your values, intentions, and priorities — so your energy flows toward what truly matters.<br/>When you're rooted in your story, clarity and purpose naturally follow.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_jdLWqn": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "<strong>Phase 2: Reconnect & Reframe</strong>",
+            "heading_tag": "h2",
+            "content": "<p><strong>| Before real focus, you need solid ground.</strong></p><p>This phase anchors you in your values, intentions, and priorities — so your energy aligns with what truly matters. When you’re rooted in your story, clarity and purpose follow.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_4YMF3n",
+        "image_with_text_jdLWqn"
+      ],
+      "custom_css": [
+        ".multi-column__item {background: #0b3848; color: white; padding: 1.25rem 2.75rem;}"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "columns_per_row": 2,
+        "stack_on_mobile": true,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "<strong>The Framework for Focus + Flow</strong>",
+        "content": "<p><strong>________________________</strong></p>"
+      }
+    },
+    "rich_text_gEFp8U": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dNUqbj": {
+          "type": "heading",
+          "settings": {
+            "text": "You don’t need to do more.",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_JT7ypk": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><br/>This is your chance to pause — and realign.To reclaim your time, your creativity, and your sense of self.</p><p></p>"
+          }
+        },
+        "button_EaMzxc": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "START YOUR FOCUS & FLOW JOURNEY",
+            "url": "",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_dNUqbj",
+        "richtext_JT7ypk",
+        "button_EaMzxc"
+      ],
+      "name": "Rich Text Section",
+      "settings": {
+        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "faq_BHhfL3": {
+      "type": "faq",
+      "blocks": {
+        "category_aQ4qQB": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "icon": "none",
+            "icon_width": 16
+          }
+        },
+        "question_KUfC89": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>What exactly is Focus + Flow?</strong>",
+            "answer": "<p><strong>It’s not just a productivity method.</strong><br/><br/>Focus + Flow is a structured, self-guided program for high-performing, creative individuals who feel overwhelmed, disconnected, or creatively blocked. It helps you break out of burnout cycles, reconnect with your purpose, and unlock the talents that exhaustion has buried.</p>"
+          }
+        },
+        "question_B7AWf6": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>I'm exhausted and can't take on more. Is this program demanding?</strong>",
+            "answer": "<p><strong>That’s the whole point — it’s not about doing more.</strong><br/><br/>It’s about doing less, but with <em>intention</em>.<br/>This program is designed to restore your energy, not drain it. Every phase meets you where you are, with simple, focused guidance you can follow at your own pace.<br/><br/></p>"
+          }
+        },
+        "question_eMGCVK": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>What if I’ve already tried productivity tools and coaching?</strong>",
+            "answer": "<p><strong>That’s exactly why Focus + Flow exists — because “more tools” aren’t always the answer.</strong><br/>We go deeper: into identity, self-discovery, and creative alignment. This isn’t about managing time. It’s about reclaiming it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_aQ4qQB",
+        "question_KUfC89",
+        "question_B7AWf6",
+        "question_eMGCVK"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "show_categories": false,
+        "subheading": "Need help?",
+        "title": "Frequently Asked Questions",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_nrQeEe",
+    "rich_text_NcebWP",
+    "multi_column_pPMUjY",
+    "image_with_text_block_YFWLLQ",
+    "testimonials_4QBXqw",
+    "scrolling_content_9Jy8jn",
+    "multi_column_PpQRFf",
+    "rich_text_gEFp8U",
+    "faq_BHhfL3"
+  ]
+}

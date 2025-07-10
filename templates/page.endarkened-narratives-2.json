@@ -21,23 +21,17 @@
     "image_with_text_nrQeEe": {
       "type": "image-with-text",
       "blocks": {
-        "subheading_4V9e7e": {
-          "type": "subheading",
-          "settings": {
-            "text": "<strong>This Isn’t Just Another Productivity Program.</strong>"
-          }
-        },
         "heading_RVHp4P": {
           "type": "heading",
           "settings": {
-            "text": "FOUCS & FLOW",
+            "text": "Reclaim Your Story. Reclaim Yourself.",
             "heading_tag": "h1"
           }
         },
         "richtext_wnGKWT": {
           "type": "richtext",
           "settings": {
-            "content": "<h5>A program for high-achieving people and emerging creatives who crave more than just surface level productivity. Our program honors the transformative power of self-discovery, identity, and independence to cultivate purpose, creativity, and deep work while feeling in control of your time.</h5>"
+            "content": "<p>In a world that often asks us to perform instead of reflect, <strong>The Endarkened Narrative Lab</strong> offers a sacred pause — a place to remember who you are, reclaim your voice, and reimagine your story on your own terms.</p>"
           }
         },
         "button_UfXXU9": {
@@ -52,7 +46,6 @@
         }
       },
       "block_order": [
-        "subheading_4V9e7e",
         "heading_RVHp4P",
         "richtext_wnGKWT",
         "button_UfXXU9"
@@ -63,42 +56,51 @@
         "separate_section_with_border": true,
         "reveal_on_scroll": true,
         "image_position": "start",
-        "content_width": "sm",
+        "content_width": "lg",
         "remove_vertical_spacing": true
       }
     },
-    "rich_text_NcebWP": {
-      "type": "rich-text",
+    "multi_column_zfC9Uw": {
+      "type": "multi-column",
       "blocks": {
-        "heading_7HkqWy": {
-          "type": "heading",
+        "image_with_text_D4MC8i": {
+          "type": "image_with_text",
           "settings": {
-            "text": "<strong>What if deep work felt… freeing?</strong>",
-            "heading_tag": "h1"
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<ul><li>A contemplative, creative 12-week space</li><li>Grounded in <strong>Endarkened Narrative Inquiry</strong></li></ul>",
+            "link_url": "",
+            "link_text": ""
           }
         },
-        "richtext_HTnV3Y": {
-          "type": "richtext",
+        "image_with_text_xfGFxz": {
+          "type": "image_with_text",
           "settings": {
-            "content": "<p>In a world that confuses chaos with ambition — <strong>Focus + Flow offers something rare:</strong>a space to breathe · to think · to actually be with your work.</p><p>⟶ This is where high-achievers and emerging creatives reclaim their energy, time, and creative vision —not just hustle harder.</p><h3>✦ Because productivity should never cost your peace.</h3><p>Here, deep work doesn’t mean burnout — it means tuning in.</p><p>We take a restorative, intentional approach to focus  one that honors your identity, values your independence,and gives your creativity room to breathe.</p>"
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<ul><li>Honors the personal, cultural, and spiritual layers of storytelling</li><li>Welcomes resistance, depth, and layered truth</li></ul>",
+            "link_url": "",
+            "link_text": ""
           }
         }
       },
       "block_order": [
-        "heading_7HkqWy",
-        "richtext_HTnV3Y"
+        "image_with_text_D4MC8i",
+        "image_with_text_xfGFxz"
       ],
-      "custom_css": [
-        "p {text-align: left;}",
-        "p.h1 {text-align: center;}"
-      ],
-      "name": "Rich Text Section",
+      "name": "Multi-column",
       "settings": {
-        "color_scheme": "scheme-2cfb0c4c-b49b-47cc-bd8c-1b6e5ee008ba",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": true,
-        "content_width": "lg",
-        "text_position": "center",
-        "remove_vertical_spacing": false
+        "columns_per_row": 3,
+        "stack_on_mobile": true,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing": "xs",
+        "subheading": "<strong>Here, your story is not data — it’s sacred, alive, and embodied.</strong>",
+        "title": "What is the Endarkened Narrative Lab?",
+        "content": ""
       }
     },
     "multi_column_pPMUjY": {
@@ -107,9 +109,9 @@
         "image_with_text_PkQmVx": {
           "type": "image_with_text",
           "settings": {
-            "title": "Overthinking",
+            "title": "",
             "heading_tag": "h3",
-            "content": "",
+            "content": "<p><strong>Awaken</strong> – Awareness of self, context, and legacy</p>",
             "link_url": "",
             "link_text": ""
           }
@@ -117,9 +119,9 @@
         "image_with_text_B3qDJG": {
           "type": "image_with_text",
           "settings": {
-            "title": "Productivity guilt",
+            "title": "",
             "heading_tag": "h3",
-            "content": "",
+            "content": "<p><strong>Engage</strong> – Relationships with others, history, and land</p>",
             "link_url": "",
             "link_text": ""
           }
@@ -127,9 +129,39 @@
         "image_with_text_hVDNaE": {
           "type": "image_with_text",
           "settings": {
-            "title": "Exhaustion",
+            "title": "",
             "heading_tag": "h3",
-            "content": "",
+            "content": "<p><strong>Integrate</strong> – Spirituality and culture as knowledge</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_d7BTTg": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<p><strong>Examine</strong> – How we show up in our stories</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_BXyGg7": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<p><strong>Transform</strong> – Knowledge into wisdom</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_HQUcKT": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<p><strong>Embody</strong> – Your final creative narrative artifact</p>",
             "link_url": "",
             "link_text": ""
           }
@@ -138,7 +170,10 @@
       "block_order": [
         "image_with_text_PkQmVx",
         "image_with_text_B3qDJG",
-        "image_with_text_hVDNaE"
+        "image_with_text_hVDNaE",
+        "image_with_text_d7BTTg",
+        "image_with_text_BXyGg7",
+        "image_with_text_HQUcKT"
       ],
       "custom_css": [
         "img {width: 6rem; display: flex; justify-content: center;}"
@@ -153,9 +188,9 @@
         "content_alignment": "center",
         "text_alignment": "start",
         "spacing": "xs",
-        "subheading": "Sounds like you?",
-        "title": "<strong>What brilliance is buried beneath your burnout?</strong>",
-        "content": "<p>What are the talents you haven’t touched —because you’re too tired to feel them?</p><p><strong>Most high performers are stuck in a loop:</strong></p>"
+        "subheading": "",
+        "title": "The Journey: Six Phases of Endarkened Narrative Inquiry",
+        "content": ""
       }
     },
     "image_with_text_block_YFWLLQ": {
@@ -164,7 +199,7 @@
         "richtext_jwpDVQ": {
           "type": "richtext",
           "settings": {
-            "content": "<h4>What are your talents that are untapped because you are too exhausted?</h4><p>Most high performers are trapped in cycles of overthinking, productivity guilt and exhaustion, believing they must \"push through\" to succeed.</p><p>The result? A relentless cycle of overwork and burnout.</p>"
+            "content": "<h3><strong>Is This Lab for You?</strong></h3><p>This hybrid experience is for people ready to:</p><ul><li>Explore the depths of their lived experiences</li><li>Work at the intersection of embodiment, resistance, and narrative</li><li>Embrace spirituality and relationality as valid frameworks</li><li>Create from the truth, not performance</li></ul>"
           }
         },
         "link_DqwMH6": {
@@ -407,7 +442,7 @@
   "order": [
     "main",
     "image_with_text_nrQeEe",
-    "rich_text_NcebWP",
+    "multi_column_zfC9Uw",
     "multi_column_pPMUjY",
     "image_with_text_block_YFWLLQ",
     "testimonials_4QBXqw",

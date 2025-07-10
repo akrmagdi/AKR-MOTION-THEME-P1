@@ -193,6 +193,36 @@
         "content": ""
       }
     },
+    "scrolling_content_9Jy8jn": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text_tVyTMP": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>What if your story wasn’t something to fix...but something to come home to?</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "text_tVyTMP"
+      ],
+      "name": "Scrolling Content",
+      "settings": {
+        "separate_section_with_border": true,
+        "scrolling_speed": 0.2,
+        "scroll_direction": "left",
+        "pause_on_hover": true,
+        "text_font": "heading",
+        "text_font_size_mobile": 14,
+        "text_font_size_desktop": 12,
+        "section_vertical_spacing_mobile": 20,
+        "section_vertical_spacing_desktop": 18,
+        "item_horizontal_spacing_mobile": 35,
+        "item_horizontal_spacing_desktop": 25,
+        "background": "#0b3848",
+        "text_color": "#ffffff"
+      }
+    },
     "image_with_text_block_YFWLLQ": {
       "type": "image-with-text-block",
       "blocks": {
@@ -205,7 +235,7 @@
         "link_DqwMH6": {
           "type": "link",
           "settings": {
-            "text": "SOUNDS LIKE ME",
+            "text": "JOIN WAITLIST TODAY!",
             "url": ""
           }
         }
@@ -265,124 +295,79 @@
         "content": ""
       }
     },
-    "scrolling_content_9Jy8jn": {
-      "type": "scrolling-content",
+    "image_with_text_4VtBFE": {
+      "type": "image-with-text",
       "blocks": {
-        "text_tVyTMP": {
-          "type": "text",
-          "settings": {
-            "text": "like you were exactly where you’re meant to be."
-          }
-        },
-        "text_dJiLNb": {
-          "type": "text",
-          "settings": {
-            "text": "like time was expanding, not slipping away."
-          }
-        }
-      },
-      "block_order": [
-        "text_tVyTMP",
-        "text_dJiLNb"
-      ],
-      "name": "Scrolling Content",
-      "settings": {
-        "separate_section_with_border": true,
-        "scrolling_speed": 0.2,
-        "scroll_direction": "left",
-        "pause_on_hover": false,
-        "text_font": "heading",
-        "text_font_size_mobile": 14,
-        "text_font_size_desktop": 12,
-        "section_vertical_spacing_mobile": 20,
-        "section_vertical_spacing_desktop": 18,
-        "item_horizontal_spacing_mobile": 35,
-        "item_horizontal_spacing_desktop": 25,
-        "background": "",
-        "text_color": ""
-      }
-    },
-    "multi_column_PpQRFf": {
-      "type": "multi-column",
-      "blocks": {
-        "image_with_text_4YMF3n": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "Phase 1: Clarify & Ground",
-            "heading_tag": "h2",
-            "content": "<p><strong>| Before you can focus, you need to feel grounded.</strong><br/>This phase helps you reconnect with your values, intentions, and priorities — so your energy flows toward what truly matters.<br/>When you're rooted in your story, clarity and purpose naturally follow.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        },
-        "image_with_text_jdLWqn": {
-          "type": "image_with_text",
-          "settings": {
-            "title": "<strong>Phase 2: Reconnect & Reframe</strong>",
-            "heading_tag": "h2",
-            "content": "<p><strong>| Before real focus, you need solid ground.</strong></p><p>This phase anchors you in your values, intentions, and priorities — so your energy aligns with what truly matters. When you’re rooted in your story, clarity and purpose follow.</p>",
-            "link_url": "",
-            "link_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_with_text_4YMF3n",
-        "image_with_text_jdLWqn"
-      ],
-      "custom_css": [
-        ".multi-column__item {background: #0b3848; color: white; padding: 1.25rem 2.75rem;}"
-      ],
-      "name": "Multi-column",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "columns_per_row": 2,
-        "stack_on_mobile": true,
-        "overlap_image": false,
-        "content_alignment": "center",
-        "text_alignment": "start",
-        "spacing": "xs",
-        "subheading": "",
-        "title": "<strong>The Framework for Focus + Flow</strong>",
-        "content": "<p><strong>________________________</strong></p>"
-      }
-    },
-    "rich_text_gEFp8U": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_dNUqbj": {
+        "heading_GKVPLk": {
           "type": "heading",
           "settings": {
-            "text": "You don’t need to do more.",
+            "text": "What You’ll Walk Away With",
             "heading_tag": "h1"
           }
         },
-        "richtext_JT7ypk": {
+        "richtext_KPVtTg": {
           "type": "richtext",
           "settings": {
-            "content": "<p><br/>This is your chance to pause — and realign.To reclaim your time, your creativity, and your sense of self.</p><p></p>"
-          }
-        },
-        "button_EaMzxc": {
-          "type": "button",
-          "settings": {
-            "style": "solid",
-            "text": "START YOUR FOCUS & FLOW JOURNEY",
-            "url": "",
-            "background": "",
-            "text_color": ""
+            "content": "<ul><li>A deeper, more integrated understanding of your story</li><li>A final creative artifact that embodies your transformation</li><li>Practices for living and knowing from the inside out</li><li>A renewed connection to legacy, land, and self</li></ul>"
           }
         }
       },
       "block_order": [
-        "heading_dNUqbj",
-        "richtext_JT7ypk",
-        "button_EaMzxc"
+        "heading_GKVPLk",
+        "richtext_KPVtTg"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "rich_text_qE7Egm": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_mWkACU": {
+          "type": "heading",
+          "settings": {
+            "text": "Are You Ready to Reclaim Your Narrative?",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_fb9KPg": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>If you’re ready to pause, listen, and reimagine your story on your terms — we welcome you.<br/></p>"
+          }
+        },
+        "button_7bywPh": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Join the Lab",
+            "url": "",
+            "background": "#ffffff",
+            "text_color": "#0b3848"
+          }
+        },
+        "subheading_r7Nmfm": {
+          "type": "subheading",
+          "settings": {
+            "text": "Your story is not data. It is breath, memory, spirit, resistance, and becoming."
+          }
+        }
+      },
+      "block_order": [
+        "heading_mWkACU",
+        "richtext_fb9KPg",
+        "button_7bywPh",
+        "subheading_r7Nmfm"
       ],
       "name": "Rich Text Section",
       "settings": {
-        "color_scheme": "scheme-3d3b7c67-7c77-466a-802e-51fad4503514",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": true,
         "content_width": "sm",
         "text_position": "center",
@@ -403,22 +388,29 @@
         "question_KUfC89": {
           "type": "question",
           "settings": {
-            "question": "<strong>What exactly is Focus + Flow?</strong>",
-            "answer": "<p><strong>It’s not just a productivity method.</strong><br/><br/>Focus + Flow is a structured, self-guided program for high-performing, creative individuals who feel overwhelmed, disconnected, or creatively blocked. It helps you break out of burnout cycles, reconnect with your purpose, and unlock the talents that exhaustion has buried.</p>"
+            "question": "<strong>What is the Endarkened Narrative Lab?</strong>",
+            "answer": "<p>The Lab is a creative and contemplative experience rooted in Endarkened Narrative Inquiry — a methodology that honors the emotional, spiritual, and cultural dimensions of storytelling. It’s a space for remembering, unlearning, and reimagining your story on your own terms.</p>"
           }
         },
         "question_B7AWf6": {
           "type": "question",
           "settings": {
-            "question": "<strong>I'm exhausted and can't take on more. Is this program demanding?</strong>",
-            "answer": "<p><strong>That’s the whole point — it’s not about doing more.</strong><br/><br/>It’s about doing less, but with <em>intention</em>.<br/>This program is designed to restore your energy, not drain it. Every phase meets you where you are, with simple, focused guidance you can follow at your own pace.<br/><br/></p>"
+            "question": "<strong>What is Endarkened Narrative Inquiry?</strong>",
+            "answer": "<p>It’s a methodology that invites you to explore your story not as data, but as <em>sacred knowing</em>. It centers lived experience, ancestral wisdom, spirituality, and relationality — resisting linear, extractive narratives and honoring the complexity of being.</p>"
           }
         },
         "question_eMGCVK": {
           "type": "question",
           "settings": {
-            "question": "<strong>What if I’ve already tried productivity tools and coaching?</strong>",
-            "answer": "<p><strong>That’s exactly why Focus + Flow exists — because “more tools” aren’t always the answer.</strong><br/>We go deeper: into identity, self-discovery, and creative alignment. This isn’t about managing time. It’s about reclaiming it.</p>"
+            "question": "<strong>Who is this Lab for?</strong>",
+            "answer": "<p>This space is for those who are ready to pause.<br/>For those tired of performing.<br/>For artists, educators, dreamers, scholars, and seekers who want to reclaim their voice, reimagine their legacy, and tell their story from within.<br/></p>"
+          }
+        },
+        "question_tFXRQX": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>Do I need to be a writer or artist to join?</strong>",
+            "answer": "<p>No. You just need to come with a willingness to reflect, create, and be present with your story. The final artifact is creative, yes — but the process is deeply personal. No prior experience is required — just openness.</p>"
           }
         }
       },
@@ -426,7 +418,8 @@
         "category_aQ4qQB",
         "question_KUfC89",
         "question_B7AWf6",
-        "question_eMGCVK"
+        "question_eMGCVK",
+        "question_tFXRQX"
       ],
       "name": "FAQ",
       "settings": {
@@ -444,11 +437,11 @@
     "image_with_text_nrQeEe",
     "multi_column_zfC9Uw",
     "multi_column_pPMUjY",
+    "scrolling_content_9Jy8jn",
     "image_with_text_block_YFWLLQ",
     "testimonials_4QBXqw",
-    "scrolling_content_9Jy8jn",
-    "multi_column_PpQRFf",
-    "rich_text_gEFp8U",
+    "image_with_text_4VtBFE",
+    "rich_text_qE7Egm",
     "faq_BHhfL3"
   ]
 }

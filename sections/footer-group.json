@@ -27,13 +27,13 @@
             "heading_mt_mobile": 0,
             "heading_align": "left",
             "heading_align_mobile": "left",
-            "heading_color": "#F3F3FC"
+            "heading_color": "#f3f3fc"
           }
         },
         "text_cRnkwi": {
           "type": "text",
           "settings": {
-            "text": "<p>Subscribe to our newsletter and get 20% off your first purchase, exclusive promotions and more!</p>",
+            "text": "<p>Subscribe to our newsletter and get 10% off your first purchase, exclusive promotions and more!</p>",
             "text_custom": false,
             "text_font": "josefin_sans_n4",
             "text_size": 16,
@@ -72,14 +72,14 @@
             "submit_radius": 6,
             "submit_border_thickness": 1,
             "input_bg_color": "#131315",
-            "input_border_color": "#FFFFFF",
+            "input_border_color": "#ffffff",
             "input_border_focus_color": "#000000",
-            "input_color": "#F0F0F9",
+            "input_color": "#f0f0f9",
             "input_placeholder_color": "#484851",
             "submit_color": "#343437",
             "submit_hover_color": "#343437",
-            "submit_bg_color": "#FFFFFF",
-            "submit_bg_hover_color": "#FFFFFF",
+            "submit_bg_color": "#ffffff",
+            "submit_bg_hover_color": "#ffffff",
             "submit_border_color": "",
             "submit_border_hover_color": "#717176"
           }
@@ -104,7 +104,7 @@
             "social_icon_gap": 32,
             "social_icon_gap_mobile": 32,
             "social_icon_color": "#868692",
-            "social_icon_hover_color": "#FFFFFF"
+            "social_icon_hover_color": "#ffffff"
           }
         }
       },
@@ -178,7 +178,7 @@
         "link_hover_color": "#f3f3fc",
         "lang_color": "#878792",
         "lang_hover_color": "#f3f3fc",
-        "background_color": "#0F0F10",
+        "background_color": "#0f0f10",
         "background_gradient": "",
         "border_color": "#000000",
         "margin_top": 0,

@@ -54,6 +54,7 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
+        "image": "shopify://shop_images/a_realistic_photo_of_journaling_2.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
         "content_width": "lg",
@@ -252,6 +253,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "image_size": "lg",
+        "image": "shopify://shop_images/photo_1-Photoroom.jpg",
         "content_width": "lg",
         "enable_parallax": true,
         "remove_vertical_spacing": true
@@ -320,6 +322,7 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
+        "image": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "sm",

@@ -61,6 +61,7 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
+        "image": "shopify://shop_images/IMG_2884.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
         "content_width": "sm",
@@ -187,6 +188,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "image_size": "lg",
+        "image": "shopify://shop_images/IMG_2891.jpg",
         "content_width": "lg",
         "enable_parallax": true,
         "remove_vertical_spacing": true

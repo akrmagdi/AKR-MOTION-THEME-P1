@@ -39,7 +39,7 @@
           "settings": {
             "style": "solid",
             "text": "JOIN TODAY",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "",
             "text_color": ""
           }
@@ -237,7 +237,7 @@
           "type": "link",
           "settings": {
             "text": "JOIN WAITLIST TODAY!",
-            "url": ""
+            "url": "shopify://pages/booking"
           }
         }
       },
@@ -350,7 +350,7 @@
           "settings": {
             "style": "solid",
             "text": "Join the Lab",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "#ffffff",
             "text_color": "#0b3848"
           }

@@ -45,7 +45,7 @@
           "settings": {
             "style": "solid",
             "text": "JOIN TODAY",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "",
             "text_color": ""
           }

@@ -93,10 +93,11 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
+        "image": "shopify://shop_images/IMG_2860.jpg",
         "reveal_on_scroll": true,
         "image_position": "end",
-        "content_width": "sm",
-        "remove_vertical_spacing": true
+        "content_width": "lg",
+        "remove_vertical_spacing": false
       }
     },
     "rich_text_Hb7Nw7": {
@@ -138,6 +139,7 @@
         "image_with_text_DU8dEM": {
           "type": "image_with_text",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_9_4_png.png",
             "title": "Keondria McClish-Boyd, Ph.D., CFLE",
             "heading_tag": "h5",
             "content": "<p><strong>| Founder</strong></p>",
@@ -148,6 +150,7 @@
         "image_with_text_QE3Kbp": {
           "type": "image_with_text",
           "settings": {
+            "image": "shopify://shop_images/Stephanie-Photoroom.png",
             "title": "Stephanie Hinton",
             "heading_tag": "h5",
             "content": "<p><strong>| Stephanie Hinton</strong></p>",

@@ -51,11 +51,11 @@
         "button_Ai6YqT": {
           "type": "button",
           "settings": {
-            "style": "outline",
+            "style": "solid",
             "text": "Contact Us",
             "url": "",
-            "background": "",
-            "text_color": "#ffffff"
+            "background": "#ffffff",
+            "text_color": "#000000"
           }
         }
       },
@@ -67,7 +67,7 @@
       ],
       "name": "Image with Text Overlay",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-2cfb0c4c-b49b-47cc-bd8c-1b6e5ee008ba",
         "image_size": "md",
         "image": "shopify://shop_images/photo_1-Photoroom.jpg",
         "allow_transparent_header": false,

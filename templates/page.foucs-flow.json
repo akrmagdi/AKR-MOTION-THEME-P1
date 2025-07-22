@@ -336,7 +336,7 @@
           "settings": {
             "style": "solid",
             "text": "START YOUR FOCUS & FLOW JOURNEY",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "",
             "text_color": ""
           }

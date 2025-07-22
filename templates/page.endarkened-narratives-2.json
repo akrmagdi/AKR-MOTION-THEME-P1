@@ -122,7 +122,7 @@
           "settings": {
             "title": "",
             "heading_tag": "h3",
-            "content": "<p><strong>Engage</strong> – Relationships with others, history, and land</p>",
+            "content": "<p><strong>Engage</strong> – Relationships with others, history, and our environment</p>",
             "link_url": "",
             "link_text": ""
           }
@@ -310,7 +310,7 @@
         "richtext_KPVtTg": {
           "type": "richtext",
           "settings": {
-            "content": "<ul><li>A deeper, more integrated understanding of your story</li><li>A final creative artifact that embodies your transformation</li><li>Practices for living and knowing from the inside out</li><li>A renewed connection to legacy, land, and self</li></ul>"
+            "content": "<ul><li>A deeper, more integrated understanding of your story</li><li>A final creative artifact that embodies your transformation</li><li>Practices for living and knowing from the inside out</li><li>A renewed connection to legacy, environment, and self</li></ul>"
           }
         }
       },

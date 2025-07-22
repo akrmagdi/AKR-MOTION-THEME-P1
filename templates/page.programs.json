@@ -36,6 +36,7 @@
           "settings": {
             "title": "1-1 COACHING",
             "image": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
+            "mobile_background": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
             "button_url": "shopify://pages/booking",
             "button_label": ""
           }
@@ -45,7 +46,8 @@
           "settings": {
             "title": "FOCUS + FLOW (COMING SOON)",
             "image": "shopify://shop_images/unnamed.jpg",
-            "button_url": "shopify://pages/booking",
+            "mobile_background": "shopify://shop_images/unnamed.jpg",
+            "button_url": "shopify://pages/focus-flow",
             "button_label": "Discover"
           }
         }

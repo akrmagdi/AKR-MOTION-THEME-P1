@@ -199,7 +199,7 @@
           "settings": {
             "style": "outline",
             "text": "EXPLORE OUR PROGRAMS",
-            "url": "",
+            "url": "shopify://pages/progrmas",
             "background": "#708090",
             "text_color": ""
           }
@@ -209,7 +209,7 @@
           "settings": {
             "style": "solid",
             "text": "EXPLORE OUR PRODUCTS",
-            "url": "",
+            "url": "shopify://collections/all",
             "background": "#303030",
             "text_color": ""
           }

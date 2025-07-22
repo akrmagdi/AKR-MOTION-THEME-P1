@@ -53,7 +53,7 @@
           "settings": {
             "style": "solid",
             "text": "Contact Us",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "#ffffff",
             "text_color": "#000000"
           }

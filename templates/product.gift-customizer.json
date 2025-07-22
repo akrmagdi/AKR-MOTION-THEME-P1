@@ -25,13 +25,9 @@
         "step3_heading": "<strong>Card</strong>",
         "step3_subheading": "Select a card",
         "step3_text": "Add a personal card.",
-        "icon1": "shopify://shop_images/Artboard_1.webp",
         "icon1_label": "<strong>Fast Shipping</strong>",
-        "icon2": "shopify://shop_images/Artboard_2.webp",
         "icon2_label": "<strong>Premium Wrap</strong>",
-        "icon3": "shopify://shop_images/Artboard_3.webp",
         "icon3_label": "<strong>Handpicked Gifts</strong>",
-        "icon4": "shopify://shop_images/Artboard_4.webp",
         "icon4_label": "<strong>Personal Card</strong>",
         "step1_collection": "frontpage",
         "step1_mode": "multiple",
@@ -131,6 +127,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "color_scheme": "scheme-2254236e-cfd9-481f-892a-c22c8b4ce4f6",
@@ -232,6 +229,7 @@
         "card_L6eT6x",
         "card_ikYGqx"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Testimonials",
         "title_align": "center",

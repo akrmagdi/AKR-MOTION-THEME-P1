@@ -44,7 +44,7 @@
           "settings": {
             "title": "FOCUS + FLOW (COMING SOON)",
             "image": "shopify://shop_images/unnamed.jpg",
-            "button_url": "",
+            "button_url": "shopify://pages/booking",
             "button_label": "Discover"
           }
         }

@@ -26,6 +26,7 @@
           "settings": {
             "title": "ENDARKENED NARRATIVES LAB",
             "image": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
+            "mobile_background": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
             "button_url": "shopify://pages/embodied-narratives-lab",
             "button_label": "DISCOVER"
           }
@@ -56,7 +57,7 @@
       ],
       "name": "Parallax Hero Section",
       "settings": {
-        "heading": "EXPLORE OUR SERVICES & PROGRAMS",
+        "heading": "OUR SERVICES & PROGRAMS",
         "heading_color": "#ffffff",
         "menu_text_color": "#ffffff",
         "menu_button_color": "#ffffff"

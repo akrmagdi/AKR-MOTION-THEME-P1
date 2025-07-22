@@ -30,7 +30,7 @@
           "settings": {
             "style": "solid",
             "text": "shop now",
-            "url": "",
+            "url": "shopify://collections/all",
             "background": "#bb6222",
             "text_color": ""
           }
@@ -40,7 +40,7 @@
           "settings": {
             "style": "solid",
             "text": "book a discovery call",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "#18566c",
             "text_color": ""
           }
@@ -634,7 +634,7 @@
           "settings": {
             "style": "solid",
             "text": "book a free intro call",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "",
             "text_color": ""
           }
@@ -673,7 +673,7 @@
           "settings": {
             "style": "solid",
             "text": "Talk to a Human Expert",
-            "url": "",
+            "url": "shopify://pages/booking",
             "background": "",
             "text_color": ""
           }

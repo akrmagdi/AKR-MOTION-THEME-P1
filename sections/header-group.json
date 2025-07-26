@@ -92,6 +92,7 @@
         "sidebar_menu": "main-menu",
         "menu_secondary": "",
         "menu_secondary-2": "",
+        "sidebar_image": "shopify://shop_images/Icon_SS_3a8ee2c8-5802-4fdd-bec5-18a8ea61bc8b.jpg",
         "menu_open_trigger": "click",
         "enable_search": false,
         "sidebar_color_scheme": "scheme-3",

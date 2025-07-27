@@ -45,7 +45,7 @@
           "settings": {
             "style": "solid",
             "text": "Learn More About Our Services",
-            "url": "",
+            "url": "shopify://pages/progrmas",
             "background": "#ffffff",
             "text_color": "#1c1c1c"
           }

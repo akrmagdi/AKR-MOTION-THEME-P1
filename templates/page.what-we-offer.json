@@ -163,6 +163,7 @@
         "image_with_text_DU8dEM",
         "image_with_text_QE3Kbp"
       ],
+      "disabled": true,
       "name": "Multi-column",
       "settings": {
         "color_scheme": "",

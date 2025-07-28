@@ -38,7 +38,7 @@
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "JOIN TODAY",
+            "text": "Join the waitlist",
             "url": "shopify://pages/booking",
             "background": "",
             "text_color": ""
@@ -349,7 +349,7 @@
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Join the Lab",
+            "text": "Get on the waitlist",
             "url": "shopify://pages/booking",
             "background": "#ffffff",
             "text_color": "#0b3848"

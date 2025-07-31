@@ -273,6 +273,7 @@
         },
         "testimonial_6ri7Kg": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "content": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>",
             "logo_max_width": 140,

@@ -421,8 +421,8 @@
         "show_category": true,
         "show_excerpt": true,
         "show_read_more": true,
-        "subheading": "",
-        "title": "Blog posts",
+        "subheading": "<em>...thoughts, ideas, and inspirations for your creative and reflective journey</em>",
+        "title": "On the Slate",
         "content": "",
         "button_link": "",
         "button_text": "View all"

@@ -350,8 +350,8 @@
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Get on the waitlist",
-            "url": "shopify://pages/booking",
+            "text": "Secure Your Spot Now",
+            "url": "https://courses.siennaandslate.com/lab/order/",
             "background": "#ffffff",
             "text_color": "#0b3848"
           }

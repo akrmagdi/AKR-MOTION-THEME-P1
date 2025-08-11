@@ -38,10 +38,10 @@
           "type": "button",
           "settings": {
             "style": "solid",
-            "text": "Join the waitlist",
-            "url": "shopify://pages/booking",
-            "background": "",
-            "text_color": ""
+            "text": "Secure Your Spot",
+            "url": "https://courses.siennaandslate.com/lab/order/",
+            "background": "#915011",
+            "text_color": "#ffffff"
           }
         }
       },

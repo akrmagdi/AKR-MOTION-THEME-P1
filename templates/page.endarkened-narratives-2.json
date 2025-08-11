@@ -236,8 +236,8 @@
         "link_DqwMH6": {
           "type": "link",
           "settings": {
-            "text": "JOIN WAITLIST TODAY!",
-            "url": "shopify://pages/booking"
+            "text": "Secure Your Spot Now",
+            "url": "https://courses.siennaandslate.com/lab/order/"
           }
         }
       },

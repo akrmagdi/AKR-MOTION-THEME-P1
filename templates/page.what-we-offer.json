@@ -68,36 +68,59 @@
         "controls_color": "#ffffff"
       }
     },
-    "image_with_text_QVTLEB": {
-      "type": "image-with-text",
+    "text_with_icon_row_HmxDi4": {
+      "type": "text-with-icon-row",
       "blocks": {
-        "heading_CzFVKX": {
-          "type": "heading",
+        "item_ygn7Ck": {
+          "type": "item",
           "settings": {
-            "text": "✦ Why Sienna & Slate?",
-            "heading_tag": "h1"
+            "layout_desktop": "side-by-side",
+            "background_color": "",
+            "icon": "picto-user",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "The Gathering Space",
+            "content": "<p></p><p>Seeking thoughtful connection, creative exchange, and real conversations?<br/><br/><br/></p>"
           }
         },
-        "richtext_BGCGtq": {
-          "type": "richtext",
+        "item_CUhxfV": {
+          "type": "item",
           "settings": {
-            "content": "<p>We understand the joys and challenges that come from being on the creative journey.<br/>It’s not linear — it’s messy, beautiful, lonely, transformative, and sometimes even magical.</p><p>Whether you’re a <strong>scholar, writer, artist, leader, or lifelong learner</strong>, we craft thoughtful tools, spaces, and experiences to help you:</p><ul><li>Think deeply</li><li>Stay connected to your heart</li><li>Work intentionally</li><li>And live with more balance</li></ul><p><strong>Our mission is to remind you that your creativity is sacred — and that rest is part of the process.</strong></p><p><br/><br/><br/><br/></p>"
+            "layout_desktop": "side-by-side",
+            "background_color": "",
+            "icon": "picto-customer-support",
+            "icon_width": 32,
+            "mobile_icon_width": 24,
+            "title": "The Endarkened Narratives Lab",
+            "content": "<p>Seeking an experience rooted in reflection, storytelling, and voice reclamation?<br/><br/></p>"
+          }
+        },
+        "item_6PEUk7": {
+          "type": "item",
+          "settings": {
+            "layout_desktop": "side-by-side",
+            "background_color": "",
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "The Retreat",
+            "content": "<p></p><p>Seeking moments of peace— away from constant doing, expectations, deadlines, and performative spaces?<br/><br/></p>"
           }
         }
       },
       "block_order": [
-        "heading_CzFVKX",
-        "richtext_BGCGtq"
+        "item_ygn7Ck",
+        "item_CUhxfV",
+        "item_6PEUk7"
       ],
-      "name": "Image with Text",
+      "name": "Text with Icons",
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
-        "image": "shopify://shop_images/IMG_2884.jpg",
-        "reveal_on_scroll": true,
-        "image_position": "end",
-        "content_width": "lg",
-        "remove_vertical_spacing": true
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
       }
     },
     "rich_text_Hb7Nw7": {
@@ -106,14 +129,14 @@
         "heading_fY3crp": {
           "type": "heading",
           "settings": {
-            "text": "✦ Our Philosophy",
+            "text": "Why Sienna & Slate?",
             "heading_tag": "h1"
           }
         },
         "richtext_XU7GeU": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Sienna & Slate isn’t here to push you harder.<br/></p><p><strong>| We’re here to help you slow down, reflect, and create with intention.</strong></p><p>_______________</p><p>We prioritize <strong>sustainable practices</strong> that honor well-being and recognize that real success includes joy, intentionality, curiosity, and care. </p><p>Because burnout is not a badge of honor. Relentless productivity is not the goal.</p><p>We believe in creating a rhythm of <strong>creativity and rest</strong> — one that supports your work <em>and</em> your aliveness.</p>"
+            "content": "<p>We understand the joys and challenges that come from being on the creative journey. It’s not linear — it’s messy, beautiful, lonely, transformative, and sometimes even magical.</p><p>Whether you’re a practitioner, scholar, writer, artist, leader, or lifelong learner, we craft thoughtful tools, spaces, and experiences to help you:</p><ul><li>Think deeply</li><li>Work intentionally</li><li>And live with more balance</li></ul><p><strong>Our mission is to remind you that your creativity is sacred — and that nourishment is part of the process.</strong><br/><br/>Because burnout is not a badge of honor. We prioritize sustainable practices that honor well-being and recognize that real success includes joy, intentionality, curiosity, and care. </p>"
           }
         }
       },
@@ -131,6 +154,38 @@
         "content_width": "sm",
         "text_position": "start",
         "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_QVTLEB": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_CzFVKX": {
+          "type": "heading",
+          "settings": {
+            "text": "What We Offer",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_BGCGtq": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><a href=\"https://courses.siennaandslate.com/the-gathering/order/\" target=\"_blank\" title=\"https://courses.siennaandslate.com/the-gathering/order/\"><strong>The Gathering Space-</strong></a> We understand the joys and challenges that come from being on the creative journ<strong>r creativity is sacred — and that nourishment is part of the process.</strong><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CzFVKX",
+        "richtext_BGCGtq"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/IMG_2884.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
       }
     },
     "multi_column_Ti3PUL": {
@@ -224,20 +279,54 @@
       ],
       "name": "Rich Text Section",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": true,
         "content_width": "sm",
         "text_position": "center",
         "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_dqGUxB": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_dcxqRp": {
+          "type": "heading",
+          "settings": {
+            "text": "Our Community",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_FLmbTA": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><a href=\"https://courses.siennaandslate.com/the-gathering/order/\" target=\"_blank\" title=\"https://courses.siennaandslate.com/the-gathering/order/\"><strong>The Gathering Space-</strong></a> is the heart of the Sienna & Slate community. It is a global circle of writers, thinkers, and doers who are committed to working differently. Here, you’ll find support for your journey when you need it most, along with opportunities to connect with others for shared learning, reflection, and collaboration. </p><p>We are more than just an online community, The Gathering Space is where story, creativity, and accountability meet. It’s a place to pause, to be witnessed, and to realign your work with your values.</p><p>Together, we’re building a rhythm of reflection and flow that makes room for both. </p><p><a href=\"https://courses.siennaandslate.com/the-gathering/order/\" target=\"_blank\" title=\"The Gathering Space\"><strong>Join Us, It's FREE!</strong></a><strong><br/></strong><br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dcxqRp",
+        "richtext_FLmbTA"
+      ],
+      "name": "Image with Text",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/jonny-gios-QFGYs8AeHB0-unsplash.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
       }
     }
   },
   "order": [
     "main",
     "slideshow_q87XaX",
-    "image_with_text_QVTLEB",
+    "text_with_icon_row_HmxDi4",
     "rich_text_Hb7Nw7",
+    "image_with_text_QVTLEB",
     "multi_column_Ti3PUL",
-    "rich_text_cfYCng"
+    "rich_text_cfYCng",
+    "image_with_text_dqGUxB"
   ]
 }

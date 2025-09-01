@@ -21,6 +21,16 @@
     "repressent_MbTrqM": {
       "type": "Repressent",
       "blocks": {
+        "image_6rMMak": {
+          "type": "image",
+          "settings": {
+            "title": "The Gathering Space",
+            "image": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
+            "mobile_background": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
+            "button_url": "shopify://pages/booking",
+            "button_label": ""
+          }
+        },
         "image_U7tdJq": {
           "type": "image",
           "settings": {
@@ -29,16 +39,6 @@
             "mobile_background": "shopify://shop_images/Container_f6e7b618-168f-4202-a8c1-63cc30a77b63.png",
             "button_url": "shopify://pages/embodied-narratives-lab",
             "button_label": "DISCOVER"
-          }
-        },
-        "image_6rMMak": {
-          "type": "image",
-          "settings": {
-            "title": "1-1 COACHING",
-            "image": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
-            "mobile_background": "shopify://shop_images/3_6365dd98-7063-4ce5-89d6-5514214b66ac.png",
-            "button_url": "shopify://pages/booking",
-            "button_label": ""
           }
         },
         "image_Be94ra": {
@@ -53,8 +53,8 @@
         }
       },
       "block_order": [
-        "image_U7tdJq",
         "image_6rMMak",
+        "image_U7tdJq",
         "image_Be94ra"
       ],
       "name": "Parallax Hero Section",

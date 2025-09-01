@@ -312,6 +312,7 @@
         "color_scheme": "",
         "separate_section_with_border": true,
         "image": "shopify://shop_images/jonny-gios-QFGYs8AeHB0-unsplash.jpg",
+        "mobile_image": "shopify://shop_images/jonny-gios-QFGYs8AeHB0-unsplash.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
         "content_width": "sm",

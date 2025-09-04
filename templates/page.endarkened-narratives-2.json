@@ -31,7 +31,7 @@
         "richtext_wnGKWT": {
           "type": "richtext",
           "settings": {
-            "content": "<p>In a world that often asks us to perform instead of reflect, <strong>The Endarkened Narrative Lab</strong> offers a sacred pause — a place to remember who you are, reclaim your voice, and reimagine your story on your own terms.</p>"
+            "content": "<h5>The Lab isn’t just about reflection — it’s about action. You’ll leave with a story you can stand in, a process for navigating complexity, and a community that’s with you long after the Lab ends.<br/><br/></h5>"
           }
         },
         "button_UfXXU9": {
@@ -311,7 +311,7 @@
         "richtext_KPVtTg": {
           "type": "richtext",
           "settings": {
-            "content": "<ul><li>A deeper, more integrated understanding of your story</li><li>A final creative artifact that embodies your transformation</li><li>Practices for living and knowing from the inside out</li><li>A renewed connection to legacy, environment, and self</li></ul>"
+            "content": "<ul><li> In 12 weeks, you’ll move from fragmented to grounded — with a narrative artifact in your hands and practices that make your work sustainable. </li><li>A deeper, more integrated understanding of your story.</li><li> Narrative practices you can return to anytime your work feels heavy. </li><li> A structured process (the ENI Reflexive Cycle) you can apply beyond the Lab. </li><li> A reflective artifact (essay, audio story, creative piece) you can share or keep. </li><li> A supportive community that doesn’t just “talk about reflection” but practices change together. </li><li>A story you can tell with confidence, clarity, and power — in your writing, teaching, leadership, or next career step. </li></ul>"
           }
         }
       },
@@ -359,7 +359,7 @@
         "subheading_r7Nmfm": {
           "type": "subheading",
           "settings": {
-            "text": "Your story is breath, memory, spirit, resistance, and becoming."
+            "text": "Your story is breath, memory, spirit, resistance, and becoming. Think of it as reflection with receipts: concrete tools, real writing, and a story you can use right away. "
           }
         }
       },
